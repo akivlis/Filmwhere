@@ -39,7 +39,7 @@ fileprivate extension LocalizationViewController {
         
        let sceneViewController = ScenesViewController()
         let mapViewController = MapViewController()
-        let viewControllers: [UIViewController] = [sceneViewController, mapViewController]
+        let viewControllers: [UIViewController] = [mapViewController, sceneViewController]
         
         
         _view.containerView.subviews.forEach { $0.removeFromSuperview() }

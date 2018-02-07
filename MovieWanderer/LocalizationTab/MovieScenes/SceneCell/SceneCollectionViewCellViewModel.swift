@@ -7,3 +7,23 @@
 //
 
 import Foundation
+
+struct SceneCollectionViewCellViewModel {
+    
+    let scene: Scene
+    
+    var title : String {
+        return scene.title
+    }
+    
+    var subtitle: String {
+        return scene.description
+    }
+    
+    var distanceFromMe: Int {
+        return 50
+    }
+    
+    
+}
+
