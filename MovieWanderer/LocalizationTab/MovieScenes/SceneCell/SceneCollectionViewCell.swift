@@ -25,12 +25,14 @@ class SceneCollectionViewCell: UICollectionViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.sizeToFit()
         return label
     }()
     
     let subtitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.sizeToFit()
         return label
     }()
     
@@ -80,7 +82,7 @@ fileprivate extension SceneCollectionViewCell {
         sceneImageView.autoPinEdge(toSuperviewEdge: .top)
         sceneImageView.autoPinEdge(toSuperviewEdge: .right)
         sceneImageView.autoPinEdge(toSuperviewEdge: .left)
-        sceneImageView.autoSetDimension(.height, toSize: 200)
+        sceneImageView.autoSetDimension(.height, toSize: 130)
         
         descriptionContainerView.autoPinEdge(toSuperviewEdge: .bottom)
         descriptionContainerView.autoPinEdge(toSuperviewEdge: .left)
@@ -90,13 +92,16 @@ fileprivate extension SceneCollectionViewCell {
         
         titleLabel.autoPinEdge(toSuperviewMargin: .left)
         titleLabel.autoPinEdge(toSuperviewMargin: .top)
+        titleLabel.autoSetDimension(.height, toSize: 12)
         
         subtitleLabel.autoPinEdge(toSuperviewMargin: .left)
         subtitleLabel.autoPinEdge(toSuperviewMargin: .bottom)
-        subtitleLabel.autoPinEdge(.top, to: .bottom, of: titleLabel)
+        subtitleLabel.autoSetDimension(.height, toSize: 12)
+//        subtitleLabel.autoPinEdge(.top, to: .bottom, of: titleLabel)
         
         distanceLabel.autoPinEdge(toSuperviewMargin: .right)
         distanceLabel.autoPinEdge(toSuperviewMargin: .top)
+        distanceLabel.autoSetDimension(.height, toSize: 14)
 
         
         

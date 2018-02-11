@@ -27,7 +27,7 @@ class LocalizationViewController: UIViewController {
         
         _view.switchControlValueChanged$
             .subscribe(onNext: { [unowned self] index in
-                self.displayControllerAt(index)
+                self.displayViewAt(index)
             }).disposed(by: disposeBag)
     }
     
@@ -35,15 +35,30 @@ class LocalizationViewController: UIViewController {
 
 fileprivate extension LocalizationViewController {
     
-    func displayControllerAt(_ index: Int) {
-        
-       let sceneViewController = ScenesViewController()
-        let mapViewController = MapViewController()
-        let viewControllers: [UIViewController] = [mapViewController, sceneViewController]
-        
-        
+    func displayViewAt(_ index: Int) {
+
         _view.containerView.subviews.forEach { $0.removeFromSuperview() }
-        _view.containerView.insertSubview(viewControllers[index].view, at: 0)
+        
+        if index == 1 {
+            
+            let scenes : [Scene] = [Scene(title: "Walk of shame", description: "Bla bla bla", position: "fsfs"),
+                                    Scene(title: "Red wedding", description: "Stark family got killed", position: "fsfjsk"),
+                                    Scene(title: "On the Wall", description: "John snow knows nothing", position: "fnsjfns"),
+                                    Scene(title: "HAHAHA", description: "John snow knows nothing", position: "fnsjfns")]
+            
+            let sceneView = SceneListView(scenes: scenes)
+            
+            _view.containerView.insertSubview(sceneView, at: 0)
+            sceneView.autoPinEdgesToSuperviewEdges()
+
+
+        } else {
+            
+            let mapView = MapView(frame: .zero)
+        
+            _view.containerView.insertSubview(mapView, at: 0)
+            mapView.autoPinEdgesToSuperviewEdges()
+        }
     }
     
   

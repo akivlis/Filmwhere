@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		27CD6806A5D991424DC5BD5D /* Pods_MovieWanderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E34055683A2757EBA9C5358 /* Pods_MovieWanderer.framework */; };
-		3D05230D202906AC00A90A61 /* ScenesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D05230C202906AC00A90A61 /* ScenesViewController.swift */; };
 		3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D05230E202906BC00A90A61 /* ScenesViewModel.swift */; };
 		3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */; };
 		3D0523142029072300A90A61 /* SceneCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523132029072300A90A61 /* SceneCollectionViewCellViewModel.swift */; };
-		3D05231720290C2300A90A61 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D05231620290C2300A90A61 /* MapViewController.swift */; };
+		3D05231720290C2300A90A61 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D05231620290C2300A90A61 /* MapView.swift */; };
 		3D2289082028FE010074D173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2289072028FE010074D173 /* AppDelegate.swift */; };
 		3D2289112028FE010074D173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289102028FE010074D173 /* Assets.xcassets */; };
 		3D2289142028FE010074D173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289122028FE010074D173 /* LaunchScreen.storyboard */; };
@@ -20,7 +19,7 @@
 		3D22892C2028FF080074D173 /* LocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892B2028FF080074D173 /* LocalizationViewController.swift */; };
 		3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892E2029006B0074D173 /* LocalizationViewModel.swift */; };
 		3D803588202B9E5B00A51585 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Scene.swift */; };
-		3DCE811D202B9C1A00041B9D /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE811C202B9C1A00041B9D /* SceneView.swift */; };
+		3DCE811D202B9C1A00041B9D /* SceneListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE811C202B9C1A00041B9D /* SceneListView.swift */; };
 		3DCE811F202B9C7700041B9D /* LocalizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DCE811E202B9C7700041B9D /* LocalizationView.swift */; };
 		B34021DCA5311F624324DAFF /* Pods_MovieWandererTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECEA672BF83C17E2FFE9B489 /* Pods_MovieWandererTests.framework */; };
 /* End PBXBuildFile section */
@@ -38,11 +37,10 @@
 /* Begin PBXFileReference section */
 		09B4F15D97AA2C0205557CEA /* Pods-MovieWandererTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWandererTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWandererTests/Pods-MovieWandererTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C6C7BAC8429FADADDBAA7A8 /* Pods-MovieWanderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer.release.xcconfig"; sourceTree = "<group>"; };
-		3D05230C202906AC00A90A61 /* ScenesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewController.swift; sourceTree = "<group>"; };
 		3D05230E202906BC00A90A61 /* ScenesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewModel.swift; sourceTree = "<group>"; };
 		3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCollectionViewCell.swift; sourceTree = "<group>"; };
 		3D0523132029072300A90A61 /* SceneCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
-		3D05231620290C2300A90A61 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		3D05231620290C2300A90A61 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		3D2289042028FE010074D173 /* MovieWanderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieWanderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2289072028FE010074D173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D2289102028FE010074D173 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -54,7 +52,7 @@
 		3D22892B2028FF080074D173 /* LocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewController.swift; sourceTree = "<group>"; };
 		3D22892E2029006B0074D173 /* LocalizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewModel.swift; sourceTree = "<group>"; };
 		3D803587202B9E5B00A51585 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
-		3DCE811C202B9C1A00041B9D /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
+		3DCE811C202B9C1A00041B9D /* SceneListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneListView.swift; sourceTree = "<group>"; };
 		3DCE811E202B9C7700041B9D /* LocalizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationView.swift; sourceTree = "<group>"; };
 		549F5945F2D00594116BF4CB /* Pods-MovieWanderer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer.debug.xcconfig"; sourceTree = "<group>"; };
 		9E34055683A2757EBA9C5358 /* Pods_MovieWanderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieWanderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,7 +92,7 @@
 		3D05231520290C0F00A90A61 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				3D05231620290C2300A90A61 /* MapViewController.swift */,
+				3D05231620290C2300A90A61 /* MapView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -157,9 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				3D052310202906E500A90A61 /* SceneCell */,
-				3D05230C202906AC00A90A61 /* ScenesViewController.swift */,
 				3D05230E202906BC00A90A61 /* ScenesViewModel.swift */,
-				3DCE811C202B9C1A00041B9D /* SceneView.swift */,
+				3DCE811C202B9C1A00041B9D /* SceneListView.swift */,
 			);
 			path = MovieScenes;
 			sourceTree = "<group>";
@@ -414,15 +411,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */,
-				3DCE811D202B9C1A00041B9D /* SceneView.swift in Sources */,
-				3D05230D202906AC00A90A61 /* ScenesViewController.swift in Sources */,
+				3DCE811D202B9C1A00041B9D /* SceneListView.swift in Sources */,
 				3D2289082028FE010074D173 /* AppDelegate.swift in Sources */,
 				3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */,
 				3DCE811F202B9C7700041B9D /* LocalizationView.swift in Sources */,
 				3D0523142029072300A90A61 /* SceneCollectionViewCellViewModel.swift in Sources */,
 				3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */,
 				3D22892C2028FF080074D173 /* LocalizationViewController.swift in Sources */,
-				3D05231720290C2300A90A61 /* MapViewController.swift in Sources */,
+				3D05231720290C2300A90A61 /* MapView.swift in Sources */,
 				3D803588202B9E5B00A51585 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

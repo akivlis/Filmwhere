@@ -11,29 +11,30 @@ import UIKit
 import RxSwift
 
 
-fileprivate let collectionViewFlowLayout: UICollectionViewFlowLayout = {
+fileprivate let myCollectionViewFlowLayout: UICollectionViewFlowLayout = {
     let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
-    layout.minimumLineSpacing = 0
+    layout.scrollDirection = .vertical
+    layout.minimumLineSpacing = 10
     layout.minimumInteritemSpacing = 0
-    layout.itemSize = CGSize(width: 300, height: 300)
-    layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
     return layout
 }()
 
-class SceneView: UIView {
+class SceneListView: UIView {
     
-    private(set) var disposeBag = DisposeBag()
     fileprivate var scenes = [Scene]()
+    
+    fileprivate let insetValue: CGFloat = 10
     
     
     let scenesCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewFlowLayout)
-        collectionView.showsHorizontalScrollIndicator = true
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.isUserInteractionEnabled = true
-        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = true
         collectionView.isScrollEnabled = true
-        collectionView.bounces = true
+        
+        collectionView.bounces = false
+//        collectionView.alwaysBounceVertical = true
         
         collectionView.register(SceneCollectionViewCell.self, forCellWithReuseIdentifier: "SceneCollectionViewCell")
         
@@ -50,9 +51,12 @@ class SceneView: UIView {
         }
         
         scenesCollectionView.dataSource = self
+        scenesCollectionView.delegate = self
+        
         
         addSubview(scenesCollectionView)
         scenesCollectionView.autoPinEdgesToSuperviewEdges()
+        scenesCollectionView.reloadData()
         
         
     }
@@ -67,7 +71,7 @@ class SceneView: UIView {
     }
 }
 
-extension SceneView: UICollectionViewDataSource {
+extension SceneListView: UICollectionViewDataSource {
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return scenes.count
     }
@@ -81,10 +85,26 @@ extension SceneView: UICollectionViewDataSource {
     }
 }
 
-extension SceneView: UICollectionViewDelegateFlowLayout {
+extension SceneListView: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("tapped")
+    }
+}
+
+extension SceneListView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.bounds.width, height: 200)
+
+        let width = UIScreen.main.bounds.width - 2 * insetValue
+
+        return CGSize(width: width, height: 200)
+    }
+
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        return UIEdgeInsets(top: 0, left: insetValue, bottom: 10, right: insetValue)
     }
     
 
