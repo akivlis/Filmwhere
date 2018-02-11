@@ -12,13 +12,14 @@ class SceneCollectionViewCell: UICollectionViewCell {
     
     let sceneImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = .yellow
+        imageView.contentMode = .scaleAspectFill
+//        imageView.layer.cornerRadius = 8
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     let descriptionContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = .green
         return view
     }()
     
@@ -49,7 +50,11 @@ class SceneCollectionViewCell: UICollectionViewCell {
         super.init(frame: .zero)
         loadSubviews()
         setConstraints()
+        
+        backgroundColor = .white
     }
+    
+   
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -60,9 +65,15 @@ class SceneCollectionViewCell: UICollectionViewCell {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
         distanceLabel.text = "\(viewModel.distanceFromMe) m away"
+        sceneImageView.image = viewModel.sceneImage
         
     }
     
+    override func layoutSubviews() {
+        self.roundCorners(.allCorners, radius: 8)
+        self.clipsToBounds = true
+    }
+
     
 }
 
@@ -82,7 +93,7 @@ fileprivate extension SceneCollectionViewCell {
         sceneImageView.autoPinEdge(toSuperviewEdge: .top)
         sceneImageView.autoPinEdge(toSuperviewEdge: .right)
         sceneImageView.autoPinEdge(toSuperviewEdge: .left)
-        sceneImageView.autoSetDimension(.height, toSize: 130)
+        sceneImageView.autoSetDimension(.height, toSize: 180)
         
         descriptionContainerView.autoPinEdge(toSuperviewEdge: .bottom)
         descriptionContainerView.autoPinEdge(toSuperviewEdge: .left)

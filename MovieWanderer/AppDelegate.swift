@@ -18,9 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow.init(frame: UIScreen.main.bounds)
         
-        let localizationViewController = LocalizationViewController()
-        window?.rootViewController = localizationViewController
-        
+        let tabBarViewController = MainTabBarController()
+//        window?.rootViewController = UINavigationController(rootViewController: tabBarViewController)
+        window?.rootViewController = tabBarViewController
         window?.makeKeyAndVisible()
         
         return true

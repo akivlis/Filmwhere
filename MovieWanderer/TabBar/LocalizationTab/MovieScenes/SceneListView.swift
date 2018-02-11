@@ -33,7 +33,7 @@ class SceneListView: UIView {
         collectionView.showsVerticalScrollIndicator = true
         collectionView.isScrollEnabled = true
         
-        collectionView.bounces = false
+//        collectionView.bounces = false
 //        collectionView.alwaysBounceVertical = true
         
         collectionView.register(SceneCollectionViewCell.self, forCellWithReuseIdentifier: "SceneCollectionViewCell")
@@ -44,7 +44,7 @@ class SceneListView: UIView {
     
     init(scenes: [Scene]?) {
         super.init(frame: .zero)
-        backgroundColor = .white
+        backgroundColor = .lightGray
         
         if let scenes = scenes {
             self.scenes = scenes
@@ -65,6 +65,7 @@ class SceneListView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+   
     func setScenes(scenes: [Scene]) {
         self.scenes = scenes
         scenesCollectionView.reloadData()
@@ -81,6 +82,9 @@ extension SceneListView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SceneCollectionViewCell", for: indexPath) as! SceneCollectionViewCell
         let viewModel = SceneCollectionViewCellViewModel(scene: scenes[indexPath.row])
         cell.bindViewModel(viewModel: viewModel)
+        
+//        cell.roundCorners(.allCorners, radius: 3)
+
         return cell
     }
 }
@@ -98,13 +102,13 @@ extension SceneListView: UICollectionViewDelegateFlowLayout {
 
         let width = UIScreen.main.bounds.width - 2 * insetValue
 
-        return CGSize(width: width, height: 200)
+        return CGSize(width: width, height: 250)
     }
 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 0, left: insetValue, bottom: 10, right: insetValue)
+        return UIEdgeInsets(top: 10, left: insetValue, bottom: 50, right: insetValue)
     }
     
 

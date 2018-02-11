@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct SceneCollectionViewCellViewModel {
     
@@ -22,6 +23,10 @@ struct SceneCollectionViewCellViewModel {
     
     var distanceFromMe: Int {
         return 50
+    }
+    
+    var sceneImage: UIImage {
+        return UIImage(named: "dubrovnik")!
     }
     
     
