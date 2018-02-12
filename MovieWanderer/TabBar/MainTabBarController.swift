@@ -9,25 +9,37 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
+    
+//    fileprivate let viewControllers: [UIViewController]
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        loadTabs()
+       
+    }
+    
+    fileprivate func loadTabs(){
         
         let exploreViewController = ExploreViewController()
-        let localizationViewController = LocalizationViewController()
-        let movieListViewController = MovieListViewController()
-        let profileViewController = ProfileViewController()
-        
-        exploreViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        localizationViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
-        movieListViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
-        profileViewController.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        exploreViewController.tabBarItem = UITabBarItem(title: "Highlights", image: UIImage(named: "favorite"), tag: 0)
 
+        
+        let localizationViewController = LocalizationViewController()
+        localizationViewController.tabBarItem = UITabBarItem(title: "Maps", image: UIImage(named: "map"), tag: 1)
+
+        let movieListViewController = MovieListViewController()
+        movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "movie"), tag: 2)
+
+        let profileViewController = ProfileViewController()
+        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 3)
         
         
         viewControllers = [exploreViewController,localizationViewController, movieListViewController, profileViewController ]
+        
+        selectedViewController = exploreViewController
     }
+    
 
 
 }

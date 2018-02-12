@@ -196,7 +196,6 @@
 			children = (
 				3DC79AEE2030CCCF008B0E49 /* MoviesTab */,
 				3DC79AED2030CCC5008B0E49 /* ProfileTab */,
-				3DC79AEA2030CC64008B0E49 /* GaleryTab */,
 				3D2289292028FEA20074D173 /* LocalizationTab */,
 				3DC79AE92030CC51008B0E49 /* ExploreTab */,
 				3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */,
@@ -210,13 +209,6 @@
 				3DC79AEB2030CC7F008B0E49 /* ExploreViewController.swift */,
 			);
 			path = ExploreTab;
-			sourceTree = "<group>";
-		};
-		3DC79AEA2030CC64008B0E49 /* GaleryTab */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = GaleryTab;
 			sourceTree = "<group>";
 		};
 		3DC79AED2030CCC5008B0E49 /* ProfileTab */ = {
@@ -420,9 +412,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

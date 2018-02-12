@@ -1,6 +1,10 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## GoogleMaps
+
+Copyright 2017 Google
+
 ## PureLayout
 
 This code is distributed under the terms and conditions of the MIT license.

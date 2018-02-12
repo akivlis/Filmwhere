@@ -6,6 +6,8 @@ target ‘MovieWanderer’ do
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
     pod 'PureLayout'
+    pod 'GoogleMaps'
+
 
 
   target 'MovieWandererTests' do
