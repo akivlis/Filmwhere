@@ -31,6 +31,11 @@ class LocalizationViewController: UIViewController {
             }).disposed(by: disposeBag)
     }
     
+    // Set the status bar style to complement night-mode.
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 }
 
 fileprivate extension LocalizationViewController {
@@ -41,10 +46,10 @@ fileprivate extension LocalizationViewController {
         
         if index == 1 {
             
-            let scenes : [Scene] = [Scene(title: "Walk of shame", description: "Bla bla bla", position: "fsfs"),
-                                    Scene(title: "Red wedding", description: "Stark family got killed", position: "fsfjsk"),
-                                    Scene(title: "On the Wall", description: "John snow knows nothing", position: "fnsjfns"),
-                                    Scene(title: "HAHAHA", description: "John snow knows nothing", position: "fnsjfns")]
+            let scenes : [Scene] = [Scene(title: "Home", description: "Bla bla bla", latitude: 48.225660, longitude: 16.399509),
+                                    Scene(title: "Agi", description: "Bla bla bla", latitude: 48.228176, longitude: 16.395046),
+                                    Scene(title: "Mimo", description: "Bla bla bla", latitude: 48.206959, longitude: 16.390454),
+                                    Scene(title: "ZOO", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)]
             
             let sceneView = SceneListView(scenes: scenes)
             

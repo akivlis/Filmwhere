@@ -37,7 +37,7 @@ class LocalizationView : UIView {
     fileprivate let viewSwitchControl: UISegmentedControl = {
         let items = ["Map", "List"]
         let control = UISegmentedControl(items: items)
-        control.selectedSegmentIndex = 1
+        control.selectedSegmentIndex = 0
         return control
     }()
     

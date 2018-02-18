@@ -19,6 +19,7 @@
 		3D22892C2028FF080074D173 /* LocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892B2028FF080074D173 /* LocalizationViewController.swift */; };
 		3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892E2029006B0074D173 /* LocalizationViewModel.swift */; };
 		3D803588202B9E5B00A51585 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Scene.swift */; };
+		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
 		3DC79AE3203087E8008B0E49 /* MovieWanderer+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */; };
 		3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */; };
 		3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */; };
@@ -58,6 +59,7 @@
 		3D22892B2028FF080074D173 /* LocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewController.swift; sourceTree = "<group>"; };
 		3D22892E2029006B0074D173 /* LocalizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewModel.swift; sourceTree = "<group>"; };
 		3D803587202B9E5B00A51585 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+Color.swift"; sourceTree = "<group>"; };
 		3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+UIView.swift"; sourceTree = "<group>"; };
 		3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				3D2289102028FE010074D173 /* Assets.xcassets */,
 				3D2289122028FE010074D173 /* LaunchScreen.storyboard */,
 				3D2289152028FE010074D173 /* Info.plist */,
+				3DC040192039EA2E00C1A86D /* Supporting Files */,
 			);
 			path = MovieWanderer;
 			sourceTree = "<group>";
@@ -180,6 +183,14 @@
 				3D803587202B9E5B00A51585 /* Scene.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		3DC040192039EA2E00C1A86D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3DC0401B2039EA9900C1A86D /* style.json */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		3DC79AE1203087BD008B0E49 /* Extension */ = {
@@ -336,6 +347,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DC0401C2039EA9900C1A86D /* style.json in Resources */,
 				3D2289142028FE010074D173 /* LaunchScreen.storyboard in Resources */,
 				3D2289112028FE010074D173 /* Assets.xcassets in Resources */,
 			);

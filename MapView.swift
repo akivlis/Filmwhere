@@ -13,7 +13,7 @@ import GoogleMaps
 class MapView: GMSMapView {
     
     private let locationManager = CLLocationManager()
-
+    
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -25,21 +25,25 @@ class MapView: GMSMapView {
         addSubview(imageView)
         imageView.autoCenterInSuperview()
         
+        
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
-        setStyle()
+        setMapStyle()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }
 
 extension MapView: CLLocationManagerDelegate {
-
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-
+        
         guard status == .authorizedWhenInUse else {
             return
         }
@@ -61,12 +65,13 @@ extension MapView: CLLocationManagerDelegate {
 }
 
 fileprivate extension MapView {
-
-    func setStyle() {
+    
+    func setMapStyle() {
+        
         do {
             // Set the map style by passing the URL of the local file.
             if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-                mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+                self.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
             } else {
                 NSLog("Unable to find style.json")
             }
@@ -74,7 +79,4 @@ fileprivate extension MapView {
             NSLog("One or more of the map styles failed to load. \(error)")
         }
     }
-    
 }
-
-

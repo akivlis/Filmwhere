@@ -12,11 +12,14 @@ struct Scene {
     
     let title: String
     let description: String
-    let position: String
+    let latitude: Double
+    let longitude: Double
+
     
-    init(title: String, description: String, position: String) {
+    init(title: String, description: String, latitude: Double, longitude: Double) {
         self.title = title
         self.description = description
-        self.position = position
+        self.latitude = latitude
+        self.longitude = longitude
     }
 }
