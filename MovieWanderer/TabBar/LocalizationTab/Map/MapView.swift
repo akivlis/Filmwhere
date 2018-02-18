@@ -13,22 +13,28 @@ import GoogleMaps
 class MapView: GMSMapView {
     
     private let locationManager = CLLocationManager()
+    
+    var scenes: [Scene]? {
+        didSet {
+            for scene in scenes! {
+                showMarker(for: scene)
+            }
+//            scenes?.map { showMarker(for: $0)}
+        }
+    }
 
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
         backgroundColor = .gray
-        
-        let pinLocationImage = UIImage(named: "pin_image")
-        let imageView = UIImageView(image: pinLocationImage)
-        addSubview(imageView)
-        imageView.autoCenterInSuperview()
+
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
         setStyle()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,6 +64,16 @@ extension MapView: CLLocationManagerDelegate {
         
         locationManager.stopUpdatingLocation()
     }
+
+    
+//    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+//        UIView.animate(withDuration: 5.0, animations: { () -> Void in
+//            self.londonView?.tintColor = .blue
+//        }, completion: {(finished) in
+//            // Stop tracking view changes to allow CPU to idle.
+//            self.london?.tracksViewChanges = false
+//        })
+//    }
 }
 
 fileprivate extension MapView {
@@ -73,6 +89,25 @@ fileprivate extension MapView {
         } catch {
             NSLog("One or more of the map styles failed to load. \(error)")
         }
+    }
+    
+    func showMarker(for scene: Scene) {
+        
+        let pinLocationImage = UIImage(named: "pin_image")!.withRenderingMode(.alwaysTemplate)
+        let markerView = UIImageView(image: pinLocationImage)
+        markerView.tintColor = .red
+        
+        
+        let position = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
+        let marker = GMSMarker(position: position)
+        marker.title = scene.title
+        marker.snippet = scene.description
+        marker.map = self
+        marker.iconView = markerView
+//        marker.tracksViewChanges = true
+
+        
+        
     }
     
 }
