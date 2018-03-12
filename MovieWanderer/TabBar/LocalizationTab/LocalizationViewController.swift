@@ -25,9 +25,7 @@ class LocalizationViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(_view)
-        view.backgroundColor = .lightGray
         _view.autoPinEdgesToSuperviewEdges()
-        
         
         setupViews()
         

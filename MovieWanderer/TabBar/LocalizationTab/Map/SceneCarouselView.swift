@@ -75,9 +75,8 @@ extension SceneCarouselView: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SceneCollectionViewCell", for: indexPath) as! SceneCollectionViewCell
         let viewModel = SceneCollectionViewCellViewModel(scene: scenes[indexPath.row])
-        cell.bindViewModel(viewModel: viewModel)
+        cell.bindViewModel(viewModel)
         
-        //        cell.roundCorners(.allCorners, radius: 3)
         
         return cell
     }
@@ -94,15 +93,16 @@ extension SceneCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width = UIScreen.main.bounds.width - 2 * insetValue
+        let width = UIScreen.main.bounds.width - 4 * insetValue
         
-        return CGSize(width: width, height: frame.height)
+        print(frame.height)
+        return CGSize(width: width, height: frame.height - 15)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         
-        return UIEdgeInsets(top: 10, left: insetValue, bottom: 50, right: insetValue)
+        return UIEdgeInsets(top: 5, left: insetValue, bottom: 10, right: insetValue)
     }
     
     

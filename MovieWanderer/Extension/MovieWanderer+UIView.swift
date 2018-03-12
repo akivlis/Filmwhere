@@ -14,7 +14,7 @@ extension UIView {
     // NOTE: Be aware where you call this! A good place to do it is layoutSubviews, because you need the frame so you can't do it in viewDidLoad.
     func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
         if corners == .allCorners {
-            layer.masksToBounds = false
+            layer.masksToBounds = true
             layer.cornerRadius = radius
         } else {
             let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
@@ -25,8 +25,9 @@ extension UIView {
     }
 }
 
-//extension UITableViewCell {
-//    override func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+//extension UICollectionViewCell {
+//    
+//    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
 //        contentView.roundCorners(corners, radius: radius)
 //    }
 //}

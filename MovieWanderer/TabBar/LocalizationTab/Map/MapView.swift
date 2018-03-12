@@ -57,7 +57,7 @@ extension MapView: CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
         
         isMyLocationEnabled = true
-        settings.myLocationButton = true
+//        settings.myLocationButton = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -76,7 +76,7 @@ extension MapView: CLLocationManagerDelegate {
 
         carouselView.autoPinEdge(toSuperviewEdge: .left)
         carouselView.autoPinEdge(toSuperviewEdge: .right)
-        carouselView.autoPinEdge(toSuperviewEdge: .bottom)
+        carouselView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 50) //tabbar height
         carouselView.autoSetDimension(.height, toSize: 240)
     }
 

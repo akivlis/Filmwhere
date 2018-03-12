@@ -37,6 +37,8 @@ class LocalizationView : UIView {
         addUIComponents()
         setContraints()
         
+        backgroundColor = .white
+        
     }
     
     required init?(coder aDecoder: NSCoder) {

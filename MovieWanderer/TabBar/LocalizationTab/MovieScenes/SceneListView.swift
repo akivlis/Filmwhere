@@ -32,10 +32,6 @@ class SceneListView: UIView {
         collectionView.isUserInteractionEnabled = true
         collectionView.showsVerticalScrollIndicator = true
         collectionView.isScrollEnabled = true
-        
-//        collectionView.bounces = false
-//        collectionView.alwaysBounceVertical = true
-        
         collectionView.register(SceneCollectionViewCell.self, forCellWithReuseIdentifier: "SceneCollectionViewCell")
         
         collectionView.backgroundColor = .clear
@@ -44,7 +40,7 @@ class SceneListView: UIView {
     
     init(scenes: [Scene]?) {
         super.init(frame: .zero)
-        backgroundColor = .lightGray
+        backgroundColor =  .white //.lightGray
         
         if let scenes = scenes {
             self.scenes = scenes
@@ -53,11 +49,9 @@ class SceneListView: UIView {
         scenesCollectionView.dataSource = self
         scenesCollectionView.delegate = self
         
-        
         addSubview(scenesCollectionView)
         scenesCollectionView.autoPinEdgesToSuperviewEdges()
         scenesCollectionView.reloadData()
-        
         
     }
     
@@ -81,10 +75,9 @@ extension SceneListView: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SceneCollectionViewCell", for: indexPath) as! SceneCollectionViewCell
         let viewModel = SceneCollectionViewCellViewModel(scene: scenes[indexPath.row])
-        cell.bindViewModel(viewModel: viewModel)
+        cell.bindViewModel(viewModel)
         
-//        cell.roundCorners(.allCorners, radius: 3)
-
+        
         return cell
     }
 }

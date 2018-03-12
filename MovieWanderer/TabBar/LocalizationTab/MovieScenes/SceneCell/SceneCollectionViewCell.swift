@@ -13,7 +13,6 @@ class SceneCollectionViewCell: UICollectionViewCell {
     let sceneImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-//        imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -51,7 +50,10 @@ class SceneCollectionViewCell: UICollectionViewCell {
         loadSubviews()
         setConstraints()
         
-        backgroundColor = .white
+        backgroundColor = .clear
+        
+//        self.clipsToBounds = true
+
     }
     
    
@@ -60,7 +62,7 @@ class SceneCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func bindViewModel(viewModel: SceneCollectionViewCellViewModel){
+    func bindViewModel(_ viewModel: SceneCollectionViewCellViewModel){
         
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
@@ -70,18 +72,35 @@ class SceneCollectionViewCell: UICollectionViewCell {
     }
     
     override func layoutSubviews() {
-        self.roundCorners(.allCorners, radius: 8)
-        self.clipsToBounds = true
+        shadowAndRound()
     }
+    
+    func shadowAndRound() {
+        
+        self.contentView.backgroundColor = .white
+        
+        self.contentView.layer.cornerRadius = 8.0
+        self.contentView.layer.masksToBounds = true
+        self.contentView.clipsToBounds = true
 
+        
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
+        self.layer.shadowRadius = 5.0
+        self.layer.shadowOpacity = 0.6
+        self.layer.masksToBounds = false
+        //if we want to have shadow on each side, we set the shadowOffset to CGSize.zero and set shadowPath
+//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 8.0).cgPath
+    }
     
 }
 
 fileprivate extension SceneCollectionViewCell {
     
     func loadSubviews() {
-        addSubview(sceneImageView)
-        addSubview(descriptionContainerView)
+        
+        contentView.addSubview(sceneImageView)
+        contentView.addSubview(descriptionContainerView)
         
         descriptionContainerView.addSubview(titleLabel)
         descriptionContainerView.addSubview(subtitleLabel)
@@ -89,6 +108,8 @@ fileprivate extension SceneCollectionViewCell {
     }
     
     func setConstraints() {
+        
+        contentView.autoPinEdgesToSuperviewEdges()
         
         sceneImageView.autoPinEdge(toSuperviewEdge: .top)
         sceneImageView.autoPinEdge(toSuperviewEdge: .right)
