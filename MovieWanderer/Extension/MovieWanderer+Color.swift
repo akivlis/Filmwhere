@@ -13,6 +13,8 @@ import UIKit
 public extension UIColor {
     
     public static let lightGray = UIColor.color(fromHexString: "#EDEDED")
+    
+    public static let appBlue = UIColor.color(fromHexString: "#007FFF")
 }
 
 

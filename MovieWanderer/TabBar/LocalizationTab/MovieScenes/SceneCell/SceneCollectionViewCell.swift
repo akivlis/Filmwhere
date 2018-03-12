@@ -25,6 +25,8 @@ class SceneCollectionViewCell: UICollectionViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.textColor = .appBlue
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.sizeToFit()
         return label
     }()
@@ -32,12 +34,15 @@ class SceneCollectionViewCell: UICollectionViewCell {
     let subtitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.textColor = .gray
         label.sizeToFit()
         return label
     }()
     
     let distanceLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 12)
         return label
     }()
     
@@ -51,9 +56,6 @@ class SceneCollectionViewCell: UICollectionViewCell {
         setConstraints()
         
         backgroundColor = .clear
-        
-//        self.clipsToBounds = true
-
     }
     
    
@@ -114,28 +116,21 @@ fileprivate extension SceneCollectionViewCell {
         sceneImageView.autoPinEdge(toSuperviewEdge: .top)
         sceneImageView.autoPinEdge(toSuperviewEdge: .right)
         sceneImageView.autoPinEdge(toSuperviewEdge: .left)
-        sceneImageView.autoSetDimension(.height, toSize: 180)
+        sceneImageView.autoMatch(.height, to: .height, of: contentView, withMultiplier: 2/3)
         
         descriptionContainerView.autoPinEdge(toSuperviewEdge: .bottom)
         descriptionContainerView.autoPinEdge(toSuperviewEdge: .left)
         descriptionContainerView.autoPinEdge(toSuperviewEdge: .right)
         descriptionContainerView.autoPinEdge(.top, to: .bottom, of: sceneImageView)
         
-        
-        titleLabel.autoPinEdge(toSuperviewMargin: .left)
+        titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 15)
         titleLabel.autoPinEdge(toSuperviewMargin: .top)
-        titleLabel.autoSetDimension(.height, toSize: 12)
         
-        subtitleLabel.autoPinEdge(toSuperviewMargin: .left)
-        subtitleLabel.autoPinEdge(toSuperviewMargin: .bottom)
-        subtitleLabel.autoSetDimension(.height, toSize: 12)
-//        subtitleLabel.autoPinEdge(.top, to: .bottom, of: titleLabel)
-        
-        distanceLabel.autoPinEdge(toSuperviewMargin: .right)
-        distanceLabel.autoPinEdge(toSuperviewMargin: .top)
-        distanceLabel.autoSetDimension(.height, toSize: 14)
+        subtitleLabel.autoPinEdge(.left, to: .left, of: titleLabel)
+        subtitleLabel.autoPinEdge(.top, to: .bottom, of: titleLabel, withOffset: 8)
 
-        
+        distanceLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 15)
+        distanceLabel.autoAlignAxis(toSuperviewAxis: .horizontal)
         
     }
 
