@@ -26,7 +26,7 @@ struct SceneCollectionViewCellViewModel {
     }
     
     var sceneImage: UIImage {
-        return UIImage(named: "dubrovnik")!
+        return UIImage(named: scene.title)!
     }
     
     

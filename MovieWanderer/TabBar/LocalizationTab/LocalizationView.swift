@@ -12,17 +12,7 @@ import RxSwift
 
 class LocalizationView : UIView {
     
-    
-//    var settingsButtonTapped$: Observable<()> {
-//        return settingsButton.rx.tap.asObservable()
-//            .throttle(2, scheduler: MainScheduler.instance)
-//    }
-//
-//    var openDeveloperMenu$: Observable<()> {
-//        return tap.rx.event.map { _ in () }.asObservable()
-//            .skip(6)
-//    }
-    
+
     var switchControlValueChanged$: Observable<(Int)> {
         return viewSwitchControl.rx.selectedSegmentIndex.asObservable()
     }

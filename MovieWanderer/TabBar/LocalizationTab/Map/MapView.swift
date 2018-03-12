@@ -14,26 +14,31 @@ class MapView: GMSMapView {
     
     private let locationManager = CLLocationManager()
     
-    var scenes: [Scene]? {
+    fileprivate let carouselView = SceneCarouselView(scenes: [Scene]())
+    
+    var scenes = [Scene]() {
         didSet {
-            for scene in scenes! {
+            for scene in scenes {
                 showMarker(for: scene)
             }
-//            scenes?.map { showMarker(for: $0)}
+            carouselView.setScenes(scenes: scenes)
         }
     }
 
     
     override init(frame: CGRect) {
+        
+//        scenes = [Scene]()
         super.init(frame: .zero)
         
         backgroundColor = .gray
-
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
         setStyle()
+        
+        setCarouselView()
         
     }
     
@@ -64,6 +69,16 @@ extension MapView: CLLocationManagerDelegate {
         
         locationManager.stopUpdatingLocation()
     }
+    
+    func setCarouselView() {
+        
+        addSubview(carouselView)
+
+        carouselView.autoPinEdge(toSuperviewEdge: .left)
+        carouselView.autoPinEdge(toSuperviewEdge: .right)
+        carouselView.autoPinEdge(toSuperviewEdge: .bottom)
+        carouselView.autoSetDimension(.height, toSize: 240)
+    }
 
     
 //    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
@@ -77,6 +92,8 @@ extension MapView: CLLocationManagerDelegate {
 }
 
 fileprivate extension MapView {
+    
+    
 
     func setStyle() {
         do {
