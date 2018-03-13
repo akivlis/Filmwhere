@@ -7,6 +7,8 @@ target ‘MovieWanderer’ do
     pod 'RxCocoa',    '~> 4.0'
     pod 'PureLayout'
     pod 'GoogleMaps'
+    pod 'UPCarouselFlowLayout'
+
 
 
 
