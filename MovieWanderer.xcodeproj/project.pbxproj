@@ -18,6 +18,14 @@
 		3D22891F2028FE010074D173 /* MovieWandererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22891E2028FE010074D173 /* MovieWandererTests.swift */; };
 		3D22892C2028FF080074D173 /* LocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892B2028FF080074D173 /* LocalizationViewController.swift */; };
 		3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892E2029006B0074D173 /* LocalizationViewModel.swift */; };
+		3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87F3205D835000EE3835 /* MovieDetailViewController.swift */; };
+		3D3F87F6205D835E00EE3835 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */; };
+		3D3F87F8205D8B8C00EE3835 /* MovieDetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87F7205D8B8C00EE3835 /* MovieDetailStackView.swift */; };
+		3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C2205C42B40086D867 /* MovieListView.swift */; };
+		3D44B2C5205C46940086D867 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C4205C46940086D867 /* Movie.swift */; };
+		3D44B2C8205C48D80086D867 /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C7205C48D80086D867 /* MovieCell.swift */; };
+		3D44B2CA205C48ED0086D867 /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C9205C48ED0086D867 /* MovieCellViewModel.swift */; };
+		3D44B2CC205C533F0086D867 /* MovieWanderer+PureLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2CB205C533F0086D867 /* MovieWanderer+PureLayout.swift */; };
 		3D803588202B9E5B00A51585 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Scene.swift */; };
 		3D864D602056DAA20069ECD0 /* SceneCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D864D5F2056DAA20069ECD0 /* SceneCarouselView.swift */; };
 		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
@@ -59,6 +67,14 @@
 		3D2289202028FE010074D173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D22892B2028FF080074D173 /* LocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewController.swift; sourceTree = "<group>"; };
 		3D22892E2029006B0074D173 /* LocalizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewModel.swift; sourceTree = "<group>"; };
+		3D3F87F3205D835000EE3835 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
+		3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
+		3D3F87F7205D8B8C00EE3835 /* MovieDetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailStackView.swift; sourceTree = "<group>"; };
+		3D44B2C2205C42B40086D867 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
+		3D44B2C4205C46940086D867 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		3D44B2C7205C48D80086D867 /* MovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
+		3D44B2C9205C48ED0086D867 /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
+		3D44B2CB205C533F0086D867 /* MovieWanderer+PureLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+PureLayout.swift"; sourceTree = "<group>"; };
 		3D803587202B9E5B00A51585 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		3D864D5F2056DAA20069ECD0 /* SceneCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCarouselView.swift; sourceTree = "<group>"; };
 		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
@@ -180,10 +196,54 @@
 			path = MovieScenes;
 			sourceTree = "<group>";
 		};
+		3D3F87F2205D833600EE3835 /* MovieDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3D3F87FB205D8DC000EE3835 /* MovieMap */,
+				3D3F87FA205D8DB700EE3835 /* MovieScenes */,
+				3D3F87F9205D8DAD00EE3835 /* MovieHeader */,
+				3D3F87F3205D835000EE3835 /* MovieDetailViewController.swift */,
+				3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */,
+				3D3F87F7205D8B8C00EE3835 /* MovieDetailStackView.swift */,
+			);
+			path = MovieDetail;
+			sourceTree = "<group>";
+		};
+		3D3F87F9205D8DAD00EE3835 /* MovieHeader */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieHeader;
+			sourceTree = "<group>";
+		};
+		3D3F87FA205D8DB700EE3835 /* MovieScenes */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieScenes;
+			sourceTree = "<group>";
+		};
+		3D3F87FB205D8DC000EE3835 /* MovieMap */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MovieMap;
+			sourceTree = "<group>";
+		};
+		3D44B2C6205C48BD0086D867 /* MovieCell */ = {
+			isa = PBXGroup;
+			children = (
+				3D44B2C7205C48D80086D867 /* MovieCell.swift */,
+				3D44B2C9205C48ED0086D867 /* MovieCellViewModel.swift */,
+			);
+			path = MovieCell;
+			sourceTree = "<group>";
+		};
 		3D803586202B9E4A00A51585 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				3D803587202B9E5B00A51585 /* Scene.swift */,
+				3D44B2C4205C46940086D867 /* Movie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -201,6 +261,7 @@
 			children = (
 				3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */,
 				3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */,
+				3D44B2CB205C533F0086D867 /* MovieWanderer+PureLayout.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -236,7 +297,10 @@
 		3DC79AEE2030CCCF008B0E49 /* MoviesTab */ = {
 			isa = PBXGroup;
 			children = (
+				3D3F87F2205D833600EE3835 /* MovieDetail */,
+				3D44B2C6205C48BD0086D867 /* MovieCell */,
 				3DC79AEF2030CD02008B0E49 /* MovieListViewController.swift */,
+				3D44B2C2205C42B40086D867 /* MovieListView.swift */,
 			);
 			path = MoviesTab;
 			sourceTree = "<group>";
@@ -391,17 +455,17 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/CenteredCollectionView/CenteredCollectionView.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/UPCarouselFlowLayout/UPCarouselFlowLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CenteredCollectionView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UPCarouselFlowLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -488,9 +552,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3F87F8205D8B8C00EE3835 /* MovieDetailStackView.swift in Sources */,
+				3D44B2C5205C46940086D867 /* Movie.swift in Sources */,
 				3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */,
 				3DCE811D202B9C1A00041B9D /* SceneListView.swift in Sources */,
 				3D2289082028FE010074D173 /* AppDelegate.swift in Sources */,
+				3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */,
 				3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */,
 				3DCE811F202B9C7700041B9D /* LocalizationView.swift in Sources */,
 				3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */,
@@ -499,11 +566,16 @@
 				3D0523142029072300A90A61 /* SceneCollectionViewCellViewModel.swift in Sources */,
 				3D864D602056DAA20069ECD0 /* SceneCarouselView.swift in Sources */,
 				3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */,
+				3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */,
 				3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */,
 				3DC79AE3203087E8008B0E49 /* MovieWanderer+Color.swift in Sources */,
 				3D22892C2028FF080074D173 /* LocalizationViewController.swift in Sources */,
+				3D44B2CC205C533F0086D867 /* MovieWanderer+PureLayout.swift in Sources */,
 				3D05231720290C2300A90A61 /* MapView.swift in Sources */,
 				3DC79AEC2030CC7F008B0E49 /* ExploreViewController.swift in Sources */,
+				3D3F87F6205D835E00EE3835 /* MovieDetailViewModel.swift in Sources */,
+				3D44B2C8205C48D80086D867 /* MovieCell.swift in Sources */,
+				3D44B2CA205C48ED0086D867 /* MovieCellViewModel.swift in Sources */,
 				3D803588202B9E5B00A51585 /* Scene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,6 +723,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J9P8F4UWBG;
 				INFOPLIST_FILE = MovieWanderer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = silvi.MovieWanderer;
@@ -666,6 +739,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J9P8F4UWBG;
 				INFOPLIST_FILE = MovieWanderer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = silvi.MovieWanderer;

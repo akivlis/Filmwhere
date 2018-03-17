@@ -70,6 +70,7 @@ class SceneCollectionViewCell: UICollectionViewCell {
         subtitleLabel.text = viewModel.subtitle
         distanceLabel.text = "\(viewModel.distanceFromMe) m away"
         sceneImageView.image = viewModel.sceneImage
+//        sceneImageView.backgroundColor = .gray
         
     }
     

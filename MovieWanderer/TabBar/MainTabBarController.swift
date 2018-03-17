@@ -16,6 +16,9 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         loadTabs()
+        
+        tabBar.backgroundColor = .white
+        
        
     }
     
@@ -23,7 +26,6 @@ class MainTabBarController: UITabBarController {
         
         let exploreViewController = ExploreViewController()
         exploreViewController.tabBarItem = UITabBarItem(title: "Highlights", image: UIImage(named: "favorite"), tag: 0)
-
         
         let localizationViewController = LocalizationViewController()
         localizationViewController.tabBarItem = UITabBarItem(title: "Maps", image: UIImage(named: "map"), tag: 1)
@@ -35,7 +37,10 @@ class MainTabBarController: UITabBarController {
         profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 3)
         
         
-        viewControllers = [exploreViewController,localizationViewController, movieListViewController, profileViewController ]
+        let movieNavigationViewController = UINavigationController(rootViewController: movieListViewController)
+        
+        
+        viewControllers = [exploreViewController,localizationViewController, movieNavigationViewController, profileViewController ]
         
         selectedViewController = exploreViewController
     }

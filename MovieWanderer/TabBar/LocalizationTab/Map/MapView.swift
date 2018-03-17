@@ -8,6 +8,7 @@
 
 import UIKit
 import GoogleMaps
+import RxSwift
 
 
 class MapView: GMSMapView {
@@ -15,6 +16,8 @@ class MapView: GMSMapView {
     private let locationManager = CLLocationManager()
     
     fileprivate let carouselView = SceneCarouselView(scenes: [Scene]())
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate let defaultZoom: Float = 13.0
     
     var scenes = [Scene]() {
         didSet {
@@ -40,10 +43,27 @@ class MapView: GMSMapView {
         
         setCarouselView()
         
+        carouselView.scrolledToScene$
+            .subscribe(onNext: { [unowned self] scene in
+                self.moveCameraToScene(scene: scene)
+            }).disposed(by: disposeBag)
+        
+        
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+}
+
+extension MapView: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        marker.opacity = 1.0
+        return true
     }
 }
 
@@ -65,35 +85,43 @@ extension MapView: CLLocationManagerDelegate {
             return
         }
         
-        camera = GMSCameraPosition(target: location.coordinate, zoom: 15, bearing: 0, viewingAngle: 0)
+        camera = GMSCameraPosition(target: location.coordinate, zoom: defaultZoom, bearing: 0, viewingAngle: 0)
+        
         
         locationManager.stopUpdatingLocation()
+    }
+ 
+}
+
+
+fileprivate extension MapView {
+    
+    
+    func moveCameraToScene(scene: Scene) {
+        
+        clear()
+//        selectedMarker = nil
+        
+        let location = GMSCameraPosition.camera(withLatitude: scene.latitude, longitude: scene.longitude, zoom: defaultZoom)
+        
+        let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude))
+        marker.map = self
+        
+        selectedMarker = marker
+
+        animate(to: location)
     }
     
     func setCarouselView() {
         
         addSubview(carouselView)
-
+        
         carouselView.autoPinEdge(toSuperviewEdge: .left)
         carouselView.autoPinEdge(toSuperviewEdge: .right)
         carouselView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 50) //tabbar height
         carouselView.autoSetDimension(.height, toSize: 240)
     }
 
-    
-//    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-//        UIView.animate(withDuration: 5.0, animations: { () -> Void in
-//            self.londonView?.tintColor = .blue
-//        }, completion: {(finished) in
-//            // Stop tracking view changes to allow CPU to idle.
-//            self.london?.tracksViewChanges = false
-//        })
-//    }
-}
-
-fileprivate extension MapView {
-    
-    
 
     func setStyle() {
         do {
@@ -121,10 +149,9 @@ fileprivate extension MapView {
         marker.snippet = scene.description
         marker.map = self
         marker.iconView = markerView
+        marker.opacity = 0.5
 //        marker.tracksViewChanges = true
-
-        
-        
+   
     }
     
 }

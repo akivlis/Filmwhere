@@ -8,16 +8,13 @@
 
 import Foundation
 import UIKit
-import UPCarouselFlowLayout
+import RxSwift
+import CenteredCollectionView
 
 
-fileprivate let myCollectionViewFlowLayout: UPCarouselFlowLayout = {
-    let layout = UPCarouselFlowLayout()
-    layout.sideItemScale = 1.0
-    layout.spacingMode =  UPCarouselFlowLayoutSpacingMode.fixed(spacing: 10)
-//        UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 20)
+fileprivate let myCollectionViewFlowLayout: CenteredCollectionViewFlowLayout = {
+    let layout = CenteredCollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
-    layout.sideItemAlpha = 1.0
     layout.minimumLineSpacing = 10
     layout.minimumInteritemSpacing = 0
     return layout
@@ -29,6 +26,12 @@ class SceneCarouselView: UIView {
     fileprivate let insetValue: CGFloat = 10
     
     
+    fileprivate var _scrolledToScene = PublishSubject<Scene>()
+    var scrolledToScene$: Observable<Scene> {
+        return _scrolledToScene
+    }
+    
+    
     let scenesCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -36,6 +39,7 @@ class SceneCarouselView: UIView {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isScrollEnabled = true
         collectionView.register(SceneCollectionViewCell.self, forCellWithReuseIdentifier: "SceneCollectionViewCell")
+//        collectionView.isPagingEnabled = true
         
         collectionView.backgroundColor = .clear
         return collectionView
@@ -68,6 +72,7 @@ class SceneCarouselView: UIView {
 }
 
 extension SceneCarouselView: UICollectionViewDataSource {
+    
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return scenes.count
     }
@@ -86,19 +91,25 @@ extension SceneCarouselView: UICollectionViewDataSource {
 extension SceneCarouselView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tapped")
+        
+        let selectedScene = scenes[indexPath.row]
+//        _scrolledToScene.onNext(selectedScene)
+        
     }
     
-//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-//
-//        if scrollView == self.scenesCollectionView {
-//            var currentCellOffset = self.scenesCollectionView.contentOffset
-//            currentCellOffset.x += (self.scenesCollectionView.frame.width - 4 * insetValue) /// 2
-//            if let indexPath = self.scenesCollectionView.indexPathForItem(at: currentCellOffset) {
-//                self.scenesCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//            }
-//        }
-//    }
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let index = targetContentOffset.pointee.x / (scenesCollectionView.frame.width - 4 * insetValue)
+        
+        print("index: \(abs(index.rounded()))")
+        let roundedIndex: Int = Int(abs(index.rounded()))
+        
+        let selectedScene = scenes[roundedIndex]
+                _scrolledToScene.onNext(selectedScene)
+
+    }
+    
+    
 }
 
 extension SceneCarouselView: UICollectionViewDelegateFlowLayout {
@@ -106,6 +117,7 @@ extension SceneCarouselView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let width = collectionView.frame.width - 4 * insetValue
+        print(width)
         return CGSize(width: width, height: frame.height - 15)
     }
     
