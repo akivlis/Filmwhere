@@ -22,9 +22,9 @@ class MovieListViewController: UIViewController {
         
         setView()
         
-        let dummyMovies = [Movie(title: "Men in Black", description: "fslfhslfhslfhsl", scenes: [Scene]()),
-                           Movie(title: "Game of thrones", description: "fslfhslfhslfhsl", scenes: [Scene]()),
-                           Movie(title: "Rocky", description: "fslfhslfhslfhsl", scenes: [Scene]())]
+        let dummyMovies = [Movie(title: "Men in Black", description: "fslfhslfhslfhsl", scenes: [Scene](), image: "Lokrum"),
+                           Movie(title: "Game of thrones", description: "fslfhslfhslfhsl", scenes: [Scene](), image: "Jamie"),
+                           Movie(title: "Rocky", description: "fslfhslfhslfhsl", scenes: [Scene](), image: "Dany")]
         listView.movies = dummyMovies
         
         
@@ -56,7 +56,7 @@ fileprivate extension MovieListViewController {
     
     func openDetailFor(_ movie: Movie) {
         
-        let movieDetailViewController = MovieDetailViewController()
+        let movieDetailViewController = MovieDetailViewController(movie: movie)
         
         navigationController?.pushViewController(movieDetailViewController, animated: true)
         

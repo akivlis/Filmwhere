@@ -11,18 +11,38 @@ import RxSwift
 
 class MovieDetailViewController: UIViewController {
 
-    fileprivate let scrollView = UIScrollView()
-//    fileprivate let movieDetailView = UserProfileStackView(viewModel: UserProfileStackViewViewModel())
-    fileprivate let disposeBag = DisposeBag()
+    private let scrollView = UIScrollView()
+    private let movieDetailView : MovieDetailStackView
+    private let disposeBag = DisposeBag()
+    
+//    private let movie: Movie
+    // MARK: Init
+    
+    init(movie: Movie) {
+        
+//        self.movie = movie
+        movieDetailView = MovieDetailStackView(viewModel: MovieDetailViewModel(movie: movie))
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        
+        loadSubviews()
+        setContraints()
+        
+        scrollView.showsVerticalScrollIndicator = false
+        
+        view.backgroundColor = .gray
 
     }
-    
-
 
 }
 
@@ -30,24 +50,24 @@ fileprivate extension MovieDetailViewController {
     
     func loadSubviews() {
         view.addSubview(scrollView)
-//        scrollView.addSubview(userProfileView)
+        scrollView.addSubview(movieDetailView)
     }
     
     func setContraints() {
         
-        let padding: CGFloat = 12
+//        let padding: CGFloat = 12
 
-        scrollView.autoPinEdge(toSuperviewEdge: .left, withInset: padding)
-        scrollView.autoPinEdge(toSuperviewEdge: .right, withInset: padding)
+        scrollView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
+        scrollView.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
         scrollView.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
         scrollView.autoPinToSafeArea(.bottom, of: self, withInset: 0, insetForDeviceWithNotch: 0)
         
-//        userProfileView.autoPinEdge(toSuperviewEdge: .top, withInset: 20)
-//        userProfileView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 20)
-//        userProfileView.autoPinEdge(toSuperviewEdge: .left)
-//        userProfileView.autoPinEdge(toSuperviewEdge: .right)
-//
-//        userProfileView.autoMatch(.width, to: .width, of: scrollView)
+        movieDetailView.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
+        movieDetailView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
+        movieDetailView.autoPinEdge(toSuperviewEdge: .left)
+        movieDetailView.autoPinEdge(toSuperviewEdge: .right)
+
+        movieDetailView.autoMatch(.width, to: .width, of: scrollView)
     }
 
 }

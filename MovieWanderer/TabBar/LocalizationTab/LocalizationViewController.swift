@@ -18,7 +18,7 @@ class LocalizationViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var sceneView: SceneListView!
-    var mapView: MapView!
+    var mapView: SceneMapView!
     
     
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ fileprivate extension LocalizationViewController {
                                 Scene(title: "Dany", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)]
         
         sceneView = SceneListView(scenes: scenes)
-        mapView = MapView(frame: .zero)
+        mapView = SceneMapView(frame: .zero)
         
         _view.containerView.addSubview(sceneView)
         _view.containerView.addSubview(mapView)

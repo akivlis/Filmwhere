@@ -1,21 +1,20 @@
 //
-//  MapViewController.swift
+//  WandererMapView.swift
 //  MovieWanderer
 //
-//  Created by Silvia Kuzmova on 05/02/2018.
+//  Created by Silvia Kuzmova on 18.03.18.
 //  Copyright © 2018 Silvia Kuzmova. All rights reserved.
 //
+
 
 import UIKit
 import GoogleMaps
 import RxSwift
 
-
 class MapView: GMSMapView {
     
     private let locationManager = CLLocationManager()
     
-    fileprivate let carouselView = SceneCarouselView(scenes: [Scene]())
     fileprivate let disposeBag = DisposeBag()
     fileprivate let defaultZoom: Float = 13.0
     
@@ -24,36 +23,37 @@ class MapView: GMSMapView {
             for scene in scenes {
                 showMarker(for: scene)
             }
-            carouselView.setScenes(scenes: scenes)
         }
     }
-
     
     override init(frame: CGRect) {
         
-//        scenes = [Scene]()
         super.init(frame: .zero)
-        
-        backgroundColor = .gray
         
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
         
         setStyle()
-        
-        setCarouselView()
-        
-        carouselView.scrolledToScene$
-            .subscribe(onNext: { [unowned self] scene in
-                self.moveCameraToScene(scene: scene)
-            }).disposed(by: disposeBag)
-        
-        
-        
+
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func moveCameraToScene(scene: Scene) {
+        //TODO: highlight selected scene
+//                clear()
+//                selectedMarker = nil
+        
+        let location = GMSCameraPosition.camera(withLatitude: scene.latitude, longitude: scene.longitude, zoom: defaultZoom)
+        
+        let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude))
+        marker.map = self
+        
+        selectedMarker = marker
+        
+        animate(to: location)
     }
     
     
@@ -68,16 +68,16 @@ extension MapView: GMSMapViewDelegate {
 }
 
 extension MapView: CLLocationManagerDelegate {
-
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-
+        
         guard status == .authorizedWhenInUse else {
             return
         }
         locationManager.startUpdatingLocation()
         
         isMyLocationEnabled = true
-//        settings.myLocationButton = true
+        //        settings.myLocationButton = true
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -90,39 +90,12 @@ extension MapView: CLLocationManagerDelegate {
         
         locationManager.stopUpdatingLocation()
     }
- 
+    
 }
 
 
 fileprivate extension MapView {
     
-    
-    func moveCameraToScene(scene: Scene) {
-        
-        clear()
-//        selectedMarker = nil
-        
-        let location = GMSCameraPosition.camera(withLatitude: scene.latitude, longitude: scene.longitude, zoom: defaultZoom)
-        
-        let marker = GMSMarker(position: CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude))
-        marker.map = self
-        
-        selectedMarker = marker
-
-        animate(to: location)
-    }
-    
-    func setCarouselView() {
-        
-        addSubview(carouselView)
-        
-        carouselView.autoPinEdge(toSuperviewEdge: .left)
-        carouselView.autoPinEdge(toSuperviewEdge: .right)
-        carouselView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 50) //tabbar height
-        carouselView.autoSetDimension(.height, toSize: 240)
-    }
-
-
     func setStyle() {
         do {
             // Set the map style by passing the URL of the local file.
@@ -149,9 +122,8 @@ fileprivate extension MapView {
         marker.snippet = scene.description
         marker.map = self
         marker.iconView = markerView
-        marker.opacity = 0.5
-//        marker.tracksViewChanges = true
-   
+        //        marker.tracksViewChanges = true
+        
     }
     
 }

@@ -42,7 +42,7 @@ class MainTabBarController: UITabBarController {
         
         viewControllers = [exploreViewController,localizationViewController, movieNavigationViewController, profileViewController ]
         
-        selectedViewController = exploreViewController
+        selectedViewController = movieNavigationViewController
     }
     
 

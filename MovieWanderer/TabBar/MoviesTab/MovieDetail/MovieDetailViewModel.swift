@@ -10,4 +10,10 @@ import Foundation
 
 struct MovieDetailViewModel {
     
+    let movie: Movie
+    
+    var movieHeaderViewModel: MovieHeaderViewModel {
+        return MovieHeaderViewModel(movie: movie)
+    }
+    
 }
