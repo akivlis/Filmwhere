@@ -28,8 +28,8 @@ struct MovieHeaderViewModel {
         return movie.year
     }
     
-    var numberOfFilmingLocations: Int {
-        return movie.numberOfLocations
+    var numberOfFilmingLocations: String {
+        return "\(movie.numberOfLocations) filming locations"
     }
     
     var isFavorite: Bool {

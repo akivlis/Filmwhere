@@ -22,9 +22,9 @@ class MovieListViewController: UIViewController {
         
         setView()
         
-        let dummyMovies = [Movie(title: "Men in Black", description: "fslfhslfhslfhsl", scenes: [Scene](), image: "Lokrum"),
-                           Movie(title: "Game of thrones", description: "fslfhslfhslfhsl", scenes: [Scene](), image: "Jamie"),
-                           Movie(title: "Rocky", description: "fslfhslfhslfhsl", scenes: [Scene](), image: "Dany")]
+        let dummyMovies = [Movie(title: "Men in Black", description: "fsfsfs", scenes: [Scene](), image: "placeholder"),
+                           Movie(title: "Game of thrones", description: "Game of thrones is an american fantasy drama created by.. Its an adaption of Song of ICe and Fire from fantasy series, of which Game of thrones is the first one bla bla bla bla bla", scenes: [Scene](), image: "placeholder"),
+                           Movie(title: "Rocky", description: "fslfhslfhslfhsl", scenes: [Scene](), image: "placeholder")]
         listView.movies = dummyMovies
         
         
@@ -50,7 +50,7 @@ fileprivate extension MovieListViewController {
         listView.backgroundColor = .white
         
         title = "Movies"
-        navigationController?.navigationBar.barTintColor = .gray
+//        navigationController?.navigationBar.barTintColor = .gray
 
     }
     

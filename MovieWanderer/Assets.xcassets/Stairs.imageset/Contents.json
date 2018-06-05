@@ -2,16 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Game-of-Thrones-Dubrovnik-Tour-1-1-17889.png",
-      "scale" : "1x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "3x"
+      "filename" : "Game-of-Thrones-Dubrovnik-Tour-1-1-17889.png"
     }
   ],
   "info" : {

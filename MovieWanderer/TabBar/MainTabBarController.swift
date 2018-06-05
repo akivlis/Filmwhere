@@ -16,32 +16,25 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         loadTabs()
-        
         tabBar.backgroundColor = .white
-        
-       
     }
     
     fileprivate func loadTabs(){
-        
-        let exploreViewController = ExploreViewController()
-        exploreViewController.tabBarItem = UITabBarItem(title: "Highlights", image: UIImage(named: "favorite"), tag: 0)
+ 
+        let movieListViewController = MovieListViewController()
+        movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "movie"), tag: 0)
         
         let localizationViewController = LocalizationViewController()
         localizationViewController.tabBarItem = UITabBarItem(title: "Maps", image: UIImage(named: "map"), tag: 1)
 
-        let movieListViewController = MovieListViewController()
-        movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "movie"), tag: 2)
 
         let profileViewController = ProfileViewController()
-        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 3)
-        
+        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 2)
         
         let movieNavigationViewController = UINavigationController(rootViewController: movieListViewController)
         
         
-        viewControllers = [exploreViewController,localizationViewController, movieNavigationViewController, profileViewController ]
-        
+        viewControllers = [movieNavigationViewController, localizationViewController, profileViewController ]
         selectedViewController = movieNavigationViewController
     }
     

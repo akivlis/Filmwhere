@@ -9,18 +9,8 @@
 import UIKit
 import RxSwift
 
-fileprivate let myCollectionViewFlowLayout: UICollectionViewFlowLayout = {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .vertical
-    layout.minimumLineSpacing = 10
-    layout.minimumInteritemSpacing = 0
-    return layout
-}()
 
-
-class MovieListView : UIView  {
-    
-    let cellId = "MovieCollectionCell"
+final class MovieListView : UIView  {
     
     var movies = [Movie]() {
         didSet {
@@ -28,70 +18,70 @@ class MovieListView : UIView  {
         }
     }
     
-    fileprivate var _movieTapped = PublishSubject<Movie>()
+    private var _movieTapped = PublishSubject<Movie>()
     var movieTapped$: Observable<Movie> {
         return _movieTapped
     }
     
-    let movieCollectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isUserInteractionEnabled = true
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.isScrollEnabled = true
-        collectionView.alwaysBounceVertical = true
-        collectionView.bounces = true
-        collectionView.register(MovieCell.self, forCellWithReuseIdentifier: "MovieCollectionCell")
-        collectionView.backgroundColor = .clear
-        return collectionView
+    let movieTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.isUserInteractionEnabled = true
+        tableView.showsVerticalScrollIndicator = false
+        tableView.isScrollEnabled = true
+        tableView.alwaysBounceVertical = true
+        tableView.bounces = true
+        tableView.register(MovieTableViewCell.self)
+        tableView.backgroundColor = .clear
+        return tableView
     }()
+    
+    // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         
-        movieCollectionView.delegate = self
-        movieCollectionView.dataSource = self
+        movieTableView.delegate = self
+        movieTableView.dataSource = self
         
-        addSubview(movieCollectionView)
+        addSubview(movieTableView)
+        movieTableView.autoPinEdge(toSuperviewEdge: .top)
+        movieTableView.autoPinEdge(toSuperviewEdge: .bottom)
+        movieTableView.autoPinEdge(toSuperviewEdge: .left, withInset: 15)
+        movieTableView.autoPinEdge(toSuperviewEdge: .right, withInset: 15)
         
-        movieCollectionView.autoPinEdgesToSuperviewEdges()
-        
-//        movieCollectionView.autoPinToSafeAreaOfView(.top, of: self)
-//        movieCollectionView.autoPinEdge(toSuperviewEdge: .left)
-//        movieCollectionView.autoPinEdge(toSuperviewEdge: .bottom)
-//        movieCollectionView.autoPinEdge(toSuperviewEdge: .right)
-        
-        backgroundColor = .gray
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    
+ 
 }
 
-extension MovieListView : UICollectionViewDataSource {
+// MARK: - UITableViewDataSource
+
+extension MovieListView : UITableViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return movies.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       
+        let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.reuseIdentifier, for: indexPath)
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MovieCell
-        
-        cell.viewModel = MovieCellViewModel(movie: movies[indexPath.row])
-        
+        if let movieCell = cell as? MovieTableViewCell {
+            let viewModel = MovieCellViewModel(movie: movies[indexPath.row])
+            movieCell.bindViewModel(viewModel)
+        }
         return cell
-        
     }
-    
-    
+
 }
 
-extension MovieListView : UICollectionViewDelegate {
+// MARK: - UITableViewDelegate
+
+extension MovieListView : UITableViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -101,19 +91,3 @@ extension MovieListView : UICollectionViewDelegate {
     
 }
 
-extension MovieListView: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let width = collectionView.frame.width - 20
-        print(width)
-        return CGSize(width: width, height: 50)
-    }
-    
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets(top: 5, left: 10, bottom: 10, right: 10)
-    }
-    
-}

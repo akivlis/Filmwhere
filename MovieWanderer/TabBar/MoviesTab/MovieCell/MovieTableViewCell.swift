@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MovieCell: UICollectionViewCell {
+class MovieTableViewCell: UITableViewCell {
     
-    fileprivate let titleLabel: UILabel = {
+    private let titleLabel: UILabel = {
        let label = UILabel()
         label.textColor = .black
         label.font = .boldSystemFont(ofSize: 16)
@@ -18,7 +18,7 @@ class MovieCell: UICollectionViewCell {
         return label
     }()
     
-    fileprivate let subtitleLabel: UILabel = {
+    private let subtitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
         label.font = .boldSystemFont(ofSize: 16)
@@ -26,18 +26,11 @@ class MovieCell: UICollectionViewCell {
         return label
     }()
     
-    var viewModel: MovieCellViewModel? {
-        didSet {
-            customizeCell()
-        }
-    }
-    
-    
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        addSubviews()
-        setConstraints()
+        setupSubviews()
+        setupConstraints()
         
         backgroundColor = .lightGray
     }
@@ -45,24 +38,22 @@ class MovieCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-   
     
-}
-
-fileprivate extension MovieCell {
-    
-    func customizeCell() {
-        
-        titleLabel.text = viewModel?.title
-        subtitleLabel.text = viewModel?.subtitle
+    func bindViewModel(_ viewModel: MovieCellViewModel) {
+        titleLabel.text = viewModel.title
+        subtitleLabel.text = viewModel.subtitle
     }
     
-    func addSubviews() {
+   }
+
+private extension MovieTableViewCell {
+
+   private func setupSubviews() {
         addSubview(titleLabel)
         addSubview(subtitleLabel)
     }
     
-    func setConstraints() {
+    private func setupConstraints() {
         
         titleLabel.autoPinEdge(toSuperviewEdge: .top)
         titleLabel.autoPinEdge(toSuperviewEdge: .left)

@@ -15,14 +15,11 @@ class MovieDetailViewController: UIViewController {
     private let movieDetailView : MovieDetailStackView
     private let disposeBag = DisposeBag()
     
-//    private let movie: Movie
     // MARK: Init
     
     init(movie: Movie) {
         
-//        self.movie = movie
         movieDetailView = MovieDetailStackView(viewModel: MovieDetailViewModel(movie: movie))
-
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,14 +31,13 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         loadSubviews()
         setContraints()
         
         scrollView.showsVerticalScrollIndicator = false
+        scrollView.bounces = false
         
         view.backgroundColor = .gray
-
     }
 
 }
