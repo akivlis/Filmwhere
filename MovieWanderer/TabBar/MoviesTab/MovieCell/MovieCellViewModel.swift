@@ -17,7 +17,7 @@ struct MovieCellViewModel {
     }
     
     var imageName: String {
-        return movie.description
+        return movie.imageName
     }
     
     var title: String {

@@ -33,6 +33,7 @@ final class MovieListView : UIView  {
         tableView.bounces = true
         tableView.register(MovieTableViewCell.self)
         tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         return tableView
     }()
     
