@@ -65,7 +65,7 @@ class MovieTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView?.roundCorners(.allCorners, radius: 8)
+        movieImageView.roundCorners(.allCorners, radius: 4)
     }
     
 }
@@ -83,7 +83,7 @@ private extension MovieTableViewCell {
         
         let padding: CGFloat = 8
         
-        movieImageView.autoPinEdge(toSuperviewEdge: .top, withInset: padding)
+        movieImageView.autoPinEdge(toSuperviewEdge: .top, withInset: 2 * padding)
         movieImageView.autoPinEdge(toSuperviewEdge: .left, withInset: padding)
         movieImageView.autoPinEdge(toSuperviewEdge: .right, withInset: padding)
         movieImageView.autoSetDimension(.height, toSize: 230)

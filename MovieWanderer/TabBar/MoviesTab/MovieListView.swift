@@ -84,8 +84,8 @@ extension MovieListView : UITableViewDataSource {
 
 extension MovieListView : UITableViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
         let selectedMovie = movies[indexPath.row]
         _movieTapped.onNext(selectedMovie)
     }

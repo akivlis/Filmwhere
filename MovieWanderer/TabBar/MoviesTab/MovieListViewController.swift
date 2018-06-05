@@ -28,7 +28,7 @@ class MovieListViewController: UIViewController {
         let dummyMovies =  [Movie(title: "Rocky", description: "fslfhslfhslfhsl", scenes: [Scene](), imageName: "rocky"),
                             Movie(title: "Men in Black", description: "fsfsfs", scenes: [Scene](), imageName: "placeholder"),
                             
-                            Movie(title: "Game of thrones", description: "Game of thrones is an american fantasy drama created by.. Its an adaption of Song of ICe and Fire from fantasy series, of which Game of thrones is the first one bla bla bla bla bla", scenes: [Scene](), imageName: "placeholder")]
+                            Movie(title: "Game of thrones", description: "Game of thrones is an american fantasy drama created by.. Its an adaption of Song of ICe and Fire from fantasy series, of which Game of thrones is the first one bla bla bla bla bla", scenes: [Scene](), imageName: "Stairs")]
        
         listView.movies = dummyMovies
         
