@@ -46,11 +46,11 @@ final class MovieListView : UIView  {
         movieTableView.dataSource = self
         
         addSubview(movieTableView)
-        movieTableView.autoPinEdge(toSuperviewEdge: .top)
-        movieTableView.autoPinEdge(toSuperviewEdge: .bottom)
-        movieTableView.autoPinEdge(toSuperviewEdge: .left, withInset: 15)
-        movieTableView.autoPinEdge(toSuperviewEdge: .right, withInset: 15)
         
+        movieTableView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.left.right.equalToSuperview().inset(15)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

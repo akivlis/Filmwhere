@@ -50,7 +50,10 @@ class SceneListView: UIView {
         scenesCollectionView.delegate = self
         
         addSubview(scenesCollectionView)
-        scenesCollectionView.autoPinEdgesToSuperviewEdges()
+
+        scenesCollectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         scenesCollectionView.reloadData()
         
     }

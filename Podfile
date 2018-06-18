@@ -5,18 +5,14 @@ target ‘MovieWanderer’ do
 
     pod 'RxSwift',    '~> 4.0'
     pod 'RxCocoa',    '~> 4.0'
-    pod 'PureLayout'
     pod 'GoogleMaps'
     pod 'CenteredCollectionView'
-
-
-
-
+    pod 'SnapKit', '~> 4.0.0'
 
   target 'MovieWandererTests' do
-    inherit! :search_paths
     pod 'RxBlocking', '~> 4.0'
     pod 'RxTest',     '~> 4.0'
+
   end
 
 end

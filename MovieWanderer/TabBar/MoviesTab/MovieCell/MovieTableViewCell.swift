@@ -83,22 +83,26 @@ private extension MovieTableViewCell {
         
         let padding: CGFloat = 8
         
-        movieImageView.autoPinEdge(toSuperviewEdge: .top, withInset: 2 * padding)
-        movieImageView.autoPinEdge(toSuperviewEdge: .left, withInset: padding)
-        movieImageView.autoPinEdge(toSuperviewEdge: .right, withInset: padding)
-        movieImageView.autoSetDimension(.height, toSize: 230)
+        movieImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview().inset(2 * padding)
+            make.left.right.equalToSuperview().inset(padding)
+            make.height.equalTo(230)
+        }
         
-        titleLabel.autoPinEdge(.left, to: .left, of: movieImageView)
-        titleLabel.autoPinEdge(.right, to: .right, of: movieImageView)
-        titleLabel.autoPinEdge(.top, to: .bottom, of: movieImageView, withOffset: 12)
+        titleLabel.snp.makeConstraints { make in
+            make.left.right.equalTo(movieImageView) //check
+            make.top.equalTo(movieImageView.snp.bottom).offset(12)
+        }
         
-        subtitleLabel.autoPinEdge(.left, to: .left, of: titleLabel)
-        subtitleLabel.autoPinEdge(.right, to: .right, of: titleLabel)
-        subtitleLabel.autoPinEdge(.top, to: .bottom, of: titleLabel, withOffset: 8)
-
-        locationsLabel.autoPinEdge(.left, to: .left, of: titleLabel)
-        locationsLabel.autoPinEdge(.right, to: .right, of: titleLabel)
-        locationsLabel.autoPinEdge(.top, to: .bottom, of: subtitleLabel, withOffset: 8)
-        locationsLabel.autoPinEdge(toSuperviewEdge: .bottom, withInset: 2 * padding)
+        subtitleLabel.snp.makeConstraints { make in
+            make.left.right.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+        }
+        
+        locationsLabel.snp.makeConstraints { make in
+            make.left.right.equalTo(titleLabel)
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().inset(2 * padding)
+        }
     }
 }

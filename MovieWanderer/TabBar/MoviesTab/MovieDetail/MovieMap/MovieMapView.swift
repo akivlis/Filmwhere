@@ -21,22 +21,19 @@ class MovieMapView: UIView {
         super.init(frame: .zero)
         
         backgroundColor = .white
-        
         addSubview(mapView)
         
-
-        
         let width = UIScreen.main.bounds.width
-        autoSetDimensions(to: CGSize(width: width, height: 400))
+       
+        //todo remove
+        self.snp.makeConstraints { make in
+            make.width.height.equalTo(400)
+        }
         
-        mapView.autoSetDimensions(to: CGSize(width: 300, height: 300))
-        
-//        mapView.autoPinEdge(toSuperviewEdge: .top, withInset: 30)
-//        mapView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 30)
-//        mapView.autoPinEdge(toSuperviewEdge: .left, withInset: 30)
-//        mapView.autoPinEdge(toSuperviewEdge: .right, withInset: 30)
-        mapView.autoCenterInSuperview()
-        
+        mapView.snp.makeConstraints { make in
+            make.width.height.equalTo(300)
+            make.center.equalToSuperview()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

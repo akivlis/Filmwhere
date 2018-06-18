@@ -112,27 +112,30 @@ fileprivate extension SceneCollectionViewCell {
     
     func setConstraints() {
         
-        contentView.autoPinEdgesToSuperviewEdges()
+        sceneImageView.snp.makeConstraints { make in
+            make.top.right.left.equalToSuperview()
+            make.height.equalTo(contentView).multipliedBy(2/3)
+        }
         
-        sceneImageView.autoPinEdge(toSuperviewEdge: .top)
-        sceneImageView.autoPinEdge(toSuperviewEdge: .right)
-        sceneImageView.autoPinEdge(toSuperviewEdge: .left)
-        sceneImageView.autoMatch(.height, to: .height, of: contentView, withMultiplier: 2/3)
+        descriptionContainerView.snp.makeConstraints { make in
+            make.bottom.left.right.equalToSuperview()
+            make.top.equalTo(sceneImageView.snp.bottom)
+        }
         
-        descriptionContainerView.autoPinEdge(toSuperviewEdge: .bottom)
-        descriptionContainerView.autoPinEdge(toSuperviewEdge: .left)
-        descriptionContainerView.autoPinEdge(toSuperviewEdge: .right)
-        descriptionContainerView.autoPinEdge(.top, to: .bottom, of: sceneImageView)
+        titleLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(15)
+            make.top.equalToSuperview()
+        }
         
-        titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 15)
-        titleLabel.autoPinEdge(toSuperviewMargin: .top)
+        subtitleLabel.snp.makeConstraints { make in
+            make.left.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+        }
         
-        subtitleLabel.autoPinEdge(.left, to: .left, of: titleLabel)
-        subtitleLabel.autoPinEdge(.top, to: .bottom, of: titleLabel, withOffset: 8)
-
-        distanceLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 15)
-        distanceLabel.autoAlignAxis(toSuperviewAxis: .horizontal)
-        
+        distanceLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(15)
+            make.centerY.equalToSuperview()
+        }
     }
 
     

@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieWanderer/TabBar/LocalizationTab/MovieScenes/SceneCell/SceneCollectionViewCell.swift"
-            timestampString = "543088116.022193"
+            timestampString = "551045220.363991"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "70"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MovieWanderer/TabBar/LocalizationTab/Map/SceneCarouselView.swift"
-            timestampString = "543087639.81216"
+            timestampString = "551045220.364087"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
             landmarkName = "scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)"
             landmarkType = "7">
          </BreakpointContent>

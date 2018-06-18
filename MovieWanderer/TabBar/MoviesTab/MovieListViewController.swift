@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import PureLayout
 import RxSwift
 
 class MovieListViewController: UIViewController {
@@ -46,21 +45,16 @@ private extension MovieListViewController {
     private func setView() {
         
         view.addSubview(listView)
-        listView.autoPinEdgesToSuperviewEdges()
-        
+        listView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         listView.backgroundColor = .white
         
         title = "Movies"
-//        navigationController?.navigationBar.barTintColor = .gray
-
     }
     
     private func openDetailFor(_ movie: Movie) {
-        
         let movieDetailViewController = MovieDetailViewController(movie: movie)
-        
         navigationController?.pushViewController(movieDetailViewController, animated: true)
-        
-//        navigationController?.present(movieDetailViewController, animated: true, completion: nil)
     }
 }

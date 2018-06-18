@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import PureLayout
 import RxSwift
 import RxCocoa
+import SnapKit
 
 
 class LocalizationViewController: UIViewController {
@@ -25,8 +25,9 @@ class LocalizationViewController: UIViewController {
         super.viewDidLoad()
         
         view.addSubview(_view)
-        _view.autoPinEdgesToSuperviewEdges()
-        
+        _view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         setupViews()
         
         _view.switchControlValueChanged$
@@ -42,7 +43,7 @@ class LocalizationViewController: UIViewController {
     
 }
 
-fileprivate extension LocalizationViewController {
+private extension LocalizationViewController {
     
     func setupViews() {
         
@@ -58,9 +59,12 @@ fileprivate extension LocalizationViewController {
         _view.containerView.addSubview(mapView)
 
         
-        sceneView.autoPinEdgesToSuperviewEdges()
-        mapView.autoPinEdgesToSuperviewEdges()
-        
+        sceneView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        mapView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
         mapView.scenes = scenes
 
 

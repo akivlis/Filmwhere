@@ -49,22 +49,24 @@ class SceneMapView: UIView {
     
 }
 
-fileprivate extension SceneMapView {
+private extension SceneMapView {
     
     func setCarouselView() {
-        
         addSubview(carouselView)
         
-        carouselView.autoPinEdge(toSuperviewEdge: .left)
-        carouselView.autoPinEdge(toSuperviewEdge: .right)
-        carouselView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 50) //tabbar height
-        carouselView.autoSetDimension(.height, toSize: 240)
+        carouselView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalToSuperview().inset(50) //tabbar height change
+            make.height.equalTo(240)
+        }
+        
     }
     
     func setMapView() {
-        
         addSubview(mapView)
-        mapView.autoPinEdgesToSuperviewEdges()
+        mapView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 
 

@@ -51,15 +51,15 @@ class LocalizationView : UIView {
     }
     
     func setContraints() {
-        viewSwitchControl.autoAlignAxis(toSuperviewAxis: .vertical)
-        viewSwitchControl.autoPinEdge(toSuperviewEdge: .top, withInset: 35)
-        viewSwitchControl.autoSetDimension(.width, toSize: 120)
-        
-        containerView.autoPinEdge(toSuperviewEdge: .left)
-        containerView.autoPinEdge(toSuperviewEdge: .right)
-        containerView.autoPinEdge(toSuperviewEdge: .bottom)
-        containerView.autoPinEdge(.top, to: .bottom, of: viewSwitchControl, withOffset: 12)
-        
-    }
-    
+        viewSwitchControl.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.top.equalToSuperview().inset(35)
+            make.width.equalTo(120)
+        }
+
+        containerView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(viewSwitchControl.snp.bottom).offset(12)
+        }
+    }    
 }

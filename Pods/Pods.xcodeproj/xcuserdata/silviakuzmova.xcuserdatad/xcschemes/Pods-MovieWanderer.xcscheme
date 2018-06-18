@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "777CEA7726A84BD04762D67EC42A344C"
+               BlueprintIdentifier = "2136D1B6406DF874E744F793EAA28BC1"
                BuildableName = "Pods_MovieWanderer.framework"
                BlueprintName = "Pods-MovieWanderer"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "777CEA7726A84BD04762D67EC42A344C"
+            BlueprintIdentifier = "2136D1B6406DF874E744F793EAA28BC1"
             BuildableName = "Pods_MovieWanderer.framework"
             BlueprintName = "Pods-MovieWanderer"
             ReferencedContainer = "container:Pods.xcodeproj">

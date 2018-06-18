@@ -55,9 +55,10 @@ class SceneCarouselView: UIView {
         scenesCollectionView.delegate = self
         
         addSubview(scenesCollectionView)
-        scenesCollectionView.autoPinEdgesToSuperviewEdges()
-        scenesCollectionView.reloadData()
-        
+        scenesCollectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        scenesCollectionView.reloadData()        
     }
     
     required init?(coder _: NSCoder) {

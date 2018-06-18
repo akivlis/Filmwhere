@@ -97,27 +97,34 @@ private extension MovieHeaderView {
     
     func setConstraints() {
         
-        self.autoSetDimension(.height, toSize: 380)
-
-        moviePhoto.autoPinEdge(toSuperviewEdge: .top)
-        moviePhoto.autoPinEdge(toSuperviewEdge: .left)
-        moviePhoto.autoPinEdge(toSuperviewEdge: .right)
-        moviePhoto.autoSetDimension(.height, toSize: 250)
+        //todo: remove
+        self.snp.makeConstraints { make in
+            make.height.equalTo(380)
+        }
         
-        titleLabel.autoPinEdge(.bottom, to: .bottom, of: moviePhoto, withOffset: -10)
-        titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
-        titleLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
+        moviePhoto.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(250)
+        }
+      
+        titleLabel.snp.makeConstraints { make in
+            make.bottom.equalTo(moviePhoto).offset(-10)
+            make.left.equalToSuperview().inset(20)
+        }
         
-        containerStackView.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
-        containerStackView.autoPinEdge(toSuperviewEdge: .right, withInset: 20)
-        containerStackView.autoPinEdge(.top, to: .bottom, of: moviePhoto)
+        containerStackView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(20)
+            make.top.equalTo(moviePhoto.snp.bottom)
+        }
         
-        mapButton.autoSetDimensions(to: CGSize(width: 60, height: 60))
+        mapButton.snp.makeConstraints { make in
+            make.width.height.equalTo(60)
+        }
         
-        descriptionLabel.autoPinEdge(.top, to: .bottom, of: containerStackView, withOffset: 10)
-        descriptionLabel.autoPinEdge(toSuperviewEdge: .left, withInset: 20)
-        descriptionLabel.autoPinEdge(toSuperviewEdge: .right, withInset: 20)
-
+        descriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(containerStackView.snp.bottom).offset(10)
+            make.left.right.equalToSuperview().inset(20)
+        }
     }
     
     func bindViewModel() {

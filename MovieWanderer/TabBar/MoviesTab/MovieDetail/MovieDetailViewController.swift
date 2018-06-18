@@ -8,6 +8,8 @@
 
 import UIKit
 import RxSwift
+import SnapKit
+
 
 class MovieDetailViewController: UIViewController {
 
@@ -42,7 +44,7 @@ class MovieDetailViewController: UIViewController {
 
 }
 
-fileprivate extension MovieDetailViewController {
+private extension MovieDetailViewController {
     
     func loadSubviews() {
         view.addSubview(scrollView)
@@ -51,19 +53,16 @@ fileprivate extension MovieDetailViewController {
     
     func setContraints() {
         
-//        let padding: CGFloat = 12
-
-        scrollView.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
-        scrollView.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
-        scrollView.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
-        scrollView.autoPinToSafeArea(.bottom, of: self, withInset: 0, insetForDeviceWithNotch: 0)
+        scrollView.snp.makeConstraints { make in
+            make.left.right.top.equalToSuperview()
+            make.bottom.equalTo(bottomLayoutGuide.snp.top)
+        }
         
-        movieDetailView.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
-        movieDetailView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
-        movieDetailView.autoPinEdge(toSuperviewEdge: .left)
-        movieDetailView.autoPinEdge(toSuperviewEdge: .right)
-
-        movieDetailView.autoMatch(.width, to: .width, of: scrollView)
+        movieDetailView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+      
+//        movieDetailView.autoMatch(.width, to: .width, of: scrollView)
     }
 
 }
