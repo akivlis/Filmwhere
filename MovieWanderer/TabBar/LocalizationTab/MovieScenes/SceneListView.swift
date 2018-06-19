@@ -55,7 +55,6 @@ class SceneListView: UIView {
             make.edges.equalToSuperview()
         }
         scenesCollectionView.reloadData()
-        
     }
     
     required init?(coder _: NSCoder) {

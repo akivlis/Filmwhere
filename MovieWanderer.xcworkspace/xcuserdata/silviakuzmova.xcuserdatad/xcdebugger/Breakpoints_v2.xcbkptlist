@@ -41,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieWanderer/TabBar/LocalizationTab/MovieScenes/SceneCell/SceneCollectionViewCell.swift"
-            timestampString = "551045220.363991"
+            filePath = "MovieWanderer/TabBar/LocalizationTab/Map/SceneCarouselView.swift"
+            timestampString = "551045715.945201"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "bindViewModel(_:)"
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MovieWanderer/TabBar/LocalizationTab/Map/SceneCarouselView.swift"
-            timestampString = "551045220.364087"
+            filePath = "MovieWanderer/TabBar/LocalizationTab/MovieScenes/SceneCell/SceneCollectionViewCell.swift"
+            timestampString = "551047556.526562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "scrollViewWillEndDragging(_:withVelocity:targetContentOffset:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "bindViewModel(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -34,11 +34,11 @@ class LocalizationView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         addUIComponents()
         setContraints()
         
         backgroundColor = .white
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -52,7 +52,7 @@ class LocalizationView : UIView {
     
     func setContraints() {
         viewSwitchControl.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.top.equalToSuperview().inset(35)
             make.width.equalTo(120)
         }

@@ -46,19 +46,13 @@ class SceneCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    
-    
     var viewModel: SceneCollectionViewCellViewModel?
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
         loadSubviews()
         setConstraints()
-        
-        backgroundColor = .clear
     }
-    
-   
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -70,22 +64,21 @@ class SceneCollectionViewCell: UICollectionViewCell {
         subtitleLabel.text = viewModel.subtitle
         distanceLabel.text = "\(viewModel.distanceFromMe) m away"
         sceneImageView.image = viewModel.sceneImage
-//        sceneImageView.backgroundColor = .gray
+        sceneImageView.backgroundColor = .gray
         
     }
     
     override func layoutSubviews() {
+        super.layoutSubviews()
         shadowAndRound()
     }
     
     func shadowAndRound() {
         
         self.contentView.backgroundColor = .white
-        
         self.contentView.layer.cornerRadius = 8.0
         self.contentView.layer.masksToBounds = true
         self.contentView.clipsToBounds = true
-
         
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
@@ -101,7 +94,6 @@ class SceneCollectionViewCell: UICollectionViewCell {
 fileprivate extension SceneCollectionViewCell {
     
     func loadSubviews() {
-        
         contentView.addSubview(sceneImageView)
         contentView.addSubview(descriptionContainerView)
         
@@ -111,10 +103,10 @@ fileprivate extension SceneCollectionViewCell {
     }
     
     func setConstraints() {
-        
         sceneImageView.snp.makeConstraints { make in
             make.top.right.left.equalToSuperview()
-            make.height.equalTo(contentView).multipliedBy(2/3)
+            make.bottom.equalToSuperview().offset(-80)
+//            make.height.equalTo(contentView).multipliedBy(2/3)
         }
         
         descriptionContainerView.snp.makeConstraints { make in
@@ -124,7 +116,7 @@ fileprivate extension SceneCollectionViewCell {
         
         titleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(15)
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().inset(8)
         }
         
         subtitleLabel.snp.makeConstraints { make in
