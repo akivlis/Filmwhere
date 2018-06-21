@@ -26,7 +26,10 @@ struct SceneCollectionViewCellViewModel {
     }
     
     var sceneImage: UIImage {
-        return UIImage(named: scene.title)!
+        if let image = UIImage(named: scene.title) {
+            return image
+        }
+        return UIImage(named: "placeholder")!
     }
     
     

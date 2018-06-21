@@ -88,10 +88,9 @@ class SceneCollectionViewCell: UICollectionViewCell {
         //if we want to have shadow on each side, we set the shadowOffset to CGSize.zero and set shadowPath
 //        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 8.0).cgPath
     }
-    
 }
 
-fileprivate extension SceneCollectionViewCell {
+private extension SceneCollectionViewCell {
     
     func loadSubviews() {
         contentView.addSubview(sceneImageView)
@@ -129,6 +128,4 @@ fileprivate extension SceneCollectionViewCell {
             make.centerY.equalToSuperview()
         }
     }
-
-    
 }

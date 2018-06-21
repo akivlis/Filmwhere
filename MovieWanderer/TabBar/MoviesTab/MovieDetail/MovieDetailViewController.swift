@@ -14,15 +14,19 @@ import SnapKit
 class MovieDetailViewController: UIViewController {
 
     private let scrollView = UIScrollView()
-    private let movieDetailView : MovieDetailStackView
+    private let movieHeaderView : MovieHeaderView
+    private let scenesCarouselView : SceneCarouselView
     private let disposeBag = DisposeBag()
+    private let movie: Movie
     
     // MARK: Init
     
     init(movie: Movie) {
-        
-        movieDetailView = MovieDetailStackView(viewModel: MovieDetailViewModel(movie: movie))
+        self.movie = movie
+        movieHeaderView = MovieHeaderView(viewModel: MovieHeaderViewModel(movie: movie))
+        scenesCarouselView = SceneCarouselView(scenes: movie.scenes)
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,36 +37,44 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadSubviews()
-        setContraints()
-        
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.bounces = false
-        
-        view.backgroundColor = .gray
+        setupViews()
+        setupContraints()
     }
-
 }
 
 private extension MovieDetailViewController {
     
-    func loadSubviews() {
+    private func setupViews() {
+        
+        title = movie.title
+        view.backgroundColor = .gray
+
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.bounces = false
+        scrollView.backgroundColor = .red
         view.addSubview(scrollView)
-        scrollView.addSubview(movieDetailView)
+        
+        scrollView.addSubview(movieHeaderView)
+        scrollView.addSubview(scenesCarouselView)
     }
     
-    func setContraints() {
-        
+    private func setupContraints() {
         scrollView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
-            make.bottom.equalTo(bottomLayoutGuide.snp.top)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
         
-        movieDetailView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+        movieHeaderView.snp.makeConstraints { make in
+            make.left.right.top.equalToSuperview()
+            make.width.equalToSuperview()
         }
-      
-//        movieDetailView.autoMatch(.width, to: .width, of: scrollView)
+        
+        scenesCarouselView.snp.makeConstraints { make in
+            make.top.equalTo(movieHeaderView.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(300)
+        }
     }
 
 }

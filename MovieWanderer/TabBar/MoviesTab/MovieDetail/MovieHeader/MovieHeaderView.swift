@@ -73,7 +73,6 @@ class MovieHeaderView: UIView {
         bindViewModel()
     }
     
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -82,7 +81,7 @@ class MovieHeaderView: UIView {
 
 private extension MovieHeaderView {
     
-    func loadSubviews() {
+    private func loadSubviews() {
         
         addSubview(moviePhoto)
         addSubview(descriptionLabel)
@@ -91,11 +90,9 @@ private extension MovieHeaderView {
         addSubview(containerStackView)
         containerStackView.addArrangedSubview(numberofLocationLabel)
         containerStackView.addArrangedSubview(mapButton)
-
-       
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         
         //todo: remove
         self.snp.makeConstraints { make in
@@ -127,16 +124,10 @@ private extension MovieHeaderView {
         }
     }
     
-    func bindViewModel() {
-        
+    private func bindViewModel() {
         moviePhoto.image = viewModel.movieImage
         descriptionLabel.text = viewModel.description
         titleLabel.text = viewModel.title
         numberofLocationLabel.text = viewModel.numberOfFilmingLocations
-        
-        
     }
-    
-    
-    
 }

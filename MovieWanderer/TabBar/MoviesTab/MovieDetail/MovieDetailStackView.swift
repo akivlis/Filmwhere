@@ -49,11 +49,9 @@ class MovieDetailStackView: UIStackView {
 private extension MovieDetailStackView {
 
     private func loadSubviews() {
-        
         addArrangedSubview(movieDetailHeaderView)
         addArrangedSubview(movieScenesView)
-        addArrangedSubview(movieMapView)
-        
+        addArrangedSubview(movieMapView)        
     }
     
 }

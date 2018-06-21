@@ -13,7 +13,6 @@ class MovieMapView: UIView {
     
     let mapView: MapView = {
         let view = MapView()
-        
         return view
     }()
     

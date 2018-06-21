@@ -24,10 +24,14 @@ class MovieListViewController: UIViewController {
         
         setView()
         
-        let dummyMovies =  [Movie(title: "Rocky", description: "fslfhslfhslfhsl", scenes: [Scene](), imageName: "rocky"),
-                            Movie(title: "Men in Black", description: "fsfsfs", scenes: [Scene](), imageName: "placeholder"),
+        let dummyScenes = [Scene(title: "Rocky running", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00),
+                           Scene(title: "Rocky boxing", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00),
+                           Scene(title: "Rocky talking", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00) ]
+        
+        let dummyMovies =  [Movie(title: "Rocky", description: "fslfhslfhslfhsl", scenes: dummyScenes, imageName: "rocky"),
+                            Movie(title: "Men in Black", description: "fsfsfs", scenes:dummyScenes, imageName: "placeholder"),
                             
-                            Movie(title: "Game of thrones", description: "Game of thrones is an american fantasy drama created by.. Its an adaption of Song of ICe and Fire from fantasy series, of which Game of thrones is the first one bla bla bla bla bla", scenes: [Scene](), imageName: "Stairs")]
+                            Movie(title: "Game of thrones", description: "Game of thrones is an american fantasy drama created by.. Its an adaption of Song of ICe and Fire from fantasy series, of which Game of thrones is the first one bla bla bla bla bla", scenes: dummyScenes, imageName: "Stairs")]
        
         listView.movies = dummyMovies
         
