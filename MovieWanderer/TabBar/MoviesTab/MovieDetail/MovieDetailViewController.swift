@@ -49,8 +49,8 @@ private extension MovieDetailViewController {
         title = movie.title
         view.backgroundColor = .gray
 
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.bounces = false
+//        scrollView.showsVerticalScrollIndicator = false
+//        scrollView.bounces = false
         scrollView.backgroundColor = .red
         view.addSubview(scrollView)
         
@@ -73,7 +73,8 @@ private extension MovieDetailViewController {
         scenesCarouselView.snp.makeConstraints { make in
             make.top.equalTo(movieHeaderView.snp.bottom)
             make.left.right.equalToSuperview()
-            make.height.equalTo(300)
+            make.height.equalTo(150)
+            make.bottom.equalToSuperview()
         }
     }
 

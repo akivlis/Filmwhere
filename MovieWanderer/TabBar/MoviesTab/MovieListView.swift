@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 
-
 final class MovieListView : UIView  {
     
     var movies = [Movie]() {
@@ -27,13 +26,12 @@ final class MovieListView : UIView  {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.showsHorizontalScrollIndicator = false
         tableView.isUserInteractionEnabled = true
-        tableView.showsVerticalScrollIndicator = false
         tableView.isScrollEnabled = true
         tableView.alwaysBounceVertical = true
         tableView.bounces = true
-        tableView.register(MovieTableViewCell.self)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.register(MovieTableViewCell.self)
         return tableView
     }()
     
@@ -48,8 +46,7 @@ final class MovieListView : UIView  {
         addSubview(movieTableView)
         
         movieTableView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.left.right.equalToSuperview().inset(15)
+            make.edges.equalToSuperview()
         }
     }
     
@@ -68,7 +65,6 @@ extension MovieListView : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.reuseIdentifier, for: indexPath)
         
         if let movieCell = cell as? MovieTableViewCell {
@@ -85,10 +81,8 @@ extension MovieListView : UITableViewDataSource {
 extension MovieListView : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
         let selectedMovie = movies[indexPath.row]
         _movieTapped.onNext(selectedMovie)
     }
-    
 }
 
