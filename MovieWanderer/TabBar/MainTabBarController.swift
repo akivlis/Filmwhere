@@ -16,10 +16,12 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         loadTabs()
-        tabBar.backgroundColor = .white
+        tabBar.tintColor = UIColor.myRed
+        tabBar.barTintColor = UIColor.white
+        tabBar.backgroundColor = UIColor.white
     }
     
-    fileprivate func loadTabs(){
+    private func loadTabs(){
  
         let movieListViewController = MovieListViewController()
         movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "movie"), tag: 0)

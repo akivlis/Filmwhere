@@ -37,18 +37,17 @@ class MovieTableViewCell: UITableViewCell {
     
     private let locationsLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = .boldSystemFont(ofSize: 15)
-        label.textColor = .red
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = .myRed
         label.textAlignment = .left
         return label
     }()
     
     private let mapIcon: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = UIImage(named: "map_icon")?.withRenderingMode(.alwaysTemplate)
+        imageView.image = UIImage(named: "pin_image")?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .red
+        imageView.tintColor = .myRed
         return imageView
     }()
     
