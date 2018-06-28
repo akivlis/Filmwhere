@@ -21,7 +21,7 @@ class MovieTableViewCell: UITableViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 21)
         label.textAlignment = .left
         return label
     }()
@@ -31,13 +31,13 @@ class MovieTableViewCell: UITableViewCell {
         label.textColor = .gray
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .left
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         return label
     }()
     
     private let locationsLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .myRed
         label.textAlignment = .left
         return label
@@ -45,13 +45,13 @@ class MovieTableViewCell: UITableViewCell {
     
     private let mapIcon: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = UIImage(named: "pin_image")?.withRenderingMode(.alwaysTemplate)
+        imageView.image = UIImage(named: "movie-icon")?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFit
         imageView.tintColor = .myRed
         return imageView
     }()
     
-    private let stackView = UIStackView()
+    private let containerView = UIView()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -66,15 +66,16 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func bindViewModel(_ viewModel: MovieCellViewModel) {
+        
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
         movieImageView.image = UIImage(named: viewModel.imageName)
-        locationsLabel.text = "7" //TODO change
+        locationsLabel.text = "7 locations   •   12 km from you" //TODO change
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        movieImageView.layer.addShadow()
+//        movieImageView.layer.addShadow()
     }
 }
 
@@ -83,43 +84,51 @@ private extension MovieTableViewCell {
     private func setupSubviews() {
         addSubview(movieImageView)
         addSubview(titleLabel)
+        addSubview(containerView)
         addSubview(subtitleLabel)
         
-        addSubview(stackView)
-        stackView.addArrangedSubview(locationsLabel)
-        stackView.addArrangedSubview(mapIcon)
-        
-        stackView.distribution = .fill
-        stackView.alignment = .fill
-        stackView.spacing = 0
+        containerView.addSubview(mapIcon)
+        containerView.addSubview(locationsLabel)
     }
     
     private func setupConstraints() {
-        
         let padding: CGFloat = 16
         
         movieImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(padding)
             make.left.right.equalToSuperview().inset(padding)
-            make.height.equalTo(210)
+            make.height.equalTo(200)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalTo(movieImageView) //check
-            make.top.equalTo(movieImageView.snp.bottom).offset(16)
+            make.top.equalTo(movieImageView.snp.bottom).offset(padding)
             make.height.equalTo(20)
         }
         
-        subtitleLabel.snp.makeConstraints { make in
-            make.left.right.equalTo(titleLabel)
+        containerView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().inset(padding)
+            make.left.equalTo(titleLabel)//.inset(2)
+            make.right.equalToSuperview().inset(padding)
+            make.height.equalTo(15)
         }
         
-        stackView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel)
-            make.bottom.equalTo(titleLabel)
-            make.right.equalTo(movieImageView)//.inset(2)
+        mapIcon.snp.makeConstraints { make in
+            make.left.top.bottom.equalToSuperview()
+            make.width.equalTo(15)
         }
+        
+        locationsLabel.snp.makeConstraints { make in
+            make.left.equalTo(mapIcon.snp.right).offset(10)
+            make.top.bottom.right.equalToSuperview()
+        }
+        
+        subtitleLabel.snp.makeConstraints { make in
+            make.left.right.equalTo(containerView)
+            make.top.equalTo(containerView.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().inset(8)
+        }
+        
+     
     }
 }

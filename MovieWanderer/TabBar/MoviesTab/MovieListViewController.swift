@@ -28,7 +28,7 @@ class MovieListViewController: UIViewController {
                            Scene(title: "Rocky boxing", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00),
                            Scene(title: "Rocky talking", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00) ]
         
-        let dummyMovies =  [Movie(title: "Rocky", description: "A boxer decides to change his life", scenes: dummyScenes, imageName: "rocky"),
+        let dummyMovies =  [Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageName: "rocky"),
                             Movie(title: "Men in Black", description: "Men are saving the world from the aliens", scenes:dummyScenes, imageName: "placeholder"),
                             
                             Movie(title: "Game of thrones", description: "Game of thrones is an american fantasy drama created by Martin.", scenes: dummyScenes, imageName: "Stairs")]
