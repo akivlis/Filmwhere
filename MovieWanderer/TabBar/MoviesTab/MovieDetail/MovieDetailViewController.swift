@@ -18,7 +18,6 @@ class MovieDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
-    private let backButton = UIButton()
     
     // MARK: Init
     
@@ -26,7 +25,7 @@ class MovieDetailViewController: UIViewController {
         self.movie = movie
         movieHeaderView = MovieHeaderView(viewModel: MovieHeaderViewModel(movie: movie))
         scenesCarouselView = SceneCarouselView(scenes: movie.scenes)
-        scenesCarouselView.cellSize = CGSize(width: 150, height: 200)
+        scenesCarouselView.cellSize = CGSize(width: 140, height: 250)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -34,37 +33,24 @@ class MovieDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .never
-        navigationController?.setNavigationBarHidden(true, animated: true)
-
+        
         scrollView.delegate = self
         setupViews()
         setupContraints()
-        
-        backButton.rx.tap
-            .subscribe(onNext: { [weak self] _ in
-                _ = self?.navigationController?.popViewController(animated: true)
-        }).disposed(by: disposeBag)
     }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: true)
-    }
-    
 }
 
 private extension MovieDetailViewController {
     
     private func setupViews() {
-        view.backgroundColor = .white
+        title = movie.title
         
-        scrollView.contentInsetAdjustmentBehavior = .never
+        view.backgroundColor = .white
         view.addSubview(scrollView)
         
         scenesTitleLabel.textColor = .black
@@ -72,29 +58,23 @@ private extension MovieDetailViewController {
         scenesTitleLabel.text = "Scenes"
         scenesTitleLabel.textAlignment = .left
         
-        backButton.setTitle("Back", for: .normal)
-        
         scrollView.addSubview(movieHeaderView)
         scrollView.addSubview(scenesTitleLabel)
         scrollView.addSubview(scenesCarouselView)
-        view.addSubview(backButton)
     }
     
     private func setupContraints() {
         scrollView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview()
+//            make.top.equalToSupe/rview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-        
-        backButton.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().inset(16)
-        }
-        
+  
         movieHeaderView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(500)
+            make.height.equalTo(400)
         }
         
         scenesTitleLabel.snp.makeConstraints { make in
@@ -106,7 +86,7 @@ private extension MovieDetailViewController {
         scenesCarouselView.snp.makeConstraints { make in
             make.top.equalTo(scenesTitleLabel.snp.bottom)
             make.left.right.equalToSuperview()
-            make.height.equalTo(220) // check this
+            make.height.equalTo(300) // check this
             make.bottom.equalToSuperview().inset(200) //remove inset
         }
     }

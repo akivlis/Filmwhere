@@ -24,10 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarViewController = MainTabBarController()
         window?.rootViewController = tabBarViewController
         window?.makeKeyAndVisible()
-        
         UINavigationBar.appearance().tintColor = .myRed
-        
-//        UINavigationBar.appearance().isTranslucent = false
         
         GMSServices.provideAPIKey(googleApiKey)
         

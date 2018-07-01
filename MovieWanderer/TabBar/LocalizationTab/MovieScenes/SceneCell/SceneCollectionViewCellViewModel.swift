@@ -29,7 +29,7 @@ struct SceneCollectionViewCellViewModel {
         if let image = UIImage(named: scene.title) {
             return image
         }
-        return UIImage(named: "placeholder")!
+        return UIImage(named: "Dany")!
     }
     
     

@@ -14,6 +14,7 @@ class SceneCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 4.0
         return imageView
     }()
     
@@ -25,8 +26,8 @@ class SceneCollectionViewCell: UICollectionViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.textColor = .appBlue
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.textColor = .myRed
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.sizeToFit()
         return label
     }()
@@ -42,7 +43,8 @@ class SceneCollectionViewCell: UICollectionViewCell {
     
     let distanceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textColor = .gray
+        label.font = UIFont.boldSystemFont(ofSize: 11)
         return label
     }()
     
@@ -59,30 +61,26 @@ class SceneCollectionViewCell: UICollectionViewCell {
     }
     
     func bindViewModel(_ viewModel: SceneCollectionViewCellViewModel){
-        
         titleLabel.text = viewModel.title
-        subtitleLabel.text = viewModel.subtitle
+//        subtitleLabel.text = viewModel.subtitle
         distanceLabel.text = "\(viewModel.distanceFromMe) m away"
         sceneImageView.image = viewModel.sceneImage
-        sceneImageView.backgroundColor = .gray
-        
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        shadowAndRound()
+//        shadowAndRound()
     }
     
     func shadowAndRound() {
-        
         self.contentView.backgroundColor = .white
-        self.contentView.layer.cornerRadius = 8.0
+        self.contentView.layer.cornerRadius = 4.0
         self.contentView.layer.masksToBounds = true
         self.contentView.clipsToBounds = true
-        
+
         self.layer.shadowColor = UIColor.gray.cgColor
         self.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
-        self.layer.shadowRadius = 5.0
+        self.layer.shadowRadius = 4.0
         self.layer.shadowOpacity = 0.6
         self.layer.masksToBounds = false
         //if we want to have shadow on each side, we set the shadowOffset to CGSize.zero and set shadowPath
@@ -92,7 +90,8 @@ class SceneCollectionViewCell: UICollectionViewCell {
 
 private extension SceneCollectionViewCell {
     
-    func loadSubviews() {
+    private func loadSubviews() {
+        
         contentView.addSubview(sceneImageView)
         contentView.addSubview(descriptionContainerView)
         
@@ -101,7 +100,7 @@ private extension SceneCollectionViewCell {
         descriptionContainerView.addSubview(distanceLabel)
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         sceneImageView.snp.makeConstraints { make in
             make.top.right.left.equalToSuperview()
             make.bottom.equalToSuperview().offset(-80)
@@ -114,7 +113,7 @@ private extension SceneCollectionViewCell {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(15)
+            make.left.equalTo(sceneImageView)
             make.top.equalToSuperview().inset(8)
         }
         
@@ -124,8 +123,8 @@ private extension SceneCollectionViewCell {
         }
         
         distanceLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview().inset(15)
-            make.centerY.equalToSuperview()
+            make.left.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
         }
     }
 }

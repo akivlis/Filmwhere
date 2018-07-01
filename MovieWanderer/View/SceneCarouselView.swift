@@ -12,8 +12,8 @@ import RxSwift
 import CenteredCollectionView
 
 
-private let myCollectionViewFlowLayout: CenteredCollectionViewFlowLayout = {
-    let layout = CenteredCollectionViewFlowLayout()
+private let myCollectionViewFlowLayout: UICollectionViewFlowLayout = {
+    let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
     layout.minimumLineSpacing = 10
     layout.minimumInteritemSpacing = 0
@@ -40,7 +40,6 @@ class SceneCarouselView: UIView {
         collectionView.isScrollEnabled = true
         collectionView.register(SceneCollectionViewCell.self, forCellWithReuseIdentifier: "SceneCollectionViewCell")
 //        collectionView.isPagingEnabled = true
-        
         collectionView.backgroundColor = .clear
         return collectionView
     }()
@@ -79,11 +78,9 @@ extension SceneCarouselView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SceneCollectionViewCell", for: indexPath) as! SceneCollectionViewCell
         let viewModel = SceneCollectionViewCellViewModel(scene: scenes[indexPath.row])
         cell.bindViewModel(viewModel)
-        
         
         return cell
     }
@@ -122,7 +119,7 @@ extension SceneCarouselView: UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 5, left: 12, bottom: 10, right: 10)
     }
 }
 

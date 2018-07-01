@@ -61,7 +61,6 @@ class MovieHeaderView: UIView {
     }()
     
     private lazy var containerView = UIView()
-    
 
     let viewModel : MovieHeaderViewModel
     
@@ -121,7 +120,7 @@ private extension MovieHeaderView {
             imageViewBottomLayoutConstraint = make.bottom.equalToSuperview().constraint
             imageViewHeightLayoutConstraint = make.height.equalToSuperview().constraint
         }
-  
+
         titleLabel.snp.makeConstraints { make in
             make.bottom.equalTo(containerView).offset(-10)
             make.left.equalToSuperview().inset(20)

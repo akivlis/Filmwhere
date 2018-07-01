@@ -129,7 +129,6 @@ private extension MovieTableViewCell {
             make.top.equalTo(containerView.snp.bottom).offset(8)
             make.bottom.equalToSuperview().inset(8)
         }
-        
      
     }
 }
