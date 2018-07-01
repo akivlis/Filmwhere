@@ -19,9 +19,17 @@ class MovieListViewController: UIViewController {
         
         if #available(iOS 11.0, *) {
             navigationController?.navigationBar.prefersLargeTitles = true
-            navigationItem.largeTitleDisplayMode = .always
+            navigationItem.largeTitleDisplayMode = .automatic
         }
+
         
+        
+        //transparency
+//        self.navigationController?.navigationBar.backgroundColor = .white
+//        self.navigationController?.navigationBar.barTintColor = .white
+//        self.navigationController?.navigationBar.shadowImage = nil
+//        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+
         setView()
         
         let dummyScenes = [Scene(title: "Rocky running", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00),
@@ -53,6 +61,7 @@ private extension MovieListViewController {
             make.edges.equalToSuperview()
         }
         listView.backgroundColor = .white
+        view.backgroundColor = .white
         
         title = "Movies"
     }

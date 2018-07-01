@@ -10,8 +10,6 @@ import UIKit
 
 class MainTabBarController: UITabBarController {
     
-//    fileprivate let viewControllers: [UIViewController]
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,19 +20,17 @@ class MainTabBarController: UITabBarController {
     }
     
     private func loadTabs(){
- 
         let movieListViewController = MovieListViewController()
-        movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "movie"), tag: 0)
+        movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "camera-icon"), tag: 0)
         
         let localizationViewController = LocalizationViewController()
-        localizationViewController.tabBarItem = UITabBarItem(title: "Maps", image: UIImage(named: "map"), tag: 1)
+        localizationViewController.tabBarItem = UITabBarItem(title: "Maps", image: UIImage(named: "map-icon"), tag: 1)
 
 
         let profileViewController = ProfileViewController()
-        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile"), tag: 2)
+        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile-icon"), tag: 2)
         
         let movieNavigationViewController = UINavigationController(rootViewController: movieListViewController)
-        
         
         viewControllers = [movieNavigationViewController, localizationViewController, profileViewController ]
         selectedViewController = movieNavigationViewController

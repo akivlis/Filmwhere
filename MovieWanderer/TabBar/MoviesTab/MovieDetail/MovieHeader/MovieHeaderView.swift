@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class MovieHeaderView: UIView {
     
@@ -15,6 +16,8 @@ class MovieHeaderView: UIView {
     private lazy var moviePhoto: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Lokrum")
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -23,6 +26,7 @@ class MovieHeaderView: UIView {
         label.numberOfLines = 3
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = .gray
+        label.numberOfLines = 0
         return label
     }()
     
@@ -56,13 +60,18 @@ class MovieHeaderView: UIView {
         return label
     }()
     
+    private lazy var containerView = UIView()
+    
 
     let viewModel : MovieHeaderViewModel
+    
+    private var containerHeightLayoutConstraint: Constraint?
+    private var imageViewHeightLayoutConstraint: Constraint?
+    private var imageViewBottomLayoutConstraint: Constraint?
 
     // MARK: Init
     
     init(viewModel: MovieHeaderViewModel) {
-        
         self.viewModel = viewModel
 
         super.init(frame: .zero)
@@ -77,16 +86,25 @@ class MovieHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    func updatePosition(withInset inset: CGFloat, contentOffset: CGFloat) {
+        let offsetY = -(contentOffset + inset)
+        containerView.clipsToBounds = offsetY <= 0
+        imageViewBottomLayoutConstraint?.update(offset: offsetY >= 0 ? 0 : -offsetY / 2)
+        imageViewHeightLayoutConstraint?.update(offset: max(offsetY + inset, inset))
+    }
 }
 
 private extension MovieHeaderView {
     
     private func loadSubviews() {
+        containerView.addSubview(moviePhoto)
+        addSubview(containerView)
         
-        addSubview(moviePhoto)
+        containerView.clipsToBounds = true
+
         addSubview(descriptionLabel)
         addSubview(titleLabel)
-        
         addSubview(containerStackView)
         containerStackView.addArrangedSubview(numberofLocationLabel)
         containerStackView.addArrangedSubview(mapButton)
@@ -99,19 +117,25 @@ private extension MovieHeaderView {
             make.height.equalTo(380)
         }
         
-        moviePhoto.snp.makeConstraints { make in
+        containerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.height.equalTo(250)
+            containerHeightLayoutConstraint = make.height.equalTo(250).constraint
         }
-      
+        
+        moviePhoto.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            imageViewBottomLayoutConstraint = make.bottom.equalToSuperview().constraint
+            imageViewHeightLayoutConstraint = make.height.equalToSuperview().constraint
+        }
+  
         titleLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(moviePhoto).offset(-10)
+            make.bottom.equalTo(containerView).offset(-10)
             make.left.equalToSuperview().inset(20)
         }
         
         containerStackView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(moviePhoto.snp.bottom)
+            make.top.equalTo(containerView.snp.bottom)
         }
         
         mapButton.snp.makeConstraints { make in

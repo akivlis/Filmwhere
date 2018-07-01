@@ -38,7 +38,6 @@ class MovieTableViewCell: UITableViewCell {
     private let locationsLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 14)
-        label.textColor = .myRed
         label.textAlignment = .left
         return label
     }()
@@ -47,7 +46,6 @@ class MovieTableViewCell: UITableViewCell {
        let imageView = UIImageView()
         imageView.image = UIImage(named: "movie-icon")?.withRenderingMode(.alwaysTemplate)
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .myRed
         return imageView
     }()
     
@@ -66,11 +64,14 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     func bindViewModel(_ viewModel: MovieCellViewModel) {
-        
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
         movieImageView.image = UIImage(named: viewModel.imageName)
         locationsLabel.text = "7 locations   •   12 km from you" //TODO change
+        
+        let color = UIColor.myRed
+        locationsLabel.textColor = color
+        mapIcon.tintColor = color
     }
     
     override func layoutSubviews() {

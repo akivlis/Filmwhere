@@ -12,7 +12,7 @@ import RxSwift
 import CenteredCollectionView
 
 
-fileprivate let myCollectionViewFlowLayout: CenteredCollectionViewFlowLayout = {
+private let myCollectionViewFlowLayout: CenteredCollectionViewFlowLayout = {
     let layout = CenteredCollectionViewFlowLayout()
     layout.scrollDirection = .horizontal
     layout.minimumLineSpacing = 10
@@ -22,15 +22,15 @@ fileprivate let myCollectionViewFlowLayout: CenteredCollectionViewFlowLayout = {
 
 class SceneCarouselView: UIView {
     
-    fileprivate var scenes = [Scene]()
-    fileprivate let insetValue: CGFloat = 10
+    var cellSize: CGSize?
     
+    private var scenes = [Scene]()
+    private let insetValue: CGFloat = 10
     
-    fileprivate var _scrolledToScene = PublishSubject<Scene>()
+    private var _scrolledToScene = PublishSubject<Scene>()
     var scrolledToScene$: Observable<Scene> {
         return _scrolledToScene
     }
-    
     
     let scenesCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
@@ -99,7 +99,6 @@ extension SceneCarouselView: UICollectionViewDelegate {
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
         let index = targetContentOffset.pointee.x / (scenesCollectionView.frame.width - 4 * insetValue)
         
         print("index: \(abs(index.rounded()))")
@@ -109,26 +108,22 @@ extension SceneCarouselView: UICollectionViewDelegate {
                 _scrolledToScene.onNext(selectedScene)
 
     }
-    
-    
 }
 
 extension SceneCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
+        if let size = cellSize {
+            return size
+        }
         let width = collectionView.frame.width - 4 * insetValue
-        print(width)
         return CGSize(width: width, height: frame.height - 15)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
         return UIEdgeInsets(top: 5, left: 10, bottom: 10, right: 10)
     }
-    
-    
 }
 
 
