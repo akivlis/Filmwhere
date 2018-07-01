@@ -10,7 +10,6 @@ import UIKit
 import RxSwift
 import SnapKit
 
-
 class MovieDetailViewController: UIViewController {
 
     private let scrollView = UIScrollView()
@@ -19,6 +18,7 @@ class MovieDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
+    private let backButton = UIButton()
     
     // MARK: Init
     
@@ -38,60 +38,31 @@ class MovieDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if #available(iOS 11.0, *) {
-            navigationController?.navigationBar.prefersLargeTitles = true
-            navigationItem.largeTitleDisplayMode = .never
-        }
-        
-        view.backgroundColor = .red
-
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        self.view.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .never
+        navigationController?.setNavigationBarHidden(true, animated: true)
 
         scrollView.delegate = self
         setupViews()
         setupContraints()
+        
+        backButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                _ = self?.navigationController?.popViewController(animated: true)
+        }).disposed(by: disposeBag)
     }
-    
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        
-//        guard self.navigationController?.topViewController === self else { return }
-//        self.transitionCoordinator?.animate(alongsideTransition: { [weak self](context) in
-//            self?.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//            self?.navigationController?.navigationBar.shadowImage = UIImage()
-//            self?.navigationController?.navigationBar.backgroundColor = .clear
-//            self?.navigationController?.navigationBar.barTintColor = .clear
-//            }, completion: nil)
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        
-//        self.transitionCoordinator?.animate(alongsideTransition: { [weak self](context) in
-//            self?.navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
-//            self?.navigationController?.navigationBar.shadowImage = nil
-//            self?.navigationController?.navigationBar.backgroundColor = .white
-//            self?.navigationController?.navigationBar.barTintColor = .white
-//            }, completion: nil)
-//    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
     
 }
 
 private extension MovieDetailViewController {
     
     private func setupViews() {
-        
-        title = movie.title
         view.backgroundColor = .white
-
-//        scrollView.showsVerticalScrollIndicator = false
-//        scrollView.bounces = false
-        
-//        edgesForExtendedLayout = [.top, .bottom]
-//        extendedLayoutIncludesOpaqueBars = true
         
         scrollView.contentInsetAdjustmentBehavior = .never
         view.addSubview(scrollView)
@@ -101,9 +72,12 @@ private extension MovieDetailViewController {
         scenesTitleLabel.text = "Scenes"
         scenesTitleLabel.textAlignment = .left
         
+        backButton.setTitle("Back", for: .normal)
+        
         scrollView.addSubview(movieHeaderView)
         scrollView.addSubview(scenesTitleLabel)
         scrollView.addSubview(scenesCarouselView)
+        view.addSubview(backButton)
     }
     
     private func setupContraints() {
@@ -113,9 +87,14 @@ private extension MovieDetailViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
         
+        backButton.snp.makeConstraints { make in
+            make.top.left.equalToSuperview().inset(16)
+        }
+        
         movieHeaderView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.width.equalToSuperview()
+            make.height.equalTo(500)
         }
         
         scenesTitleLabel.snp.makeConstraints { make in
@@ -125,10 +104,10 @@ private extension MovieDetailViewController {
         }
         
         scenesCarouselView.snp.makeConstraints { make in
-            make.top.equalTo(scenesTitleLabel.snp.bottom).offset(200) //remove offset
+            make.top.equalTo(scenesTitleLabel.snp.bottom)
             make.left.right.equalToSuperview()
             make.height.equalTo(220) // check this
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(200) //remove inset
         }
     }
 }

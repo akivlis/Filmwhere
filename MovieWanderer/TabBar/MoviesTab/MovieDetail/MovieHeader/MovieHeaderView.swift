@@ -111,12 +111,6 @@ private extension MovieHeaderView {
     }
     
     private func setConstraints() {
-        
-        //todo: remove
-        self.snp.makeConstraints { make in
-            make.height.equalTo(380)
-        }
-        
         containerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             containerHeightLayoutConstraint = make.height.equalTo(250).constraint

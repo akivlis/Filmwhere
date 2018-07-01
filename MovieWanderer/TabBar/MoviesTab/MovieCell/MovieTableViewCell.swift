@@ -67,7 +67,7 @@ class MovieTableViewCell: UITableViewCell {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
         movieImageView.image = UIImage(named: viewModel.imageName)
-        locationsLabel.text = "7 locations   •   12 km from you" //TODO change
+        locationsLabel.text = "7 locations"  // •   12 km from you" //TODO change
         
         let color = UIColor.myRed
         locationsLabel.textColor = color
