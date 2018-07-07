@@ -38,9 +38,6 @@ class MovieDetailViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .never
-
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
         
         scrollView.delegate = self
         setupViews()
@@ -51,8 +48,7 @@ class MovieDetailViewController: UIViewController {
 private extension MovieDetailViewController {
     
     private func setupViews() {
-//        title = movie.title
-        
+        title = movie.title
         view.backgroundColor = .white
         view.addSubview(scrollView)
         
@@ -69,8 +65,8 @@ private extension MovieDetailViewController {
     private func setupContraints() {
         scrollView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview()
-//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+//            make.top.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
   
@@ -98,27 +94,7 @@ private extension MovieDetailViewController {
 extension MovieDetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         movieHeaderView.updatePosition(withInset: scrollView.contentInset.top, contentOffset: scrollView.contentOffset.y)
-        
-        var offset = scrollView.contentOffset.y / 190 //check this number
-        if offset > 1 {
-            offset = 1
-            self.navigationController?.navigationBar.shadowImage = nil
-            navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        } else {
-            navigationController?.navigationBar.shadowImage = UIImage()
-//            UIApplication.shared.statusBarView.colo
-            navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        }
-        
-        let color = UIColor.white.withAlphaComponent(offset)
-        self.navigationController?.navigationBar.backgroundColor =  color
-//        self.navigationController?.navigationBar.tintColor = color
-//        UIApplication.shared.statusBarView?.backgroundColor = color
-        
-        print(offset)
     }
-    
-    
 }
 
 
