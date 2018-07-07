@@ -111,6 +111,7 @@ extension SceneCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if let size = cellSize {
+//            let newSize = CGSize(width: size.width, height: size.height - 15)
             return size
         }
         let width = collectionView.frame.width - 4 * insetValue
@@ -119,7 +120,7 @@ extension SceneCarouselView: UICollectionViewDelegateFlowLayout {
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 5, left: 12, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 10)
     }
 }
 

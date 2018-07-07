@@ -32,7 +32,7 @@ class MovieHeaderView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 17)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textColor = .white
         return label
     }()

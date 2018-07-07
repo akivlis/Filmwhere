@@ -94,7 +94,7 @@ extension MapView: CLLocationManagerDelegate {
 }
 
 
-fileprivate extension MapView {
+private extension MapView {
     
     func setStyle() {
         do {

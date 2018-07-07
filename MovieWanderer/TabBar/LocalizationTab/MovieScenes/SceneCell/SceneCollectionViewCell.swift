@@ -91,7 +91,6 @@ class SceneCollectionViewCell: UICollectionViewCell {
 private extension SceneCollectionViewCell {
     
     private func loadSubviews() {
-        
         contentView.addSubview(sceneImageView)
         contentView.addSubview(descriptionContainerView)
         
@@ -103,7 +102,7 @@ private extension SceneCollectionViewCell {
     private func setConstraints() {
         sceneImageView.snp.makeConstraints { make in
             make.top.right.left.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-80)
+            make.height.equalTo(170)
 //            make.height.equalTo(contentView).multipliedBy(2/3)
         }
         

@@ -18,6 +18,9 @@ class MovieDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
+    private let mapView = MapView()
+    private var gradient: CAGradientLayer
+
     
     // MARK: Init
     
@@ -25,12 +28,19 @@ class MovieDetailViewController: UIViewController {
         self.movie = movie
         movieHeaderView = MovieHeaderView(viewModel: MovieHeaderViewModel(movie: movie))
         scenesCarouselView = SceneCarouselView(scenes: movie.scenes)
-        scenesCarouselView.cellSize = CGSize(width: 140, height: 250)
+        scenesCarouselView.cellSize = CGSize(width: 140, height: 230)
+        gradient = CAGradientLayer()
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        gradient.frame = mapView.bounds
     }
     
     override func viewDidLoad() {
@@ -60,13 +70,18 @@ private extension MovieDetailViewController {
         scrollView.addSubview(movieHeaderView)
         scrollView.addSubview(scenesTitleLabel)
         scrollView.addSubview(scenesCarouselView)
+        scrollView.addSubview(mapView)
+        
+        gradient.frame = mapView.bounds
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
+        gradient.locations = [0, 0.1, 0.9, 1]
+        mapView.layer.mask = gradient
     }
     
     private func setupContraints() {
         scrollView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-//            make.top.equalToSuperview()
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
   
@@ -83,10 +98,16 @@ private extension MovieDetailViewController {
         }
         
         scenesCarouselView.snp.makeConstraints { make in
-            make.top.equalTo(scenesTitleLabel.snp.bottom)
+            make.top.equalTo(scenesTitleLabel.snp.bottom).offset(16)
             make.left.right.equalToSuperview()
-            make.height.equalTo(300) // check this
-            make.bottom.equalToSuperview().inset(200) //remove inset
+            make.height.equalTo(scenesCarouselView.cellSize!.height)
+        }
+        
+        mapView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(scenesCarouselView.snp.bottom)
+            make.height.equalTo(300)
+            make.bottom.equalToSuperview()
         }
     }
 }
