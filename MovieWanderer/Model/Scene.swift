@@ -22,4 +22,15 @@ struct Scene {
         self.latitude = latitude
         self.longitude = longitude
     }
+    
+}
+
+extension Scene: Equatable {
+    
+    static func == (lhs: Scene, rhs: Scene) -> Bool {
+        return lhs.title == rhs.title &&
+            lhs.description == rhs.description &&
+            lhs.latitude == rhs.latitude &&
+            lhs.longitude == rhs.longitude
+    }
 }

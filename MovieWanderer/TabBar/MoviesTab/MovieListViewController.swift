@@ -21,9 +21,11 @@ class MovieListViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .automatic
         setView()
         
-        let dummyScenes = [Scene(title: "Rocky running", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00),
-                           Scene(title: "Rocky boxing", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00),
-                           Scene(title: "Rocky talking", description: "Rocky running up the stars in Philadephia", latitude: 33.0, longitude: 34.00) ]
+        let dummyScenes : [Scene] = [Scene(title: "Rocky running", description: "Hahaha", latitude: 48.225660, longitude: 16.399509),
+                                Scene(title: "Rocky boxing", description: "Hihihhi", latitude: 49.157614, longitude: 17.075666),
+                                Scene(title: "Stairs", description: "Bla bla bla", latitude: -33.865143, longitude: 151.209900),
+                                Scene(title: "Rocky talking", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)
+        ]
         
         let dummyMovies =  [Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageName: "rocky"),
                             Movie(title: "Men in Black", description: "Men are saving the world from the aliens", scenes:dummyScenes, imageName: "placeholder"),

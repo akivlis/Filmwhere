@@ -19,7 +19,8 @@ class MovieDetailViewController: UIViewController {
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
     private let mapView = MapView()
-    private var gradient: CAGradientLayer
+    private var gradient = CAGradientLayer()
+
 
     
     // MARK: Init
@@ -29,7 +30,6 @@ class MovieDetailViewController: UIViewController {
         movieHeaderView = MovieHeaderView(viewModel: MovieHeaderViewModel(movie: movie))
         scenesCarouselView = SceneCarouselView(scenes: movie.scenes)
         scenesCarouselView.cellSize = CGSize(width: 140, height: 230)
-        gradient = CAGradientLayer()
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -52,6 +52,16 @@ class MovieDetailViewController: UIViewController {
         scrollView.delegate = self
         setupViews()
         setupContraints()
+        
+        mapView.scenes = movie.scenes
+        mapView.moveCameraToScene(scene: movie.scenes[0])
+        mapView.highlightMarker(for: 3)
+        
+        scenesCarouselView.scrolledToScene$
+            .subscribe(onNext: { [unowned self] scene in
+                let index = self.movie.scenes.index(of: scene)
+                self.mapView.highlightMarker(for: index!)
+            }).disposed(by: disposeBag)
     }
 }
 
@@ -105,7 +115,7 @@ private extension MovieDetailViewController {
         
         mapView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(scenesCarouselView.snp.bottom)
+            make.top.equalTo(scenesCarouselView.snp.bottom).offset(4)
             make.height.equalTo(300)
             make.bottom.equalToSuperview()
         }
