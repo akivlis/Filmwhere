@@ -10,6 +10,19 @@ import UIKit
 
 class SceneCollectionViewCell: UICollectionViewCell {
     
+    override var isSelected: Bool {
+        didSet{
+            if self.isSelected {
+                self.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+//                self.contentView.backgroundColor = UIColor.red
+            }
+            else {
+                self.transform = CGAffineTransform.identity
+//                self.contentView.backgroundColor = UIColor.gray
+            }
+        }
+    }
+    
     let sceneImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -102,7 +115,7 @@ private extension SceneCollectionViewCell {
     private func setConstraints() {
         sceneImageView.snp.makeConstraints { make in
             make.top.right.left.equalToSuperview()
-            make.height.equalTo(170)
+            make.height.equalTo(160)
 //            make.height.equalTo(contentView).multipliedBy(2/3)
         }
         

@@ -8,10 +8,16 @@
 
 import UIKit
 import SnapKit
+import RxSwift
 
 class MovieHeaderView: UIView {
     
     // MARK: Properties
+    
+    var goToMap$: Observable<()> {
+        return mapButton.rx.tap.asObservable()
+    }
+    
 
     private lazy var moviePhoto: UIImageView = {
         let imageView = UIImageView()

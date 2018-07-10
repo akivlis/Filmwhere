@@ -52,16 +52,19 @@ class MovieDetailViewController: UIViewController {
         scrollView.delegate = self
         setupViews()
         setupContraints()
+        setupObservables()
         
         mapView.scenes = movie.scenes
         mapView.moveCameraToScene(scene: movie.scenes[0])
         mapView.highlightMarker(for: 3)
         
-        scenesCarouselView.scrolledToScene$
-            .subscribe(onNext: { [unowned self] scene in
-                let index = self.movie.scenes.index(of: scene)
-                self.mapView.highlightMarker(for: index!)
-            }).disposed(by: disposeBag)
+
+    }
+}
+
+extension MovieDetailViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        movieHeaderView.updatePosition(withInset: scrollView.contentInset.top, contentOffset: scrollView.contentOffset.y)
     }
 }
 
@@ -120,12 +123,23 @@ private extension MovieDetailViewController {
             make.bottom.equalToSuperview()
         }
     }
-}
-
-extension MovieDetailViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        movieHeaderView.updatePosition(withInset: scrollView.contentInset.top, contentOffset: scrollView.contentOffset.y)
+    
+    private func setupObservables() {
+        
+        scenesCarouselView.scrolledToScene$
+            .subscribe(onNext: { [unowned self] scene in
+                let index = self.movie.scenes.index(of: scene)
+                self.mapView.highlightMarker(for: index!)
+            }).disposed(by: disposeBag)
+        
+        movieHeaderView.goToMap$
+            .subscribe(onNext: { [weak self] _ in
+                let modalViewController = ModalMapViewController()
+                self?.present(modalViewController, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
     }
 }
+
+
 
 

@@ -33,6 +33,7 @@
 		3D4A868620C72BF4009AB176 /* MovieWanderer+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A868520C72BF4009AB176 /* MovieWanderer+Reusable.swift */; };
 		3D803588202B9E5B00A51585 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Scene.swift */; };
 		3D864D602056DAA20069ECD0 /* SceneCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D864D5F2056DAA20069ECD0 /* SceneCarouselView.swift */; };
+		3DA3B18820F52FBD00F15104 /* ModalMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */; };
 		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
 		3DC79AE3203087E8008B0E49 /* MovieWanderer+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */; };
 		3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */; };
@@ -87,6 +88,7 @@
 		3D4A868520C72BF4009AB176 /* MovieWanderer+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+Reusable.swift"; sourceTree = "<group>"; };
 		3D803587202B9E5B00A51585 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		3D864D5F2056DAA20069ECD0 /* SceneCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCarouselView.swift; sourceTree = "<group>"; };
+		3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMapViewController.swift; sourceTree = "<group>"; };
 		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+Color.swift"; sourceTree = "<group>"; };
 		3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+UIView.swift"; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				3D2289122028FE010074D173 /* LaunchScreen.storyboard */,
 				3D2289152028FE010074D173 /* Info.plist */,
 				3DC040192039EA2E00C1A86D /* Supporting Files */,
+				3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */,
 			);
 			path = MovieWanderer;
 			sourceTree = "<group>";
@@ -598,6 +601,7 @@
 				3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */,
 				3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */,
 				3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */,
+				3DA3B18820F52FBD00F15104 /* ModalMapViewController.swift in Sources */,
 				3D4A868620C72BF4009AB176 /* MovieWanderer+Reusable.swift in Sources */,
 				3DC79AE3203087E8008B0E49 /* MovieWanderer+Color.swift in Sources */,
 				3D3E69A9206C15A800891580 /* MoviewHeaderViewModel.swift in Sources */,

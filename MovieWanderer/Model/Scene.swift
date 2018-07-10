@@ -14,6 +14,7 @@ struct Scene {
     let description: String
     let latitude: Double
     let longitude: Double
+    let country = "Croatia" // TODO:
 
     
     init(title: String, description: String, latitude: Double, longitude: Double) {
