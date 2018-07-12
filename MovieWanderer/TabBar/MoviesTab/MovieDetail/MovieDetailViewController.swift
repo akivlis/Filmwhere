@@ -21,8 +21,6 @@ class MovieDetailViewController: UIViewController {
     private let mapView = MapView()
     private var gradient = CAGradientLayer()
 
-
-    
     // MARK: Init
     
     init(movie: Movie) {
@@ -57,8 +55,6 @@ class MovieDetailViewController: UIViewController {
         mapView.scenes = movie.scenes
         mapView.moveCameraToScene(scene: movie.scenes[0])
         mapView.highlightMarker(for: 3)
-        
-
     }
 }
 
@@ -133,10 +129,19 @@ private extension MovieDetailViewController {
             }).disposed(by: disposeBag)
         
         movieHeaderView.goToMap$
-            .subscribe(onNext: { [weak self] _ in
+            .subscribe(onNext: { [unowned self] _ in
                 let modalViewController = ModalMapViewController()
-                self?.present(modalViewController, animated: true, completion: nil)
+                modalViewController.scenes = self.movie.scenes
+                self.present(modalViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
+        
+        scenesCarouselView.scenesCollectionView.rx.itemSelected
+            .subscribe(onNext: { [unowned self]_ in
+                let modalViewController = ModalMapViewController()
+                modalViewController.scenes = self.movie.scenes
+                self.present(modalViewController, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
+
     }
 }
 

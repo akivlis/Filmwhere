@@ -76,7 +76,7 @@ class SceneCollectionViewCell: UICollectionViewCell {
     func bindViewModel(_ viewModel: SceneCollectionViewCellViewModel){
         titleLabel.text = viewModel.title
 //        subtitleLabel.text = viewModel.subtitle
-        distanceLabel.text = "\(viewModel.distanceFromMe) m away"
+        distanceLabel.text = "Croatia" //"\(viewModel.distanceFromMe) m away"
         sceneImageView.image = viewModel.sceneImage
     }
     

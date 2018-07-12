@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Scene {
+class Scene {
     
     let title: String
     let description: String
@@ -27,7 +27,7 @@ struct Scene {
 }
 
 extension Scene: Equatable {
-    
+
     static func == (lhs: Scene, rhs: Scene) -> Bool {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
@@ -35,3 +35,5 @@ extension Scene: Equatable {
             lhs.longitude == rhs.longitude
     }
 }
+
+
