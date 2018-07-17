@@ -18,7 +18,7 @@ class MovieDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
-    private var gradient = CAGradientLayer()
+    private let backButton = UIButton()
 
     // MARK: Init
     
@@ -40,12 +40,14 @@ class MovieDetailViewController: UIViewController {
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .never
-        
+        navigationController?.isNavigationBarHidden = true
+
         scrollView.delegate = self
         setupViews()
         setupContraints()
         setupObservables()
     }
+ 
 }
 
 extension MovieDetailViewController: UIScrollViewDelegate {
@@ -61,6 +63,9 @@ private extension MovieDetailViewController {
         view.backgroundColor = .white
         view.addSubview(scrollView)
         
+        backButton.setImage(UIImage(named: "back-icon"), for: .normal)
+        view.addSubview(backButton)
+        
         scenesTitleLabel.textColor = .black
         scenesTitleLabel.font = UIFont.boldSystemFont(ofSize: 18)
         scenesTitleLabel.text = "Scenes"
@@ -69,6 +74,9 @@ private extension MovieDetailViewController {
         scrollView.addSubview(movieHeaderView)
         scrollView.addSubview(scenesTitleLabel)
         scrollView.addSubview(scenesCarouselView)
+        
+
+        
     }
     
     private func setupContraints() {
@@ -81,7 +89,13 @@ private extension MovieDetailViewController {
         movieHeaderView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.width.equalToSuperview()
-            make.height.equalTo(400)
+            make.height.equalTo(600)
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
+            make.left.equalToSuperview().inset(20)
+            make.width.height.equalTo(20)
         }
         
         scenesTitleLabel.snp.makeConstraints { make in
@@ -112,6 +126,11 @@ private extension MovieDetailViewController {
                 let modalViewController = ModalMapViewController()
                 modalViewController.scenes = self.movie.scenes
                 self.present(modalViewController, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
+        
+        backButton.rx.tap
+            .subscribe(onNext: { [unowned self] in
+                self.navigationController?.popViewController(animated: true)
             }).disposed(by: disposeBag)
 
     }

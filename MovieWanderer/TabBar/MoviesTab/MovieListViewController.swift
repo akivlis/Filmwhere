@@ -40,6 +40,12 @@ class MovieListViewController: UIViewController {
             }).disposed(by: disposeBag)
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.isNavigationBarHidden = false
+    }
 }
 
 private extension MovieListViewController {

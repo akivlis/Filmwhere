@@ -39,7 +39,7 @@ class MovieHeaderView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textColor = .white
+        label.textColor = .black
         return label
     }()
     
@@ -66,6 +66,7 @@ class MovieHeaderView: UIView {
         return label
     }()
     
+    private var gradient = CAGradientLayer()
     private lazy var containerView = UIView()
 
     let viewModel : MovieHeaderViewModel
@@ -91,6 +92,12 @@ class MovieHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+//        gradient.frame = containerView.bounds
+
+    }
     
     func updatePosition(withInset inset: CGFloat, contentOffset: CGFloat) {
         let offsetY = -(contentOffset + inset)
@@ -113,12 +120,18 @@ private extension MovieHeaderView {
         addSubview(containerStackView)
         containerStackView.addArrangedSubview(numberofLocationLabel)
         containerStackView.addArrangedSubview(mapButton)
+        
+        
+//        gradient.frame = containerView.bounds
+//        gradient.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
+//        gradient.locations = [ 0.9, 1]
+//        containerView.layer.mask = gradient
     }
     
     private func setConstraints() {
         containerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            containerHeightLayoutConstraint = make.height.equalTo(250).constraint
+            containerHeightLayoutConstraint = make.height.equalTo(350).constraint
         }
         
         moviePhoto.snp.makeConstraints { make in
