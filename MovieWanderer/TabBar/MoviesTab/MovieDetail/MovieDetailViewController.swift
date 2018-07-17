@@ -122,12 +122,6 @@ private extension MovieDetailViewController {
     
     private func setupObservables() {
         
-        scenesCarouselView.scrolledToScene$
-            .subscribe(onNext: { [unowned self] scene in
-                let index = self.movie.scenes.index(of: scene)
-                self.mapView.highlightMarker(for: index!)
-            }).disposed(by: disposeBag)
-        
         movieHeaderView.goToMap$
             .subscribe(onNext: { [unowned self] _ in
                 let modalViewController = ModalMapViewController()
