@@ -18,7 +18,6 @@ class MovieDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
-    private let mapView = MapView()
     private var gradient = CAGradientLayer()
 
     // MARK: Init
@@ -34,12 +33,7 @@ class MovieDetailViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-        gradient.frame = mapView.bounds
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,10 +45,6 @@ class MovieDetailViewController: UIViewController {
         setupViews()
         setupContraints()
         setupObservables()
-        
-        mapView.scenes = movie.scenes
-        mapView.moveCameraToScene(scene: movie.scenes[0])
-        mapView.highlightMarker(for: 3)
     }
 }
 
@@ -79,12 +69,6 @@ private extension MovieDetailViewController {
         scrollView.addSubview(movieHeaderView)
         scrollView.addSubview(scenesTitleLabel)
         scrollView.addSubview(scenesCarouselView)
-        scrollView.addSubview(mapView)
-        
-        gradient.frame = mapView.bounds
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
-        gradient.locations = [0, 0.1, 0.9, 1]
-        mapView.layer.mask = gradient
     }
     
     private func setupContraints() {
@@ -110,13 +94,6 @@ private extension MovieDetailViewController {
             make.top.equalTo(scenesTitleLabel.snp.bottom).offset(16)
             make.left.right.equalToSuperview()
             make.height.equalTo(scenesCarouselView.cellSize!.height)
-        }
-        
-        mapView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(scenesCarouselView.snp.bottom).offset(4)
-            make.height.equalTo(300)
-            make.bottom.equalToSuperview()
         }
     }
     
