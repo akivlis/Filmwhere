@@ -94,6 +94,7 @@ private extension MovieDetailViewController {
             make.top.equalTo(scenesTitleLabel.snp.bottom).offset(16)
             make.left.right.equalToSuperview()
             make.height.equalTo(scenesCarouselView.cellSize!.height)
+            make.bottom.equalToSuperview().inset(20)
         }
     }
     
