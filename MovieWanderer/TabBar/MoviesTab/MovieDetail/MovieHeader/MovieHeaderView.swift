@@ -17,7 +17,6 @@ class MovieHeaderView: UIView {
     var goToMap$: Observable<()> {
         return mapButton.rx.tap.asObservable()
     }
-    
 
     private lazy var moviePhoto: UIImageView = {
         let imageView = UIImageView()
@@ -81,11 +80,7 @@ class MovieHeaderView: UIView {
         self.viewModel = viewModel
 
         super.init(frame: .zero)
-        backgroundColor = .white
-        
-        loadSubviews()
-        setConstraints()
-        bindViewModel()
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -95,8 +90,7 @@ class MovieHeaderView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-//        gradient.frame = containerView.bounds
-
+        gradient.frame = moviePhoto.bounds
     }
     
     func updatePosition(withInset inset: CGFloat, contentOffset: CGFloat) {
@@ -109,7 +103,15 @@ class MovieHeaderView: UIView {
 
 private extension MovieHeaderView {
     
-    private func loadSubviews() {
+    private func commonInit() {
+        setupViews()
+        setupConstraints()
+        bindViewModel()
+    }
+    
+    private func setupViews() {
+        backgroundColor = .white
+
         containerView.addSubview(moviePhoto)
         addSubview(containerView)
         
@@ -123,12 +125,14 @@ private extension MovieHeaderView {
         
         
 //        gradient.frame = containerView.bounds
-//        gradient.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
-//        gradient.locations = [ 0.9, 1]
+//        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
+//        gradient.locations = [0, 0.1, 0.9, 1]
+////        moviePhoto.layer.insertSublayer(gradient, at: 0)
+//
 //        containerView.layer.mask = gradient
     }
     
-    private func setConstraints() {
+    private func setupConstraints() {
         containerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             containerHeightLayoutConstraint = make.height.equalTo(350).constraint
