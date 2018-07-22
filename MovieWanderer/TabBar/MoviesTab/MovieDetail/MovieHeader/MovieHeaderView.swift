@@ -29,7 +29,7 @@ class MovieHeaderView: UIView {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 3
-        label.font = UIFont.systemFont(ofSize: 13)
+        label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .gray
         label.numberOfLines = 0
         return label
@@ -37,16 +37,16 @@ class MovieHeaderView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textColor = .black
         return label
     }()
     
     private lazy var containerStackView: UIStackView = {
        let stackView = UIStackView()
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalCentering
         stackView.spacing = 20
-        stackView.alignment = .fill
+        stackView.alignment = UIStackViewAlignment.fill
         stackView.axis = .horizontal
         return stackView
     }()
@@ -60,13 +60,13 @@ class MovieHeaderView: UIView {
     private lazy var numberofLocationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 17)
-        label.textColor = .black
+        label.textColor = .gray
         label.textAlignment = .center
         return label
     }()
     
     private var gradient = CAGradientLayer()
-    private lazy var containerView = UIView()
+    private lazy var photoContainerView = UIView()
 
     let viewModel : MovieHeaderViewModel
     
@@ -95,7 +95,7 @@ class MovieHeaderView: UIView {
     
     func updatePosition(withInset inset: CGFloat, contentOffset: CGFloat) {
         let offsetY = -(contentOffset + inset)
-        containerView.clipsToBounds = offsetY <= 0
+        photoContainerView.clipsToBounds = offsetY <= 0
         imageViewBottomLayoutConstraint?.update(offset: offsetY >= 0 ? 0 : -offsetY / 2)
         imageViewHeightLayoutConstraint?.update(offset: max(offsetY + inset, inset))
     }
@@ -112,28 +112,22 @@ private extension MovieHeaderView {
     private func setupViews() {
         backgroundColor = .white
 
-        containerView.addSubview(moviePhoto)
-        addSubview(containerView)
+        photoContainerView.addSubview(moviePhoto)
+        addSubview(photoContainerView)
         
-        containerView.clipsToBounds = true
+        photoContainerView.clipsToBounds = true
 
         addSubview(descriptionLabel)
         addSubview(titleLabel)
         addSubview(containerStackView)
         containerStackView.addArrangedSubview(numberofLocationLabel)
         containerStackView.addArrangedSubview(mapButton)
-        
-        
-//        gradient.frame = containerView.bounds
-//        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
-//        gradient.locations = [0, 0.1, 0.9, 1]
-////        moviePhoto.layer.insertSublayer(gradient, at: 0)
-//
-//        containerView.layer.mask = gradient
     }
     
     private func setupConstraints() {
-        containerView.snp.makeConstraints { make in
+        let padding: CGFloat = 16
+        
+        photoContainerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             containerHeightLayoutConstraint = make.height.equalTo(350).constraint
         }
@@ -145,22 +139,19 @@ private extension MovieHeaderView {
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(containerView).offset(-10)
-            make.left.equalToSuperview().inset(20)
+            make.top.equalTo(photoContainerView.snp.bottom).offset(12)
+            make.left.right.equalToSuperview().inset(padding)
         }
         
         containerStackView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(containerView.snp.bottom)
-        }
-        
-        mapButton.snp.makeConstraints { make in
-            make.width.height.equalTo(60)
+            make.left.right.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
         
         descriptionLabel.snp.makeConstraints { make in
             make.top.equalTo(containerStackView.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(20)
+            make.left.right.equalTo(titleLabel)
+            make.bottom.equalToSuperview().inset(8)
         }
     }
     

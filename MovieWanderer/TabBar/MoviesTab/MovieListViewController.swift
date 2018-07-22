@@ -17,9 +17,7 @@ class MovieListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
-        setView()
+        setupViews()
         
         let dummyScenes : [Scene] = [Scene(title: "Rocky running", description: "Hahaha", latitude: 48.225660, longitude: 16.399509),
                                 Scene(title: "Rocky boxing", description: "Hihihhi", latitude: 49.157614, longitude: 17.075666),
@@ -50,15 +48,18 @@ class MovieListViewController: UIViewController {
 
 private extension MovieListViewController {
     
-    private func setView() {
+    private func setupViews() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        view.backgroundColor = .white
+        title = "Movies"
         view.addSubview(listView)
         listView.backgroundColor = .white
         listView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
-        view.backgroundColor = .white
-        title = "Movies"
     }
     
     private func openDetailFor(_ movie: Movie) {
