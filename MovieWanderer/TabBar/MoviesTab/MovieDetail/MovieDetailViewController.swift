@@ -129,7 +129,6 @@ private extension MovieDetailViewController {
             .subscribe(onNext: { [unowned self] in
                 self.navigationController?.popViewController(animated: true)
             }).disposed(by: disposeBag)
-
     }
 }
 

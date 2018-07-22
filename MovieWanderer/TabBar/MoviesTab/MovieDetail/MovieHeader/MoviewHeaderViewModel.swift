@@ -16,7 +16,7 @@ struct MovieHeaderViewModel {
     // MARK: - Computed properties
     
     var title: String {
-        return movie.title + " " + year
+        return movie.title //+ " " + year
     }
     
     var description: String {

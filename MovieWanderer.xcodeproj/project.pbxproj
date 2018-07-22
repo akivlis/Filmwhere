@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		214D73042105147F00F16983 /* InfoSceneCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D73032105147F00F16983 /* InfoSceneCarouselView.swift */; };
 		27CD6806A5D991424DC5BD5D /* Pods_MovieWanderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E34055683A2757EBA9C5358 /* Pods_MovieWanderer.framework */; };
 		3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D05230E202906BC00A90A61 /* ScenesViewModel.swift */; };
 		3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		09B4F15D97AA2C0205557CEA /* Pods-MovieWandererTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWandererTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWandererTests/Pods-MovieWandererTests.debug.xcconfig"; sourceTree = "<group>"; };
+		214D73032105147F00F16983 /* InfoSceneCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoSceneCarouselView.swift; sourceTree = "<group>"; };
 		2C6C7BAC8429FADADDBAA7A8 /* Pods-MovieWanderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer.release.xcconfig"; sourceTree = "<group>"; };
 		3D05230E202906BC00A90A61 /* ScenesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewModel.swift; sourceTree = "<group>"; };
 		3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				3D3F8803205EBB1700EE3835 /* MapView.swift */,
 				3D864D5F2056DAA20069ECD0 /* SceneCarouselView.swift */,
+				214D73032105147F00F16983 /* InfoSceneCarouselView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */,
 				3D3F8801205D8E3E00EE3835 /* MovieMapView.swift in Sources */,
 				3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */,
+				214D73042105147F00F16983 /* InfoSceneCarouselView.swift in Sources */,
 				3DCE811F202B9C7700041B9D /* LocalizationView.swift in Sources */,
 				3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */,
 				3DC79AF22030CD1D008B0E49 /* ProfileViewController.swift in Sources */,

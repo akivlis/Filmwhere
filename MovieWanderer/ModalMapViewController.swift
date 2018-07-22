@@ -30,7 +30,6 @@ final class ModalMapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.modalPresentationCapturesStatusBarAppearance = true
         
         setupViews()
@@ -46,7 +45,6 @@ final class ModalMapViewController: UIViewController {
 private extension ModalMapViewController {
     
     private func showAnnotationsAndZoom() {
-        
         let annotations: [MKAnnotation] = scenes.map { scene -> MKAnnotation in
             let annotation = MKPointAnnotation()
             annotation.coordinate = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
@@ -61,14 +59,12 @@ private extension ModalMapViewController {
             let coordination = CLLocationCoordinate2D(latitude: firstScene.latitude, longitude: firstScene.longitude)
             mapView.setCenter(coordination, animated: false)
         }
-        
     }
     
     private func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,                                                                 regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
-    
     
     private func setupViews(){
         view.backgroundColor = UIColor.white
@@ -94,7 +90,6 @@ private extension ModalMapViewController {
     }
     
     private func setupObservables() {
-        
         closeButton.rx.tap.asObservable()
             .subscribe(onNext: { _ in
                 self.dismiss(animated: true, completion: nil)

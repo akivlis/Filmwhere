@@ -15,7 +15,7 @@ class MovieHeaderView: UIView {
     // MARK: Properties
     
     var goToMap$: Observable<()> {
-        return mapButton.rx.tap.asObservable()
+        return goToMapIcon.rx.tap.asObservable()
     }
 
     private lazy var moviePhoto: UIImageView = {
@@ -51,15 +51,16 @@ class MovieHeaderView: UIView {
         return stackView
     }()
     
+    //remove this button
     private lazy var mapButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("go to map", for: .normal)
+//        button.setTitle("", for: .normal)
         return button
     }()
     
     private lazy var numberofLocationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.boldSystemFont(ofSize: 15)
         label.textColor = .gray
         label.textAlignment = .center
         return label
@@ -67,6 +68,7 @@ class MovieHeaderView: UIView {
     
     private var gradient = CAGradientLayer()
     private lazy var photoContainerView = UIView()
+    private let goToMapIcon = UIButton()
 
     let viewModel : MovieHeaderViewModel
     
@@ -111,9 +113,13 @@ private extension MovieHeaderView {
     
     private func setupViews() {
         backgroundColor = .white
-
+    
         photoContainerView.addSubview(moviePhoto)
         addSubview(photoContainerView)
+        
+        goToMapIcon.setImage(UIImage(named: "go-to-map-icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        goToMapIcon.tintColor = .myRed
+        addSubview(goToMapIcon)
         
         photoContainerView.clipsToBounds = true
 
@@ -136,6 +142,11 @@ private extension MovieHeaderView {
             make.left.right.equalToSuperview()
             imageViewBottomLayoutConstraint = make.bottom.equalToSuperview().constraint
             imageViewHeightLayoutConstraint = make.height.equalToSuperview().constraint
+        }
+        
+        goToMapIcon.snp.makeConstraints { make in
+            make.right.equalToSuperview().inset(padding)
+            make.centerY.equalTo(titleLabel).offset(-14)
         }
 
         titleLabel.snp.makeConstraints { make in

@@ -11,15 +11,6 @@ import UIKit
 import RxSwift
 import CenteredCollectionView
 
-
-private let myCollectionViewFlowLayout: UICollectionViewFlowLayout = {
-    let layout = UICollectionViewFlowLayout()
-    layout.scrollDirection = .horizontal
-    layout.minimumLineSpacing = 10
-    layout.minimumInteritemSpacing = 0
-    return layout
-}()
-
 class SceneCarouselView: UIView {
     
     var cellSize: CGSize?
@@ -33,6 +24,15 @@ class SceneCarouselView: UIView {
     }
     
     let scenesCollectionView: UICollectionView = {
+        
+        let myCollectionViewFlowLayout: UICollectionViewFlowLayout = {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 10
+            layout.minimumInteritemSpacing = 0
+            return layout
+        }()
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isUserInteractionEnabled = true
