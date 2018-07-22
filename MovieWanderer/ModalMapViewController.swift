@@ -16,21 +16,25 @@ final class ModalMapViewController: UIViewController {
         return closeButton.rx.tap.asObservable()
     }
     
-    var scenes = [Scene]() {
-        didSet {
-            showAnnotationsAndZoom()
-        }
-    }
-    
+    private let viewModel : ModalMapViewModel
     private var annotations = [MKAnnotation]()
     private let mapView = MKMapView()
     private let closeButton = UIButton()
+    private var scenesCarousel: InfoSceneCarouselView!
     private let disposeBag = DisposeBag()
     private let regionRadius: CLLocationDistance = 1000
-
+    
+    init(viewModel: ModalMapViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.modalPresentationCapturesStatusBarAppearance = true
         
         setupViews()
         setupConstraints()
@@ -38,24 +42,18 @@ final class ModalMapViewController: UIViewController {
         //TODO: add dark gradient to top
         
         mapView.delegate = self
-//        mapView.showano
+        showAnnotationsAndZoom()
     }
 }
 
 private extension ModalMapViewController {
     
     private func showAnnotationsAndZoom() {
-        let annotations: [MKAnnotation] = scenes.map { scene -> MKAnnotation in
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
-            annotation.title = scene.title
-            annotation.subtitle = scene.description
-            return annotation
-        }
-        mapView.addAnnotations(annotations)
+        
+        mapView.addAnnotations(viewModel.annotations)
       
 //        // maybe show the closest
-        if let firstScene = scenes.first {
+        if let firstScene = viewModel.scenes.first {
             let coordination = CLLocationCoordinate2D(latitude: firstScene.latitude, longitude: firstScene.longitude)
             mapView.setCenter(coordination, animated: false)
         }
@@ -70,6 +68,9 @@ private extension ModalMapViewController {
         view.backgroundColor = UIColor.white
         view.addSubview(mapView)
         
+        scenesCarousel = InfoSceneCarouselView(scenes: viewModel.scenes)
+        view.addSubview(scenesCarousel)
+        
         if let image = UIImage(named: "close-icon") {
             closeButton.setImage(image, for: .normal)
         }
@@ -78,7 +79,7 @@ private extension ModalMapViewController {
     
     private func setupConstraints() {
         mapView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalToSuperview()
             make.left.right.bottom.equalToSuperview()
         }
         
@@ -86,6 +87,11 @@ private extension ModalMapViewController {
             make.left.equalToSuperview().inset(20)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
             make.height.width.equalTo(25)
+        }
+        
+        scenesCarousel.snp.makeConstraints { make in
+            make.bottom.left.right.equalToSuperview()
+            make.height.equalTo(250)
         }
     }
     

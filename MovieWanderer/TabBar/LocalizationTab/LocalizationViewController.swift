@@ -35,12 +35,6 @@ class LocalizationViewController: UIViewController {
                 self.displayViewAt(index)
             }).disposed(by: disposeBag)
     }
-    
-    // Set the status bar style to complement night-mode.
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return .lightContent
-//    }
-    
 }
 
 private extension LocalizationViewController {
