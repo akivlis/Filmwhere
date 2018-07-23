@@ -10,6 +10,8 @@ import UIKit
 
 class InfoSceneCollectionViewCell: UICollectionViewCell {
     
+    let containerView = UIView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -29,11 +31,16 @@ private extension InfoSceneCollectionViewCell {
     }
     
     private func setupViews(){
-        backgroundColor = .red
+        backgroundColor = .white
+        containerView.backgroundColor = .red
+        contentView.addSubview(containerView)
         
     }
     
     private func setupConstraints() {
         
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(5)
+        }
     }
 }

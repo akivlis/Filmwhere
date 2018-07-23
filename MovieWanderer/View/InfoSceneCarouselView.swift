@@ -12,14 +12,14 @@ import RxSwift
 class InfoSceneCarouselView: UIView {
     
     private var scenes = [Scene]()
-    private let insetValue: CGFloat = 10
+    private let insetValue: CGFloat = 0
     private let disposeBag = DisposeBag()
     
     let scenesCollectionView: UICollectionView = {
         let myCollectionViewFlowLayout: UICollectionViewFlowLayout = {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 10
+            layout.minimumLineSpacing = 0
             layout.minimumInteritemSpacing = 0
             return layout
         }()
@@ -117,13 +117,13 @@ extension InfoSceneCarouselView: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-        let width = collectionView.frame.width - 4 * insetValue
+        let width = collectionView.frame.width - 20 //4 * insetValue
         return CGSize(width: width, height: frame.height - 15)
     }
 
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 10)
+        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 }
 
