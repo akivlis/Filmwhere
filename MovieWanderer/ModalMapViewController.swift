@@ -91,7 +91,7 @@ private extension ModalMapViewController {
         
         scenesCarousel.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(250)
         }
     }
     

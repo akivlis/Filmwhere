@@ -48,7 +48,7 @@ private extension InfoSceneCollectionViewCell {
         containerView.addSubview(sceneImageView)
         
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: 12)
-        descriptionLabel.textColor = .gray
+        descriptionLabel.textColor = .black
         descriptionLabel.numberOfLines = 0
         containerView.addSubview(descriptionLabel)
         
@@ -57,7 +57,8 @@ private extension InfoSceneCollectionViewCell {
         containerView.addSubview(titleLabel)
         
         mainView = containerView
-//        mainView.backgroundColor = .blue
+//        containerView.clipsToBounds = true
+        mainView.backgroundColor = .white
         mainView.layer.cornerRadius = 0
 
         contentView.addSubview(mainView)
@@ -73,14 +74,13 @@ private extension InfoSceneCollectionViewCell {
         }
         
         sceneImageView.snp.makeConstraints { make in
-            make.left.top.bottom.equalToSuperview().inset(5)
-            make.width.equalTo(mainView.snp.width).multipliedBy(0.5)
+            make.left.top.right.equalToSuperview() //.inset(5)
+            make.height.equalTo(150)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(sceneImageView)
-            make.left.equalTo(sceneImageView.snp.right).offset(padding)
-            make.right.equalToSuperview().inset(5)
+            make.top.equalTo(sceneImageView.snp.bottom).offset(padding)
+            make.right.left.equalToSuperview().inset(padding)
         }
         
         descriptionLabel.snp.makeConstraints { make in
