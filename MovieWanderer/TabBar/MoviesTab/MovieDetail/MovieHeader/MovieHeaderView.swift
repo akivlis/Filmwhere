@@ -135,7 +135,7 @@ private extension MovieHeaderView {
         
         photoContainerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            containerHeightLayoutConstraint = make.height.equalTo(350).constraint
+            containerHeightLayoutConstraint = make.height.equalTo(250).constraint
         }
         
         moviePhoto.snp.makeConstraints { make in
