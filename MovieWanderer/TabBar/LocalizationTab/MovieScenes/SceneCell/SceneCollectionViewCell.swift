@@ -103,7 +103,6 @@ private extension SceneCollectionViewCell {
         sceneImageView.snp.makeConstraints { make in
             make.top.right.left.equalToSuperview()
             make.height.equalTo(160)
-//            make.height.equalTo(contentView).multipliedBy(2/3)
         }
         
         descriptionContainerView.snp.makeConstraints { make in

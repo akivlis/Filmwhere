@@ -8,32 +8,14 @@
 
 import UIKit
 import RxSwift
+import ScalingCarousel
 
 class InfoSceneCarouselView: UIView {
     
     private var scenes = [Scene]()
     private let insetValue: CGFloat = 0
     private let disposeBag = DisposeBag()
-    
-    let scenesCollectionView: UICollectionView = {
-        let myCollectionViewFlowLayout: UICollectionViewFlowLayout = {
-            let layout = UICollectionViewFlowLayout()
-            layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
-            return layout
-        }()
-        
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.isUserInteractionEnabled = true
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.isScrollEnabled = true
-        collectionView.register(InfoSceneCollectionViewCell.self, forCellWithReuseIdentifier: InfoSceneCollectionViewCell.reuseIdentifier)
-        collectionView.backgroundColor = .clear
-        collectionView.isPagingEnabled = true
-        return collectionView
-    }()
+    private let scenesCollectionView = ScalingCarouselView(withFrame: .zero, andInset: 50)
     
     init(scenes: [Scene]) {
         super.init(frame: .zero)
@@ -63,12 +45,16 @@ private extension InfoSceneCarouselView {
     
     private func setupViews() {
         backgroundColor = .white
+        
+        scenesCollectionView.register(InfoSceneCollectionViewCell.self)
+        scenesCollectionView.backgroundColor = .clear
         addSubview(scenesCollectionView)
     }
     
     private func setupConstraints() {
         scenesCollectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.right.left.equalToSuperview()
+            make.top.bottom.equalToSuperview().inset(5)
         }
     }
     
@@ -76,7 +62,6 @@ private extension InfoSceneCarouselView {
         scenesCollectionView.delegate = self
         scenesCollectionView.dataSource = self
     }
-    
 }
 
 extension InfoSceneCarouselView: UICollectionViewDataSource {
@@ -86,44 +71,28 @@ extension InfoSceneCarouselView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoSceneCollectionViewCell.reuseIdentifier, for: indexPath) as! InfoSceneCollectionViewCell
-        let viewModel = SceneCollectionViewCellViewModel(scene: scenes[indexPath.row])
-//        cell.bindViewModel(viewModel)
-
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoSceneCollectionViewCell.reuseIdentifier, for: indexPath)
+        if let scalingCell = cell as? InfoSceneCollectionViewCell {
+            let cellViewModel = SceneCollectionViewCellViewModel(scene: scenes[indexPath.row])
+            scalingCell.bindViewModel(cellViewModel)
+        }
+        DispatchQueue.main.async {
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+        }
         return cell
     }
 }
 
 extension InfoSceneCarouselView: UICollectionViewDelegate {
-
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        scenesCollectionView.didScroll()
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        let selectedScene = scenes[indexPath.row]
-        //        _scrolledToScene.onNext(selectedScene)
-
-    }
-
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let index = targetContentOffset.pointee.x / (scenesCollectionView.frame.width - 4 * insetValue)
-
-        print("index: \(abs(index.rounded()))")
-        let roundedIndex: Int = Int(abs(index.rounded()))
-
-        let selectedScene = scenes[roundedIndex]
     }
 }
 
-extension InfoSceneCarouselView: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let width = collectionView.frame.width - 20 //4 * insetValue
-        return CGSize(width: width, height: frame.height - 15)
-    }
-
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
-}
 

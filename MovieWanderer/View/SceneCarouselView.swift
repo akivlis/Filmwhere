@@ -38,7 +38,7 @@ class SceneCarouselView: UIView {
         collectionView.isUserInteractionEnabled = true
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isScrollEnabled = true
-        collectionView.register(SceneCollectionViewCell.self, forCellWithReuseIdentifier: "SceneCollectionViewCell")
+        collectionView.register(SceneCollectionViewCell.self)
         collectionView.backgroundColor = .clear
         return collectionView
     }()

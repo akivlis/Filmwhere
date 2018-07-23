@@ -25,6 +25,10 @@ struct SceneCollectionViewCellViewModel {
         return 50
     }
     
+    var description: String {
+        return "Very long test movie scene description which says something important about the scene"
+    }
+    
     var sceneImage: UIImage {
         if let image = UIImage(named: scene.title) {
             return image
