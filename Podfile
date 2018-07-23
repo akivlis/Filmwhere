@@ -8,6 +8,8 @@ target ‘MovieWanderer’ do
     pod 'GoogleMaps'
     pod 'CenteredCollectionView'
     pod 'SnapKit', '~> 4.0.0'
+    pod 'ScalingCarousel'
+
 
   target 'MovieWandererTests' do
     pod 'RxBlocking', '~> 4.0'
