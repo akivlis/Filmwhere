@@ -17,15 +17,12 @@ class MovieDetailStackView: UIStackView {
     private let viewModel: MovieDetailViewModel
     
     init(viewModel: MovieDetailViewModel) {
-        
         self.viewModel = viewModel
- 
         movieDetailHeaderView = MovieHeaderView(viewModel: viewModel.movieHeaderViewModel)
         movieScenesView = MovieScenesView()
         movieMapView = MovieMapView()
         
         super.init(frame: .zero)
-        backgroundColor = .red
         
         loadSubviews()
         

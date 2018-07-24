@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import ScalingCarousel
 
-class InfoSceneCollectionViewCell: ScalingCarouselCell {
+class InfoSceneCollectionViewCell: UICollectionViewCell {
     
     let containerView = UIView()
     let sceneImageView = UIImageView()
@@ -56,31 +55,27 @@ private extension InfoSceneCollectionViewCell {
         titleLabel.textColor = .black
         containerView.addSubview(titleLabel)
         
-        mainView = containerView
-//        containerView.clipsToBounds = true
-        mainView.backgroundColor = .white
-        mainView.layer.cornerRadius = 0
-
-        contentView.addSubview(mainView)
+        contentView.addSubview(containerView)
+        containerView.backgroundColor = .white
     }
     
     private func setupConstraints() {
         let padding : CGFloat = 8
-        mainView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         
         sceneImageView.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview() //.inset(5)
-            make.height.equalTo(150)
+            make.left.top.equalToSuperview().inset(padding)
+            make.width.equalTo(140)
+            make.height.equalTo(160)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(sceneImageView.snp.bottom).offset(padding)
-            make.right.left.equalToSuperview().inset(padding)
+            make.top.equalTo(sceneImageView)
+            make.left.equalTo(sceneImageView.snp.right).offset(padding)
+            make.right.equalToSuperview().inset(padding)
         }
         
         descriptionLabel.snp.makeConstraints { make in

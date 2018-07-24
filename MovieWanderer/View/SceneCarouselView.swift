@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import RxSwift
-import CenteredCollectionView
 
 class SceneCarouselView: UIView {
     
