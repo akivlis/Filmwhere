@@ -68,7 +68,7 @@ private extension InfoSceneCollectionViewCell {
         
         sceneImageView.snp.makeConstraints { make in
             make.left.top.equalToSuperview().inset(padding)
-            make.width.equalTo(140)
+            make.width.equalTo(160)
             make.height.equalTo(160)
         }
         
