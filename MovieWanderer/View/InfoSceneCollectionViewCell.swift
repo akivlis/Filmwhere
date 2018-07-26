@@ -67,15 +67,13 @@ private extension InfoSceneCollectionViewCell {
         }
         
         sceneImageView.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().inset(padding)
-            make.width.equalTo(160)
-            make.height.equalTo(160)
+            make.left.top.right.equalToSuperview()
+            make.height.equalTo(130)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(sceneImageView)
-            make.left.equalTo(sceneImageView.snp.right).offset(padding)
-            make.right.equalToSuperview().inset(padding)
+            make.top.equalTo(sceneImageView.snp.bottom).offset(padding)
+            make.right.left.equalToSuperview().inset(padding)
         }
         
         descriptionLabel.snp.makeConstraints { make in

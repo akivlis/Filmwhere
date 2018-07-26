@@ -9,22 +9,6 @@
 import UIKit
 import RxSwift
 
-class LeftAlignedFlowLayout: UICollectionViewFlowLayout {
-    
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-
-        print(proposedContentOffset.x)
-        let cellWidth : CGFloat = 300  //scenesCollectionView.frame.width - 40
-        let index = proposedContentOffset.x / cellWidth
-
-        let roundedIndex = abs(index.rounded())
-        let x = roundedIndex * cellWidth
-        print("new ofsset: \(x)")
-
-        return CGPoint(x: x ,y: proposedContentOffset.y)
-    }
-    
-}
 
 class InfoSceneCarouselView: UIView {
     
@@ -36,8 +20,10 @@ class InfoSceneCarouselView: UIView {
         let myCollectionViewFlowLayout: LeftAlignedFlowLayout = {
             let layout = LeftAlignedFlowLayout()
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 0
+            layout.minimumLineSpacing = 20
             layout.minimumInteritemSpacing = 0
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+//            layout.itemSize = CGSize() specify here??
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
@@ -71,12 +57,12 @@ private extension InfoSceneCarouselView {
     }
     
     private func setupViews() {
-        backgroundColor = .white
+        backgroundColor = .clear
         
         scenesCollectionView.register(InfoSceneCollectionViewCell.self)
-        scenesCollectionView.backgroundColor = .white
+        scenesCollectionView.backgroundColor = .clear
         scenesCollectionView.isPagingEnabled = false
-        scenesCollectionView.decelerationRate  =  UIScrollViewDecelerationRateFast  //UIScrollViewDecelerationRateFast
+        scenesCollectionView.decelerationRate  =  UIScrollViewDecelerationRateFast
         scenesCollectionView.showsHorizontalScrollIndicator = false
         
         addSubview(scenesCollectionView)
@@ -112,29 +98,13 @@ extension InfoSceneCarouselView: UICollectionViewDataSource {
 }
 
 extension InfoSceneCarouselView: UICollectionViewDelegate {
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        print(" offset :\(scrollView.contentOffset.x)")
-//    }
-//
-//
-//    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//
-//        let x = targetContentOffset.pointee.x
-//        print("old offset :\(x)")
-//        let cellWidth : CGFloat = 300  //scenesCollectionView.frame.width - 40
-//        let index = x / cellWidth
-//
-//        let roundedIndex = abs(index.rounded())
-//        let newX = roundedIndex * cellWidth
-//        print("new ofsset: \(newX)")
-//
-////        targetContentOffset.pointee.x = newX
-//        scrollView.setContentOffset(CGPoint(x: newX, y: targetContentOffset.pointee.y), animated: true)
-//    }
-//
+
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("offse: \(scrollView.contentOffset)")
     }
 }
 
@@ -143,13 +113,13 @@ extension InfoSceneCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let width: CGFloat = 300 //collectionView.frame.width - 60 //4 * insetValue
+        let width: CGFloat = 320 //collectionView.frame.width - 60 //4 * insetValue
         return CGSize(width: width, height: frame.height)
     }
     
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//    }
     
 }

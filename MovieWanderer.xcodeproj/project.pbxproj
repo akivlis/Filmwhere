@@ -39,6 +39,7 @@
 		3DA3B18820F52FBD00F15104 /* ModalMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */; };
 		3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */; };
 		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
+		3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */; };
 		3DC79AE3203087E8008B0E49 /* MovieWanderer+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */; };
 		3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */; };
 		3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */; };
@@ -99,6 +100,7 @@
 		3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMapViewController.swift; sourceTree = "<group>"; };
 		3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+MKMapView.swift"; sourceTree = "<group>"; };
 		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
+		3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedFlowLayout.swift; sourceTree = "<group>"; };
 		3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+Color.swift"; sourceTree = "<group>"; };
 		3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+UIView.swift"; sourceTree = "<group>"; };
 		3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				214D73032105147F00F16983 /* InfoSceneCarouselView.swift */,
 				214D73072105241E00F16983 /* InfoSceneCollectionViewCell.swift */,
 				3DDF95482108C49600582D52 /* GradientView.swift */,
+				3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -493,14 +496,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlignedCollectionViewFlowLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -571,7 +574,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer-MovieWandererTests/Pods-MovieWanderer-MovieWandererTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/AlignedCollectionViewFlowLayout/AlignedCollectionViewFlowLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -580,7 +583,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlignedCollectionViewFlowLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -602,6 +605,7 @@
 				3D3F87F8205D8B8C00EE3835 /* MovieDetailStackView.swift in Sources */,
 				3D44B2C5205C46940086D867 /* Movie.swift in Sources */,
 				3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */,
+				3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */,
 				3DCE811D202B9C1A00041B9D /* SceneListView.swift in Sources */,
 				3D2289082028FE010074D173 /* AppDelegate.swift in Sources */,
 				3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */,
