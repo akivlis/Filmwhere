@@ -1,10 +1,10 @@
 PODS:
-  - AlignedCollectionViewFlowLayout (1.1.2)
   - GoogleMaps (2.7.0):
     - GoogleMaps/Maps (= 2.7.0)
   - GoogleMaps/Base (2.7.0)
   - GoogleMaps/Maps (2.7.0):
     - GoogleMaps/Base
+  - MapKitGoogleStyler (0.1.1)
   - RxBlocking (4.2.0):
     - RxSwift (~> 4.0)
   - RxCocoa (4.2.0):
@@ -15,8 +15,8 @@ PODS:
   - SnapKit (4.0.0)
 
 DEPENDENCIES:
-  - AlignedCollectionViewFlowLayout
   - GoogleMaps
+  - MapKitGoogleStyler
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
@@ -24,14 +24,14 @@ DEPENDENCIES:
   - SnapKit (~> 4.0.0)
 
 SPEC CHECKSUMS:
-  AlignedCollectionViewFlowLayout: ee2ef451e741ec08f8e0967d828001e2f051c20a
   GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  MapKitGoogleStyler: 8efdceb664fc1748a62a9e3b50a34b67a34247bc
   RxBlocking: e339d8a6e752e25ade95ff858466c55436668f59
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
   RxTest: 8da864c0ee47534f586ff18fb0c7e5b2f1fe5023
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 42f819212d8928bb8e8433109a58fe807c6ce86e
+PODFILE CHECKSUM: 375d397cf66934a397ae83f8b34b8967a9de4805
 
 COCOAPODS: 1.4.0
