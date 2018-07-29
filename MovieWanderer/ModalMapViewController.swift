@@ -9,6 +9,8 @@
 import UIKit
 import MapKit
 import RxSwift
+import MapKitGoogleStyler
+
 
 final class ModalMapViewController: UIViewController {
     
@@ -43,6 +45,39 @@ final class ModalMapViewController: UIViewController {
         
         mapView.delegate = self
         showAnnotationsAndZoom()
+//        configureTileOverlay()
+    }
+}
+
+// MARK: MKMapViewDelegate
+
+extension ModalMapViewController: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        //        guard let annotation = annotation as? MKAnnotation else { return nil }
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint.zero
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        // This is the final step. This code can be copied and pasted into your project
+        // without thinking on it so much. It simply instantiates a MKTileOverlayRenderer
+        // for displaying the tile overlay.
+        if let tileOverlay = overlay as? MKTileOverlay {
+            return MKTileOverlayRenderer(tileOverlay: tileOverlay)
+        } else {
+            return MKOverlayRenderer(overlay: overlay)
+        }
     }
 }
 
@@ -101,23 +136,21 @@ private extension ModalMapViewController {
                 self.dismiss(animated: true, completion: nil)
             }).disposed(by: disposeBag)
     }
-}
-
-extension ModalMapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//        guard let annotation = annotation as? MKAnnotation else { return nil }
-        let identifier = "marker"
-        var view: MKMarkerAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            view = dequeuedView
-        } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint.zero
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+    
+    private func configureTileOverlay() {
+        // We first need to have the path of the overlay configuration JSON
+        guard let overlayFileURLString = Bundle.main.path(forResource: "ultra-light-style", ofType: "json") else {
+            return
         }
-        return view
+        let overlayFileURL = URL(fileURLWithPath: overlayFileURLString)
+        
+        // After that, you can create the tile overlay using MapKitGoogleStyler
+        guard let tileOverlay = try? MapKitGoogleStyler.buildOverlay(with: overlayFileURL) else {
+            return
+        }
+        
+        // And finally add it to your MKMapView
+        mapView.add(tileOverlay)
     }
 }
+

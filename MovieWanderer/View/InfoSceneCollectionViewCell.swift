@@ -31,6 +31,7 @@ class InfoSceneCollectionViewCell: UICollectionViewCell {
         descriptionLabel.text = viewModel.description
         sceneImageView.image = viewModel.sceneImage
     }
+    
 }
 
 private extension InfoSceneCollectionViewCell {
@@ -43,7 +44,6 @@ private extension InfoSceneCollectionViewCell {
     private func setupViews(){
         sceneImageView.contentMode = .scaleAspectFill
         sceneImageView.clipsToBounds = true
-        sceneImageView.layer.cornerRadius = 4.0
         containerView.addSubview(sceneImageView)
         
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: 12)
@@ -57,6 +57,7 @@ private extension InfoSceneCollectionViewCell {
         
         contentView.addSubview(containerView)
         containerView.backgroundColor = .white
+        containerView.clipsToBounds = true
     }
     
     private func setupConstraints() {
