@@ -102,10 +102,6 @@ extension InfoSceneCarouselView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
     }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("offse: \(scrollView.contentOffset)")
-    }
 }
 
 
