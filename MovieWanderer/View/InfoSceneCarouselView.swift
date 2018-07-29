@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 
-
 class InfoSceneCarouselView: UIView {
     
     private var scenes = [Scene]()
@@ -23,7 +22,6 @@ class InfoSceneCarouselView: UIView {
             layout.minimumLineSpacing = 20
             layout.minimumInteritemSpacing = 0
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-//            layout.itemSize = CGSize() specify here??
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
@@ -112,10 +110,4 @@ extension InfoSceneCarouselView: UICollectionViewDelegateFlowLayout {
         let width: CGFloat = 320 //collectionView.frame.width - 60 //4 * insetValue
         return CGSize(width: width, height: frame.height)
     }
-    
-    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    }
-    
 }
