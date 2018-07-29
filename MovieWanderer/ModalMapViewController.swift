@@ -9,8 +9,6 @@
 import UIKit
 import MapKit
 import RxSwift
-import MapKitGoogleStyler
-
 
 final class ModalMapViewController: UIViewController {
     
@@ -20,11 +18,10 @@ final class ModalMapViewController: UIViewController {
     
     private let viewModel : ModalMapViewModel
     private var annotations = [MKAnnotation]()
-    private let mapView = MKMapView()
+    private let mapView = MapView()
     private let closeButton = UIButton()
     private var scenesCarousel: InfoSceneCarouselView!
     private let disposeBag = DisposeBag()
-    private let regionRadius: CLLocationDistance = 1000
     
     init(viewModel: ModalMapViewModel) {
         self.viewModel = viewModel
@@ -41,63 +38,13 @@ final class ModalMapViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupObservables()
-        //TODO: add dark gradient to top
         
-        mapView.delegate = self
-        showAnnotationsAndZoom()
-//        configureTileOverlay()
-    }
-}
-
-// MARK: MKMapViewDelegate
-
-extension ModalMapViewController: MKMapViewDelegate {
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        //        guard let annotation = annotation as? MKAnnotation else { return nil }
-        let identifier = "marker"
-        var view: MKMarkerAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            view = dequeuedView
-        } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint.zero
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
-        return view
-    }
-    
-    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-        // This is the final step. This code can be copied and pasted into your project
-        // without thinking on it so much. It simply instantiates a MKTileOverlayRenderer
-        // for displaying the tile overlay.
-        if let tileOverlay = overlay as? MKTileOverlay {
-            return MKTileOverlayRenderer(tileOverlay: tileOverlay)
-        } else {
-            return MKOverlayRenderer(overlay: overlay)
-        }
+        mapView.viewModel = MapViewViewModel(scenes: viewModel.scenes)
+        //TODO: add dark gradient to top
     }
 }
 
 private extension ModalMapViewController {
-    
-    private func showAnnotationsAndZoom() {
-        
-        mapView.addAnnotations(viewModel.annotations)
-      
-//        // maybe show the closest
-        if let firstScene = viewModel.scenes.first {
-            let coordination = CLLocationCoordinate2D(latitude: firstScene.latitude, longitude: firstScene.longitude)
-            mapView.setCenter(coordination, animated: false)
-        }
-    }
-    
-    private func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,                                                                 regionRadius, regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
-    }
     
     private func setupViews(){
         view.backgroundColor = UIColor.white
@@ -135,22 +82,6 @@ private extension ModalMapViewController {
             .subscribe(onNext: { _ in
                 self.dismiss(animated: true, completion: nil)
             }).disposed(by: disposeBag)
-    }
-    
-    private func configureTileOverlay() {
-        // We first need to have the path of the overlay configuration JSON
-        guard let overlayFileURLString = Bundle.main.path(forResource: "ultra-light-style", ofType: "json") else {
-            return
-        }
-        let overlayFileURL = URL(fileURLWithPath: overlayFileURLString)
-        
-        // After that, you can create the tile overlay using MapKitGoogleStyler
-        guard let tileOverlay = try? MapKitGoogleStyler.buildOverlay(with: overlayFileURL) else {
-            return
-        }
-        
-        // And finally add it to your MKMapView
-        mapView.add(tileOverlay)
     }
 }
 

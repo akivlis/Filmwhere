@@ -8,146 +8,103 @@
 
 
 import UIKit
-import GoogleMaps
+import MapKit
 import RxSwift
+import MapKitGoogleStyler
 
-class MapView: GMSMapView {
-    
-    var scenes = [Scene]() {
+
+class MapView: MKMapView {
+
+    var viewModel : MapViewViewModel = MapViewViewModel(scenes: [Scene]()) {
         didSet {
-            for scene in scenes {
-                showMarker(for: scene)
-            }
-            showOptimalZoom()
+            showAnnotationsAndZoom()
         }
     }
     
     private let locationManager = CLLocationManager()
     private let disposeBag = DisposeBag()
-    private let defaultZoom: Float = 13.0
-    private var markers = [GMSMarker]()
+    private let regionRadius: CLLocationDistance = 1000
+    
+    // MARK: Init
     
     override init(frame: CGRect) {
-        super.init(frame: .zero)
-        
-        locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-        
-        setStyle()
+        super.init(frame: frame)
     }
     
+    init(viewModel: MapViewViewModel) {
+        super.init(frame: .zero)
+        self.viewModel = viewModel
+    }
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func moveCameraToScene(scene: Scene) {
-        let zoom = camera.zoom
-        let location = GMSCameraPosition.camera(withLatitude: scene.latitude, longitude: scene.longitude, zoom: zoom)
-        
-        animate(to: location)
+    // MARK: public methods
+    
+    func setupStyleWith(jsonFileName: String) {
+        configureTileOverlayWith(jsonFileName: jsonFileName)
     }
     
-    func highlightMarker(for sceneIndex: Int) {
-        
-        for i in 0...markers.count - 1 {
-            let marker = markers[i]
-            if i == sceneIndex {
-                marker.icon = GMSMarker.markerImage(with: .black)
-            } else {
-                marker.icon = GMSMarker.markerImage(with: .red)
-            }
+ }
+
+// MARK: MKMapViewDelegate
+
+extension MapView: MKMapViewDelegate {
+
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint.zero
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
         }
+        return view
     }
     
-    func moveCameraToClosestScene() {
-        //TODO: implement
-    }
-    
-    func showOptimalZoom() {
-        //Create a path
-        let path = GMSMutablePath()
-
-        //for each point you need, add it to your path
-
-        let positions = scenes.map {CLLocationCoordinate2DMake($0.latitude, $0.longitude)}
-        for i in 0...1 {
-            path.add(positions[i])
-
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        if let tileOverlay = overlay as? MKTileOverlay {
+            return MKTileOverlayRenderer(tileOverlay: tileOverlay)
+        } else {
+            return MKOverlayRenderer(overlay: overlay)
         }
-
-        //Update your mapView with path
-        let mapBounds = GMSCoordinateBounds(path: path)
-        let cameraUpdate = GMSCameraUpdate.fit(mapBounds)
-
-//        delay(seconds: 2) { () -> () in
-            moveCamera(cameraUpdate)
-//        }
-    }
-}
-
-extension MapView: GMSMapViewDelegate {
-    
-    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-        marker.opacity = 1.0
-        return true
-    }
-}
-
-extension MapView: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        guard status == .authorizedWhenInUse else {
-            return
-        }
-        locationManager.startUpdatingLocation()
-        isMyLocationEnabled = true
-        settings.myLocationButton = false
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.first else {
-            return
-        }
-        camera = GMSCameraPosition(target: location.coordinate, zoom: defaultZoom, bearing: 0, viewingAngle: 0)
-        locationManager.stopUpdatingLocation()
     }
 }
 
 
 private extension MapView {
     
-    func setStyle() {
-        do {
-            // Set the map style by passing the URL of the local file.
-            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
-                mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
-            } else {
-                NSLog("Unable to find style.json")
-            }
-        } catch {
-            NSLog("One or more of the map styles failed to load. \(error)")
+    private func showAnnotationsAndZoom() {
+        
+        addAnnotations(viewModel.annotations)
+        //        // maybe show the closest
+        if let firstScene = viewModel.scenes.first {
+            let coordination = CLLocationCoordinate2D(latitude: firstScene.latitude, longitude: firstScene.longitude)
+            self.setCenter(coordination, animated: false)
         }
     }
     
-    func showMarker(for scene: Scene) {
-//        let pinLocationImage = UIImage(named: "pin_image")!.withRenderingMode(.alwaysTemplate)
-//        let markerView = UIImageView(image: pinLocationImage)
-//        markerView.tintColor = .red
-        
-        
-        let position = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
-        let marker = GMSMarker(position: position)
-        marker.title = scene.title
-        marker.snippet = scene.description
-        marker.map = self
-        
-        markers.append(marker)
-
-//        marker.iconView = markerView
-        //        marker.tracksViewChanges = true
-        
+    private func centerMapOnLocation(location: CLLocation) {
+        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,                                                                 regionRadius, regionRadius)
+        setRegion(coordinateRegion, animated: true)
     }
     
+    private func configureTileOverlayWith(jsonFileName: String) {
+        guard let overlayFileURLString = Bundle.main.path(forResource: jsonFileName, ofType: "json") else {
+            return
+        }
+        let overlayFileURL = URL(fileURLWithPath: overlayFileURLString)
+        guard let tileOverlay = try? MapKitGoogleStyler.buildOverlay(with: overlayFileURL) else {
+            return
+        }
+        self.add(tileOverlay)
+    }
 }
 
 

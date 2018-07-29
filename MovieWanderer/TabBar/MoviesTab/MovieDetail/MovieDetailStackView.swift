@@ -12,7 +12,6 @@ class MovieDetailStackView: UIStackView {
     
     let movieDetailHeaderView: MovieHeaderView
     let movieScenesView: MovieScenesView
-    var movieMapView: MovieMapView
     
     private let viewModel: MovieDetailViewModel
     
@@ -20,7 +19,6 @@ class MovieDetailStackView: UIStackView {
         self.viewModel = viewModel
         movieDetailHeaderView = MovieHeaderView(viewModel: viewModel.movieHeaderViewModel)
         movieScenesView = MovieScenesView()
-        movieMapView = MovieMapView()
         
         super.init(frame: .zero)
         
@@ -40,7 +38,6 @@ class MovieDetailStackView: UIStackView {
         
        
     }
-    
 }
 
 private extension MovieDetailStackView {
@@ -48,7 +45,5 @@ private extension MovieDetailStackView {
     private func loadSubviews() {
         addArrangedSubview(movieDetailHeaderView)
         addArrangedSubview(movieScenesView)
-        addArrangedSubview(movieMapView)        
     }
-    
 }

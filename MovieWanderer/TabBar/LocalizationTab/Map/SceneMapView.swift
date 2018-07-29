@@ -13,40 +13,30 @@ import RxSwift
 
 class SceneMapView: UIView {
     
-    fileprivate let carouselView = SceneCarouselView(scenes: [Scene]())
-    fileprivate let mapView = MapView()
+    private let carouselView = SceneCarouselView(scenes: [Scene]())
+    private let mapView = MapView()
     
     fileprivate let disposeBag = DisposeBag()
     
     var scenes = [Scene]() {
         didSet {
-           mapView.scenes = scenes
+//           mapView.scenes = scenes
             carouselView.setScenes(scenes: scenes)
         }
     }
 
-    
     override init(frame: CGRect) {
-        
         super.init(frame: .zero)
         
         backgroundColor = .gray
         
         setMapView()
         setCarouselView()
-        
-        carouselView.scrolledToScene$
-            .subscribe(onNext: { [unowned self] scene in
-                self.mapView.moveCameraToScene(scene: scene)
-            }).disposed(by: disposeBag)
-     
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
 }
 
 private extension SceneMapView {
@@ -59,7 +49,6 @@ private extension SceneMapView {
             make.bottom.equalToSuperview().inset(50) //tabbar height change
             make.height.equalTo(240)
         }
-        
     }
     
     func setMapView() {
@@ -68,8 +57,6 @@ private extension SceneMapView {
             make.edges.equalToSuperview()
         }
     }
-
-
 }
 
 
