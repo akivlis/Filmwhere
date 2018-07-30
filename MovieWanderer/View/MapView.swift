@@ -12,9 +12,8 @@ import MapKit
 import RxSwift
 import MapKitGoogleStyler
 
-
-class MapView: MKMapView {
-
+class MapView: UIView {
+    
     var viewModel : MapViewViewModel = MapViewViewModel(scenes: [Scene]()) {
         didSet {
             showAnnotationsAndZoom()
@@ -23,35 +22,54 @@ class MapView: MKMapView {
     
     private let locationManager = CLLocationManager()
     private let disposeBag = DisposeBag()
-    private let regionRadius: CLLocationDistance = 1000
+    private let regionRadius: CLLocationDistance = 10000
+    private let mapView = MKMapView()
     
     // MARK: Init
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setupMapView()
     }
     
     init(viewModel: MapViewViewModel) {
         super.init(frame: .zero)
         self.viewModel = viewModel
+        setupMapView()
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        setupMapView()
     }
     
     // MARK: public methods
+    
+    func highlightSceneOnIndex(_ index: Int) {
+        mapView.selectAnnotation(mapView.annotations[index], animated: true)
+    }
+    
+    func highlight(_ scene: Scene) {
+        let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
+        mapView.setCenter(coordinates, animated: true)
+        
+        
+        print("Highlight scene: \(scene.title)")
+        if let firstAnnotation = mapView.annotations.first {
+            mapView.selectAnnotation(firstAnnotation, animated: true)
+        }
+    }
     
     func setupStyleWith(jsonFileName: String) {
         configureTileOverlayWith(jsonFileName: jsonFileName)
     }
     
- }
+}
 
 // MARK: MKMapViewDelegate
 
 extension MapView: MKMapViewDelegate {
-
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "marker"
         var view: MKMarkerAnnotationView
@@ -68,6 +86,12 @@ extension MapView: MKMapViewDelegate {
         return view
     }
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        print("selected \(view.annotation?.title)")
+        view.setSelected(true, animated: true)
+        view.isHighlighted  = true
+    }
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let tileOverlay = overlay as? MKTileOverlay {
             return MKTileOverlayRenderer(tileOverlay: tileOverlay)
@@ -77,22 +101,29 @@ extension MapView: MKMapViewDelegate {
     }
 }
 
-
 private extension MapView {
+    
+    private func setupMapView() {
+        addSubview(mapView)
+        mapView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        mapView.delegate = self
+    }
     
     private func showAnnotationsAndZoom() {
         
-        addAnnotations(viewModel.annotations)
+        mapView.addAnnotations(viewModel.annotations)
         //        // maybe show the closest
-        if let firstScene = viewModel.scenes.first {
-            let coordination = CLLocationCoordinate2D(latitude: firstScene.latitude, longitude: firstScene.longitude)
-            self.setCenter(coordination, animated: false)
-        }
+//        if let firstScene = viewModel.scenes.first {
+//            let coordination = CLLocationCoordinate2D(latitude: firstScene.latitude, longitude: firstScene.longitude)
+//            mapView.setCenter(coordination, animated: false)
+//        }
     }
     
     private func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,                                                                 regionRadius, regionRadius)
-        setRegion(coordinateRegion, animated: true)
+        mapView.setRegion(coordinateRegion, animated: true)
     }
     
     private func configureTileOverlayWith(jsonFileName: String) {
@@ -103,7 +134,7 @@ private extension MapView {
         guard let tileOverlay = try? MapKitGoogleStyler.buildOverlay(with: overlayFileURL) else {
             return
         }
-        self.add(tileOverlay)
+        mapView.add(tileOverlay)
     }
 }
 

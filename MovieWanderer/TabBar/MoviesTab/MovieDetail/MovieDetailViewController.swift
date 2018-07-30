@@ -20,6 +20,7 @@ class MovieDetailViewController: UIViewController {
     private let scenesTitleLabel = UILabel()
     private let backButton = UIButton()
 
+
     // MARK: Init
     
     init(movie: Movie) {
@@ -47,7 +48,6 @@ class MovieDetailViewController: UIViewController {
         setupContraints()
         setupObservables()
     }
- 
 }
 
 extension MovieDetailViewController: UIScrollViewDelegate {
@@ -74,7 +74,6 @@ private extension MovieDetailViewController {
         scrollView.addSubview(movieHeaderView)
         scrollView.addSubview(scenesTitleLabel)
         scrollView.addSubview(scenesCarouselView)
- 
     }
     
     private func setupContraints() {

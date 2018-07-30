@@ -22,7 +22,8 @@ final class ModalMapViewController: UIViewController {
     private let closeButton = UIButton()
     private var scenesCarousel: InfoSceneCarouselView!
     private let disposeBag = DisposeBag()
-    
+    private var gradient = CAGradientLayer()
+
     init(viewModel: ModalMapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -38,9 +39,13 @@ final class ModalMapViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupObservables()
-        
-        mapView.viewModel = MapViewViewModel(scenes: viewModel.scenes)
         //TODO: add dark gradient to top
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        gradient.frame = mapView.bounds
     }
 }
 
@@ -48,8 +53,16 @@ private extension ModalMapViewController {
     
     private func setupViews(){
         view.backgroundColor = UIColor.white
+        
+        mapView.viewModel = MapViewViewModel(scenes: viewModel.scenes)
+        mapView.setupStyleWith(jsonFileName: "ultra-light-style")
         view.addSubview(mapView)
         
+        gradient.frame = mapView.bounds
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
+        gradient.locations = [0, 0.1, 0.9, 1]
+        mapView.layer.mask = gradient
+
         scenesCarousel = InfoSceneCarouselView(scenes: viewModel.scenes)
         view.addSubview(scenesCarousel)
         
@@ -57,14 +70,14 @@ private extension ModalMapViewController {
             closeButton.setImage(image, for: .normal)
         }
         view.addSubview(closeButton)
+       
     }
     
     private func setupConstraints() {
         mapView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.right.bottom.equalToSuperview()
+            make.edges.equalToSuperview()
         }
-        
+
         closeButton.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(20)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
@@ -82,6 +95,14 @@ private extension ModalMapViewController {
             .subscribe(onNext: { _ in
                 self.dismiss(animated: true, completion: nil)
             }).disposed(by: disposeBag)
+        
+        scenesCarousel.scrolledToScene$
+            .subscribe(onNext: { [unowned self] scene in
+                self.mapView.highlight(scene)
+//                self.mapView.highlightSceneOnIndex(index)
+//                self.mapView.highlight(scene)
+            }).disposed(by: disposeBag) // use dispose bag of the cell?
+        
     }
 }
 
