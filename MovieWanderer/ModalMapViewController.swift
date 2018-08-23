@@ -75,7 +75,9 @@ private extension ModalMapViewController {
     
     private func setupConstraints() {
         mapView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.left.right.equalToSuperview()
+            make.bottom.equalTo(scenesCarousel.snp.top)
+//            make.edges.equalToSuperview()
         }
 
         closeButton.snp.makeConstraints { make in
@@ -100,7 +102,6 @@ private extension ModalMapViewController {
             .subscribe(onNext: { [unowned self] scene in
                 self.mapView.highlight(scene)
 //                self.mapView.highlightSceneOnIndex(index)
-//                self.mapView.highlight(scene)
             }).disposed(by: disposeBag) // use dispose bag of the cell?
         
     }

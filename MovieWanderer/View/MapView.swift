@@ -119,6 +119,8 @@ private extension MapView {
 //            let coordination = CLLocationCoordinate2D(latitude: firstScene.latitude, longitude: firstScene.longitude)
 //            mapView.setCenter(coordination, animated: false)
 //        }
+        
+        mapView.showAnnotations(viewModel.annotations, animated: true)
     }
     
     private func centerMapOnLocation(location: CLLocation) {

@@ -186,6 +186,7 @@
 			children = (
 				3D12F0B8210DEF6900E3B83B /* ModalMapViewModel.swift */,
 				3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */,
+				3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */,
 				3D3F8802205EBAE100EE3835 /* View */,
 				3DC79AE62030CBB0008B0E49 /* TabBar */,
 				3DC79AE1203087BD008B0E49 /* Extension */,
@@ -277,7 +278,6 @@
 				214D73072105241E00F16983 /* InfoSceneCollectionViewCell.swift */,
 				3DDF95482108C49600582D52 /* GradientView.swift */,
 				3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */,
-				3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
