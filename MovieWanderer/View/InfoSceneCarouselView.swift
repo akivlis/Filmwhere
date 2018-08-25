@@ -16,7 +16,8 @@ class InfoSceneCarouselView: UIView {
     }
     
     private var scenes = [Scene]()
-    private let cellWidth: CGFloat = 320
+    private let cellWidth: CGFloat = Constants.ScenesCollection.cellWidth
+    private let lineSpacing: CGFloat = 15
     private let disposeBag = DisposeBag()
     private var _scrolledToScene$ = PublishSubject<Scene>()
     
@@ -24,7 +25,7 @@ class InfoSceneCarouselView: UIView {
         let myCollectionViewFlowLayout: LeftAlignedFlowLayout = {
             let layout = LeftAlignedFlowLayout()
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 20
+            layout.minimumLineSpacing = 15
             layout.minimumInteritemSpacing = 0
             layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
             return layout
@@ -114,7 +115,7 @@ private extension InfoSceneCarouselView {
     private func setupConstraints() {
         scenesCollectionView.snp.makeConstraints { make in
             make.right.left.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(5)
+            make.top.bottom.equalToSuperview().inset(lineSpacing)
         }
     }
     

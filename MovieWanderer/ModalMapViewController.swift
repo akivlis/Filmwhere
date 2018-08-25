@@ -22,7 +22,7 @@ final class ModalMapViewController: UIViewController {
     private let closeButton = UIButton()
     private var scenesCarousel: InfoSceneCarouselView!
     private let disposeBag = DisposeBag()
-    private var gradient = CAGradientLayer()
+//    private var gradient = CAGradientLayer()
 
     init(viewModel: ModalMapViewModel) {
         self.viewModel = viewModel
@@ -45,7 +45,7 @@ final class ModalMapViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        gradient.frame = mapView.bounds
+//        gradient.frame = mapView.bounds
     }
 }
 
@@ -55,13 +55,13 @@ private extension ModalMapViewController {
         view.backgroundColor = UIColor.white
         
         mapView.viewModel = MapViewViewModel(scenes: viewModel.scenes)
-        mapView.setupStyleWith(jsonFileName: "ultra-light-style")
+//        mapView.setupStyleWith(jsonFileName: "ultra-light-style")
         view.addSubview(mapView)
         
-        gradient.frame = mapView.bounds
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
-        gradient.locations = [0, 0.1, 0.9, 1]
-        mapView.layer.mask = gradient
+//        gradient.frame = mapView.bounds
+//        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
+//        gradient.locations = [0, 0.1, 0.9, 1]
+//        mapView.layer.mask = gradient
 
         scenesCarousel = InfoSceneCarouselView(scenes: viewModel.scenes)
         view.addSubview(scenesCarousel)
@@ -77,7 +77,6 @@ private extension ModalMapViewController {
         mapView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
             make.bottom.equalTo(scenesCarousel.snp.top)
-//            make.edges.equalToSuperview()
         }
 
         closeButton.snp.makeConstraints { make in

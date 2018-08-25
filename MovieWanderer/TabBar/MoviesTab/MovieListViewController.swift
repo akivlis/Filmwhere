@@ -18,8 +18,7 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        
-        let dummyScenes : [Scene] = [Scene(title: "Rocky running", description: "Hahaha", latitude: 48.225660, longitude: 16.399509),
+        let dummyScenes : [Scene] = [Scene(title: "Rocky running", description: "Hahaha", latitude:39.962920, longitude: -75.157235),
                                 Scene(title: "Rocky boxing", description: "Hihihhi", latitude: 49.157614, longitude: 17.075666),
                                 Scene(title: "Stairs", description: "Bla bla bla", latitude: -33.865143, longitude: 151.209900),
                                 Scene(title: "Rocky talking", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666),

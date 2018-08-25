@@ -8,18 +8,22 @@
 
 import UIKit
 
+struct Constants {
+    struct ScenesCollection {
+        static let cellWidth: CGFloat = 250
+    }
+}
+
 class LeftAlignedFlowLayout: UICollectionViewFlowLayout {
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
         
         let spacing = self.minimumLineSpacing
-//        print("item size width: \(self.itemSize.width)")
-        let cellWidth : CGFloat = 320 // TODO: make this generic
+        let cellWidth : CGFloat = Constants.ScenesCollection.cellWidth // TODO: make this generic
         let index = proposedContentOffset.x / cellWidth
         
         let roundedIndex = abs(index.rounded())
         let x = roundedIndex * (cellWidth + spacing)
-        print(x)
         return CGPoint(x: x ,y: proposedContentOffset.y)
     }
     
