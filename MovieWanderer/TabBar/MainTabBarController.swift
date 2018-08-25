@@ -31,8 +31,10 @@ class MainTabBarController: UITabBarController {
         profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile-icon"), tag: 2)
         
         let movieNavigationViewController = UINavigationController(rootViewController: movieListViewController)
+        let profileNavigationViewController = UINavigationController(rootViewController: profileViewController)
+
         
-        viewControllers = [movieNavigationViewController, localizationViewController, profileViewController ]
+        viewControllers = [movieNavigationViewController, localizationViewController, profileNavigationViewController ]
         selectedViewController = movieNavigationViewController
     }
     
