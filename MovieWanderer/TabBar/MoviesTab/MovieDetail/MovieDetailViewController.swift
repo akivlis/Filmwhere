@@ -112,13 +112,13 @@ private extension MovieDetailViewController {
         
         movieHeaderView.goToMap$
             .subscribe(onNext: { [unowned self] _ in
-                let modalViewController = ModalMapViewController(viewModel: ModalMapViewModel(scenes: self.movie.scenes))
+                let modalViewController = MapViewController(viewModel: MapViewModel(scenes: self.movie.scenes))
                 self.present(modalViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
         scenesCarouselView.scenesCollectionView.rx.itemSelected
             .subscribe(onNext: { [unowned self]_ in
-                let modalViewController = ModalMapViewController(viewModel: ModalMapViewModel(scenes: self.movie.scenes))
+                let modalViewController = MapViewController(viewModel: MapViewModel(scenes: self.movie.scenes))
                 self.present(modalViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         

@@ -1,5 +1,5 @@
 //
-//  ModalMapViewController.swift
+//  MapViewController.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 10.07.18.
@@ -10,13 +10,13 @@ import UIKit
 import MapKit
 import RxSwift
 
-final class ModalMapViewController: UIViewController {
+final class MapViewController: UIViewController {
     
     var closeButtonTapped$: Observable<()> {
         return closeButton.rx.tap.asObservable()
     }
     
-    private let viewModel : ModalMapViewModel
+    private let viewModel : MapViewModel
     private var annotations = [MKAnnotation]()
     private let mapView = MapView()
     private let closeButton = UIButton()
@@ -24,7 +24,7 @@ final class ModalMapViewController: UIViewController {
     private let disposeBag = DisposeBag()
 //    private var gradient = CAGradientLayer()
 
-    init(viewModel: ModalMapViewModel) {
+    init(viewModel: MapViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -49,7 +49,7 @@ final class ModalMapViewController: UIViewController {
     }
 }
 
-private extension ModalMapViewController {
+private extension MapViewController {
     
     private func setupViews(){
         view.backgroundColor = UIColor.white

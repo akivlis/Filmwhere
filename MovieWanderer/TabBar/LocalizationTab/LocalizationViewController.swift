@@ -18,7 +18,7 @@ class LocalizationViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     var sceneView: SceneListView!
-    var mapView: MapView!
+    var mapView: UIView!
     
     
     override func viewDidLoad() {
@@ -28,6 +28,7 @@ class LocalizationViewController: UIViewController {
         _view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
         setupViews()
         
         _view.switchControlValueChanged$
@@ -47,7 +48,11 @@ private extension LocalizationViewController {
                                 Scene(title: "Dany", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)]
         
         sceneView = SceneListView(scenes: scenes)
-        mapView = MapView(viewModel: MapViewViewModel(scenes: scenes))
+        
+        let mapViewController = MapViewController(viewModel: MapViewModel(scenes: scenes))
+
+        mapView = mapViewController.view
+//            MapView(viewModel: MapViewViewModel(scenes: scenes))
         
         _view.containerView.addSubview(sceneView)
         _view.containerView.addSubview(mapView)

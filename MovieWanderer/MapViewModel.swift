@@ -1,5 +1,5 @@
 //
-//  ModalMapViewModel.swift
+//  MapViewModel.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 29.07.18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ModalMapViewModel {
+struct MapViewModel {
     
     let scenes: [Scene]
 }

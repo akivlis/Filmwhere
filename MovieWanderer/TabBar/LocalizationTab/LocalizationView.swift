@@ -58,7 +58,8 @@ class LocalizationView : UIView {
         }
 
         containerView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide)
             make.top.equalTo(viewSwitchControl.snp.bottom).offset(12)
         }
     }    

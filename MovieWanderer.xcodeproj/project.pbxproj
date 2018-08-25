@@ -14,7 +14,7 @@
 		3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */; };
 		3D0523142029072300A90A61 /* SceneCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523132029072300A90A61 /* SceneCollectionViewCellViewModel.swift */; };
 		3D12F0B3210DE2DF00E3B83B /* ultra-light-style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */; };
-		3D12F0B9210DEF6900E3B83B /* ModalMapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0B8210DEF6900E3B83B /* ModalMapViewModel.swift */; };
+		3D12F0B9210DEF6900E3B83B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0B8210DEF6900E3B83B /* MapViewModel.swift */; };
 		3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */; };
 		3D2289082028FE010074D173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2289072028FE010074D173 /* AppDelegate.swift */; };
 		3D2289112028FE010074D173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289102028FE010074D173 /* Assets.xcassets */; };
@@ -36,7 +36,7 @@
 		3D4A868620C72BF4009AB176 /* MovieWanderer+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A868520C72BF4009AB176 /* MovieWanderer+Reusable.swift */; };
 		3D803588202B9E5B00A51585 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Scene.swift */; };
 		3D864D602056DAA20069ECD0 /* SceneCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D864D5F2056DAA20069ECD0 /* SceneCarouselView.swift */; };
-		3DA3B18820F52FBD00F15104 /* ModalMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */; };
+		3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18720F52FBD00F15104 /* MapViewController.swift */; };
 		3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */; };
 		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
 		3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */; };
@@ -72,7 +72,7 @@
 		3D0523132029072300A90A61 /* SceneCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		3D12F0B1210DE2AB00E3B83B /* Directions.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
 		3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ultra-light-style.json"; sourceTree = "<group>"; };
-		3D12F0B8210DEF6900E3B83B /* ModalMapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalMapViewModel.swift; sourceTree = "<group>"; };
+		3D12F0B8210DEF6900E3B83B /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewModel.swift; sourceTree = "<group>"; };
 		3D2289042028FE010074D173 /* MovieWanderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieWanderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2289072028FE010074D173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		3D4A868520C72BF4009AB176 /* MovieWanderer+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+Reusable.swift"; sourceTree = "<group>"; };
 		3D803587202B9E5B00A51585 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		3D864D5F2056DAA20069ECD0 /* SceneCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCarouselView.swift; sourceTree = "<group>"; };
-		3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMapViewController.swift; sourceTree = "<group>"; };
+		3DA3B18720F52FBD00F15104 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+MKMapView.swift"; sourceTree = "<group>"; };
 		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedFlowLayout.swift; sourceTree = "<group>"; };
@@ -172,8 +172,8 @@
 		3D2289062028FE010074D173 /* MovieWanderer */ = {
 			isa = PBXGroup;
 			children = (
-				3D12F0B8210DEF6900E3B83B /* ModalMapViewModel.swift */,
-				3DA3B18720F52FBD00F15104 /* ModalMapViewController.swift */,
+				3D12F0B8210DEF6900E3B83B /* MapViewModel.swift */,
+				3DA3B18720F52FBD00F15104 /* MapViewController.swift */,
 				3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */,
 				3D3F8802205EBAE100EE3835 /* View */,
 				3DC79AE62030CBB0008B0E49 /* TabBar */,
@@ -594,7 +594,7 @@
 				3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */,
 				3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */,
 				3DCE811D202B9C1A00041B9D /* SceneListView.swift in Sources */,
-				3D12F0B9210DEF6900E3B83B /* ModalMapViewModel.swift in Sources */,
+				3D12F0B9210DEF6900E3B83B /* MapViewModel.swift in Sources */,
 				3D2289082028FE010074D173 /* AppDelegate.swift in Sources */,
 				3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */,
 				3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */,
@@ -611,7 +611,7 @@
 				3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */,
 				3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */,
 				3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */,
-				3DA3B18820F52FBD00F15104 /* ModalMapViewController.swift in Sources */,
+				3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */,
 				3D4A868620C72BF4009AB176 /* MovieWanderer+Reusable.swift in Sources */,
 				3DC79AE3203087E8008B0E49 /* MovieWanderer+Color.swift in Sources */,
 				3D3E69A9206C15A800891580 /* MoviewHeaderViewModel.swift in Sources */,
