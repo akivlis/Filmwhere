@@ -1,9 +1,4 @@
 PODS:
-  - GoogleMaps (2.7.0):
-    - GoogleMaps/Maps (= 2.7.0)
-  - GoogleMaps/Base (2.7.0)
-  - GoogleMaps/Maps (2.7.0):
-    - GoogleMaps/Base
   - MapKitGoogleStyler (0.1.1)
   - RxBlocking (4.2.0):
     - RxSwift (~> 4.0)
@@ -15,7 +10,6 @@ PODS:
   - SnapKit (4.0.0)
 
 DEPENDENCIES:
-  - GoogleMaps
   - MapKitGoogleStyler
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.0)
@@ -24,7 +18,6 @@ DEPENDENCIES:
   - SnapKit (~> 4.0.0)
 
 SPEC CHECKSUMS:
-  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
   MapKitGoogleStyler: 8efdceb664fc1748a62a9e3b50a34b67a34247bc
   RxBlocking: e339d8a6e752e25ade95ff858466c55436668f59
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
@@ -32,6 +25,6 @@ SPEC CHECKSUMS:
   RxTest: 8da864c0ee47534f586ff18fb0c7e5b2f1fe5023
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
 
-PODFILE CHECKSUM: 375d397cf66934a397ae83f8b34b8967a9de4805
+PODFILE CHECKSUM: a8e380d034d748ca3269572d5eca4359011967a4
 
 COCOAPODS: 1.4.0

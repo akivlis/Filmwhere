@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import GoogleMaps
-
-let googleApiKey = "AIzaSyBmSRgOcMlzdeESTo728HIt_tvnLpogqP0"
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,8 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tabBarViewController
         window?.makeKeyAndVisible()
         UINavigationBar.appearance().tintColor = .myRed
-        
-        GMSServices.provideAPIKey(googleApiKey)
         
         return true
     }
