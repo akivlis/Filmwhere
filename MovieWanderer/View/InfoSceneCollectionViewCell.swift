@@ -44,6 +44,7 @@ private extension InfoSceneCollectionViewCell {
     private func setupViews(){
         sceneImageView.contentMode = .scaleAspectFill
         sceneImageView.clipsToBounds = true
+        sceneImageView.layer.cornerRadius = 4.0
         containerView.addSubview(sceneImageView)
         
         descriptionLabel.font = UIFont.boldSystemFont(ofSize: 12)

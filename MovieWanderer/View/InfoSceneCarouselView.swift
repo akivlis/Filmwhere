@@ -9,15 +9,15 @@
 import UIKit
 import RxSwift
 
-class InfoSceneCarouselView: UIView {
+final class InfoSceneCarouselView: UIView {
     
     var scrolledToScene$: Observable<Scene> {
         return _scrolledToScene$
     }
     
+    private static let lineSpacing: CGFloat = 15
     private var scenes = [Scene]()
     private let cellWidth: CGFloat = Constants.ScenesCollection.cellWidth
-    private let lineSpacing: CGFloat = 15
     private let disposeBag = DisposeBag()
     private var _scrolledToScene$ = PublishSubject<Scene>()
     
@@ -25,9 +25,9 @@ class InfoSceneCarouselView: UIView {
         let myCollectionViewFlowLayout: LeftAlignedFlowLayout = {
             let layout = LeftAlignedFlowLayout()
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 15
+            layout.minimumLineSpacing = lineSpacing
             layout.minimumInteritemSpacing = 0
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
+            layout.sectionInset = UIEdgeInsets(top: 0, left: lineSpacing, bottom: 0, right: lineSpacing)
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
@@ -88,7 +88,7 @@ extension InfoSceneCarouselView: UICollectionViewDelegate {
 extension InfoSceneCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: cellWidth, height: frame.height)
+        return CGSize(width: cellWidth, height: collectionView.frame.height)
     }
 }
 
@@ -115,7 +115,7 @@ private extension InfoSceneCarouselView {
     private func setupConstraints() {
         scenesCollectionView.snp.makeConstraints { make in
             make.right.left.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(lineSpacing)
+            make.top.bottom.equalToSuperview().inset(InfoSceneCarouselView.lineSpacing)
         }
     }
     
