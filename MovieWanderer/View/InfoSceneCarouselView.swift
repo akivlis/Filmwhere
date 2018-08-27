@@ -50,6 +50,10 @@ final class InfoSceneCarouselView: UIView {
         self.scenes = scenes
         scenesCollectionView.reloadData()
     }
+    
+    func scrollToIndex(_ index: Int) {
+        scenesCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+    }
 }
 
 extension InfoSceneCarouselView: UICollectionViewDataSource {
@@ -81,6 +85,10 @@ extension InfoSceneCarouselView: UICollectionViewDelegate {
         
         let selectedScene = scenes[roundedIndex]
         _scrolledToScene$.onNext(selectedScene)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        print("did scroll")
     }
 }
 

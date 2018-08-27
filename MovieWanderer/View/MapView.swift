@@ -14,12 +14,17 @@ import MapKitGoogleStyler
 
 class MapView: UIView {
     
+    var sceneSelected$ : Observable<Int> {
+        return sceneSelected
+    }
+    
     var viewModel : MapViewViewModel = MapViewViewModel(scenes: [Scene]()) {
         didSet {
             showAnnotationsAndZoom()
         }
     }
     
+    private let sceneSelected = PublishSubject<Int>()
     private let locationManager = CLLocationManager()
     private let disposeBag = DisposeBag()
     private let regionRadius: CLLocationDistance = 10000
@@ -54,11 +59,6 @@ class MapView: UIView {
         mapView.setCenter(coordinates, animated: true)
         
         print("Highlight scene: \(scene.title)")
-//        if let index = viewModel.getIndexForScene(scene) {
-//            print("Highlight index: \(index)")
-//
-//            mapView.selectAnnotation(mapView.annotations[index], animated: true)
-//        }
     }
     
     func setupStyleWith(jsonFileName: String) {
@@ -87,18 +87,15 @@ extension MapView: MKMapViewDelegate {
         return view
     }
     
-    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
-        
-//        if !didUpdateUserLocation {
-            mapView.selectAnnotation(mapView.userLocation, animated: true)
-//            didUpdateUserLocation = true
-//        }
-    }
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("selected \(String(describing: view.annotation?.title))")
         view.setSelected(true, animated: true)
         view.isHighlighted  = true
+        
+        //maybe just use idex
+        if let index = viewModel.getIndexForAnnotation(view.annotation!) {
+            sceneSelected.onNext(index)
+        }
     }
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
@@ -121,14 +118,7 @@ private extension MapView {
     }
     
     private func showAnnotationsAndZoom() {
-        
         mapView.addAnnotations(viewModel.annotations)
-        //        // maybe show the closest
-//        if let firstScene = viewModel.scenes.first {
-//            let coordination = CLLocationCoordinate2D(latitude: firstScene.latitude, longitude: firstScene.longitude)
-//            mapView.setCenter(coordination, animated: false)
-//        }
-        
         mapView.showAnnotations(viewModel.annotations, animated: true)
     }
     

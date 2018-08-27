@@ -22,7 +22,6 @@ final class MapViewController: UIViewController {
     private let closeButton = UIButton()
     private var scenesCarousel: InfoSceneCarouselView!
     private let disposeBag = DisposeBag()
-//    private var gradient = CAGradientLayer()
 
     init(viewModel: MapViewModel) {
         self.viewModel = viewModel
@@ -41,12 +40,6 @@ final class MapViewController: UIViewController {
         setupObservables()
         //TODO: add dark gradient to top
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-//        gradient.frame = mapView.bounds
-    }
 }
 
 private extension MapViewController {
@@ -58,11 +51,6 @@ private extension MapViewController {
 //        mapView.setupStyleWith(jsonFileName: "ultra-light-style")
         view.addSubview(mapView)
         
-//        gradient.frame = mapView.bounds
-//        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor, UIColor.black.cgColor, UIColor.clear.cgColor]
-//        gradient.locations = [0, 0.1, 0.9, 1]
-//        mapView.layer.mask = gradient
-
         scenesCarousel = InfoSceneCarouselView(scenes: viewModel.scenes)
         view.addSubview(scenesCarousel)
         
@@ -100,9 +88,12 @@ private extension MapViewController {
         scenesCarousel.scrolledToScene$
             .subscribe(onNext: { [unowned self] scene in
                 self.mapView.highlight(scene)
-//                self.mapView.highlightSceneOnIndex(index)
             }).disposed(by: disposeBag) // use dispose bag of the cell?
         
+        mapView.sceneSelected$
+            .subscribe(onNext: { [unowned self] index in
+                self.scenesCarousel.scrollToIndex(index)
+            }).disposed(by: disposeBag)
     }
 }
 
