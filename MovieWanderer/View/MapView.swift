@@ -53,11 +53,12 @@ class MapView: UIView {
         let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
         mapView.setCenter(coordinates, animated: true)
         
-        
         print("Highlight scene: \(scene.title)")
-        if let firstAnnotation = mapView.annotations.first {
-            mapView.selectAnnotation(firstAnnotation, animated: true)
-        }
+//        if let index = viewModel.getIndexForScene(scene) {
+//            print("Highlight index: \(index)")
+//
+//            mapView.selectAnnotation(mapView.annotations[index], animated: true)
+//        }
     }
     
     func setupStyleWith(jsonFileName: String) {
@@ -86,8 +87,16 @@ extension MapView: MKMapViewDelegate {
         return view
     }
     
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
+        
+//        if !didUpdateUserLocation {
+            mapView.selectAnnotation(mapView.userLocation, animated: true)
+//            didUpdateUserLocation = true
+//        }
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("selected \(view.annotation?.title)")
+        print("selected \(String(describing: view.annotation?.title))")
         view.setSelected(true, animated: true)
         view.isHighlighted  = true
     }

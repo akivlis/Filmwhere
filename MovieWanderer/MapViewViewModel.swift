@@ -22,4 +22,9 @@ struct MapViewViewModel {
             return annotation
         }
     }
+    
+    func getIndexForScene(_ scene: Scene) -> Int? {
+        let index = scenes.firstIndex { $0.title == scene.title } // TODO: rewrite
+        return index
+    }
 }

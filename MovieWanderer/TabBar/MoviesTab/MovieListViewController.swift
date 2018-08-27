@@ -18,17 +18,15 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        let dummyScenes : [Scene] = [Scene(title: "Rocky running", description: "Hahaha", latitude:39.962920, longitude: -75.157235),
-                                Scene(title: "Rocky boxing", description: "Hihihhi", latitude: 49.157614, longitude: 17.075666),
-                                Scene(title: "Stairs", description: "Bla bla bla", latitude: -33.865143, longitude: 151.209900),
-                                Scene(title: "Rocky talking", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666),
-                                Scene(title: "Haha", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666),
-                                Scene(title: "Hehe", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666),
-                                Scene(title: "Mehehe", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)
+        let dummyScenes : [Scene] = [Scene(title: "Rocky", description: "Hahaha", latitude:39.962920, longitude: -75.157235),
+                                Scene(title: "Stairs", description: "Dubrovnik", latitude: 42.645942, longitude: 18.090084),
+                                Scene(title: "Mission Impossible", description: "Vienn Opera", latitude:  48.202840, longitude: 16.368916),
+                                Scene(title: "Red Sparrow", description: "Hofburg", latitude:  48.208347, longitude: 16.366143),
+                                Scene(title: "Roman holiday", description: "Spanish stairs", latitude:  41.899355, longitude: 12.484746)
 
         ]
         
-        let dummyMovies =  [Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageName: "rocky"),
+        let dummyMovies =  [Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageName: "Rocky"),
                             Movie(title: "Men in Black", description: "Men are saving the world from the aliens", scenes:dummyScenes, imageName: "placeholder"),
                             
                             Movie(title: "Game Of Thrones", description: "Game of thrones is an american fantasy drama created by Martin.", scenes: dummyScenes, imageName: "Stairs")]
