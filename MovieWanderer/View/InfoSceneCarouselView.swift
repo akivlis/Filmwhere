@@ -53,11 +53,8 @@ final class InfoSceneCarouselView: UIView {
     
     func scrollToIndex(_ index: Int) {
         let x = index * (250 + 15) //TODO: change
-        if index == scenes.count - 1 {
-            return
-        }
-        let point =  CGPoint(x: CGFloat(x) ,y: scenesCollectionView.contentOffset.y)
-        scenesCollectionView.setContentOffset(point, animated: true)
+            let point =  CGPoint(x: CGFloat(x) ,y: scenesCollectionView.contentOffset.y)
+            scenesCollectionView.setContentOffset(point, animated: true)
     }
 }
 

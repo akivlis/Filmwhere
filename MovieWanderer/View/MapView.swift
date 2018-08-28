@@ -59,7 +59,8 @@ class MapView: UIView {
         mapView.setCenter(coordinates, animated: true)
         
         if let annotation = viewModel.getAnnotationForScene(scene) {            
-            mapView.selectAnnotation(annotation, animated: true)
+//            mapView.selectAnnotation(annotation, animated: true)
+            //TODO: implement custom highligting, do nt call select cause the observable emits
         }
         print("Highlight scene: \(scene.title)")
     }

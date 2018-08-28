@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MapKit
 import RxSwift
 
 final class MapViewController: UIViewController {
@@ -16,11 +15,9 @@ final class MapViewController: UIViewController {
         return closeButton.rx.tap.asObservable()
     }
     
+    private var mapAndScenesView: MapAndScenesCarouselView!
     private let viewModel : MapViewModel
-    private var annotations = [MKAnnotation]()
-    private let mapView = MapView()
     private let closeButton = UIButton()
-    private var scenesCarousel: InfoSceneCarouselView!
     private let disposeBag = DisposeBag()
 
     init(viewModel: MapViewModel) {
@@ -38,7 +35,6 @@ final class MapViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupObservables()
-        //TODO: add dark gradient to top
     }
 }
 
@@ -47,35 +43,24 @@ private extension MapViewController {
     private func setupViews(){
         view.backgroundColor = UIColor.white
         
-        mapView.viewModel = MapViewViewModel(scenes: viewModel.scenes)
-//        mapView.setupStyleWith(jsonFileName: "ultra-light-style")
-        view.addSubview(mapView)
-        
-        scenesCarousel = InfoSceneCarouselView(scenes: viewModel.scenes)
-        view.addSubview(scenesCarousel)
+        mapAndScenesView = MapAndScenesCarouselView(scenes: viewModel.scenes)
+        view.addSubview(mapAndScenesView)
         
         if let image = UIImage(named: "close-icon") {
             closeButton.setImage(image, for: .normal)
         }
         view.addSubview(closeButton)
-       
     }
     
     private func setupConstraints() {
-        mapView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-            make.bottom.equalTo(scenesCarousel.snp.top)
+        mapAndScenesView.snp.makeConstraints { make in
+           make.edges.equalToSuperview()
         }
-
+        
         closeButton.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(20)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
             make.height.width.equalTo(25)
-        }
-        
-        scenesCarousel.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(250)
         }
     }
     
@@ -83,16 +68,6 @@ private extension MapViewController {
         closeButton.rx.tap.asObservable()
             .subscribe(onNext: { _ in
                 self.dismiss(animated: true, completion: nil)
-            }).disposed(by: disposeBag)
-        
-        scenesCarousel.scrolledToScene$
-            .subscribe(onNext: { [unowned self] scene in
-                self.mapView.highlight(scene)
-            }).disposed(by: disposeBag) // use dispose bag of the cell?
-        
-        mapView.sceneSelected$
-            .subscribe(onNext: { [unowned self] index in
-                self.scenesCarousel.scrollToIndex(index)
             }).disposed(by: disposeBag)
     }
 }
