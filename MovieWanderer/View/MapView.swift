@@ -58,9 +58,7 @@ class MapView: UIView {
         let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
         mapView.setCenter(coordinates, animated: true)
         
-        if let annotation = viewModel.getAnnotationForScene(scene) {
-//            let index = viewModel.getIndexForAnnotation(annotation)
-            
+        if let annotation = viewModel.getAnnotationForScene(scene) {            
             mapView.selectAnnotation(annotation, animated: true)
         }
         print("Highlight scene: \(scene.title)")
