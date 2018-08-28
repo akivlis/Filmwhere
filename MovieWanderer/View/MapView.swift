@@ -51,13 +51,18 @@ class MapView: UIView {
     // MARK: public methods
     
     func highlightSceneOnIndex(_ index: Int) {
-        mapView.selectAnnotation(mapView.annotations[index], animated: true)
+        mapView.selectAnnotation(mapView.annotations[index], animated: false)
     }
     
     func highlight(_ scene: Scene) {
         let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
         mapView.setCenter(coordinates, animated: true)
         
+        if let annotation = viewModel.getAnnotationForScene(scene) {
+//            let index = viewModel.getIndexForAnnotation(annotation)
+            
+            mapView.selectAnnotation(annotation, animated: true)
+        }
         print("Highlight scene: \(scene.title)")
     }
     
@@ -73,23 +78,22 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let identifier = "marker"
-        var view: MKMarkerAnnotationView
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-            as? MKMarkerAnnotationView {
-            dequeuedView.annotation = annotation
-            view = dequeuedView
-        } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint.zero
-            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        
+        if annotation is MKUserLocation {
+            return nil
         }
-        return view
+        
+        let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView ?? MKMarkerAnnotationView()
+        dequeuedView.annotation = annotation
+        dequeuedView.isHidden = false
+        
+        return dequeuedView
+        
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("selected \(String(describing: view.annotation?.title))")
-        view.setSelected(true, animated: true)
+        view.setSelected(true, animated: false)
         view.isHighlighted  = true
         
         //maybe just use idex
@@ -119,12 +123,12 @@ private extension MapView {
     
     private func showAnnotationsAndZoom() {
         mapView.addAnnotations(viewModel.annotations)
-        mapView.showAnnotations(viewModel.annotations, animated: true)
+        mapView.showAnnotations(viewModel.annotations, animated: false)
     }
     
     private func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,                                                                 regionRadius, regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
+        mapView.setRegion(coordinateRegion, animated: false)
     }
     
     private func configureTileOverlayWith(jsonFileName: String) {

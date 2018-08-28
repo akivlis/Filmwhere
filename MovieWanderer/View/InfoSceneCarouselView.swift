@@ -52,7 +52,11 @@ final class InfoSceneCarouselView: UIView {
     }
     
     func scrollToIndex(_ index: Int) {
-        scenesCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
+        
+        let x = index * (250 + 15)
+        let point =  CGPoint(x: CGFloat(x) ,y: scenesCollectionView.contentOffset.y)
+        scenesCollectionView.setContentOffset(point, animated: true)
+//        scenesCollectionView.scrollToItem(at: IndexPath(row: index, section: 0), at: .centeredHorizontally, animated: true)
     }
 }
 
@@ -91,7 +95,6 @@ extension InfoSceneCarouselView: UICollectionViewDelegate {
         print("did scroll")
     }
 }
-
 
 extension InfoSceneCarouselView: UICollectionViewDelegateFlowLayout {
     
