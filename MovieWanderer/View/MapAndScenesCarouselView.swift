@@ -9,8 +9,7 @@
 import UIKit
 import RxSwift
 
-
-class MapAndScenesCarouselView: UIView {
+final class MapAndScenesCarouselView: UIView {
     
     private let scenes: [Scene]
     private var scenesCarousel: InfoSceneCarouselView!

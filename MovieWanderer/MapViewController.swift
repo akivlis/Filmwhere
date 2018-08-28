@@ -40,9 +40,7 @@ final class MapViewController: UIViewController {
 
 private extension MapViewController {
     
-    private func setupViews(){
-        view.backgroundColor = UIColor.white
-        
+    private func setupViews(){        
         mapAndScenesView = MapAndScenesCarouselView(scenes: viewModel.scenes)
         view.addSubview(mapAndScenesView)
         

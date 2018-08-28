@@ -106,7 +106,7 @@ private extension InfoSceneCarouselView {
     }
     
     private func setupViews() {
-        backgroundColor = .clear
+        backgroundColor = .white
         
         scenesCollectionView.register(InfoSceneCollectionViewCell.self)
         scenesCollectionView.backgroundColor = .clear
