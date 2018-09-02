@@ -125,6 +125,7 @@ private extension SceneTableViewCell {
         }
         
         addressLabel.snp.makeConstraints { make in
+            make.left.equalTo(descriptionLabel)
             make.bottom.equalToSuperview().inset(2)
         }
         

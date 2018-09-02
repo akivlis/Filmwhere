@@ -36,7 +36,7 @@ class MovieHeaderView: UIView {
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 32)
+        label.font = UIFont.boldSystemFont(ofSize: 30)
         label.textColor = .myDarkGray
         return label
     }()
@@ -121,7 +121,7 @@ private extension MovieHeaderView {
         
         photoContainerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            containerHeightLayoutConstraint = make.height.equalTo(230).constraint
+            containerHeightLayoutConstraint = make.height.equalTo(210).constraint
         }
         
         moviePhoto.snp.makeConstraints { make in
@@ -142,7 +142,7 @@ private extension MovieHeaderView {
         }
         
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.top.equalTo(titleLabel.snp.bottom).offset(6)
             make.left.equalTo(titleLabel)
             make.right.equalTo(goToMapButton)
         }

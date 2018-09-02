@@ -113,7 +113,7 @@ private extension MovieDetailViewController {
         scenesCarouselView.snp.makeConstraints { make in
             make.top.equalTo(scenesTitleLabel.snp.bottom).offset(8)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(view.safeAreaLayoutGuide) //TODO: dat vysku ako je vleke table view??
         }
     }
     
