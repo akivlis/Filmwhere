@@ -37,7 +37,7 @@ class MovieHeaderView: UIView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 32)
-        label.textColor = .black
+        label.textColor = .myDarkGray
         return label
     }()
     

@@ -19,7 +19,7 @@ class MovieDetailViewController: UIViewController {
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
     private let backButton = UIButton()
-
+    private let numberOfPlacesLabel = UILabel()
 
     // MARK: Init
     
@@ -67,9 +67,15 @@ private extension MovieDetailViewController {
         view.addSubview(backButton)
         
         scenesTitleLabel.textColor = .black
-        scenesTitleLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        scenesTitleLabel.font = UIFont.boldSystemFont(ofSize: 17)
         scenesTitleLabel.text = "Scenes"
         scenesTitleLabel.textAlignment = .left
+        
+        numberOfPlacesLabel.textColor = .gray
+        numberOfPlacesLabel.textAlignment = .right
+        numberOfPlacesLabel.font = UIFont.systemFont(ofSize: 16)
+        numberOfPlacesLabel.text = "\(self.movie.scenes.count) places" // TODO: move to viewModel?
+        view.addSubview(numberOfPlacesLabel)
         
         scrollView.addSubview(movieHeaderView)
         scrollView.addSubview(scenesTitleLabel)
@@ -97,7 +103,12 @@ private extension MovieDetailViewController {
         scenesTitleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(16)
             make.right.equalToSuperview()
-            make.top.equalTo(movieHeaderView.snp.bottom)//.offset(8)
+            make.top.equalTo(movieHeaderView.snp.bottom).offset(5)
+        }
+        
+        numberOfPlacesLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(scenesTitleLabel)
+            make.right.equalToSuperview().inset(16)
         }
         
         scenesCarouselView.snp.makeConstraints { make in
