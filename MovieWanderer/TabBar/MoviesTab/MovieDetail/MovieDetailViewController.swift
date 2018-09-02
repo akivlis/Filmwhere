@@ -14,7 +14,7 @@ class MovieDetailViewController: UIViewController {
 
     private let scrollView = UIScrollView()
     private let movieHeaderView : MovieHeaderView
-    private let scenesCarouselView : SceneCarouselView
+    private let scenesCarouselView : VerticalScenesView
     private let disposeBag = DisposeBag()
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
@@ -26,8 +26,7 @@ class MovieDetailViewController: UIViewController {
     init(movie: Movie) {
         self.movie = movie
         movieHeaderView = MovieHeaderView(viewModel: MovieHeaderViewModel(movie: movie))
-        scenesCarouselView = SceneCarouselView(scenes: movie.scenes)
-        scenesCarouselView.cellSize = CGSize(width: 140, height: 230)
+        scenesCarouselView = VerticalScenesView(scenes: movie.scenes)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -114,8 +113,7 @@ private extension MovieDetailViewController {
         scenesCarouselView.snp.makeConstraints { make in
             make.top.equalTo(scenesTitleLabel.snp.bottom).offset(16)
             make.left.right.equalToSuperview()
-            make.height.equalTo(scenesCarouselView.cellSize!.height)
-            make.bottom.equalToSuperview().inset(20)
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
@@ -127,7 +125,7 @@ private extension MovieDetailViewController {
                 self.present(modalViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
-        scenesCarouselView.scenesCollectionView.rx.itemSelected
+        scenesCarouselView.scenesTableView.rx.itemSelected
             .subscribe(onNext: { [unowned self]_ in
                 let modalViewController = MapViewController(viewModel: MapViewModel(scenes: self.movie.scenes))
                 self.present(modalViewController, animated: true, completion: nil)

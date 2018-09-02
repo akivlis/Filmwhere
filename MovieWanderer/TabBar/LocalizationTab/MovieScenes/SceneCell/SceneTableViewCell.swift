@@ -1,5 +1,5 @@
 //
-//  SceneCollectionViewCell.swift
+//  SceneTableViewCell.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 05/02/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SceneCollectionViewCell: UICollectionViewCell {
+class SceneTableViewCell: UITableViewCell {
     
     let sceneImageView: UIImageView = {
         let imageView = UIImageView()
@@ -50,47 +50,32 @@ class SceneCollectionViewCell: UICollectionViewCell {
     
     var viewModel: SceneCollectionViewCellViewModel?
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
-        loadSubviews()
-        setConstraints()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        commonInit()
     }
-    
+   
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        commonInit()
     }
     
     func bindViewModel(_ viewModel: SceneCollectionViewCellViewModel){
         titleLabel.text = viewModel.title
-//        subtitleLabel.text = viewModel.subtitle
+        subtitleLabel.text = viewModel.subtitle
         distanceLabel.text = "Croatia" //"\(viewModel.distanceFromMe) m away"
         sceneImageView.image = viewModel.sceneImage
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-//        shadowAndRound()
-    }
-    
-    func shadowAndRound() {
-        self.contentView.backgroundColor = .white
-        self.contentView.layer.cornerRadius = 4.0
-        self.contentView.layer.masksToBounds = true
-        self.contentView.clipsToBounds = true
-
-        self.layer.shadowColor = UIColor.gray.cgColor
-        self.layer.shadowOffset = CGSize(width: 3.0, height: 2.0)
-        self.layer.shadowRadius = 4.0
-        self.layer.shadowOpacity = 0.6
-        self.layer.masksToBounds = false
-        //if we want to have shadow on each side, we set the shadowOffset to CGSize.zero and set shadowPath
-//        self.layer.shadowPath = UIBezierPath(roundedRect: self.bounds, cornerRadius: 8.0).cgPath
-    }
 }
 
-private extension SceneCollectionViewCell {
+private extension SceneTableViewCell {
     
-    private func loadSubviews() {
+    private func commonInit() {
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupViews() {
         contentView.addSubview(sceneImageView)
         contentView.addSubview(descriptionContainerView)
         
@@ -99,20 +84,21 @@ private extension SceneCollectionViewCell {
         descriptionContainerView.addSubview(distanceLabel)
     }
     
-    private func setConstraints() {
+    private func setupConstraints() {
         sceneImageView.snp.makeConstraints { make in
-            make.top.right.left.equalToSuperview()
-            make.height.equalTo(160)
+            make.top.left.bottom.equalToSuperview().inset(10)
+            make.left.equalToSuperview().inset(16)
+            make.height.width.equalTo(130)
         }
         
         descriptionContainerView.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview()
-            make.top.equalTo(sceneImageView.snp.bottom)
+            make.left.equalTo(sceneImageView.snp.right).offset(8)
+            make.top.bottom.equalTo(sceneImageView).inset(4)
+            make.right.equalToSuperview().inset(16)
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.left.equalTo(sceneImageView)
-            make.top.equalToSuperview().inset(8)
+            make.left.top.right.equalToSuperview()
         }
         
         subtitleLabel.snp.makeConstraints { make in
