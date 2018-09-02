@@ -49,11 +49,17 @@ class SceneTableViewCell: UITableViewCell {
         return label
     }()
     
-    let distanceLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .gray
-        label.font = UIFont.boldSystemFont(ofSize: 11)
-        return label
+    let distanceButton: UIButton = {
+        let button = UIButton()
+        button.isEnabled = false
+        button.setTitleColor(.myRed, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 11)
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = UIColor.myRed.cgColor
+        button.layer.cornerRadius = 4
+        button.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
+        button.contentEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 24)
+        return button
     }()
     
     var viewModel: SceneCellViewModel?
@@ -72,7 +78,7 @@ class SceneTableViewCell: UITableViewCell {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
         addressLabel.text = viewModel.address
-        distanceLabel.text = viewModel.distanceFromMe
+        distanceButton.setTitle(viewModel.distanceFromMe, for: .normal)
         sceneImageView.image = viewModel.sceneImage
     }
 }
@@ -93,7 +99,7 @@ private extension SceneTableViewCell {
         descriptionContainerView.addSubview(titleLabel)
         descriptionContainerView.addSubview(descriptionLabel)
         descriptionContainerView.addSubview(addressLabel)
-        descriptionContainerView.addSubview(distanceLabel)
+        descriptionContainerView.addSubview(distanceButton)
     }
     
     private func setupConstraints() {
@@ -119,14 +125,11 @@ private extension SceneTableViewCell {
         }
         
         addressLabel.snp.makeConstraints { make in
-//            make.top.equalTo(descriptionLabel.snp.bottom).offset(8)
             make.bottom.equalToSuperview().inset(2)
         }
         
-        
-//        distanceLabel.snp.makeConstraints { make in
-//            make.left.equalTo(titleLabel)
-//            make.top.equalTo(titleLabel.snp.bottom).offset(4)
-//        }
+        distanceButton.snp.makeConstraints { make in
+            make.right.bottom.equalToSuperview().inset(2)
+        }
     }
 }
