@@ -67,7 +67,7 @@ extension InfoSceneCarouselView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoSceneCollectionViewCell.reuseIdentifier, for: indexPath)
         if let scalingCell = cell as? InfoSceneCollectionViewCell {
-            let cellViewModel = SceneCollectionViewCellViewModel(scene: scenes[indexPath.row])
+            let cellViewModel = SceneCellViewModel(scene: scenes[indexPath.row])
             scalingCell.bindViewModel(cellViewModel)
         }
         return cell

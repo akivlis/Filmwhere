@@ -26,18 +26,26 @@ class SceneTableViewCell: UITableViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.textColor = .myRed
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = .myDarkGray
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.sizeToFit()
         return label
     }()
     
-    let subtitleLabel: UILabel = {
+    let descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont.boldSystemFont(ofSize: 13)
+        label.numberOfLines = 2
         label.textColor = .gray
-        label.sizeToFit()
+        return label
+    }()
+    
+    let addressLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.font = UIFont.boldSystemFont(ofSize: 12)
+        label.textColor = .darkGray
         return label
     }()
     
@@ -48,7 +56,7 @@ class SceneTableViewCell: UITableViewCell {
         return label
     }()
     
-    var viewModel: SceneCollectionViewCellViewModel?
+    var viewModel: SceneCellViewModel?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -60,10 +68,11 @@ class SceneTableViewCell: UITableViewCell {
         commonInit()
     }
     
-    func bindViewModel(_ viewModel: SceneCollectionViewCellViewModel){
+    func bindViewModel(_ viewModel: SceneCellViewModel){
         titleLabel.text = viewModel.title
-        subtitleLabel.text = viewModel.subtitle
-        distanceLabel.text = "Croatia" //"\(viewModel.distanceFromMe) m away"
+        descriptionLabel.text = viewModel.description
+        addressLabel.text = viewModel.address
+        distanceLabel.text = viewModel.distanceFromMe
         sceneImageView.image = viewModel.sceneImage
     }
 }
@@ -76,39 +85,48 @@ private extension SceneTableViewCell {
     }
     
     private func setupViews() {
+        selectionStyle = .none
+        
         contentView.addSubview(sceneImageView)
         contentView.addSubview(descriptionContainerView)
         
         descriptionContainerView.addSubview(titleLabel)
-        descriptionContainerView.addSubview(subtitleLabel)
+        descriptionContainerView.addSubview(descriptionLabel)
+        descriptionContainerView.addSubview(addressLabel)
         descriptionContainerView.addSubview(distanceLabel)
     }
     
     private func setupConstraints() {
         sceneImageView.snp.makeConstraints { make in
-            make.top.left.bottom.equalToSuperview().inset(10)
-            make.left.equalToSuperview().inset(16)
-            make.height.width.equalTo(130)
+            make.top.bottom.equalToSuperview().inset(10)
+            make.left.equalToSuperview().inset(20)
+            make.height.width.equalTo(100)
         }
         
         descriptionContainerView.snp.makeConstraints { make in
-            make.left.equalTo(sceneImageView.snp.right).offset(8)
-            make.top.bottom.equalTo(sceneImageView).inset(4)
-            make.right.equalToSuperview().inset(16)
+            make.left.equalTo(sceneImageView.snp.right).offset(20)
+            make.top.bottom.equalTo(sceneImageView)//.inset(4)
+            make.right.equalToSuperview().inset(20)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
         }
         
-        subtitleLabel.snp.makeConstraints { make in
-            make.left.equalTo(titleLabel)
+        descriptionLabel.snp.makeConstraints { make in
+            make.left.right.equalTo(titleLabel)
             make.top.equalTo(titleLabel.snp.bottom).offset(8)
         }
         
-        distanceLabel.snp.makeConstraints { make in
-            make.left.equalTo(titleLabel)
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+        addressLabel.snp.makeConstraints { make in
+//            make.top.equalTo(descriptionLabel.snp.bottom).offset(8)
+            make.bottom.equalToSuperview().inset(2)
         }
+        
+        
+//        distanceLabel.snp.makeConstraints { make in
+//            make.left.equalTo(titleLabel)
+//            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+//        }
     }
 }

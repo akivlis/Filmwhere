@@ -1,5 +1,5 @@
 //
-//  SceneCollectionViewCellViewModel.swift
+//  SceneCellViewModel.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 05/02/2018.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct SceneCollectionViewCellViewModel {
+struct SceneCellViewModel {
     
     let scene: Scene
     
@@ -17,25 +17,24 @@ struct SceneCollectionViewCellViewModel {
         return scene.title
     }
     
-    var subtitle: String {
+    var description: String {
+        return "Very long test movie scene description which says something important about the scene" 
         return scene.description
     }
     
-    var distanceFromMe: Int {
-        return 50
+    var address: String {
+        return scene.country
     }
     
-    var description: String {
-        return "Very long test movie scene description which says something important about the scene"
+    var distanceFromMe: String {
+        return "50 km"
     }
-    
+
     var sceneImage: UIImage {
         if let image = UIImage(named: scene.title) {
             return image
         }
         return UIImage(named: "Dany")!
     }
-    
-    
 }
 

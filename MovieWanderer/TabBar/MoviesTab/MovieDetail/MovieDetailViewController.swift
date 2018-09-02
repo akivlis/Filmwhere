@@ -100,18 +100,18 @@ private extension MovieDetailViewController {
         }
         
         scenesTitleLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(16)
+            make.left.equalToSuperview().inset(20)
             make.right.equalToSuperview()
             make.top.equalTo(movieHeaderView.snp.bottom).offset(5)
         }
         
         numberOfPlacesLabel.snp.makeConstraints { make in
             make.centerY.equalTo(scenesTitleLabel)
-            make.right.equalToSuperview().inset(16)
+            make.right.equalToSuperview().inset(20)
         }
         
         scenesCarouselView.snp.makeConstraints { make in
-            make.top.equalTo(scenesTitleLabel.snp.bottom).offset(16)
+            make.top.equalTo(scenesTitleLabel.snp.bottom).offset(8)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
@@ -125,6 +125,7 @@ private extension MovieDetailViewController {
                 self.present(modalViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
+        //TODO: scenestableView should be private, expose only click
         scenesCarouselView.scenesTableView.rx.itemSelected
             .subscribe(onNext: { [unowned self]_ in
                 let modalViewController = MapViewController(viewModel: MapViewModel(scenes: self.movie.scenes))

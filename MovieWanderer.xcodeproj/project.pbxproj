@@ -12,7 +12,7 @@
 		27CD6806A5D991424DC5BD5D /* Pods_MovieWanderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E34055683A2757EBA9C5358 /* Pods_MovieWanderer.framework */; };
 		3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D05230E202906BC00A90A61 /* ScenesViewModel.swift */; };
 		3D0523122029070C00A90A61 /* SceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523112029070C00A90A61 /* SceneTableViewCell.swift */; };
-		3D0523142029072300A90A61 /* SceneCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523132029072300A90A61 /* SceneCollectionViewCellViewModel.swift */; };
+		3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523132029072300A90A61 /* SceneCellViewModel.swift */; };
 		3D12F0B3210DE2DF00E3B83B /* ultra-light-style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */; };
 		3D12F0B9210DEF6900E3B83B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0B8210DEF6900E3B83B /* MapViewModel.swift */; };
 		3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */; };
@@ -70,7 +70,7 @@
 		2C6C7BAC8429FADADDBAA7A8 /* Pods-MovieWanderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer.release.xcconfig"; sourceTree = "<group>"; };
 		3D05230E202906BC00A90A61 /* ScenesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewModel.swift; sourceTree = "<group>"; };
 		3D0523112029070C00A90A61 /* SceneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewCell.swift; sourceTree = "<group>"; };
-		3D0523132029072300A90A61 /* SceneCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
+		3D0523132029072300A90A61 /* SceneCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCellViewModel.swift; sourceTree = "<group>"; };
 		3D12F0B1210DE2AB00E3B83B /* Directions.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
 		3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ultra-light-style.json"; sourceTree = "<group>"; };
 		3D12F0B8210DEF6900E3B83B /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -146,7 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				3D0523112029070C00A90A61 /* SceneTableViewCell.swift */,
-				3D0523132029072300A90A61 /* SceneCollectionViewCellViewModel.swift */,
+				3D0523132029072300A90A61 /* SceneCellViewModel.swift */,
 			);
 			path = SceneCell;
 			sourceTree = "<group>";
@@ -617,7 +617,7 @@
 				3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */,
 				3DC79AF22030CD1D008B0E49 /* ProfileViewController.swift in Sources */,
 				3DC79AF02030CD02008B0E49 /* MovieListViewController.swift in Sources */,
-				3D0523142029072300A90A61 /* SceneCollectionViewCellViewModel.swift in Sources */,
+				3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */,
 				3D864D602056DAA20069ECD0 /* VerticalScenesView.swift in Sources */,
 				3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */,
 				3D26DDEA2135F510002704B9 /* MapAndScenesCarouselView.swift in Sources */,

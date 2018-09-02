@@ -117,7 +117,7 @@ private extension MovieHeaderView {
     }
     
     private func setupConstraints() {
-        let padding: CGFloat = 16
+        let padding: CGFloat = 20
         
         photoContainerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
@@ -149,8 +149,8 @@ private extension MovieHeaderView {
         
         openMoreLabel.snp.makeConstraints { make in
             make.left.equalTo(descriptionLabel)
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(8)
-            make.bottom.equalToSuperview().inset(8)
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(6)
+            make.bottom.equalToSuperview().inset(4)
         }
     }
     

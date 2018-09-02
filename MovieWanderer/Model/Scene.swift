@@ -14,7 +14,7 @@ class Scene {
     let description: String
     let latitude: Double
     let longitude: Double
-    let country = "Croatia" // TODO:
+    let country = "Philadelphia, USA" // TODO:
 
     
     init(title: String, description: String, latitude: Double, longitude: Double) {

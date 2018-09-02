@@ -25,7 +25,7 @@ class InfoSceneCollectionViewCell: UICollectionViewCell {
         commonInit()
     }
     
-    func bindViewModel(_ viewModel: SceneCollectionViewCellViewModel){
+    func bindViewModel(_ viewModel: SceneCellViewModel){
         titleLabel.text = viewModel.title
 //                descriptionLabel.text = viewModel.subtitle
         descriptionLabel.text = viewModel.description

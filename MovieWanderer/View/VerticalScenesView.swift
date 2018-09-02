@@ -21,7 +21,6 @@ class VerticalScenesView: UIView {
     }
     
     let scenesTableView: UITableView = {
-        
         let tableView = UITableView(frame: .zero)
         tableView.showsHorizontalScrollIndicator = false
         tableView.isUserInteractionEnabled = true
@@ -29,6 +28,7 @@ class VerticalScenesView: UIView {
         tableView.isScrollEnabled = true
         tableView.register(SceneTableViewCell.self)
         tableView.backgroundColor = .white
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -39,7 +39,6 @@ class VerticalScenesView: UIView {
         self.scenes = scenes
         
         scenesTableView.dataSource = self
-        scenesTableView.delegate = self
         
         addSubview(scenesTableView)
         scenesTableView.snp.makeConstraints { make in
@@ -66,31 +65,10 @@ extension VerticalScenesView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SceneTableViewCell.reuseIdentifier, for: indexPath) as! SceneTableViewCell
-        let viewModel = SceneCollectionViewCellViewModel(scene: scenes[indexPath.row])
+        let viewModel = SceneCellViewModel(scene: scenes[indexPath.row])
         cell.bindViewModel(viewModel)
         
         return cell
-    }
-}
-
-extension VerticalScenesView: UITableViewDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-//        let selectedScene = scenes[indexPath.row]
-//        _scrolledToScene.onNext(selectedScene)
-        
-    }
-    
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let index = targetContentOffset.pointee.x / (scenesTableView.frame.width - 4 * insetValue)
-        
-        print("index: \(abs(index.rounded()))")
-        let roundedIndex: Int = Int(abs(index.rounded()))
-        
-        let selectedScene = scenes[roundedIndex]
-                _scrolledToScene.onNext(selectedScene)
-
     }
 }
 
