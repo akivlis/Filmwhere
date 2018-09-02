@@ -40,7 +40,7 @@ final class MapViewController: UIViewController {
 
 private extension MapViewController {
     
-    private func setupViews(){        
+    private func setupViews(){
         mapAndScenesView = MapAndScenesCarouselView(scenes: viewModel.scenes)
         view.addSubview(mapAndScenesView)
         

@@ -15,7 +15,7 @@ class MovieHeaderView: UIView {
     // MARK: Properties
     
     var goToMap$: Observable<()> {
-        return goToMapIcon.rx.tap.asObservable()
+        return goToMapButton.rx.tap.asObservable()
     }
 
     private lazy var moviePhoto: UIImageView = {
@@ -31,44 +31,28 @@ class MovieHeaderView: UIView {
         label.numberOfLines = 3
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .gray
-        label.numberOfLines = 0
         return label
     }()
     
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 28)
+        label.font = UIFont.boldSystemFont(ofSize: 32)
         label.textColor = .black
         return label
     }()
     
-    private lazy var containerStackView: UIStackView = {
-       let stackView = UIStackView()
-        stackView.distribution = .equalCentering
-        stackView.spacing = 20
-        stackView.alignment = UIStackViewAlignment.fill
-        stackView.axis = .horizontal
-        return stackView
-    }()
-    
-    //remove this button
-    private lazy var mapButton: UIButton = {
-        let button = UIButton(type: .system)
-//        button.setTitle("", for: .normal)
-        return button
-    }()
-    
-    private lazy var numberofLocationLabel: UILabel = {
+    private lazy var openMoreLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = .gray
+        label.font = UIFont.systemFont(ofSize: 16)
         label.textAlignment = .center
+        label.textColor = .myRed
+        label.text = "More"
         return label
     }()
     
     private var gradient = CAGradientLayer()
     private lazy var photoContainerView = UIView()
-    private let goToMapIcon = UIButton()
+    private let goToMapButton = UIButton()
 
     let viewModel : MovieHeaderViewModel
     
@@ -117,17 +101,19 @@ private extension MovieHeaderView {
         photoContainerView.addSubview(moviePhoto)
         addSubview(photoContainerView)
         
-        goToMapIcon.setImage(UIImage(named: "go-to-map-icon")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        goToMapIcon.tintColor = .myRed
-        addSubview(goToMapIcon)
-        
+        goToMapButton.setTitle("Show on map", for: .normal)
+        goToMapButton.backgroundColor = .myRed
+        goToMapButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        goToMapButton.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
+        goToMapButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 24)
+        goToMapButton.layer.cornerRadius = 4
+        addSubview(goToMapButton)
+
         photoContainerView.clipsToBounds = true
 
         addSubview(descriptionLabel)
         addSubview(titleLabel)
-        addSubview(containerStackView)
-        containerStackView.addArrangedSubview(numberofLocationLabel)
-        containerStackView.addArrangedSubview(mapButton)
+        addSubview(openMoreLabel)
     }
     
     private func setupConstraints() {
@@ -135,7 +121,7 @@ private extension MovieHeaderView {
         
         photoContainerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            containerHeightLayoutConstraint = make.height.equalTo(250).constraint
+            containerHeightLayoutConstraint = make.height.equalTo(230).constraint
         }
         
         moviePhoto.snp.makeConstraints { make in
@@ -144,24 +130,26 @@ private extension MovieHeaderView {
             imageViewHeightLayoutConstraint = make.height.equalToSuperview().constraint
         }
         
-        goToMapIcon.snp.makeConstraints { make in
+        goToMapButton.snp.makeConstraints { make in
             make.right.equalToSuperview().inset(padding)
-            make.centerY.equalTo(titleLabel).offset(-14)
+            make.centerY.equalTo(titleLabel)
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(photoContainerView.snp.bottom).offset(12)
-            make.left.right.equalToSuperview().inset(padding)
-        }
-        
-        containerStackView.snp.makeConstraints { make in
-            make.left.right.equalTo(titleLabel)
-            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.top.equalTo(photoContainerView.snp.bottom).offset(14)
+            make.left.equalToSuperview().inset(padding)
+            make.right.lessThanOrEqualTo(goToMapButton.snp.left).inset(-8)
         }
         
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(containerStackView.snp.bottom).offset(10)
-            make.left.right.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(8)
+            make.left.equalTo(titleLabel)
+            make.right.equalTo(goToMapButton)
+        }
+        
+        openMoreLabel.snp.makeConstraints { make in
+            make.left.equalTo(descriptionLabel)
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(8)
             make.bottom.equalToSuperview().inset(8)
         }
     }
@@ -170,6 +158,5 @@ private extension MovieHeaderView {
         moviePhoto.image = viewModel.movieImage
         descriptionLabel.text = viewModel.description
         titleLabel.text = viewModel.title
-        numberofLocationLabel.text = viewModel.numberOfFilmingLocations
     }
 }

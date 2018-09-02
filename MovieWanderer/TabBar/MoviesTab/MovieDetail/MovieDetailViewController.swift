@@ -97,7 +97,7 @@ private extension MovieDetailViewController {
         scenesTitleLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(16)
             make.right.equalToSuperview()
-            make.top.equalTo(movieHeaderView.snp.bottom).offset(8)
+            make.top.equalTo(movieHeaderView.snp.bottom)//.offset(8)
         }
         
         scenesCarouselView.snp.makeConstraints { make in

@@ -58,7 +58,7 @@ class MapView: UIView {
         let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
         mapView.setCenter(coordinates, animated: true)
         
-        if let annotation = viewModel.getAnnotationForScene(scene) {            
+        if let annotation = viewModel.getAnnotationForScene(scene) {
 //            mapView.selectAnnotation(annotation, animated: true)
             //TODO: implement custom highligting, do nt call select cause the observable emits
         }
@@ -84,7 +84,6 @@ extension MapView: MKMapViewDelegate {
         
         let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView ?? MKMarkerAnnotationView()
         dequeuedView.annotation = annotation
-        dequeuedView.isHidden = false
         
         return dequeuedView
         

@@ -28,9 +28,9 @@ struct MovieHeaderViewModel {
         return movie.year
     }
     
-    var numberOfFilmingLocations: String {
-        return "\(movie.numberOfLocations) filming locations"
-    }
+//    var numberOfFilmingLocations: String {
+//        return "\(movie.numberOfLocations) filming locations"
+//    }
     
     var isFavorite: Bool {
         //TODO: add proper logic
