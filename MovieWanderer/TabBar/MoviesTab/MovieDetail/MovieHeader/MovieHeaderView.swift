@@ -132,7 +132,7 @@ private extension MovieHeaderView {
         
         goToMapButton.snp.makeConstraints { make in
             make.right.equalToSuperview().inset(padding)
-            make.centerY.equalTo(titleLabel)
+            make.centerY.equalTo(moviePhoto.snp.bottom)
         }
 
         titleLabel.snp.makeConstraints { make in
