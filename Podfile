@@ -7,7 +7,8 @@ target ‘MovieWanderer’ do
     pod 'RxCocoa',    '~> 4.0'
     pod 'SnapKit', '~> 4.0.0'
     pod 'MapKitGoogleStyler'
-
+    pod 'Moya/RxSwift', '~> 11.0.2'
+    pod 'Alamofire', '~> 4.7.3' #used by moya
 
   target 'MovieWandererTests' do
     pod 'RxBlocking', '~> 4.0'
