@@ -26,7 +26,7 @@ class MovieDetailViewController: UIViewController {
     init(movie: Movie) {
         self.movie = movie
         movieHeaderView = MovieHeaderView(viewModel: MovieHeaderViewModel(movie: movie))
-        scenesCarouselView = VerticalScenesView(scenes: movie.scenes)
+        scenesCarouselView = VerticalScenesView(scenes: movie.places)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -73,7 +73,7 @@ private extension MovieDetailViewController {
         numberOfPlacesLabel.textColor = .gray
         numberOfPlacesLabel.textAlignment = .right
         numberOfPlacesLabel.font = UIFont.systemFont(ofSize: 16)
-        numberOfPlacesLabel.text = "\(self.movie.scenes.count) places" // TODO: move to viewModel?
+        numberOfPlacesLabel.text = "\(self.movie.places.count) places" // TODO: move to viewModel?
         view.addSubview(numberOfPlacesLabel)
         
         scrollView.addSubview(movieHeaderView)
@@ -121,14 +121,14 @@ private extension MovieDetailViewController {
         
         movieHeaderView.goToMap$
             .subscribe(onNext: { [unowned self] _ in
-                let modalViewController = MapViewController(viewModel: MapViewModel(scenes: self.movie.scenes))
+                let modalViewController = MapViewController(places: self.movie.places)
                 self.present(modalViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
         //TODO: scenestableView should be private, expose only click
         scenesCarouselView.scenesTableView.rx.itemSelected
             .subscribe(onNext: { [unowned self]_ in
-                let modalViewController = MapViewController(viewModel: MapViewModel(scenes: self.movie.scenes))
+                let modalViewController = MapViewController(places: self.movie.places)
                 self.present(modalViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         

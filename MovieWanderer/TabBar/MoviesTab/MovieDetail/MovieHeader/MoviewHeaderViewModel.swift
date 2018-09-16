@@ -23,11 +23,6 @@ struct MovieHeaderViewModel {
         return movie.description
     }
     
-    var year: String {
-        //TODO: return year in specific format
-        return movie.year
-    }
-    
 //    var numberOfFilmingLocations: String {
 //        return "\(movie.numberOfLocations) filming locations"
 //    }

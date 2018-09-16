@@ -11,15 +11,15 @@ import RxSwift
 
 final class InfoSceneCarouselView: UIView {
     
-    var scrolledToScene$: Observable<Scene> {
+    var scrolledToScene$: Observable<Place> {
         return _scrolledToScene$
     }
     
     private static let lineSpacing: CGFloat = 15
-    private var scenes = [Scene]()
+    private var scenes = [Place]()
     private let cellWidth: CGFloat = Constants.ScenesCollection.cellWidth
     private let disposeBag = DisposeBag()
-    private var _scrolledToScene$ = PublishSubject<Scene>()
+    private var _scrolledToScene$ = PublishSubject<Place>()
     
     private let scenesCollectionView: UICollectionView = {
         let myCollectionViewFlowLayout: LeftAlignedFlowLayout = {
@@ -34,7 +34,7 @@ final class InfoSceneCarouselView: UIView {
         return collectionView
     }()
     
-    init(scenes: [Scene]) {
+    init(scenes: [Place]) {
         super.init(frame: .zero)
         
         self.scenes = scenes
@@ -46,7 +46,7 @@ final class InfoSceneCarouselView: UIView {
         commonInit()
     }
     
-    func setScenes(scenes: [Scene]) {
+    func setScenes(scenes: [Place]) {
         self.scenes = scenes
         scenesCollectionView.reloadData()
     }

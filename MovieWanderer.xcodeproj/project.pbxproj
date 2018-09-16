@@ -14,7 +14,6 @@
 		3D0523122029070C00A90A61 /* SceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523112029070C00A90A61 /* SceneTableViewCell.swift */; };
 		3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523132029072300A90A61 /* SceneCellViewModel.swift */; };
 		3D12F0B3210DE2DF00E3B83B /* ultra-light-style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */; };
-		3D12F0B9210DEF6900E3B83B /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0B8210DEF6900E3B83B /* MapViewModel.swift */; };
 		3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */; };
 		3D2289082028FE010074D173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2289072028FE010074D173 /* AppDelegate.swift */; };
 		3D2289112028FE010074D173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289102028FE010074D173 /* Assets.xcassets */; };
@@ -35,7 +34,9 @@
 		3D44B2C8205C48D80086D867 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C7205C48D80086D867 /* MovieTableViewCell.swift */; };
 		3D44B2CA205C48ED0086D867 /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C9205C48ED0086D867 /* MovieCellViewModel.swift */; };
 		3D4A868620C72BF4009AB176 /* MovieWanderer+Reusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D4A868520C72BF4009AB176 /* MovieWanderer+Reusable.swift */; };
-		3D803588202B9E5B00A51585 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Scene.swift */; };
+		3D574934214D6F140050E658 /* MovieService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D574933214D6F140050E658 /* MovieService.swift */; };
+		3D574936214D70D20050E658 /* MovieWanderer+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D574935214D70D20050E658 /* MovieWanderer+String.swift */; };
+		3D803588202B9E5B00A51585 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Place.swift */; };
 		3D864D602056DAA20069ECD0 /* VerticalScenesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D864D5F2056DAA20069ECD0 /* VerticalScenesView.swift */; };
 		3D9CE06721371D2000861568 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE06621371D2000861568 /* SceneViewController.swift */; };
 		3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18720F52FBD00F15104 /* MapViewController.swift */; };
@@ -73,7 +74,6 @@
 		3D0523132029072300A90A61 /* SceneCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCellViewModel.swift; sourceTree = "<group>"; };
 		3D12F0B1210DE2AB00E3B83B /* Directions.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
 		3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ultra-light-style.json"; sourceTree = "<group>"; };
-		3D12F0B8210DEF6900E3B83B /* MapViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
 		3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewModel.swift; sourceTree = "<group>"; };
 		3D2289042028FE010074D173 /* MovieWanderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieWanderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2289072028FE010074D173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,7 +98,9 @@
 		3D44B2C7205C48D80086D867 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		3D44B2C9205C48ED0086D867 /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
 		3D4A868520C72BF4009AB176 /* MovieWanderer+Reusable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+Reusable.swift"; sourceTree = "<group>"; };
-		3D803587202B9E5B00A51585 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		3D574933214D6F140050E658 /* MovieService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieService.swift; sourceTree = "<group>"; };
+		3D574935214D70D20050E658 /* MovieWanderer+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+String.swift"; sourceTree = "<group>"; };
+		3D803587202B9E5B00A51585 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		3D864D5F2056DAA20069ECD0 /* VerticalScenesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalScenesView.swift; sourceTree = "<group>"; };
 		3D9CE06621371D2000861568 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		3DA3B18720F52FBD00F15104 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 		3D2288FB2028FE010074D173 = {
 			isa = PBXGroup;
 			children = (
+				3D574932214D6EFE0050E658 /* Service */,
 				3D2289062028FE010074D173 /* MovieWanderer */,
 				3D22891D2028FE010074D173 /* MovieWandererTests */,
 				3D2289052028FE010074D173 /* Products */,
@@ -174,7 +177,6 @@
 		3D2289062028FE010074D173 /* MovieWanderer */ = {
 			isa = PBXGroup;
 			children = (
-				3D12F0B8210DEF6900E3B83B /* MapViewModel.swift */,
 				3DA3B18720F52FBD00F15104 /* MapViewController.swift */,
 				3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */,
 				3D3F8802205EBAE100EE3835 /* View */,
@@ -272,10 +274,18 @@
 			path = MovieCell;
 			sourceTree = "<group>";
 		};
+		3D574932214D6EFE0050E658 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				3D574933214D6F140050E658 /* MovieService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		3D803586202B9E4A00A51585 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3D803587202B9E5B00A51585 /* Scene.swift */,
+				3D803587202B9E5B00A51585 /* Place.swift */,
 				3D44B2C4205C46940086D867 /* Movie.swift */,
 			);
 			path = Model;
@@ -306,6 +316,7 @@
 				3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */,
 				3D4A868520C72BF4009AB176 /* MovieWanderer+Reusable.swift */,
 				3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */,
+				3D574935214D70D20050E658 /* MovieWanderer+String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -494,14 +505,20 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -572,7 +589,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer-MovieWandererTests/Pods-MovieWanderer-MovieWandererTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -581,7 +601,10 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -604,7 +627,6 @@
 				3D44B2C5205C46940086D867 /* Movie.swift in Sources */,
 				3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */,
 				3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */,
-				3D12F0B9210DEF6900E3B83B /* MapViewModel.swift in Sources */,
 				3D2289082028FE010074D173 /* AppDelegate.swift in Sources */,
 				3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */,
 				3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */,
@@ -613,6 +635,7 @@
 				3D9CE06721371D2000861568 /* SceneViewController.swift in Sources */,
 				214D73082105241E00F16983 /* InfoSceneCollectionViewCell.swift in Sources */,
 				214D73042105147F00F16983 /* InfoSceneCarouselView.swift in Sources */,
+				3D574934214D6F140050E658 /* MovieService.swift in Sources */,
 				3DCE811F202B9C7700041B9D /* LocalizationView.swift in Sources */,
 				3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */,
 				3DC79AF22030CD1D008B0E49 /* ProfileViewController.swift in Sources */,
@@ -622,6 +645,7 @@
 				3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */,
 				3D26DDEA2135F510002704B9 /* MapAndScenesCarouselView.swift in Sources */,
 				3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */,
+				3D574936214D70D20050E658 /* MovieWanderer+String.swift in Sources */,
 				3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */,
 				3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */,
 				3D4A868620C72BF4009AB176 /* MovieWanderer+Reusable.swift in Sources */,
@@ -635,7 +659,7 @@
 				3D3F87FF205D8E3100EE3835 /* MovieScenesView.swift in Sources */,
 				3DDF95492108C49600582D52 /* GradientView.swift in Sources */,
 				3D44B2CA205C48ED0086D867 /* MovieCellViewModel.swift in Sources */,
-				3D803588202B9E5B00A51585 /* Scene.swift in Sources */,
+				3D803588202B9E5B00A51585 /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

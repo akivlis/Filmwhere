@@ -12,11 +12,11 @@ import RxSwift
 
 class VerticalScenesView: UIView {
     
-    private var scenes = [Scene]()
+    private var scenes = [Place]()
     private let insetValue: CGFloat = 10
     
-    private var _scrolledToScene = PublishSubject<Scene>()
-    var scrolledToScene$: Observable<Scene> {
+    private var _scrolledToScene = PublishSubject<Place>()
+    var scrolledToScene$: Observable<Place> {
         return _scrolledToScene
     }
     
@@ -32,7 +32,7 @@ class VerticalScenesView: UIView {
         return tableView
     }()
     
-    init(scenes: [Scene]) {
+    init(scenes: [Place]) {
         super.init(frame: .zero)
         backgroundColor = .clear
         
@@ -52,7 +52,7 @@ class VerticalScenesView: UIView {
     }
     
     
-    func setScenes(scenes: [Scene]) {
+    func setScenes(scenes: [Place]) {
         self.scenes = scenes
         scenesTableView.reloadData()
     }

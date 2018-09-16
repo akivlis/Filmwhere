@@ -1,5 +1,5 @@
 //
-//  Scene.swift
+//  Place.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 07/02/2018.
@@ -8,27 +8,31 @@
 
 import Foundation
 
-class Scene {
+class Place {
     
+    let id: String
     let title: String
     let description: String
     let latitude: Double
     let longitude: Double
-    let country = "Philadelphia, USA" // TODO:
+    let imageURL: String
+    let country : String
 
     
-    init(title: String, description: String, latitude: Double, longitude: Double) {
+    init(id: String = "", title: String, description: String, latitude: Double, longitude: Double, imageURL: String = "imageURL", country: String = "Philadelphia, USA") {
+        self.id = id
         self.title = title
         self.description = description
         self.latitude = latitude
         self.longitude = longitude
+        self.country = country
+        self.imageURL = imageURL
     }
-    
 }
 
-extension Scene: Equatable {
+extension Place: Equatable {
 
-    static func == (lhs: Scene, rhs: Scene) -> Bool {
+    static func == (lhs: Place, rhs: Place) -> Bool {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
             lhs.latitude == rhs.latitude &&

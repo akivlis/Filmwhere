@@ -10,22 +10,19 @@ import Foundation
 
 struct Movie {
     
+    let id: String
     let title: String
     let description: String
-    let scenes: [Scene]
-    let year: String
-    let numberOfLocations: Int
+    let places: [Place]
+    let numberOfPlaces: Int
     let imageName: String
     
-    init(title: String, description: String, scenes: [Scene], year: String = "2015", numberOfLocations: Int = 15, imageName: String) {
-        
+    init(id: String = "", title: String, description: String, places: [Place], numberOfPlaces: Int = 15, imageName: String) {
+        self.id = id
         self.title = title
         self.description = description
-        self.scenes = scenes
-        self.year = year
-        self.numberOfLocations = numberOfLocations
+        self.places = places
+        self.numberOfPlaces = numberOfPlaces
         self.imageName = imageName
-    }
-    
-    
+    }    
 }

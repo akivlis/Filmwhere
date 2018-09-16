@@ -16,12 +16,12 @@ final class MapViewController: UIViewController {
     }
     
     private var mapAndScenesView: MapAndScenesCarouselView!
-    private let viewModel : MapViewModel
     private let closeButton = UIButton()
     private let disposeBag = DisposeBag()
+    private let places: [Place]
 
-    init(viewModel: MapViewModel) {
-        self.viewModel = viewModel
+    init(places: [Place]) {
+        self.places = places
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,7 +41,7 @@ final class MapViewController: UIViewController {
 private extension MapViewController {
     
     private func setupViews(){
-        mapAndScenesView = MapAndScenesCarouselView(scenes: viewModel.scenes)
+        mapAndScenesView = MapAndScenesCarouselView(scenes: places)
         view.addSubview(mapAndScenesView)
         
         if let image = UIImage(named: "close-icon") {

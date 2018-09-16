@@ -18,7 +18,7 @@ class MapView: UIView {
         return sceneSelected
     }
     
-    var viewModel : MapViewViewModel = MapViewViewModel(scenes: [Scene]()) {
+    var viewModel : MapViewViewModel = MapViewViewModel(places: [Place]()) {
         didSet {
             showAnnotationsAndZoom()
         }
@@ -54,7 +54,7 @@ class MapView: UIView {
         mapView.selectAnnotation(mapView.annotations[index], animated: false)
     }
     
-    func highlight(_ scene: Scene) {
+    func highlight(_ scene: Place) {
         let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
         mapView.setCenter(coordinates, animated: true)
         
@@ -82,11 +82,19 @@ extension MapView: MKMapViewDelegate {
             return nil
         }
         
-        let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView ?? MKMarkerAnnotationView()
-        dequeuedView.annotation = annotation
-        
-        return dequeuedView
-        
+        if let annotation = annotation as? SceneLocation {
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView ?? MKMarkerAnnotationView()
+            annotationView.annotation = annotation
+            annotationView.clusteringIdentifier = identifier
+            let image = UIImage(named: "pin_image")?.withRenderingMode(.alwaysTemplate)
+//            annotationView.glyphImage = image
+            
+//            let blackImage = UIImageView.init(image: image)
+//            blackImage.tintColor = blackImage
+            annotationView.selectedGlyphImage = image
+            return annotationView
+        }
+        return nil
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {

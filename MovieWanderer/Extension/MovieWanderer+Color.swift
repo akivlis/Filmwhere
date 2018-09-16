@@ -16,7 +16,6 @@ public extension UIColor {
     
     public static let appBlue = UIColor.color(fromHexString: "#007FFF")
     
-    
     public static let grayishGreen = UIColor.color(fromHexString: "#ACC8C2")
 
     public static let darkGreen = UIColor.color(fromHexString: "#6C7B6F")

@@ -9,28 +9,31 @@
 import Foundation
 import MapKit
 
+class SceneLocation: NSObject, MKAnnotation {
+    var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
+    
+    init(place: Place) {
+        coordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
+        title = place.title
+        subtitle = place.description
+    }
+}
+
 struct MapViewViewModel {
     
-    let annotations: [MKAnnotation]
+    let annotations: [SceneLocation]
 
-    private let scenes : [Scene]
-//    private var sceneAnnotation = [(Scene, MKAnnotation)]()
+    private let places : [Place]
     
-    init(scenes: [Scene]) {
-        self.scenes = scenes
-        
-        annotations =  scenes.map { scene -> MKAnnotation in
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
-            annotation.title = scene.title
-            annotation.subtitle = scene.description
-            return annotation
-        }
-        
+    init(places: [Place]) {
+        self.places = places
+        annotations = places.map { SceneLocation.init(place: $0) }
     }
     
-    func getAnnotationForScene(_ scene: Scene) -> MKAnnotation? {
-        if let index = scenes.firstIndex(where: { $0.title == scene.title }) {
+    func getAnnotationForScene(_ scene: Place) -> MKAnnotation? {
+        if let index = places.firstIndex(where: { $0.title == scene.title }) {
             return annotations[index]
         }
         return nil
@@ -43,15 +46,11 @@ struct MapViewViewModel {
         return nil
     }
     
-    func getSceneForAnnotation(_ annotation: MKAnnotation) -> Scene? {
+    func getSceneForAnnotation(_ annotation: MKAnnotation) -> Place? {
         if let index = annotations.firstIndex(where: { $0.title == annotation.title }) {
-            return scenes[index]
+            return places[index]
         }
         return nil
     }
     
-//    func getIndexForScene(_ scene: Scene) -> Int? {
-//        let index = scenes.firstIndex { $0.title == scene.title } // TODO: rewrite
-//        return index
-//    }
 }

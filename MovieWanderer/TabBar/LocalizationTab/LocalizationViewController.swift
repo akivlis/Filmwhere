@@ -42,10 +42,10 @@ private extension LocalizationViewController {
     
     private func setupViews() {
         
-        let scenes : [Scene] = [Scene(title: "Jamie", description: "Hahaha", latitude: 48.225660, longitude: 16.399509),
-                                Scene(title: "Lokrum", description: "Hihihhi", latitude: 48.228176, longitude: 16.395046),
-                                Scene(title: "Stairs", description: "Bla bla bla", latitude: 48.206959, longitude: 16.390454),
-                                Scene(title: "Dany", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)]
+        let scenes : [Place] = [Place(title: "Jamie", description: "Hahaha", latitude: 48.225660, longitude: 16.399509),
+                                Place(title: "Lokrum", description: "Hihihhi", latitude: 48.228176, longitude: 16.395046),
+                                Place(title: "Stairs", description: "Bla bla bla", latitude: 48.206959, longitude: 16.390454),
+                                Place(title: "Dany", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)]
         
         sceneView = VerticalScenesView(scenes: scenes)
         mapView = MapAndScenesCarouselView(scenes: scenes)
