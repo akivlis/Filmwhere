@@ -34,18 +34,18 @@ class MapView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupMapView()
+        commonInit()
     }
     
     init(viewModel: MapViewViewModel) {
         super.init(frame: .zero)
         self.viewModel = viewModel
-        setupMapView()
+        commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setupMapView()
+        commonInit()
     }
     
     // MARK: public methods
@@ -74,40 +74,13 @@ class MapView: UIView {
 
 extension MapView: MKMapViewDelegate {
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        if annotation is MKUserLocation {
-            return nil
-        }
-        
-        if let sceneAnnotation = annotation as? SceneAnnotation {
-            let identifier = "scene"
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? CustomMarkerAnnotionView ?? CustomMarkerAnnotionView(annotation: nil, reuseIdentifier: identifier)
-            annotationView.annotation = sceneAnnotation
-            annotationView.clusteringIdentifier = identifier
-            annotationView.markerTintColor = .black
-            let image = UIImage(named: "projector")
-            annotationView.glyphImage = image
-//            annotationView.selectedGlyphImage = image
-            return annotationView
-        }
-        
-        if let clusterAnnotation = annotation as? MKClusterAnnotation {
-            let identifier = "cluster"
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? CustomMarkerAnnotionView ?? CustomMarkerAnnotionView(annotation: nil, reuseIdentifier: identifier)
-            annotationView.annotation = clusterAnnotation
-            annotationView.markerTintColor = .black
-            return annotationView
-        }
-        return nil
-    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         print("selected \(String(describing: view.annotation?.title))")
         view.setSelected(true, animated: false)
         view.isHighlighted  = true
         
-        if let customMarker = view as? CustomMarkerAnnotionView {
+        if let customMarker = view as? SceneAnnotationView {
             customMarker.markerTintColor = .black
         }
         
@@ -128,12 +101,23 @@ extension MapView: MKMapViewDelegate {
 
 private extension MapView {
     
+    private func commonInit() {
+        setupMapView()
+        registerAnnotationViewClasses()
+    }
+    
     private func setupMapView() {
         addSubview(mapView)
         mapView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
         mapView.delegate = self
+       
+    }
+    
+    private func registerAnnotationViewClasses() {
+         mapView.register(SceneAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
     }
     
     private func showAnnotationsAndZoom() {
@@ -159,21 +143,3 @@ private extension MapView {
 }
 
 
-class CustomMarkerAnnotionView: MKMarkerAnnotationView {
-    
-    override var isSelected: Bool {
-        didSet {
-            markerTintColor = .black
-        }
-    }
-    
-    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-}

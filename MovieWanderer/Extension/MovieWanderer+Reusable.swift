@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 public protocol Reuseable: class {
     static var reuseIdentifier: String { get }
@@ -21,6 +22,7 @@ extension Reuseable {
 extension UITableViewCell: Reuseable {}
 extension UITableViewHeaderFooterView: Reuseable {}
 extension UICollectionReusableView: Reuseable {}
+extension MKAnnotationView: Reuseable {}
 
 extension UITableView {
     public func register<T: Reuseable>(_ cell: T.Type) {
@@ -45,3 +47,10 @@ extension UICollectionView {
         register(view, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: view.reuseIdentifier)
     }
 }
+
+//extension MKAnnotationView {
+//    public func register<T: Reuseable>(_ annotationView: T.Type) {
+//        register(annotationView, forAnnotationViewWithReuseIdentifier: annotationView.reuseIdentifier)
+//    }
+//
+//}
