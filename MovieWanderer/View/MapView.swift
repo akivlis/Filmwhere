@@ -59,7 +59,7 @@ class MapView: UIView {
         mapView.setCenter(coordinates, animated: true)
         
         if let annotation = viewModel.getAnnotationForScene(scene) {
-//            mapView.selectAnnotation(annotation, animated: true)
+            mapView.selectAnnotation(annotation, animated: true)
             //TODO: implement custom highligting, do nt call select cause the observable emits
         }
         print("Highlight scene: \(scene.title)")
@@ -68,7 +68,6 @@ class MapView: UIView {
     func setupStyleWith(jsonFileName: String) {
         configureTileOverlayWith(jsonFileName: jsonFileName)
     }
-    
 }
 
 // MARK: MKMapViewDelegate
@@ -76,22 +75,28 @@ class MapView: UIView {
 extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let identifier = "marker"
         
         if annotation is MKUserLocation {
             return nil
         }
         
-        if let annotation = annotation as? SceneLocation {
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView ?? MKMarkerAnnotationView()
-            annotationView.annotation = annotation
+        if let sceneAnnotation = annotation as? SceneAnnotation {
+            let identifier = "scene"
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? CustomMarkerAnnotionView ?? CustomMarkerAnnotionView(annotation: nil, reuseIdentifier: identifier)
+            annotationView.annotation = sceneAnnotation
             annotationView.clusteringIdentifier = identifier
-            let image = UIImage(named: "pin_image")?.withRenderingMode(.alwaysTemplate)
-//            annotationView.glyphImage = image
-            
-//            let blackImage = UIImageView.init(image: image)
-//            blackImage.tintColor = blackImage
-            annotationView.selectedGlyphImage = image
+            annotationView.markerTintColor = .black
+            let image = UIImage(named: "projector")
+            annotationView.glyphImage = image
+//            annotationView.selectedGlyphImage = image
+            return annotationView
+        }
+        
+        if let clusterAnnotation = annotation as? MKClusterAnnotation {
+            let identifier = "cluster"
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? CustomMarkerAnnotionView ?? CustomMarkerAnnotionView(annotation: nil, reuseIdentifier: identifier)
+            annotationView.annotation = clusterAnnotation
+            annotationView.markerTintColor = .black
             return annotationView
         }
         return nil
@@ -101,6 +106,10 @@ extension MapView: MKMapViewDelegate {
         print("selected \(String(describing: view.annotation?.title))")
         view.setSelected(true, animated: false)
         view.isHighlighted  = true
+        
+        if let customMarker = view as? CustomMarkerAnnotionView {
+            customMarker.markerTintColor = .black
+        }
         
         //maybe just use idex
         if let index = viewModel.getIndexForAnnotation(view.annotation!) {
@@ -150,3 +159,21 @@ private extension MapView {
 }
 
 
+class CustomMarkerAnnotionView: MKMarkerAnnotationView {
+    
+    override var isSelected: Bool {
+        didSet {
+            markerTintColor = .black
+        }
+    }
+    
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+}

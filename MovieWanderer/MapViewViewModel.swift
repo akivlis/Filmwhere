@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class SceneLocation: NSObject, MKAnnotation {
+class SceneAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
@@ -23,13 +23,13 @@ class SceneLocation: NSObject, MKAnnotation {
 
 struct MapViewViewModel {
     
-    let annotations: [SceneLocation]
+    let annotations: [SceneAnnotation]
 
     private let places : [Place]
     
     init(places: [Place]) {
         self.places = places
-        annotations = places.map { SceneLocation.init(place: $0) }
+        annotations = places.map { SceneAnnotation.init(place: $0) }
     }
     
     func getAnnotationForScene(_ scene: Place) -> MKAnnotation? {
