@@ -9,6 +9,7 @@ target ‘MovieWanderer’ do
     pod 'MapKitGoogleStyler'
     pod 'Moya/RxSwift', '~> 11.0.2'
     pod 'Alamofire', '~> 4.7.3' #used by moya
+    pod 'FSPagerView'
 
   target 'MovieWandererTests' do
     pod 'RxBlocking', '~> 4.0'

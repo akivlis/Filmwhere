@@ -128,8 +128,8 @@ private extension MovieDetailViewController {
         //TODO: scenestableView should be private, expose only click
         scenesCarouselView.scenesTableView.rx.itemSelected
             .subscribe(onNext: { [unowned self]_ in
-                let modalViewController = MapViewController(places: self.movie.places)
-                self.present(modalViewController, animated: true, completion: nil)
+                let sceneDetailViewController = SceneDetailViewController()
+                self.present(sceneDetailViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
         backButton.rx.tap

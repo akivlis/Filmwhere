@@ -45,6 +45,7 @@
 		3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */; };
 		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
 		3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */; };
+		3DC5CBC52152DAA200EEE30B /* SceneDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC5CBC42152DAA200EEE30B /* SceneDetailViewController.swift */; };
 		3DC79AE3203087E8008B0E49 /* MovieWanderer+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */; };
 		3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */; };
 		3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */; };
@@ -111,6 +112,7 @@
 		3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+MKMapView.swift"; sourceTree = "<group>"; };
 		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedFlowLayout.swift; sourceTree = "<group>"; };
+		3DC5CBC42152DAA200EEE30B /* SceneDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailViewController.swift; sourceTree = "<group>"; };
 		3DC79AE2203087E8008B0E49 /* MovieWanderer+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+Color.swift"; sourceTree = "<group>"; };
 		3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+UIView.swift"; sourceTree = "<group>"; };
 		3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 				3D2289122028FE010074D173 /* LaunchScreen.storyboard */,
 				3D2289152028FE010074D173 /* Info.plist */,
 				3DC040192039EA2E00C1A86D /* Supporting Files */,
+				3DC5CBC42152DAA200EEE30B /* SceneDetailViewController.swift */,
 			);
 			path = MovieWanderer;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -530,6 +534,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -604,6 +609,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer-MovieWandererTests/Pods-MovieWanderer-MovieWandererTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -616,6 +622,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -661,6 +668,7 @@
 				3D26DDEA2135F510002704B9 /* MapAndScenesCarouselView.swift in Sources */,
 				3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */,
 				3D574936214D70D20050E658 /* MovieWanderer+String.swift in Sources */,
+				3DC5CBC52152DAA200EEE30B /* SceneDetailViewController.swift in Sources */,
 				3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */,
 				3D57493B214E8AB60050E658 /* ClusterAnnotationView.swift in Sources */,
 				3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */,

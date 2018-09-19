@@ -16,7 +16,7 @@ final class MapViewController: UIViewController {
     }
     
     private var mapAndScenesView: MapAndScenesCarouselView!
-    private let closeButton = UIButton()
+    private let closeButton = UIButton(type: .system)
     private let disposeBag = DisposeBag()
     private let places: [Place]
 
