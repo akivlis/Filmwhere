@@ -24,13 +24,15 @@ public extension UIColor {
 
     public static let pink = UIColor.color(fromHexString: "#DD7EB5")
 
-    public static let lightPink = UIColor.color(fromHexString: "#EDBDDA")
+    public static let veryLightPink = UIColor.color(fromHexString: "##f7efed")
 
     public static let lightGreen = UIColor.color(fromHexString: "#DAE7DF")
     
     public static let myRed = UIColor.color(fromHexString: "#F95F62")
     
     public static let myDarkGray = UIColor.color(fromHexString: "#343F4B")
+    
+    
     
 }
 
