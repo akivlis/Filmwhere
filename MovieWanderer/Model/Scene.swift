@@ -1,5 +1,5 @@
 //
-//  Place.swift
+//  Scene.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 07/02/2018.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Place {
+class Scene {
     
     let id: String
     let title: String
@@ -30,9 +30,9 @@ class Place {
     }
 }
 
-extension Place: Equatable {
+extension Scene: Equatable {
 
-    static func == (lhs: Place, rhs: Place) -> Bool {
+    static func == (lhs: Scene, rhs: Scene) -> Bool {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
             lhs.latitude == rhs.latitude &&

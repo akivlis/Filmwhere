@@ -11,7 +11,7 @@ import UIKit
 
 struct SceneCellViewModel {
     
-    let scene: Place
+    let scene: Scene
     
     var title : String {
         return scene.title

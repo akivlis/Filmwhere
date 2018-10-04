@@ -18,7 +18,7 @@ class MapView: UIView {
         return sceneSelected
     }
     
-    var viewModel : MapViewViewModel = MapViewViewModel(places: [Place]()) {
+    var viewModel : MapViewViewModel = MapViewViewModel(places: [Scene]()) {
         didSet {
             showAnnotationsAndZoom()
         }
@@ -54,7 +54,7 @@ class MapView: UIView {
         mapView.selectAnnotation(mapView.annotations[index], animated: false)
     }
     
-    func highlight(_ scene: Place) {
+    func highlight(_ scene: Scene) {
         let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
         mapView.setCenter(coordinates, animated: true)
         

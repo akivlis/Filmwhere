@@ -11,19 +11,19 @@ import RxSwift
 
 final class MapAndScenesCarouselView: UIView {
     
-    private let scenes: [Place]
+    private let scenes: [Scene]
     private var scenesCarousel: InfoSceneCarouselView!
     private let mapView = MapView()
     private let disposeBag = DisposeBag()
     
-    init(scenes: [Place]) {
+    init(scenes: [Scene]) {
         self.scenes = scenes
         super.init(frame: .zero)
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.scenes = [Place]()
+        self.scenes = [Scene]()
         super.init(coder: aDecoder)
         commonInit()
     }

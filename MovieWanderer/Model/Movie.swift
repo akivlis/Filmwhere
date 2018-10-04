@@ -13,16 +13,16 @@ struct Movie {
     let id: String
     let title: String
     let description: String
-    let places: [Place]
-    let numberOfPlaces: Int
+    let scenes: [Scene]
+    let numberOfScenes: Int
     let imageName: String
     
-    init(id: String = "", title: String, description: String, places: [Place], numberOfPlaces: Int = 15, imageName: String) {
+    init(id: String = "", title: String, description: String, scenes: [Scene], imageName: String) {
         self.id = id
         self.title = title
         self.description = description
-        self.places = places
-        self.numberOfPlaces = numberOfPlaces
+        self.scenes = scenes
         self.imageName = imageName
+        self.numberOfScenes = scenes.count
     }    
 }

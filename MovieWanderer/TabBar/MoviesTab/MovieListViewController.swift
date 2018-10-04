@@ -18,18 +18,18 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        let dummyScenes : [Place] = [Place(title: "Rocky", description: "Hahaha", latitude:39.962920, longitude: -75.157235),
-                                Place(title: "Stairs", description: "Dubrovnik", latitude: 42.645942, longitude: 18.090084),
-                                Place(title: "Mission Impossible", description: "Vienn Opera", latitude:  48.202840, longitude: 16.368916),
-                                Place(title: "Red Sparrow", description: "Hofburg", latitude:  48.208347, longitude: 16.366143),
-                                Place(title: "Roman holiday", description: "Spanish stairs", latitude:  41.899355, longitude: 12.484746)
+        let dummyScenes : [Scene] = [Scene(title: "Rocky", description: "Hahaha", latitude:39.962920, longitude: -75.157235),
+                                Scene(title: "Stairs", description: "Dubrovnik", latitude: 42.645942, longitude: 18.090084),
+                                Scene(title: "Mission Impossible", description: "Vienn Opera", latitude:  48.202840, longitude: 16.368916),
+                                Scene(title: "Red Sparrow", description: "Hofburg", latitude:  48.208347, longitude: 16.366143),
+                                Scene(title: "Roman holiday", description: "Spanish stairs", latitude:  41.899355, longitude: 12.484746)
 
         ]
         
-        let dummyMovies =  [Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", places: dummyScenes, imageName: "Rocky"),
-                            Movie(title: "Men in Black", description: "Men are saving the world from the aliens", places:dummyScenes, imageName: "placeholder"),
+        let dummyMovies =  [Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageName: "Rocky"),
+                            Movie(title: "Men in Black", description: "Men are saving the world from the aliens", scenes:dummyScenes, imageName: "placeholder"),
                             
-                            Movie(title: "Game Of Thrones", description: "Game of thrones is an american fantasy drama created by Martin.", places: dummyScenes, imageName: "Stairs")]
+                            Movie(title: "Game Of Thrones", description: "Game of thrones is an american fantasy drama created by Martin.", scenes: dummyScenes, imageName: "Stairs")]
        
         listView.movies = dummyMovies
         
