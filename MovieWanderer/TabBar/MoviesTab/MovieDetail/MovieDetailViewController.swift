@@ -14,7 +14,7 @@ class MovieDetailViewController: UIViewController {
 
     private let scrollView = UIScrollView()
     private let movieHeaderView : MovieHeaderView
-    private let scenesCarouselView : VerticalScenesView
+    private let verticalScenesView : VerticalScenesView
     private let disposeBag = DisposeBag()
     private let movie: Movie
     private let scenesTitleLabel = UILabel()
@@ -26,7 +26,7 @@ class MovieDetailViewController: UIViewController {
     init(movie: Movie) {
         self.movie = movie
         movieHeaderView = MovieHeaderView(viewModel: MovieHeaderViewModel(movie: movie))
-        scenesCarouselView = VerticalScenesView(scenes: movie.scenes)
+        verticalScenesView = VerticalScenesView(scenes: movie.scenes)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -78,7 +78,7 @@ private extension MovieDetailViewController {
         
         scrollView.addSubview(movieHeaderView)
         scrollView.addSubview(scenesTitleLabel)
-        scrollView.addSubview(scenesCarouselView)
+        scrollView.addSubview(verticalScenesView)
     }
     
     private func setupContraints() {
@@ -110,9 +110,9 @@ private extension MovieDetailViewController {
             make.right.equalToSuperview().inset(20)
         }
         
-        scenesCarouselView.snp.makeConstraints { make in
+        verticalScenesView.snp.makeConstraints { make in
             make.top.equalTo(scenesTitleLabel.snp.bottom).offset(8)
-            make.left.right.equalToSuperview()
+            make.left.right.equalToSuperview().inset(12)
             make.bottom.equalTo(view.safeAreaLayoutGuide) //TODO: dat vysku ako je vleke table view??
         }
     }
@@ -126,7 +126,7 @@ private extension MovieDetailViewController {
             }).disposed(by: disposeBag)
         
         //TODO: scenestableView should be private, expose only click
-        scenesCarouselView.scenesTableView.rx.itemSelected
+        verticalScenesView.scenesTableView.rx.itemSelected
             .subscribe(onNext: { [unowned self]_ in
                 let sceneDetailViewController = SceneDetailViewController()
                 self.present(sceneDetailViewController, animated: true, completion: nil)

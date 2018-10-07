@@ -13,8 +13,6 @@ import RxSwift
 class VerticalScenesView: UIView {
     
     private var scenes = [Scene]()
-    private let insetValue: CGFloat = 10
-    
     private var _scrolledToScene = PublishSubject<Scene>()
     var scrolledToScene$: Observable<Scene> {
         return _scrolledToScene
@@ -24,9 +22,8 @@ class VerticalScenesView: UIView {
         let tableView = UITableView(frame: .zero)
         tableView.showsHorizontalScrollIndicator = false
         tableView.isUserInteractionEnabled = true
-        tableView.showsVerticalScrollIndicator = false
         tableView.isScrollEnabled = true
-        tableView.register(SceneTableViewCell.self)
+        tableView.register(UINib(nibName: "SceneTableViewCell", bundle: nil), forCellReuseIdentifier: SceneTableViewCell.reuseIdentifier)
         tableView.backgroundColor = .white
         tableView.separatorStyle = .none
         return tableView
@@ -39,6 +36,7 @@ class VerticalScenesView: UIView {
         self.scenes = scenes
         
         scenesTableView.dataSource = self
+        scenesTableView.delegate = self
         
         addSubview(scenesTableView)
         scenesTableView.snp.makeConstraints { make in
@@ -69,6 +67,13 @@ extension VerticalScenesView: UITableViewDataSource {
         cell.bindViewModel(viewModel)
         
         return cell
+    }
+}
+
+extension VerticalScenesView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 180
     }
 }
 
