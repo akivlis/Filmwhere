@@ -30,14 +30,22 @@ class MovieDetailViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .never
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.backgroundColor = UIColor.clear
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
         
         setupViews()
         setupContraints()
@@ -48,37 +56,18 @@ class MovieDetailViewController: UIViewController {
 private extension MovieDetailViewController {
     
     private func setupViews() {
-        title = movie.title
+        title = self.movie.title
         view.backgroundColor = .white
         view.addSubview(verticalScenesView)
         
         backButton.setImage(UIImage(named: "back-icon"), for: .normal)
-        view.addSubview(backButton)
-        
-        scenesTitleLabel.textColor = .black
-        scenesTitleLabel.font = UIFont.boldSystemFont(ofSize: 17)
-        scenesTitleLabel.text = "Scenes"
-        scenesTitleLabel.textAlignment = .left
-        
-        numberOfPlacesLabel.textColor = .gray
-        numberOfPlacesLabel.textAlignment = .right
-        numberOfPlacesLabel.font = UIFont.systemFont(ofSize: 16)
-        numberOfPlacesLabel.text = "\(self.movie.scenes.count) places" // TODO: move to viewModel?
-//        view.addSubview(numberOfPlacesLabel)
-        
-//        scrollView.addSubview(scenesTitleLabel)
+//        view.addSubview(backButton)
     }
     
     private func setupContraints() {
         verticalScenesView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-        }
-        
-        backButton.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
-            make.left.equalToSuperview().inset(20)
-            make.width.height.equalTo(20)
         }
     }
     
@@ -101,6 +90,45 @@ private extension MovieDetailViewController {
             .subscribe(onNext: { [unowned self] in
                 self.navigationController?.popViewController(animated: true)
             }).disposed(by: disposeBag)
+        
+        verticalScenesView.scenesCollectionView.rx.didScroll
+            .subscribe(onNext: { _ in
+//                print(self.verticalScenesView.scenesCollectionView.contentOffset.y)
+                
+                var offset = self.verticalScenesView.scenesCollectionView.contentOffset.y / 150 //check this number
+                if offset > 1 {
+                    offset = 1
+                    
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.navigationController?.navigationBar.shadowImage = nil
+                        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+                        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black]
+                        self.navigationController?.navigationBar.layoutIfNeeded()
+                        print("show")
+                    })
+
+                } else {
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.navigationController?.navigationBar.shadowImage = UIImage()
+                        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+                        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.clear]
+                        self.navigationController?.navigationBar.layoutIfNeeded()
+                        print("hide")
+                    })
+                }
+                
+                
+                
+//                let color = UIColor.black.withAlphaComponent(offset)
+//                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): color]
+
+//                self.navigationController?.navigationBar.backgroundColor =  color
+                //        self.navigationController?.navigationBar.tintColor = color
+                //        UIApplication.shared.statusBarView?.backgroundColor = color
+                
+                print(offset)
+                
+            })
     }
 }
 

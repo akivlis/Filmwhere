@@ -32,10 +32,10 @@ class VerticalScenesView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isUserInteractionEnabled = true
-//        collectionView.isScrollEnabled = true
         collectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: SceneCollectionViewCell.reuseIdentifier)
         collectionView.register(header: MovieHeaderView.self)
-        collectionView.backgroundColor = .red
+        collectionView.backgroundColor = .white
+        collectionView.contentInsetAdjustmentBehavior = .never
         return collectionView
     }()
     
@@ -52,9 +52,6 @@ class VerticalScenesView: UIView {
             make.edges.equalToSuperview()
         }
         scenesCollectionView.reloadData()
-        
-        scenesCollectionView.contentInsetAdjustmentBehavior = .never
-        
     }
     
     required init?(coder _: NSCoder) {
