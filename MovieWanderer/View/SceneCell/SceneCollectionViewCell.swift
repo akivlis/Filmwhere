@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SceneTableViewCell: UITableViewCell {
+class SceneCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,8 +18,8 @@ class SceneTableViewCell: UITableViewCell {
     
     var viewModel: SceneCellViewModel?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         commonInit()
     }
    
@@ -41,7 +41,7 @@ class SceneTableViewCell: UITableViewCell {
     }
 }
 
-private extension SceneTableViewCell {
+private extension SceneCollectionViewCell {
     
     private func commonInit() {
         setupViews()
@@ -49,7 +49,6 @@ private extension SceneTableViewCell {
     }
     
     private func setupViews() {
-        selectionStyle = .none
         backgroundImageView.layer.cornerRadius = 8
         
         gradientView.colors = (UIColor.clear, UIColor.black)

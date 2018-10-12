@@ -1,5 +1,5 @@
 //
-//  InfoSceneCarouselView.swift
+//  SceneCarouselView.swift
 //  MovieWanderer
 //
 //  Created by Silvika on 22/07/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-final class InfoSceneCarouselView: UIView {
+final class SceneCarouselView: UIView {
     
     var scrolledToScene$: Observable<Scene> {
         return _scrolledToScene$
@@ -58,7 +58,7 @@ final class InfoSceneCarouselView: UIView {
     }
 }
 
-extension InfoSceneCarouselView: UICollectionViewDataSource {
+extension SceneCarouselView: UICollectionViewDataSource {
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return scenes.count
@@ -74,7 +74,7 @@ extension InfoSceneCarouselView: UICollectionViewDataSource {
     }
 }
 
-extension InfoSceneCarouselView: UICollectionViewDelegate {
+extension SceneCarouselView: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedScene = scenes[indexPath.row]
@@ -90,14 +90,14 @@ extension InfoSceneCarouselView: UICollectionViewDelegate {
     }
 }
 
-extension InfoSceneCarouselView: UICollectionViewDelegateFlowLayout {
+extension SceneCarouselView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: cellWidth, height: collectionView.frame.height)
     }
 }
 
-private extension InfoSceneCarouselView {
+private extension SceneCarouselView {
     
     private func commonInit() {
         setupViews()
@@ -120,7 +120,7 @@ private extension InfoSceneCarouselView {
     private func setupConstraints() {
         scenesCollectionView.snp.makeConstraints { make in
             make.right.left.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(InfoSceneCarouselView.lineSpacing)
+            make.top.bottom.equalToSuperview().inset(SceneCarouselView.lineSpacing)
         }
     }
     

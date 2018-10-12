@@ -18,15 +18,21 @@ class VerticalScenesView: UIView {
         return _scrolledToScene
     }
     
-    let scenesTableView: UITableView = {
-        let tableView = UITableView(frame: .zero)
-        tableView.showsHorizontalScrollIndicator = false
-        tableView.isUserInteractionEnabled = true
-        tableView.isScrollEnabled = true
-        tableView.register(UINib(nibName: "SceneTableViewCell", bundle: nil), forCellReuseIdentifier: SceneTableViewCell.reuseIdentifier)
-        tableView.backgroundColor = .white
-        tableView.separatorStyle = .none
-        return tableView
+    let scenesCollectionView: UICollectionView = {
+        let layout: UICollectionViewFlowLayout = {
+            let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .vertical
+            layout.minimumInteritemSpacing = 0
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return layout
+        }()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isUserInteractionEnabled = true
+//        collectionView.isScrollEnabled = true
+        collectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: SceneCollectionViewCell.reuseIdentifier)
+        collectionView.backgroundColor = .white
+        return collectionView
     }()
     
     init(scenes: [Scene]) {
@@ -35,14 +41,14 @@ class VerticalScenesView: UIView {
         
         self.scenes = scenes
         
-        scenesTableView.dataSource = self
-        scenesTableView.delegate = self
+        scenesCollectionView.dataSource = self
+        scenesCollectionView.delegate = self
         
-        addSubview(scenesTableView)
-        scenesTableView.snp.makeConstraints { make in
+        addSubview(scenesCollectionView)
+        scenesCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        scenesTableView.reloadData()        
+        scenesCollectionView.reloadData()        
     }
     
     required init?(coder _: NSCoder) {
@@ -52,28 +58,43 @@ class VerticalScenesView: UIView {
     
     func setScenes(scenes: [Scene]) {
         self.scenes = scenes
-        scenesTableView.reloadData()
+        scenesCollectionView.reloadData()
     }
 }
 
-extension VerticalScenesView: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+extension VerticalScenesView: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return scenes.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SceneTableViewCell.reuseIdentifier, for: indexPath) as! SceneTableViewCell
-        let viewModel = SceneCellViewModel(scene: scenes[indexPath.row])
-        cell.bindViewModel(viewModel)
-        
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SceneCollectionViewCell.reuseIdentifier, for: indexPath)
+        if let sceneCell = cell as? SceneCollectionViewCell {
+            
+            let viewModel = SceneCellViewModel(scene: scenes[indexPath.row])
+            sceneCell.bindViewModel(viewModel)
+            return sceneCell
+        }
         return cell
     }
 }
 
-extension VerticalScenesView: UITableViewDelegate {
+extension VerticalScenesView: UICollectionViewDelegate {
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+}
+
+extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.bounds.width
+        let height: CGFloat = 180
+        
+        return CGSize(width: width, height: height)
     }
 }
 

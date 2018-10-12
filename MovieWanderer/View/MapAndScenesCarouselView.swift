@@ -12,7 +12,7 @@ import RxSwift
 final class MapAndScenesCarouselView: UIView {
     
     private let scenes: [Scene]
-    private var scenesCarousel: InfoSceneCarouselView!
+    private var scenesCarousel: SceneCarouselView!
     private let mapView = MapView()
     private let disposeBag = DisposeBag()
     
@@ -41,7 +41,7 @@ private extension MapAndScenesCarouselView {
         mapView.viewModel = MapViewViewModel(places: scenes)
         addSubview(mapView)
         
-        scenesCarousel = InfoSceneCarouselView(scenes: scenes)
+        scenesCarousel = SceneCarouselView(scenes: scenes)
         addSubview(scenesCarousel)
     }
     
