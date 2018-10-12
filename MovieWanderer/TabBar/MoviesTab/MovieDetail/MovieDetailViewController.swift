@@ -12,8 +12,6 @@ import SnapKit
 
 class MovieDetailViewController: UIViewController {
 
-    private let scrollView = UIScrollView()
-    private let movieHeaderView : MovieHeaderView
     private let verticalScenesView : VerticalScenesView
     private let disposeBag = DisposeBag()
     private let movie: Movie
@@ -25,8 +23,7 @@ class MovieDetailViewController: UIViewController {
     
     init(movie: Movie) {
         self.movie = movie
-        movieHeaderView = MovieHeaderView(viewModel: MovieHeaderViewModel(movie: movie))
-        verticalScenesView = VerticalScenesView(scenes: movie.scenes)
+        verticalScenesView = VerticalScenesView(movie: movie)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,17 +38,10 @@ class MovieDetailViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .never
         navigationController?.isNavigationBarHidden = true
-
-        scrollView.delegate = self
+        
         setupViews()
         setupContraints()
         setupObservables()
-    }
-}
-
-extension MovieDetailViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        movieHeaderView.updatePosition(withInset: scrollView.contentInset.top, contentOffset: scrollView.contentOffset.y)
     }
 }
 
@@ -60,7 +50,7 @@ private extension MovieDetailViewController {
     private func setupViews() {
         title = movie.title
         view.backgroundColor = .white
-        view.addSubview(scrollView)
+        view.addSubview(verticalScenesView)
         
         backButton.setImage(UIImage(named: "back-icon"), for: .normal)
         view.addSubview(backButton)
@@ -74,23 +64,15 @@ private extension MovieDetailViewController {
         numberOfPlacesLabel.textAlignment = .right
         numberOfPlacesLabel.font = UIFont.systemFont(ofSize: 16)
         numberOfPlacesLabel.text = "\(self.movie.scenes.count) places" // TODO: move to viewModel?
-        view.addSubview(numberOfPlacesLabel)
+//        view.addSubview(numberOfPlacesLabel)
         
-        scrollView.addSubview(movieHeaderView)
-        scrollView.addSubview(scenesTitleLabel)
-        scrollView.addSubview(verticalScenesView)
+//        scrollView.addSubview(scenesTitleLabel)
     }
     
     private func setupContraints() {
-        scrollView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-        }
-  
-        movieHeaderView.snp.makeConstraints { make in
+        verticalScenesView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
-            make.width.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
         
         backButton.snp.makeConstraints { make in
@@ -98,32 +80,15 @@ private extension MovieDetailViewController {
             make.left.equalToSuperview().inset(20)
             make.width.height.equalTo(20)
         }
-        
-        scenesTitleLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(20)
-            make.right.equalToSuperview()
-            make.top.equalTo(movieHeaderView.snp.bottom).offset(5)
-        }
-        
-        numberOfPlacesLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(scenesTitleLabel)
-            make.right.equalToSuperview().inset(20)
-        }
-        
-        verticalScenesView.snp.makeConstraints { make in
-            make.top.equalTo(scenesTitleLabel.snp.bottom).offset(8)
-            make.left.right.equalToSuperview().inset(12)
-            make.bottom.equalTo(view.safeAreaLayoutGuide) //TODO: dat vysku ako je vleke table view??
-        }
     }
     
     private func setupObservables() {
         
-        movieHeaderView.goToMap$
-            .subscribe(onNext: { [unowned self] _ in
-                let modalViewController = MapViewController(places: self.movie.scenes)
-                self.present(modalViewController, animated: true, completion: nil)
-            }).disposed(by: disposeBag)
+//        movieHeaderView.goToMap$
+//            .subscribe(onNext: { [unowned self] _ in
+//                let modalViewController = MapViewController(places: self.movie.scenes)
+//                self.present(modalViewController, animated: true, completion: nil)
+//            }).disposed(by: disposeBag)
         
         //TODO: scenestableView should be private, expose only click
         verticalScenesView.scenesCollectionView.rx.itemSelected

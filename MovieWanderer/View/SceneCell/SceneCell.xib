@@ -17,10 +17,10 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dany" translatesAutoresizingMaskIntoConstraints="NO" id="y3S-S8-fGf" userLabel="backgroundImage">
-                    <rect key="frame" x="8" y="8" width="359" height="184"/>
+                    <rect key="frame" x="20" y="8" width="335" height="184"/>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="xgQ-Fr-tby">
-                    <rect key="frame" x="16" y="146" width="343" height="38"/>
+                    <rect key="frame" x="28" y="146" width="319" height="38"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danny with the Dragon" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xp6-ol-5od">
                             <rect key="frame" x="0.0" y="0.0" width="167" height="18"/>
@@ -29,7 +29,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Danny is playing with the dragon on the maountain of the big nations haha" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gvf-jh-gjr">
-                            <rect key="frame" x="0.0" y="22" width="343" height="16"/>
+                            <rect key="frame" x="0.0" y="22" width="319" height="16"/>
                             <fontDescription key="fontDescription" type="system" weight="thin" pointSize="13"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -42,14 +42,14 @@
                 <constraint firstItem="gmC-tT-9GY" firstAttribute="leading" secondItem="0rp-wi-7xT" secondAttribute="leading" id="99q-Qy-yzN"/>
                 <constraint firstAttribute="bottom" secondItem="gmC-tT-9GY" secondAttribute="bottom" id="AGB-Ek-nm3"/>
                 <constraint firstItem="xgQ-Fr-tby" firstAttribute="trailing" secondItem="y3S-S8-fGf" secondAttribute="trailing" constant="-8" id="DOY-TL-zJq"/>
-                <constraint firstItem="y3S-S8-fGf" firstAttribute="leading" secondItem="0rp-wi-7xT" secondAttribute="leading" constant="8" id="MIW-b0-P42"/>
+                <constraint firstItem="y3S-S8-fGf" firstAttribute="leading" secondItem="0rp-wi-7xT" secondAttribute="leading" constant="20" id="MIW-b0-P42"/>
                 <constraint firstItem="xgQ-Fr-tby" firstAttribute="bottom" secondItem="y3S-S8-fGf" secondAttribute="bottom" constant="-8" id="P1G-h5-NOU"/>
                 <constraint firstAttribute="bottom" secondItem="y3S-S8-fGf" secondAttribute="bottom" constant="8" id="Y4t-Cv-fcW"/>
                 <constraint firstItem="xgQ-Fr-tby" firstAttribute="leading" secondItem="y3S-S8-fGf" secondAttribute="leading" constant="8" id="dTm-zA-xK5"/>
                 <constraint firstItem="y3S-S8-fGf" firstAttribute="top" secondItem="0rp-wi-7xT" secondAttribute="top" constant="8" id="guf-23-NyH"/>
                 <constraint firstItem="gmC-tT-9GY" firstAttribute="top" secondItem="0rp-wi-7xT" secondAttribute="top" id="vav-0H-8pr"/>
                 <constraint firstAttribute="trailing" secondItem="gmC-tT-9GY" secondAttribute="trailing" id="wWY-dT-rHe"/>
-                <constraint firstAttribute="trailing" secondItem="y3S-S8-fGf" secondAttribute="trailing" constant="8" id="xpj-pA-qyA"/>
+                <constraint firstAttribute="trailing" secondItem="y3S-S8-fGf" secondAttribute="trailing" constant="20" id="xpj-pA-qyA"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="gmC-tT-9GY"/>

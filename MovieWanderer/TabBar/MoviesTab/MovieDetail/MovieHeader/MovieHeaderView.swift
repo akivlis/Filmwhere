@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class MovieHeaderView: UIView {
+class MovieHeaderView: UICollectionReusableView {
     
     // MARK: Properties
     
@@ -52,19 +52,14 @@ class MovieHeaderView: UIView {
     
     private var gradient = CAGradientLayer()
     private lazy var photoContainerView = UIView()
-    private let goToMapButton = UIButton()
-
-    let viewModel : MovieHeaderViewModel
-    
+    private let goToMapButton = UIButton()    
     private var containerHeightLayoutConstraint: Constraint?
     private var imageViewHeightLayoutConstraint: Constraint?
     private var imageViewBottomLayoutConstraint: Constraint?
 
     // MARK: Init
     
-    init(viewModel: MovieHeaderViewModel) {
-        self.viewModel = viewModel
-
+    override init(frame: CGRect) {
         super.init(frame: .zero)
         commonInit()
     }
@@ -77,6 +72,13 @@ class MovieHeaderView: UIView {
         super.layoutSubviews()
         
         gradient.frame = moviePhoto.bounds
+    }
+    
+    
+    func bindViewModel(_ viewModel: MovieHeaderViewModel) {
+        moviePhoto.image = viewModel.movieImage
+        descriptionLabel.text = viewModel.description
+        titleLabel.text = viewModel.title
     }
     
     func updatePosition(withInset inset: CGFloat, contentOffset: CGFloat) {
@@ -92,7 +94,6 @@ private extension MovieHeaderView {
     private func commonInit() {
         setupViews()
         setupConstraints()
-        bindViewModel()
     }
     
     private func setupViews() {
@@ -132,7 +133,7 @@ private extension MovieHeaderView {
         
         goToMapButton.snp.makeConstraints { make in
             make.right.equalToSuperview().inset(padding)
-            make.centerY.equalTo(moviePhoto.snp.bottom)
+            make.centerY.equalTo(photoContainerView.snp.bottom)
         }
 
         titleLabel.snp.makeConstraints { make in
@@ -152,11 +153,5 @@ private extension MovieHeaderView {
             make.top.equalTo(descriptionLabel.snp.bottom).offset(6)
             make.bottom.equalToSuperview().inset(4)
         }
-    }
-    
-    private func bindViewModel() {
-        moviePhoto.image = viewModel.movieImage
-        descriptionLabel.text = viewModel.description
-        titleLabel.text = viewModel.title
     }
 }

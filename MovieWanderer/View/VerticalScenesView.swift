@@ -12,17 +12,20 @@ import RxSwift
 
 class VerticalScenesView: UIView {
     
-    private var scenes = [Scene]()
+    private let movie: Movie
     private var _scrolledToScene = PublishSubject<Scene>()
     var scrolledToScene$: Observable<Scene> {
         return _scrolledToScene
     }
+    
+    private var headerView: MovieHeaderView?
     
     let scenesCollectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
             layout.minimumInteritemSpacing = 0
+            layout.minimumLineSpacing = 0
             layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             return layout
         }()
@@ -31,16 +34,16 @@ class VerticalScenesView: UIView {
         collectionView.isUserInteractionEnabled = true
 //        collectionView.isScrollEnabled = true
         collectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: SceneCollectionViewCell.reuseIdentifier)
-        collectionView.backgroundColor = .white
+        collectionView.register(header: MovieHeaderView.self)
+        collectionView.backgroundColor = .red
         return collectionView
     }()
     
-    init(scenes: [Scene]) {
+    init(movie: Movie) {
+        self.movie = movie
         super.init(frame: .zero)
+
         backgroundColor = .clear
-        
-        self.scenes = scenes
-        
         scenesCollectionView.dataSource = self
         scenesCollectionView.delegate = self
         
@@ -48,7 +51,10 @@ class VerticalScenesView: UIView {
         scenesCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        scenesCollectionView.reloadData()        
+        scenesCollectionView.reloadData()
+        
+        scenesCollectionView.contentInsetAdjustmentBehavior = .never
+        
     }
     
     required init?(coder _: NSCoder) {
@@ -57,7 +63,7 @@ class VerticalScenesView: UIView {
     
     
     func setScenes(scenes: [Scene]) {
-        self.scenes = scenes
+//        self.scenes = scenes
         scenesCollectionView.reloadData()
     }
 }
@@ -69,23 +75,36 @@ extension VerticalScenesView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return scenes.count
+        return movie.scenes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SceneCollectionViewCell.reuseIdentifier, for: indexPath)
         if let sceneCell = cell as? SceneCollectionViewCell {
             
-            let viewModel = SceneCellViewModel(scene: scenes[indexPath.row])
+            let viewModel = SceneCellViewModel(scene: movie.scenes[indexPath.row])
             sceneCell.bindViewModel(viewModel)
             return sceneCell
         }
         return cell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MovieHeaderView.reuseIdentifier, for: indexPath)
+        if let movieHeader = headerView as? MovieHeaderView {
+            movieHeader.bindViewModel(MovieHeaderViewModel(movie: movie))
+            self.headerView = movieHeader
+            return movieHeader
+        }
+        return headerView
+    }
 }
 
 extension VerticalScenesView: UICollectionViewDelegate {
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        headerView?.updatePosition(withInset: scrollView.contentInset.top, contentOffset: scrollView.contentOffset.y)
+    }
 }
 
 extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
@@ -93,6 +112,13 @@ extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width
         let height: CGFloat = 180
+        
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let width = collectionView.bounds.width
+        let height: CGFloat = 350
         
         return CGSize(width: width, height: height)
     }

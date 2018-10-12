@@ -9,15 +9,16 @@
 import UIKit
 
 class MovieDetailStackView: UIStackView {
+    //remove this class
     
-    let movieDetailHeaderView: MovieHeaderView
+//    let movieDetailHeaderView: MovieHeaderView
     let movieScenesView: MovieScenesView
     
     private let viewModel: MovieDetailViewModel
     
     init(viewModel: MovieDetailViewModel) {
         self.viewModel = viewModel
-        movieDetailHeaderView = MovieHeaderView(viewModel: viewModel.movieHeaderViewModel)
+//        movieDetailHeaderView = MovieHeaderView(viewModel: viewModel.movieHeaderViewModel)
         movieScenesView = MovieScenesView()
         
         super.init(frame: .zero)
@@ -43,7 +44,7 @@ class MovieDetailStackView: UIStackView {
 private extension MovieDetailStackView {
 
     private func loadSubviews() {
-        addArrangedSubview(movieDetailHeaderView)
+//        addArrangedSubview(movieDetailHeaderView)
         addArrangedSubview(movieScenesView)
     }
 }
