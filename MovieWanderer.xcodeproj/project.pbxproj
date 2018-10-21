@@ -41,7 +41,6 @@
 		3D803588202B9E5B00A51585 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Scene.swift */; };
 		3D864D602056DAA20069ECD0 /* VerticalScenesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D864D5F2056DAA20069ECD0 /* VerticalScenesView.swift */; };
 		3D8731AF216A948200264D40 /* SceneCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D8731AE216A948200264D40 /* SceneCell.xib */; };
-		3D9CE06721371D2000861568 /* SceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D9CE06621371D2000861568 /* SceneViewController.swift */; };
 		3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18720F52FBD00F15104 /* MapViewController.swift */; };
 		3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */; };
 		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
@@ -112,7 +111,6 @@
 		3D803587202B9E5B00A51585 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		3D864D5F2056DAA20069ECD0 /* VerticalScenesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalScenesView.swift; sourceTree = "<group>"; };
 		3D8731AE216A948200264D40 /* SceneCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SceneCell.xib; sourceTree = "<group>"; };
-		3D9CE06621371D2000861568 /* SceneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneViewController.swift; sourceTree = "<group>"; };
 		3DA3B18720F52FBD00F15104 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+MKMapView.swift"; sourceTree = "<group>"; };
 		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 		3D3F87F2205D833600EE3835 /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
-				3D9CE06521371CF500861568 /* SceneDetail */,
 				3D3F87FA205D8DB700EE3835 /* MovieScenes */,
 				3D3F87F9205D8DAD00EE3835 /* MovieHeader */,
 				3D3F87F3205D835000EE3835 /* MovieDetailViewController.swift */,
@@ -315,14 +312,6 @@
 				3D44B2C4205C46940086D867 /* Movie.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		3D9CE06521371CF500861568 /* SceneDetail */ = {
-			isa = PBXGroup;
-			children = (
-				3D9CE06621371D2000861568 /* SceneViewController.swift */,
-			);
-			path = SceneDetail;
 			sourceTree = "<group>";
 		};
 		3DC040192039EA2E00C1A86D /* Supporting Files */ = {
@@ -676,7 +665,6 @@
 				3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */,
 				3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */,
 				3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */,
-				3D9CE06721371D2000861568 /* SceneViewController.swift in Sources */,
 				214D73082105241E00F16983 /* InfoSceneCollectionViewCell.swift in Sources */,
 				214D73042105147F00F16983 /* SceneCarouselView.swift in Sources */,
 				3D574934214D6F140050E658 /* MovieService.swift in Sources */,
