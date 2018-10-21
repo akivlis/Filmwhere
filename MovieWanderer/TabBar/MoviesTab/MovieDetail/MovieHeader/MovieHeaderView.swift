@@ -17,6 +17,8 @@ class MovieHeaderView: UICollectionReusableView {
     var goToMap$: Observable<()> {
         return goToMapButton.rx.tap.asObservable()
     }
+    
+    private(set) var disposeBag = DisposeBag()
 
     private lazy var moviePhoto: UIImageView = {
         let imageView = UIImageView()
@@ -72,6 +74,12 @@ class MovieHeaderView: UICollectionReusableView {
         super.layoutSubviews()
         
         gradient.frame = moviePhoto.bounds
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
     }
     
     

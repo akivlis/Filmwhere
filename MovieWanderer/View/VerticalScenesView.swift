@@ -13,9 +13,9 @@ import RxSwift
 class VerticalScenesView: UIView {
     
     private let movie: Movie
-    private var _scrolledToScene = PublishSubject<Scene>()
-    var scrolledToScene$: Observable<Scene> {
-        return _scrolledToScene
+    private var _showMapTapped$ = PublishSubject<()>()
+    var showMapTapped$: Observable<()>{
+        return _showMapTapped$
     }
     
     private var headerView: MovieHeaderView?
@@ -57,12 +57,6 @@ class VerticalScenesView: UIView {
     required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
-    func setScenes(scenes: [Scene]) {
-//        self.scenes = scenes
-        scenesCollectionView.reloadData()
-    }
 }
 
 extension VerticalScenesView: UICollectionViewDataSource {
@@ -91,6 +85,10 @@ extension VerticalScenesView: UICollectionViewDataSource {
         if let movieHeader = headerView as? MovieHeaderView {
             movieHeader.bindViewModel(MovieHeaderViewModel(movie: movie))
             self.headerView = movieHeader
+            movieHeader.goToMap$
+                .subscribe(onNext: { [weak self] in
+                    self?._showMapTapped$.onNext(())
+                }).disposed(by:movieHeader.disposeBag)
             return movieHeader
         }
         return headerView

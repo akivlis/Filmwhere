@@ -31,9 +31,16 @@ class MovieDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupViews()
+        setupContraints()
+        setupObservables()
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .never
@@ -42,14 +49,9 @@ class MovieDetailViewController: UIViewController {
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationController?.navigationBar.shadowImage = UIImage()
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        
-        setupViews()
-        setupContraints()
-        setupObservables()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 }
 
@@ -61,7 +63,6 @@ private extension MovieDetailViewController {
         view.addSubview(verticalScenesView)
         
         backButton.setImage(UIImage(named: "back-icon"), for: .normal)
-//        view.addSubview(backButton)
     }
     
     private func setupContraints() {
@@ -72,12 +73,11 @@ private extension MovieDetailViewController {
     }
     
     private func setupObservables() {
-        
-//        movieHeaderView.goToMap$
-//            .subscribe(onNext: { [unowned self] _ in
-//                let modalViewController = MapViewController(places: self.movie.scenes)
-//                self.present(modalViewController, animated: true, completion: nil)
-//            }).disposed(by: disposeBag)
+        verticalScenesView.showMapTapped$
+            .subscribe(onNext: { [unowned self] _ in
+                let modalViewController = MapViewController(places: self.movie.scenes)
+                self.present(modalViewController, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
         
         //TODO: scenestableView should be private, expose only click
         verticalScenesView.scenesCollectionView.rx.itemSelected
@@ -93,42 +93,28 @@ private extension MovieDetailViewController {
         
         verticalScenesView.scenesCollectionView.rx.didScroll
             .subscribe(onNext: { _ in
-//                print(self.verticalScenesView.scenesCollectionView.contentOffset.y)
+                let offset = self.verticalScenesView.scenesCollectionView.contentOffset.y / 150 //check this number
+                self.animateNavigationBar(offset: offset)
                 
-                var offset = self.verticalScenesView.scenesCollectionView.contentOffset.y / 150 //check this number
-                if offset > 1 {
-                    offset = 1
-                    
-                    UIView.animate(withDuration: 0.25, animations: {
-                        self.navigationController?.navigationBar.shadowImage = nil
-                        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-                        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black]
-                        self.navigationController?.navigationBar.layoutIfNeeded()
-                        print("show")
-                    })
-
-                } else {
-                    UIView.animate(withDuration: 0.25, animations: {
-                        self.navigationController?.navigationBar.shadowImage = UIImage()
-                        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-                        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.clear]
-                        self.navigationController?.navigationBar.layoutIfNeeded()
-                        print("hide")
-                    })
-                }
-                
-                
-                
-//                let color = UIColor.black.withAlphaComponent(offset)
-//                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): color]
-
-//                self.navigationController?.navigationBar.backgroundColor =  color
-                //        self.navigationController?.navigationBar.tintColor = color
-                //        UIApplication.shared.statusBarView?.backgroundColor = color
-                
-                print(offset)
-                
+            }).disposed(by: disposeBag)
+    }
+    
+    private func animateNavigationBar(offset: CGFloat) {
+        if offset > 1 {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.navigationController?.navigationBar.shadowImage = nil
+                self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black]
+                self.navigationController?.navigationBar.layoutIfNeeded()
             })
+        } else {
+            UIView.animate(withDuration: 0.25, animations: {
+                self.navigationController?.navigationBar.shadowImage = UIImage()
+                self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.clear]
+                self.navigationController?.navigationBar.layoutIfNeeded()
+            })
+        }
     }
 }
 
