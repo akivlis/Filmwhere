@@ -16,6 +16,16 @@ final class SceneDetailViewController: UIViewController {
     private let closeButton = UIButton(type: UIButtonType.system)
     private let pagerView = FSPagerView()
     private let pageControl = FSPageControl()
+    private let scenes: [Scene]
+    
+    init(scenes: [Scene]) {
+        self.scenes = scenes
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,15 +40,14 @@ final class SceneDetailViewController: UIViewController {
 
 extension SceneDetailViewController: FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
-        return 5
+        return scenes.count
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: SceneDetailPagerViewCell.reuseIdentifier, at: index)
         if let sceneCell = cell as? SceneDetailPagerViewCell {
-            sceneCell.titleLabel.text = "Page \(index)"
-            sceneCell.subtitleLabel.text = "hflsfls  fslfls"
-            sceneCell.backgroundImageView.image = UIImage(named: "Jamie")
+            let viewModel = SceneDetailPagerViewCellViewModel(scene: scenes[index])
+            sceneCell.bindViewModel(viewModel)
         }
         return cell
     }
@@ -54,7 +63,6 @@ extension SceneDetailViewController: FSPagerViewDelegate {
         let page = pagerView.currentIndex
         pageControl.currentPage = page
     }
-    
 }
 
 private extension SceneDetailViewController {
@@ -72,7 +80,6 @@ private extension SceneDetailViewController {
         
         pagerView.register(SceneDetailPagerViewCell.self, forCellWithReuseIdentifier: SceneDetailPagerViewCell.reuseIdentifier)
         pagerView.transformer = FSPagerViewTransformer(type: .zoomOut)
-//        pagerView.backgroundColor = .blue
         view.addSubview(pagerView)
         
         if let image = UIImage(named: "close-icon") {

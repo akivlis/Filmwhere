@@ -11,9 +11,9 @@ import UIKit
 
 class SceneDetailPagerViewCell: FSPagerViewCell {
     
-    let backgroundImageView = UIImageView()
-    let titleLabel = UILabel()
-    let subtitleLabel = UILabel()
+    private let backgroundImageView = UIImageView()
+    private let titleLabel = UILabel()
+    private let subtitleLabel = UILabel()
     private let stackView = UIStackView()
     private let containerView = UIView()
     
@@ -29,9 +29,16 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
         commonInit()
     }
     
-    // MARK: - PRIVATE
-    
-    // MARK: - Setup
+    func bindViewModel(_ viewModel: SceneDetailPagerViewCellViewModel) {
+        titleLabel.text = viewModel.scene.title
+        subtitleLabel.text = viewModel.scene.description
+        backgroundImageView.image = UIImage(named: "Jamie")
+    }
+}
+
+// MARK: - PRIVATE
+
+private extension SceneDetailPagerViewCell {
     
     private func commonInit() {
         setupViews()
@@ -54,7 +61,6 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
         addSubview(containerView)
         
         backgroundImageView.contentMode = .scaleAspectFit
-//        backgroundImageView.clipsToBounds = true
         
         titleLabel.textColor = UIColor.black
         titleLabel.font = UIFont.bold(withSize: UIDevice.iPhoneNarrow ? 18 : 24)
@@ -78,15 +84,12 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     
     private func setupConstraints() {
         stackView.snp.makeConstraints { make in
-           make.edges.equalToSuperview()
+            make.edges.equalToSuperview()
         }
         
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(5)
         }
-//        backgroundImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
-//        titleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-//        subtitleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-
     }
 }
+

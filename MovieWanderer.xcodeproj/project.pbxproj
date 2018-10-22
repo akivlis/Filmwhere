@@ -15,6 +15,7 @@
 		3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523132029072300A90A61 /* SceneCellViewModel.swift */; };
 		3D12F0B3210DE2DF00E3B83B /* ultra-light-style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */; };
 		3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */; };
+		3D1E3DEB217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1E3DEA217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift */; };
 		3D2289082028FE010074D173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2289072028FE010074D173 /* AppDelegate.swift */; };
 		3D2289112028FE010074D173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289102028FE010074D173 /* Assets.xcassets */; };
 		3D2289142028FE010074D173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289122028FE010074D173 /* LaunchScreen.storyboard */; };
@@ -80,6 +81,7 @@
 		3D12F0B1210DE2AB00E3B83B /* Directions.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
 		3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ultra-light-style.json"; sourceTree = "<group>"; };
 		3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewModel.swift; sourceTree = "<group>"; };
+		3D1E3DEA217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailPagerViewCellViewModel.swift; sourceTree = "<group>"; };
 		3D2289042028FE010074D173 /* MovieWanderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieWanderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2289072028FE010074D173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D2289102028FE010074D173 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				3DC5CBC42152DAA200EEE30B /* SceneDetailViewController.swift */,
 				3DC5CBC72152E79600EEE30B /* SceneDetailPagerViewCell.swift */,
+				3D1E3DEA217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift */,
 			);
 			path = SceneDetail;
 			sourceTree = "<group>";
@@ -674,6 +677,7 @@
 				3D26DDEA2135F510002704B9 /* MapAndScenesCarouselView.swift in Sources */,
 				3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */,
 				3D574936214D70D20050E658 /* MovieWanderer+String.swift in Sources */,
+				3D1E3DEB217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift in Sources */,
 				3DC5CBC52152DAA200EEE30B /* SceneDetailViewController.swift in Sources */,
 				3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */,
 				3D57493B214E8AB60050E658 /* ClusterAnnotationView.swift in Sources */,
