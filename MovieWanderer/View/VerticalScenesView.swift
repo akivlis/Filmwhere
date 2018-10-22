@@ -19,6 +19,7 @@ class VerticalScenesView: UIView {
     }
     
     private var headerView: MovieHeaderView?
+    private let showHeader: Bool
     
     let scenesCollectionView: UICollectionView = {
         let layout: UICollectionViewFlowLayout = {
@@ -39,11 +40,12 @@ class VerticalScenesView: UIView {
         return collectionView
     }()
     
-    init(movie: Movie) {
+    init(movie: Movie, showHeader: Bool = true) {
         self.movie = movie
+        self.showHeader = showHeader
         super.init(frame: .zero)
-
         backgroundColor = .clear
+
         scenesCollectionView.dataSource = self
         scenesCollectionView.delegate = self
         
@@ -107,15 +109,16 @@ extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.width - 40 //TODO: add variable here to match the margin with the header
         let height: CGFloat = 180
-        
         return CGSize(width: width, height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width = collectionView.bounds.width
-        let height: CGFloat = 350
-        
-        return CGSize(width: width, height: height)
+        if showHeader {
+            let width = collectionView.bounds.width
+            let height: CGFloat = 350
+            return CGSize(width: width, height: height)
+        }
+        return .zero
     }
 }
 
