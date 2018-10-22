@@ -15,7 +15,7 @@ final class SceneCarouselView: UIView {
         return _scrolledToScene$
     }
     
-    private static let lineSpacing: CGFloat = 15
+    private let lineSpacing: CGFloat = Constants.ScenesCollection.lineSpacing
     private var scenes = [Scene]()
     private let cellWidth: CGFloat = Constants.ScenesCollection.cellWidth
     private let disposeBag = DisposeBag()
@@ -25,9 +25,9 @@ final class SceneCarouselView: UIView {
         let myCollectionViewFlowLayout: LeftAlignedFlowLayout = {
             let layout = LeftAlignedFlowLayout()
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = lineSpacing
+            layout.minimumLineSpacing = Constants.ScenesCollection.lineSpacing
             layout.minimumInteritemSpacing = 0
-            layout.sectionInset = UIEdgeInsets(top: 0, left: lineSpacing, bottom: 0, right: lineSpacing)
+            layout.sectionInset = UIEdgeInsets(top: 0, left: Constants.ScenesCollection.lineSpacing, bottom: 0, right: Constants.ScenesCollection.lineSpacing)
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
@@ -52,7 +52,7 @@ final class SceneCarouselView: UIView {
     }
     
     func scrollToIndex(_ index: Int) {
-        let x = index * (250 + 15) //TODO: change
+        let x = index * (Int(cellWidth) + Int(lineSpacing)) //TODO: change
             let point =  CGPoint(x: CGFloat(x) ,y: scenesCollectionView.contentOffset.y)
             scenesCollectionView.setContentOffset(point, animated: true)
     }
@@ -65,8 +65,8 @@ extension SceneCarouselView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InfoSceneCollectionViewCell.reuseIdentifier, for: indexPath)
-        if let scalingCell = cell as? InfoSceneCollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SceneCollectionViewCell.reuseIdentifier, for: indexPath)
+        if let scalingCell = cell as? SceneCollectionViewCell {
             let cellViewModel = SceneCellViewModel(scene: scenes[indexPath.row])
             scalingCell.bindViewModel(cellViewModel)
         }
@@ -108,19 +108,19 @@ private extension SceneCarouselView {
     private func setupViews() {
         backgroundColor = .white
         
-        scenesCollectionView.register(InfoSceneCollectionViewCell.self)
+        scenesCollectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: SceneCollectionViewCell.reuseIdentifier)
         scenesCollectionView.backgroundColor = .clear
         scenesCollectionView.isPagingEnabled = false
         scenesCollectionView.decelerationRate  =  UIScrollViewDecelerationRateFast
         scenesCollectionView.showsHorizontalScrollIndicator = false
-        
         addSubview(scenesCollectionView)
     }
     
     private func setupConstraints() {
         scenesCollectionView.snp.makeConstraints { make in
             make.right.left.equalToSuperview()
-            make.top.bottom.equalToSuperview().inset(SceneCarouselView.lineSpacing)
+            make.bottom.equalToSuperview().inset(Constants.ScenesCollection.lineSpacing)
+            make.top.equalToSuperview().inset(30)
         }
     }
     

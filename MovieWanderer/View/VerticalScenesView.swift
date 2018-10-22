@@ -25,8 +25,8 @@ class VerticalScenesView: UIView {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .vertical
             layout.minimumInteritemSpacing = 0
-            layout.minimumLineSpacing = 0
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            layout.minimumLineSpacing = 10
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -105,7 +105,7 @@ extension VerticalScenesView: UICollectionViewDelegate {
 extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width
+        let width = collectionView.bounds.width - 40 //TODO: add variable here to match the margin with the header
         let height: CGFloat = 180
         
         return CGSize(width: width, height: height)

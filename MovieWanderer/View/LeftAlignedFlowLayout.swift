@@ -10,7 +10,8 @@ import UIKit
 
 struct Constants {
     struct ScenesCollection {
-        static let cellWidth: CGFloat = 250
+        static let cellWidth: CGFloat = UIScreen.main.bounds.width - 60 // TODO: calculate correct width
+        static let lineSpacing: CGFloat = 10
     }
 }
 

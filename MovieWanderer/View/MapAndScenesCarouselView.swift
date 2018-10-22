@@ -53,7 +53,7 @@ private extension MapAndScenesCarouselView {
 
         scenesCarousel.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(250)
+            make.height.equalTo(200)
         }
     }
     
