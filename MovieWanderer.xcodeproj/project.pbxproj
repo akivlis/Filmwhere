@@ -25,7 +25,6 @@
 		3D3E69A9206C15A800891580 /* MoviewHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E69A8206C15A800891580 /* MoviewHeaderViewModel.swift */; };
 		3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87F3205D835000EE3835 /* MovieDetailViewController.swift */; };
 		3D3F87F6205D835E00EE3835 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */; };
-		3D3F87F8205D8B8C00EE3835 /* MovieDetailStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87F7205D8B8C00EE3835 /* MovieDetailStackView.swift */; };
 		3D3F87FD205D8E1A00EE3835 /* MovieHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87FC205D8E1A00EE3835 /* MovieHeaderView.swift */; };
 		3D3F87FF205D8E3100EE3835 /* MovieScenesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87FE205D8E3100EE3835 /* MovieScenesView.swift */; };
 		3D3F8804205EBB1700EE3835 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F8803205EBB1700EE3835 /* MapView.swift */; };
@@ -95,7 +94,6 @@
 		3D3E69A8206C15A800891580 /* MoviewHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviewHeaderViewModel.swift; sourceTree = "<group>"; };
 		3D3F87F3205D835000EE3835 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
-		3D3F87F7205D8B8C00EE3835 /* MovieDetailStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailStackView.swift; sourceTree = "<group>"; };
 		3D3F87FC205D8E1A00EE3835 /* MovieHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeaderView.swift; sourceTree = "<group>"; };
 		3D3F87FE205D8E3100EE3835 /* MovieScenesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieScenesView.swift; sourceTree = "<group>"; };
 		3D3F8803205EBB1700EE3835 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -241,7 +239,6 @@
 				3D3F87F9205D8DAD00EE3835 /* MovieHeader */,
 				3D3F87F3205D835000EE3835 /* MovieDetailViewController.swift */,
 				3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */,
-				3D3F87F7205D8B8C00EE3835 /* MovieDetailStackView.swift */,
 			);
 			path = MovieDetail;
 			sourceTree = "<group>";
@@ -655,7 +652,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DC5CBC82152E79600EEE30B /* SceneDetailPagerViewCell.swift in Sources */,
-				3D3F87F8205D8B8C00EE3835 /* MovieDetailStackView.swift in Sources */,
 				3D44B2C5205C46940086D867 /* Movie.swift in Sources */,
 				3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */,
 				3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */,
