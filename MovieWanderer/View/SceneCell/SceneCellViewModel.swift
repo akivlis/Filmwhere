@@ -34,6 +34,7 @@ struct SceneCellViewModel {
         if let image = UIImage(named: scene.title) {
             return image
         }
+        // TODO: remove a make it optiona
         return UIImage(named: "Dany")!
     }
 }

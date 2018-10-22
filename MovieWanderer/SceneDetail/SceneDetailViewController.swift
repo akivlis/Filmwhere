@@ -16,6 +16,7 @@ final class SceneDetailViewController: UIViewController {
     private let closeButton = UIButton(type: UIButtonType.system)
     private let pagerView = FSPagerView()
     private let pageControl = FSPageControl()
+    private let blurredView = UIVisualEffectView()
     private let scenes: [Scene]
     private let currentIndex: Int
     
@@ -87,11 +88,18 @@ private extension SceneDetailViewController {
     }
     
     private func setupViews() {
-        view.backgroundColor = UIColor.veryLightPink
+        let blurEffect = UIBlurEffect(style: .light)
+        blurredView.effect = blurEffect
+        view.addSubview(blurredView)
         
+        pagerView.backgroundColor = .clear
         pagerView.register(SceneDetailPagerViewCell.self, forCellWithReuseIdentifier: SceneDetailPagerViewCell.reuseIdentifier)
-        pagerView.transformer = FSPagerViewTransformer(type: .zoomOut)
         view.addSubview(pagerView)
+        pagerView.interitemSpacing = 10
+        
+        let width = UIScreen.main.bounds.width - 60
+        let size = CGSize(width: width, height: 600) //TODO: change
+        pagerView.itemSize = size
         
         if let image = UIImage(named: "close-icon") {
             closeButton.setImage(image, for: .normal)
@@ -107,20 +115,24 @@ private extension SceneDetailViewController {
     
     private func setupConstraints() {
         closeButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(20)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
+            make.left.equalToSuperview().inset(15)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(15)
             make.height.width.equalTo(25)
         }
         
         pagerView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)
-            make.left.right.equalToSuperview().inset(20)
+            make.left.right.equalToSuperview()//.inset(20)
             make.bottom.equalToSuperview().inset(60)
         }
         
         pageControl.snp.makeConstraints { make in
             make.top.equalTo(pagerView.snp.bottom).offset(10)
             make.left.right.equalTo(pagerView)
+        }
+        
+        blurredView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 }

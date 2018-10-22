@@ -16,6 +16,7 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private let subtitleLabel = UILabel()
     private let stackView = UIStackView()
     private let containerView = UIView()
+    private let actionButton = UIButton()
     
     // MARK: - Init
     
@@ -31,8 +32,8 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     
     func bindViewModel(_ viewModel: SceneDetailPagerViewCellViewModel) {
         titleLabel.text = viewModel.scene.title
-        subtitleLabel.text = viewModel.scene.description
-        backgroundImageView.image = UIImage(named: "Jamie")
+        subtitleLabel.text = viewModel.description
+        backgroundImageView.image = viewModel.image
     }
 }
 
@@ -46,38 +47,36 @@ private extension SceneDetailPagerViewCell {
     }
     
     private func setupViews() {
-        contentView.layer.shadowRadius = 0
-        contentView.layer.shadowColor = UIColor.clear.cgColor
-        
-        layer.shadowColor = UIColor.black.cgColor
-        layer.shadowOffset = CGSize(width: 0, height: 1)
-        layer.shadowOpacity = 0.2
-        layer.shadowRadius = 4.0
-        layer.masksToBounds = false
-        
         containerView.layer.cornerRadius = 8.0
         containerView.layer.masksToBounds = true
         containerView.backgroundColor = .white
         addSubview(containerView)
         
         backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.clipsToBounds = true
         
-        titleLabel.textColor = UIColor.black
+        titleLabel.textColor = .white
         titleLabel.font = UIFont.bold(withSize: UIDevice.iPhoneNarrow ? 18 : 24)
-        titleLabel.textAlignment = .center
+        titleLabel.textAlignment = .left
         
-        subtitleLabel.textColor = UIColor.black.withAlphaComponent(0.7)
+        subtitleLabel.textColor = .gray
         subtitleLabel.font = UIFont.regular(withSize: UIDevice.iPhoneNarrow ? 14 : 18)
-        subtitleLabel.textAlignment = .center
+        subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
+        
+        actionButton.setTitle("Action button", for: .normal)
+        actionButton.backgroundColor = .red
         
         stackView.axis = .vertical
         stackView.alignment = .center
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
+        stackView.spacing = 8
         
         stackView.addArrangedSubview(backgroundImageView)
-        stackView.addArrangedSubview(titleLabel)
+//        stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(subtitleLabel)
+        stackView.addArrangedSubview(actionButton)
+
         
         containerView.addSubview(stackView)
     }
@@ -90,6 +89,9 @@ private extension SceneDetailPagerViewCell {
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(5)
         }
+        
+        backgroundImageView.setContentHuggingPriority(.defaultLow, for: .vertical)
+        backgroundImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
     }
 }
 

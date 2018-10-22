@@ -91,6 +91,7 @@ private extension MovieDetailViewController {
         verticalScenesView.scenesCollectionView.rx.itemSelected
             .subscribe(onNext: { [unowned self] index in
                 let sceneDetailViewController = SceneDetailViewController(scenes: self.movie.scenes, currentIndex: index.row)
+                sceneDetailViewController.modalPresentationStyle = .overFullScreen
                 self.present(sceneDetailViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
