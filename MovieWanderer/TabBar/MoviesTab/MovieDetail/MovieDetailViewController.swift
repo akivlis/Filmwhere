@@ -89,8 +89,8 @@ private extension MovieDetailViewController {
         
         //TODO: scenestableView should be private, expose only click
         verticalScenesView.scenesCollectionView.rx.itemSelected
-            .subscribe(onNext: { [unowned self]_ in
-                let sceneDetailViewController = SceneDetailViewController(scenes: self.movie.scenes)
+            .subscribe(onNext: { [unowned self] index in
+                let sceneDetailViewController = SceneDetailViewController(scenes: self.movie.scenes, currentIndex: index.row)
                 self.present(sceneDetailViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         

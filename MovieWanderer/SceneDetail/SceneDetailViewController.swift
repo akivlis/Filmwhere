@@ -17,10 +17,13 @@ final class SceneDetailViewController: UIViewController {
     private let pagerView = FSPagerView()
     private let pageControl = FSPageControl()
     private let scenes: [Scene]
+    private let currentIndex: Int
     
-    init(scenes: [Scene]) {
+    init(scenes: [Scene], currentIndex: Int) {
         self.scenes = scenes
+        self.currentIndex = currentIndex
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +38,14 @@ final class SceneDetailViewController: UIViewController {
         closeButton.rx.tap.subscribe(onNext: { _ in
             self.dismiss(animated: true, completion: nil)
         }).disposed(by: disposeBag)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        DispatchQueue.main.async {
+            self.pagerView.scrollToItem(at: self.currentIndex, animated: false)
+        }
     }
 }
 
