@@ -52,7 +52,7 @@ private extension SceneDetailPagerViewCell {
         containerView.backgroundColor = .white
         addSubview(containerView)
         
-        backgroundImageView.contentMode = .scaleAspectFit
+        backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
         
         titleLabel.textColor = .white
@@ -68,12 +68,11 @@ private extension SceneDetailPagerViewCell {
         actionButton.backgroundColor = .red
         
         stackView.axis = .vertical
-        stackView.alignment = .center
-        stackView.distribution = .fill
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
         stackView.spacing = 8
         
         stackView.addArrangedSubview(backgroundImageView)
-//        stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(subtitleLabel)
         stackView.addArrangedSubview(actionButton)
 
@@ -90,8 +89,9 @@ private extension SceneDetailPagerViewCell {
             make.edges.equalToSuperview().inset(5)
         }
         
-        backgroundImageView.setContentHuggingPriority(.defaultLow, for: .vertical)
-        backgroundImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        backgroundImageView.snp.makeConstraints { make in
+            make.height.equalTo(backgroundImageView.snp.width).multipliedBy(16/9)
+        }
     }
 }
 
