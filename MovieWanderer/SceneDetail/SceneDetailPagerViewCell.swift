@@ -60,17 +60,18 @@ private extension SceneDetailPagerViewCell {
         titleLabel.textAlignment = .left
         
         subtitleLabel.textColor = .gray
-        subtitleLabel.font = UIFont.regular(withSize: UIDevice.iPhoneNarrow ? 14 : 18)
+        subtitleLabel.font = UIFont.regular(withSize: UIDevice.iPhoneNarrow ? 14 : 14)
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
         
         actionButton.setTitle("Action button", for: .normal)
-        actionButton.backgroundColor = .red
+        actionButton.setTitleColor(.black, for: .normal)
+//        actionButton.backgroundColor = .red
         
         stackView.axis = .vertical
         stackView.alignment = .fill
         stackView.distribution = .fill
-        stackView.spacing = 8
+        stackView.spacing = 12
         
         stackView.addArrangedSubview(backgroundImageView)
         stackView.addArrangedSubview(subtitleLabel)
@@ -82,16 +83,25 @@ private extension SceneDetailPagerViewCell {
     
     private func setupConstraints() {
         stackView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
+            make.bottom.greaterThanOrEqualToSuperview()
         }
         
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(5)
         }
         
-        backgroundImageView.snp.makeConstraints { make in
-            make.height.equalTo(backgroundImageView.snp.width).multipliedBy(16/9)
-        }
+        // Snapkit constraint do not work in this case, used standart instead
+        backgroundImageView.addConstraint(NSLayoutConstraint(item: backgroundImageView,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: backgroundImageView,
+                                                  attribute: .width,
+                                                  multiplier: 9.0 / 16.0,
+                                                  constant: 0))
+        
+        subtitleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        subtitleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
     }
 }
 

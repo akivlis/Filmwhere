@@ -122,8 +122,8 @@ private extension SceneDetailViewController {
         
         pagerView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)
-            make.left.right.equalToSuperview()//.inset(20)
-            make.bottom.equalToSuperview().inset(60)
+            make.leading.trailing.equalToSuperview()//.inset(20)
+            make.bottom.equalToSuperview().inset(40)
         }
         
         pageControl.snp.makeConstraints { make in
