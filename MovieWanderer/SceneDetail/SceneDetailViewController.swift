@@ -88,7 +88,7 @@ private extension SceneDetailViewController {
     }
     
     private func setupViews() {
-        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffect = UIBlurEffect(style: .regular)
         blurredView.effect = blurEffect
         view.addSubview(blurredView)
         

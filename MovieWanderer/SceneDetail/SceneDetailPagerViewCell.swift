@@ -69,7 +69,7 @@ private extension SceneDetailPagerViewCell {
         
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fill
         stackView.spacing = 8
         
         stackView.addArrangedSubview(backgroundImageView)
