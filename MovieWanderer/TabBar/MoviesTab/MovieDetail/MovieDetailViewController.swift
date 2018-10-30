@@ -69,8 +69,7 @@ private extension MovieDetailViewController {
         
         backButton.snp.makeConstraints { make in
             make.left.equalToSuperview().inset(15)
-            let barHeight = UIApplication.shared.statusBarFrame.height
-            make.top.equalToSuperview().inset(15 + barHeight)
+            make.centerY.equalTo(animatingBarView).offset(10)
             make.height.width.equalTo(25)
         }
     }
