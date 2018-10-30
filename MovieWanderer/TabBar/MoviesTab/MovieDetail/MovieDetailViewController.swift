@@ -18,6 +18,7 @@ class MovieDetailViewController: UIViewController {
     private let scenesTitleLabel = UILabel()
     private let backButton = UIButton()
     private let numberOfPlacesLabel = UILabel()
+    private let animatingBarView = AnimatingBarView()
 
     // MARK: Init
     
@@ -38,29 +39,6 @@ class MovieDetailViewController: UIViewController {
         setupContraints()
         setupObservables()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.prefersLargeTitles = false
-//        navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.backgroundColor = UIColor.clear
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-//        navigationItem.largeTitleDisplayMode = .automatic
-//        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.backgroundColor = nil
-        navigationController?.navigationBar.barTintColor = UIColor.white
-        navigationController?.navigationBar.setBackgroundImage(nil, for: UIBarMetrics.default)
-        navigationController?.navigationBar.shadowImage = nil
-    }
 }
 
 private extension MovieDetailViewController {
@@ -68,15 +46,30 @@ private extension MovieDetailViewController {
     private func setupViews() {
         title = self.movie.title
         view.backgroundColor = .white
+        
         view.addSubview(verticalScenesView)
+        view.addSubview(animatingBarView)
         
         backButton.setImage(UIImage(named: "back-icon"), for: .normal)
+        view.addSubview(backButton)
     }
     
     private func setupContraints() {
         verticalScenesView.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        animatingBarView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(64)
+        }
+        
+        backButton.snp.makeConstraints { make in
+            make.left.equalToSuperview().inset(15)
+            let barHeight = UIApplication.shared.statusBarFrame.height
+            make.top.equalToSuperview().inset(15 + barHeight)
+            make.height.width.equalTo(18)
         }
     }
     
@@ -97,33 +90,26 @@ private extension MovieDetailViewController {
         
         backButton.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.navigationController?.popViewController(animated: true)
+                self.dismiss(animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
         verticalScenesView.scenesCollectionView.rx.didScroll
             .subscribe(onNext: { _ in
-                let offset = self.verticalScenesView.scenesCollectionView.contentOffset.y / 150 //check this number
-                self.animateNavigationBar(offset: offset)
+                
+                //todo: probably calculate this number (120) based on image height
+                if self.verticalScenesView.scenesCollectionView.contentOffset.y > 120 {
+                    let offset = self.verticalScenesView.scenesCollectionView.contentOffset.y / 80 //check this number
+                    let number = offset - 1
+                        self.animateNavigationBar(offset: number)
+                } else {
+                    self.animateNavigationBar(offset: 0.0)
+                }
                 
             }).disposed(by: disposeBag)
     }
     
     private func animateNavigationBar(offset: CGFloat) {
-        if offset > 1 {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.navigationController?.navigationBar.shadowImage = nil
-                self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.black]
-                self.navigationController?.navigationBar.layoutIfNeeded()
-            })
-        } else {
-            UIView.animate(withDuration: 0.25, animations: {
-                self.navigationController?.navigationBar.shadowImage = UIImage()
-                self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-                self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): UIColor.clear]
-                self.navigationController?.navigationBar.layoutIfNeeded()
-            })
-        }
+        animatingBarView.setColorWith(alpha: offset)
     }
 }
 

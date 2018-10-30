@@ -17,6 +17,8 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private let stackView = UIStackView()
     private let containerView = UIView()
     private let actionButton = UIButton()
+    private let gradientView = GradientView()
+
     
     // MARK: - Init
     
@@ -52,11 +54,15 @@ private extension SceneDetailPagerViewCell {
         containerView.backgroundColor = .white
         addSubview(containerView)
         
+        let black = UIColor.black.withAlphaComponent(0.8)
+        gradientView.colors = (UIColor.clear, black)
+        backgroundImageView.insertSubview(gradientView, at: 0)
+        
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
         
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.bold(withSize: UIDevice.iPhoneNarrow ? 18 : 24)
+        titleLabel.font = UIFont.regular(withSize: UIDevice.iPhoneNarrow ? 15 : 18)
         titleLabel.textAlignment = .left
         
         subtitleLabel.textColor = .gray
@@ -65,30 +71,31 @@ private extension SceneDetailPagerViewCell {
         subtitleLabel.numberOfLines = 0
         
         actionButton.setTitle("Action button", for: .normal)
-        actionButton.setTitleColor(.black, for: .normal)
-//        actionButton.backgroundColor = .red
+        actionButton.setTitleColor(.myRed, for: .normal)
+        actionButton.backgroundColor = .clear
+        actionButton.layer.borderWidth = 1
+        actionButton.layer.borderColor = UIColor.myRed.cgColor
+        actionButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+        actionButton.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
+        actionButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 24)
+        actionButton.layer.cornerRadius = 4
         
-        stackView.axis = .vertical
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.spacing = 12
-        
-        stackView.addArrangedSubview(backgroundImageView)
-        stackView.addArrangedSubview(subtitleLabel)
-        stackView.addArrangedSubview(actionButton)
-
-        
-        containerView.addSubview(stackView)
+        containerView.addSubview(backgroundImageView)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(subtitleLabel)
+        containerView.addSubview(actionButton)
     }
     
     private func setupConstraints() {
-        stackView.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.bottom.greaterThanOrEqualToSuperview()
-        }
+        
+        let margin: CGFloat = 15
         
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(5)
+        }
+        
+        backgroundImageView.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
         }
         
         // Snapkit constraint do not work in this case, used standart instead
@@ -100,8 +107,27 @@ private extension SceneDetailPagerViewCell {
                                                   multiplier: 9.0 / 16.0,
                                                   constant: 0))
         
-        subtitleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        subtitleLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
+        titleLabel.snp.makeConstraints { make in
+            make.trailing.leading.equalToSuperview().inset(margin)
+            make.bottom.equalTo(backgroundImageView).inset(5)
+        }
+        
+        gradientView.snp.makeConstraints { make in
+            make.left.right.bottom.equalTo(backgroundImageView)
+            make.top.equalTo(titleLabel.snp.top)//.inset(10)
+        }
+        
+        subtitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(backgroundImageView.snp.bottom).offset(margin)
+            make.trailing.leading.equalToSuperview().inset(margin)
+        }
+        
+        actionButton.snp.makeConstraints { make in
+            make.top.greaterThanOrEqualTo(subtitleLabel.snp.bottom).offset(10)
+            make.bottom.equalToSuperview().inset(20)
+            make.centerX.equalToSuperview()
+        }
+        
     }
 }
 

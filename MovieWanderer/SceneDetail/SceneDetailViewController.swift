@@ -15,7 +15,6 @@ final class SceneDetailViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let closeButton = UIButton(type: UIButtonType.system)
     private let pagerView = FSPagerView()
-    private let pageControl = FSPageControl()
     private let blurredView = UIVisualEffectView()
     private let scenes: [Scene]
     private let currentIndex: Int
@@ -48,6 +47,11 @@ final class SceneDetailViewController: UIViewController {
             self.pagerView.scrollToItem(at: self.currentIndex, animated: false)
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        closeButton.layer.cornerRadius = closeButton.bounds.width / 2
+    }
 }
 
 extension SceneDetailViewController: FSPagerViewDataSource {
@@ -65,18 +69,6 @@ extension SceneDetailViewController: FSPagerViewDataSource {
     }
 }
 
-extension SceneDetailViewController: FSPagerViewDelegate {
-    
-//    func pagerViewDidEndDecelerating(_ pagerView: FSPagerView) {
-//        pageControl.currentPage = pagerView.currentIndex
-//    }
-//
-    func pagerViewDidScroll(_ pagerView: FSPagerView) {
-        let page = pagerView.currentIndex
-        pageControl.currentPage = page
-    }
-}
-
 private extension SceneDetailViewController {
     
     private func commonInit() {
@@ -84,7 +76,6 @@ private extension SceneDetailViewController {
         setupConstraints()
         
         pagerView.dataSource = self
-        pagerView.delegate = self
     }
     
     private func setupViews() {
@@ -98,37 +89,30 @@ private extension SceneDetailViewController {
         pagerView.interitemSpacing = 10
         
         let width = UIScreen.main.bounds.width - 60
-        let size = CGSize(width: width, height: 600) //TODO: change
+        let size = CGSize(width: width, height: 570) //TODO: change
         pagerView.itemSize = size
         
         if let image = UIImage(named: "close-icon") {
             closeButton.setImage(image, for: .normal)
         }
+        closeButton.backgroundColor = .white
+        closeButton.imageEdgeInsets =  UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         view.addSubview(closeButton)
-        
-        pageControl.numberOfPages = 5
-        pageControl.contentHorizontalAlignment = .center
-        pageControl.setFillColor(.gray, for: .normal)
-        pageControl.setFillColor(.myRed, for: .selected)
-        view.addSubview(pageControl)
     }
     
     private func setupConstraints() {
         closeButton.snp.makeConstraints { make in
+            make.centerY.equalTo(pagerView.snp.top)
             make.left.equalToSuperview().inset(15)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(15)
             make.height.width.equalTo(25)
         }
+        
+//        pagerView.backgroundColor = .red
         
         pagerView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)
             make.leading.trailing.equalToSuperview()//.inset(20)
             make.bottom.equalToSuperview().inset(40)
-        }
-        
-        pageControl.snp.makeConstraints { make in
-            make.top.equalTo(pagerView.snp.bottom).offset(10)
-            make.left.right.equalTo(pagerView)
         }
         
         blurredView.snp.makeConstraints { make in

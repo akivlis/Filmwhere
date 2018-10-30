@@ -65,6 +65,6 @@ private extension MovieListViewController {
     
     private func openDetailFor(_ movie: Movie) {
         let movieDetailViewController = MovieDetailViewController(movie: movie)
-        navigationController?.pushViewController(movieDetailViewController, animated: true)
+        navigationController?.present(movieDetailViewController, animated: true, completion: nil)
     }
 }
