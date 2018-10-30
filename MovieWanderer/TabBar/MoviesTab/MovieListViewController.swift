@@ -14,6 +14,9 @@ class MovieListViewController: UIViewController {
     private let listView = MovieListView()
     private let disposeBag = DisposeBag()
     
+    var presentTransition: UIViewControllerAnimatedTransitioning?
+    var dismissTransition: UIViewControllerAnimatedTransitioning?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -65,6 +68,36 @@ private extension MovieListViewController {
     
     private func openDetailFor(_ movie: Movie) {
         let movieDetailViewController = MovieDetailViewController(movie: movie)
-        navigationController?.present(movieDetailViewController, animated: true, completion: nil)
+        
+            presentTransition = RightToLeftTransition()
+            dismissTransition = LeftToRightTransition()
+            
+            movieDetailViewController.modalPresentationStyle = .custom
+            movieDetailViewController.transitioningDelegate = self
+            
+            present(movieDetailViewController, animated: true, completion: { [weak self] in
+                self?.presentTransition = nil
+            })
+        
+//        let transition = CATransition()
+//        transition.duration = 0.5
+//        transition.type = kCATransitionMoveIn
+//        transition.subtype = kCATransitionFromRight
+//        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
+////        self.view.window
+//        self.view.window!.layer.add(transition, forKey: nil)
+//        present(movieDetailViewController, animated: true, completion: nil)
+//        navigationController?.present(movieDetailViewController, animated: false, completion: nil)
+//        navigationController?.present(movieDetailViewController, animated: true, completion: nil)
+    }
+}
+
+extension MovieListViewController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return presentTransition
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return dismissTransition
     }
 }

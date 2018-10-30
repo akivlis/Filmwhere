@@ -25,6 +25,7 @@ class MovieDetailViewController: UIViewController {
     init(movie: Movie) {
         self.movie = movie
         verticalScenesView = VerticalScenesView(movie: movie)
+        
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -51,6 +52,7 @@ private extension MovieDetailViewController {
         view.addSubview(animatingBarView)
         
         backButton.setImage(UIImage(named: "back-icon"), for: .normal)
+        backButton.imageEdgeInsets =  UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         view.addSubview(backButton)
     }
     
@@ -69,7 +71,7 @@ private extension MovieDetailViewController {
             make.left.equalToSuperview().inset(15)
             let barHeight = UIApplication.shared.statusBarFrame.height
             make.top.equalToSuperview().inset(15 + barHeight)
-            make.height.width.equalTo(18)
+            make.height.width.equalTo(25)
         }
     }
     
@@ -90,7 +92,7 @@ private extension MovieDetailViewController {
         
         backButton.rx.tap
             .subscribe(onNext: { [unowned self] in
-                self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true)
             }).disposed(by: disposeBag)
         
         verticalScenesView.scenesCollectionView.rx.didScroll
@@ -104,7 +106,6 @@ private extension MovieDetailViewController {
                 } else {
                     self.animateNavigationBar(offset: 0.0)
                 }
-                
             }).disposed(by: disposeBag)
     }
     
@@ -112,7 +113,6 @@ private extension MovieDetailViewController {
         animatingBarView.setColorWith(alpha: offset)
     }
 }
-
 
 
 
