@@ -26,6 +26,10 @@ struct SceneDetailPagerViewCellViewModel {
     }
     
     var image: UIImage? {
+        //TODO: change
+        if let image = UIImage(named: scene.imageURL) {
+            return image
+        }
         return UIImage(named: scene.title)
     }
 }

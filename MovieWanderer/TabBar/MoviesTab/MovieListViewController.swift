@@ -21,7 +21,7 @@ class MovieListViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        let dummyScenes : [Scene] = [Scene(title: "Rocky", description: "Hahaha", latitude:39.962920, longitude: -75.157235),
+        let dummyScenes : [Scene] = [Scene(title: "Rocky", description: "Hahaha", latitude:39.962920, longitude: -75.157235, imageURL: "Rocky_running"),
                                 Scene(title: "Stairs", description: "Dubrovnik", latitude: 42.645942, longitude: 18.090084),
                                 Scene(title: "Mission Impossible", description: "Vienn Opera", latitude:  48.202840, longitude: 16.368916),
                                 Scene(title: "Red Sparrow", description: "Hofburg", latitude:  48.208347, longitude: 16.366143),
@@ -57,7 +57,7 @@ private extension MovieListViewController {
         navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.barTintColor = UIColor.white
         
-        view.backgroundColor = .white
+        view.backgroundColor = .blue
         title = "Movies"
         view.addSubview(listView)
         listView.backgroundColor = .white
@@ -78,17 +78,6 @@ private extension MovieListViewController {
             present(movieDetailViewController, animated: true, completion: { [weak self] in
                 self?.presentTransition = nil
             })
-        
-//        let transition = CATransition()
-//        transition.duration = 0.5
-//        transition.type = kCATransitionMoveIn
-//        transition.subtype = kCATransitionFromRight
-//        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseInEaseOut)
-////        self.view.window
-//        self.view.window!.layer.add(transition, forKey: nil)
-//        present(movieDetailViewController, animated: true, completion: nil)
-//        navigationController?.present(movieDetailViewController, animated: false, completion: nil)
-//        navigationController?.present(movieDetailViewController, animated: true, completion: nil)
     }
 }
 

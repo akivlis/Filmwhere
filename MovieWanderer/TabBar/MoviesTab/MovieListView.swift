@@ -31,7 +31,7 @@ final class MovieListView : UIView  {
         tableView.bounces = true
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.register(MovieTableViewCell.self)
+        tableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: MovieTableViewCell.reuseIdentifier)
         return tableView
     }()
     
@@ -69,7 +69,7 @@ extension MovieListView : UITableViewDataSource {
         
         if let movieCell = cell as? MovieTableViewCell {
             let viewModel = MovieCellViewModel(movie: movies[indexPath.row])
-            movieCell.bindViewModel(viewModel)
+//            movieCell.bindViewModel(viewModel)
         }
         return cell
     }
