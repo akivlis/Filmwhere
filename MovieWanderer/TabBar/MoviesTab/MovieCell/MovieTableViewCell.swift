@@ -39,6 +39,9 @@ class MovieTableViewCell: UITableViewCell {
         movieImageView.layer.cornerRadius  = 8.0
         movieImageView.layer.masksToBounds = true
         movieImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        
+        roundView.layer.borderColor = UIColor.lightGray.cgColor
+        roundView.layer.borderWidth = 1.0
     }
     
     func bindViewModel(_ viewModel: MovieCellViewModel) {

@@ -29,11 +29,11 @@ class MovieListViewController: UIViewController {
 
         ]
         
-        let dummyMovies =  [Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageName: "Rocky"),
-                            Movie(title: "Men in Black", description: "Men are saving the world from the aliens", scenes:dummyScenes, imageName: "placeholder"),
-                            
-                            Movie(title: "Game Of Thrones", description: "Game of thrones is an american fantasy drama created by Martin.", scenes: dummyScenes, imageName: "Stairs")]
-       
+        let dummyMovies =  [ Movie(title: "Eat, Pray, Love", description: "Liz Gilbert (Julia Roberts) thought she had everything she wanted in life: a home, a husband and a successful career. Now newly divorced and facing a turning point, she finds that she is confused about what is important to her. Daring to step out of her comfort zone, Liz embarks on a quest of self-discovery that takes her to Italy, India and Bali.", scenes:dummyScenes, imageName: "eat_pray"),
+                             Movie(title: "Game Of Thrones", description: "Game of thrones is an american", scenes: dummyScenes, imageName: "Rocky"),
+                             Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageName: "Rocky_running"),
+                             ]
+        
         listView.movies = dummyMovies
         
         listView.movieTapped$

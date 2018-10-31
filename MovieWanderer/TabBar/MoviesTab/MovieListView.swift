@@ -69,7 +69,7 @@ extension MovieListView : UITableViewDataSource {
         
         if let movieCell = cell as? MovieTableViewCell {
             let viewModel = MovieCellViewModel(movie: movies[indexPath.row])
-//            movieCell.bindViewModel(viewModel)
+            movieCell.bindViewModel(viewModel)
         }
         return cell
     }
