@@ -92,10 +92,10 @@ private extension SceneDetailViewController {
         let size = CGSize(width: width, height: 570) //TODO: change
         pagerView.itemSize = size
         
-        if let image = UIImage(named: "close-icon") {
+        if let image = UIImage(named: "close-icon")?.withRenderingMode(.alwaysTemplate) {
             closeButton.setImage(image, for: .normal)
         }
-        closeButton.backgroundColor = .white
+        closeButton.tintColor = .white
         closeButton.imageEdgeInsets =  UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         view.addSubview(closeButton)
     }

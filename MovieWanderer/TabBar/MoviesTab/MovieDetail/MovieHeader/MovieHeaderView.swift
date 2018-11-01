@@ -54,7 +54,7 @@ class MovieHeaderView: UICollectionReusableView {
     
     private var gradient = CAGradientLayer()
     private lazy var photoContainerView = UIView()
-    private let goToMapButton = UIButton()    
+    private let goToMapButton = UIButton(type: .system)
     private var containerHeightLayoutConstraint: Constraint?
     private var imageViewHeightLayoutConstraint: Constraint?
     private var imageViewBottomLayoutConstraint: Constraint?
