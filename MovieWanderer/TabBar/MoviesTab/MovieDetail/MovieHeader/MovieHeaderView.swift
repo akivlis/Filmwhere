@@ -111,6 +111,7 @@ private extension MovieHeaderView {
         addSubview(photoContainerView)
         
         goToMapButton.setTitle("Show on map", for: .normal)
+        goToMapButton.tintColor = .white
         goToMapButton.backgroundColor = .myRed
         goToMapButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         goToMapButton.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
