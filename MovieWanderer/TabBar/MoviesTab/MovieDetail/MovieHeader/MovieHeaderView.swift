@@ -108,6 +108,7 @@ private extension MovieHeaderView {
         backgroundColor = .white
     
         photoContainerView.addSubview(moviePhoto)
+        photoContainerView.clipsToBounds = true
         addSubview(photoContainerView)
         
         goToMapButton.setTitle("Show on map", for: .normal)
@@ -119,8 +120,6 @@ private extension MovieHeaderView {
         goToMapButton.layer.cornerRadius = 4
         addSubview(goToMapButton)
 
-        photoContainerView.clipsToBounds = true
-
         addSubview(descriptionLabel)
         addSubview(titleLabel)
         addSubview(openMoreLabel)
@@ -131,12 +130,18 @@ private extension MovieHeaderView {
         
         photoContainerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-//            containerHeightLayoutConstraint = make.height.equalTo(photoContainerView.snp.width).multipliedBy(16/9).constraint
-            containerHeightLayoutConstraint = make.height.equalTo(210).constraint
         }
         
+        photoContainerView.addConstraint(NSLayoutConstraint(item: photoContainerView,
+                                                             attribute: .height,
+                                                             relatedBy: .equal,
+                                                             toItem: photoContainerView,
+                                                             attribute: .width,
+                                                             multiplier: 9.0 / 16.0,
+                                                             constant: 0))
+        
         moviePhoto.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             imageViewBottomLayoutConstraint = make.bottom.equalToSuperview().constraint
             imageViewHeightLayoutConstraint = make.height.equalToSuperview().constraint
         }
