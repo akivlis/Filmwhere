@@ -95,7 +95,7 @@ private extension SceneDetailViewController {
         if let image = UIImage(named: "close-icon")?.withRenderingMode(.alwaysTemplate) {
             closeButton.setImage(image, for: .normal)
         }
-        closeButton.tintColor = .white
+        closeButton.tintColor = .black
         closeButton.imageEdgeInsets =  UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         view.addSubview(closeButton)
     }

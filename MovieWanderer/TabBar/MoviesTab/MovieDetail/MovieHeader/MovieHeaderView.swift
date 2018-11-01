@@ -148,8 +148,7 @@ private extension MovieHeaderView {
 
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(photoContainerView.snp.bottom).offset(14)
-            make.left.equalToSuperview().inset(padding)
-            make.right.lessThanOrEqualTo(goToMapButton.snp.left).inset(-8)
+            make.leading.trailing.equalToSuperview().inset(padding)
         }
         
         descriptionLabel.snp.makeConstraints { make in
