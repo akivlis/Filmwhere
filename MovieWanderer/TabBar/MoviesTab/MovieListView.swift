@@ -35,19 +35,15 @@ final class MovieListView : UIView  {
         return tableView
     }()
     
+    
     // MARK: - Init
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
+        commonInit()
         
         movieTableView.delegate = self
         movieTableView.dataSource = self
-        
-        addSubview(movieTableView)
-        
-        movieTableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -83,6 +79,28 @@ extension MovieListView : UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedMovie = movies[indexPath.row]
         _movieTapped.onNext(selectedMovie)
+    }
+}
+
+private extension MovieListView {
+    
+    private func commonInit() {
+        setupViews()
+        setupConstraints()
+    }
+    
+    private func setupViews() {
+        refreshControl.tintColor = .myRed
+        refreshControl.attributedTitle = NSAttributedString(string: "Downloading movies...")
+        
+        movieTableView.refreshControl = refreshControl
+        addSubview(movieTableView)
+    }
+    
+    private func setupConstraints() {
+        movieTableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 

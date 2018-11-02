@@ -15,6 +15,7 @@ class MovieListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = MovieListViewModel()
     
+    
     var presentTransition: UIViewControllerAnimatedTransitioning?
     var dismissTransition: UIViewControllerAnimatedTransitioning?
     
@@ -46,19 +47,22 @@ private extension MovieListViewController {
     
     private func setupObservables() {
         listView.movieTapped$
-            .subscribe(onNext: { [unowned self] movie in
-                self.openDetailFor(movie)
-            }).disposed(by: disposeBag)
+            .subscribe(onNext: { [weak self] movie in
+                self?.openDetailFor(movie)
+            })
+            .disposed(by: disposeBag)
         
         viewModel.displayMovies$
             .subscribe(onNext: { [weak self] movies in
                 self?.listView.movies = movies
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
         
         viewModel.showAlert$
             .subscribe(onNext: { [weak self] alert in
                 self?.present(alert, animated: true, completion: nil)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func openDetailFor(_ movie: Movie) {

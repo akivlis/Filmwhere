@@ -16,24 +16,23 @@ struct MovieHeaderViewModel {
     // MARK: - Computed properties
     
     var title: String {
-        return movie.title //+ " " + year
+        return movie.title
     }
     
     var description: String {
         return movie.description
     }
-    
-//    var numberOfFilmingLocations: String {
-//        return "\(movie.numberOfLocations) filming locations"
-//    }
-    
+ 
     var isFavorite: Bool {
         //TODO: add proper logic
         return true
     }
     
     var movieImage: UIImage {
-        return UIImage(named: movie.imageUrl)!
+        if let image = UIImage(named: movie.imageUrl) {
+            return image
+        }
+        return UIImage(named: "placeholder")!
     }
     
 }
