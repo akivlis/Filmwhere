@@ -54,6 +54,11 @@ private extension MovieListViewController {
             .subscribe(onNext: { [weak self] movies in
                 self?.listView.movies = movies
             }).disposed(by: disposeBag)
+        
+        viewModel.showAlert$
+            .subscribe(onNext: { [weak self] alert in
+                self?.present(alert, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
     }
     
     private func openDetailFor(_ movie: Movie) {

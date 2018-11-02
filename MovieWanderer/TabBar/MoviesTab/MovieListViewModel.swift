@@ -10,12 +10,17 @@ import Foundation
 import RxSwift
 import Moya
 
-struct MovieListViewModel {
+class MovieListViewModel {
     
+    private var _displayMovies$ = PublishSubject<[Movie]>()
     var displayMovies$: Observable<[Movie]> {
         return _displayMovies$
     }
-    private var _displayMovies$ = PublishSubject<[Movie]>()
+    
+    private let _showAlert$ = PublishSubject<UIAlertController>()
+    var showAlert$: Observable<UIAlertController> {
+        return _showAlert$
+    }
     
     private let provider: MoyaProvider<MovieService>
     private let disposeBag = DisposeBag()
@@ -30,14 +35,23 @@ struct MovieListViewModel {
         
         provider.rx.request(.movies)
             .map([Movie].self)
-            .subscribe(onSuccess: { movies in
-                self._displayMovies$.onNext(movies)
-            }) { error in
-                print(error)
-                //TODO: handle error
+            .subscribe(onSuccess: { [weak self] movies in
+                self?._displayMovies$.onNext(movies)
+            }) { [weak self] error in
+                guard let strongSelf = self else { return }
+                let alert = strongSelf.createErrorAlert(message: error.localizedDescription)
+                strongSelf._showAlert$.onNext(alert)
         }.disposed(by: disposeBag)
     }
     
+    // MARK: - Helper
+    
+    private func createErrorAlert( message: String?) -> UIAlertController {
+        let okAction = UIAlertAction(title: "OK".localized, style: .default, handler: nil)
+        let alert = UIAlertController(title: "Ooops", message: message, preferredStyle: .alert)
+        alert.addAction(okAction)
+        return alert
+    }
     
     private func dummyMovies() {
         let dummyScenes : [Scene] = [
@@ -64,7 +78,5 @@ struct MovieListViewModel {
             Movie(title: "Game Of Thrones", description: "Game of thrones is an american", scenes: gameOfThronesScenes, imageUrl: "Rocky"),
             Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageUrl: "Rocky_running"),
             ]
-        
-        
     }
 }
