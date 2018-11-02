@@ -10,6 +10,7 @@ target ‘MovieWanderer’ do
     pod 'Moya/RxSwift', '~> 11.0.2'
     pod 'Alamofire', '~> 4.7.3' #used by moya
     pod 'FSPagerView'
+    pod 'Kingfisher', '~> 4.0'
 
   target 'MovieWandererTests' do
     pod 'RxBlocking', '~> 4.0'
