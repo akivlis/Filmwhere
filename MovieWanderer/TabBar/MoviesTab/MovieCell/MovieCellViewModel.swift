@@ -6,7 +6,7 @@
 //  Copyright © 2018 Silvia Kuzmova. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct MovieCellViewModel {
     
@@ -16,8 +16,12 @@ struct MovieCellViewModel {
         return movie.description
     }
     
-    var imageName: String {
-        return movie.imageUrl
+    var imageUrl: URL {
+        return URL(string: movie.imageUrl)!
+    }
+    
+    var placeholderImage: UIImage {
+        return UIImage(named: "placeholder")!
     }
     
     var title: String {

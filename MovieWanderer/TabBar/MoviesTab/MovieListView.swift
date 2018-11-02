@@ -90,10 +90,10 @@ private extension MovieListView {
     }
     
     private func setupViews() {
-        refreshControl.tintColor = .myRed
-        refreshControl.attributedTitle = NSAttributedString(string: "Downloading movies...")
+//        refreshControl.tintColor = .myRed
+//        refreshControl.attributedTitle = NSAttributedString(string: "Downloading movies...")
         
-        movieTableView.refreshControl = refreshControl
+//        movieTableView.refreshControl = refreshControl
         addSubview(movieTableView)
     }
     
