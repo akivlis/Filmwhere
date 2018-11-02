@@ -84,7 +84,12 @@ class MovieHeaderView: UICollectionReusableView {
     
     
     func bindViewModel(_ viewModel: MovieHeaderViewModel) {
-        moviePhoto.image = viewModel.movieImage
+        moviePhoto.kf.setImage(with: viewModel.imageUrl) {
+            image, error, cacheType, imageURL in
+            if error != nil {
+                self.moviePhoto.image =  viewModel.placeholderImage
+            }
+        }
         descriptionLabel.text = viewModel.description
         titleLabel.text = viewModel.title
     }
