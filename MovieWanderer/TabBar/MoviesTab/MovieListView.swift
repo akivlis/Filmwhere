@@ -13,7 +13,7 @@ final class MovieListView : UIView  {
     
     var movies = [Movie]() {
         didSet {
-            layoutSubviews()
+            movieTableView.reloadData()
         }
     }
     

@@ -33,7 +33,7 @@ struct MovieHeaderViewModel {
     }
     
     var movieImage: UIImage {
-        return UIImage(named: movie.imageName)!
+        return UIImage(named: movie.imageUrl)!
     }
     
 }

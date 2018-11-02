@@ -18,46 +18,24 @@ struct MovieListViewModel {
     private var _displayMovies$ = PublishSubject<[Movie]>()
     
     private let provider: MoyaProvider<MovieService>
+    private let disposeBag = DisposeBag()
+    
+    // MARK: - Init
     
     init(provider: MoyaProvider<MovieService> = MoyaProvider<MovieService>()) {
         self.provider = provider
     }
     
-//    provider = MoyaProvider<GitHub>()
-//    provider.rx.request(.userProfile("ashfurrow")).subscribe { event in
-//    switch event {
-//    case let .success(response):
-//    image = UIImage(data: response.data)
-//    case let .error(error):
-//    print(error)
-//    }
-//    }
-//    func loadChallenges(openCurrentChallenge: Bool = false) {
-//        provider.rx
-//            .request(.challenges(secondsToUnlock: DeveloperMenuViewController.secondsToUnlockNextChallenge))
-//            .map([Challenge].self, atKeyPath: "challenges", using: ChallengeDecoder(), failsOnEmptyData: false)
-//            .subscribe(onSuccess: { [weak self] challenges in
-//                self?.challenges = challenges.reversed()
-//                self?.loadedChallenges$.onNext(challenges.reversed())
-//
-//                if openCurrentChallenge {
-//                    self?.openCurrentChallenge.onNext(())
-//                }
-//            })
-//            .disposed(by: disposeBag)
-//    }
-    
     func loadMovies() {
         
         provider.rx.request(.movies)
-            .subscribe(onSuccess: { response in
-                print(response)
+            .map([Movie].self)
+            .subscribe(onSuccess: { movies in
+                self._displayMovies$.onNext(movies)
             }) { error in
                 print(error)
-        }
-        
-        
-//        _displayMovies$.onNext(dummyMovies)
+                //TODO: handle error
+        }.disposed(by: disposeBag)
     }
     
     
@@ -81,9 +59,12 @@ struct MovieListViewModel {
                                    Scene(title: "Dany", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)
         ]
         
-        let dummyMovies =  [ Movie(title: "Eat, Pray, Love", description: "Liz Gilbert (Julia Roberts) thought she had everything she wanted in life: a home, a husband and a successful career. Now newly divorced and facing a turning point, she finds that she is confused about what is important to her. Daring to step out of her comfort zone, Liz embarks on a quest of self-discovery that takes her to Italy, India and Bali.", scenes: viennaScenes, imageName: "eat_pray"),
-                             Movie(title: "Game Of Thrones", description: "Game of thrones is an american", scenes: gameOfThronesScenes, imageName: "Rocky"),
-                             Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageName: "Rocky_running"),
-                             ]
+        let dummyMovies =  [
+            Movie(title: "Eat, Pray, Love", description: "Liz Gilbert (Julia Roberts) thought she had everything she wanted in life: a home, a husband and a successful career. Now newly divorced and facing a turning point, she finds that she is confused about what is important to her. Daring to step out of her comfort zone, Liz embarks on a quest of self-discovery that takes her to Italy, India and Bali.", scenes: viennaScenes, imageUrl: "eat_pray"),
+            Movie(title: "Game Of Thrones", description: "Game of thrones is an american", scenes: gameOfThronesScenes, imageUrl: "Rocky"),
+            Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageUrl: "Rocky_running"),
+            ]
+        
+        
     }
 }

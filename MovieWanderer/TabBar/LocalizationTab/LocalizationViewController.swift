@@ -47,7 +47,7 @@ private extension LocalizationViewController {
                                 Scene(title: "Stairs", description: "Bla bla bla", latitude: 48.206959, longitude: 16.390454),
                                 Scene(title: "Dany", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)]
         
-        let movie = Movie(title: "", description: "", scenes: scenes, imageName: "")
+        let movie = Movie(title: "", description: "", scenes: scenes, imageUrl: "")
         
         sceneView = VerticalScenesView(movie: movie, showHeader: false)
         mapView = MapAndScenesCarouselView(scenes: scenes)
