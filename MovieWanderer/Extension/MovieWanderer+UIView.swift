@@ -89,6 +89,8 @@ extension UILabel {
             return false
         }
         
+        self.layoutIfNeeded()
+        
         let labelTextSize = (labelText as NSString).boundingRect(
             with: CGSize(width: frame.size.width, height: .greatestFiniteMagnitude),
             options: .usesLineFragmentOrigin,
