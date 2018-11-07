@@ -31,11 +31,10 @@ extension UIView {
 extension CALayer {
     func addShadow() {
         self.shadowOffset = .zero
-        self.shadowOpacity = 0.5
-        self.shadowRadius = 8.0
+        self.shadowOpacity = 0.4
+        self.shadowRadius = 4.0
         self.shadowColor = UIColor.black.cgColor
         self.masksToBounds = false
-        self.shadowOffset = CGSize(width: 5.0, height: 5.0)
         if cornerRadius != 0 {
             addShadowWithRoundedCorners()
         }
