@@ -33,6 +33,7 @@ class MovieHeaderView: UICollectionReusableView {
         label.numberOfLines = 3
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = .gray
+        label.contentMode = .top
         return label
     }()
     
@@ -43,22 +44,38 @@ class MovieHeaderView: UICollectionReusableView {
         return label
     }()
     
-    private lazy var openMoreLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.textAlignment = .center
-        label.textColor = .myRed
-        label.text = "More"
-        return label
+    private lazy var openMoreButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("More", for: .normal)
+        button.setTitleColor(.myRed, for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.titleLabel?.textAlignment = .left
+        return button
+    }()
+    
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.alignment = .leading
+        stackView.distribution = .fill
+        return stackView
     }()
     
     private var gradient = CAGradientLayer()
     private lazy var photoContainerView = UIView()
     private let goToMapButton = UIButton(type: .system)
+    
+    private var didSetConstraints = false
     private var containerHeightLayoutConstraint: Constraint?
     private var imageViewHeightLayoutConstraint: Constraint?
     private var imageViewBottomLayoutConstraint: Constraint?
-
+    
+    private var isDescriptionExtended = false {
+        didSet {
+            setNeedsLayout()
+        }
+    }
+    
     // MARK: Init
     
     override init(frame: CGRect) {
@@ -74,11 +91,16 @@ class MovieHeaderView: UICollectionReusableView {
         super.layoutSubviews()
         
         gradient.frame = moviePhoto.bounds
+
+        // want to set openMoreButton only once, cause then there is a strange animation when expanding/closing
+        if !didSetConstraints {
+            openMoreButton.isHidden = !descriptionLabel.isTruncated() //&& !isDescriptionExtended
+        }
+        didSetConstraints = true
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        
         disposeBag = DisposeBag()
     }
     
@@ -107,6 +129,7 @@ private extension MovieHeaderView {
     private func commonInit() {
         setupViews()
         setupConstraints()
+        setupObservables()
     }
     
     private func setupViews() {
@@ -125,9 +148,12 @@ private extension MovieHeaderView {
         goToMapButton.layer.cornerRadius = 4
         addSubview(goToMapButton)
 
-        addSubview(descriptionLabel)
         addSubview(titleLabel)
-        addSubview(openMoreLabel)
+        
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(openMoreButton)
+        addSubview(stackView)
+
     }
     
     private func setupConstraints() {
@@ -160,17 +186,32 @@ private extension MovieHeaderView {
             make.top.equalTo(photoContainerView.snp.bottom).offset(14)
             make.leading.trailing.equalToSuperview().inset(padding)
         }
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
-        descriptionLabel.snp.makeConstraints { make in
+        stackView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(6)
-            make.left.equalTo(titleLabel)
-            make.right.equalTo(goToMapButton)
+            make.leading.trailing.equalTo(titleLabel)
+            make.bottom.lessThanOrEqualToSuperview()
         }
         
-        openMoreLabel.snp.makeConstraints { make in
-            make.left.equalTo(descriptionLabel)
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(6)
-            make.bottom.equalToSuperview().inset(4)
+        descriptionLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        openMoreButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
+    }
+    
+    private func setupObservables() {
+        openMoreButton.rx.tap
+            .subscribe(onNext: { _ in
+                self.showMoreOrLess()
+            }).disposed(by: disposeBag)
+    }
+    
+    private func showMoreOrLess() {
+        isDescriptionExtended = !isDescriptionExtended
+        
+        UIView.animate(withDuration: 0.25) {
+            self.descriptionLabel.numberOfLines = self.isDescriptionExtended ? 0 : 3
+            self.openMoreButton.setTitle(self.isDescriptionExtended ? "Less" : "More", for: .normal)
+            self.layoutIfNeeded()
         }
     }
 }

@@ -122,7 +122,7 @@ extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if showHeader {
             let width = collectionView.bounds.width
-            let height: CGFloat = 350
+            let height: CGFloat = 500
             return CGSize(width: width, height: height)
         }
         return .zero
