@@ -33,6 +33,8 @@ class MovieListViewModel {
     
     func loadMovies() {
         
+        self._displayMovies$.onNext(dummyMovies())
+
         provider.rx.request(.movies)
             .map([Movie].self)
             .subscribe(onSuccess: { [weak self] movies in
@@ -53,7 +55,7 @@ class MovieListViewModel {
         return alert
     }
     
-    private func dummyMovies() {
+    private func dummyMovies() -> [Movie] {
         let dummyScenes : [Scene] = [
             Scene(title: "Rocky", description: "Hahaha", latitude:39.962920, longitude: -75.157235, imageURL: "Rocky_running"),
             Scene(title: "Stairs", description: "Dubrovnik", latitude: 42.645942, longitude: 18.090084),
@@ -78,5 +80,7 @@ class MovieListViewModel {
             Movie(title: "Game Of Thrones", description: "Game of thrones is an american", scenes: gameOfThronesScenes, imageUrl: "Rocky"),
             Movie(title: "Rocky", description: "A boxer decides to change his life, so he starts training for the worlds biggest competition in Philadephia. He needs to put all his forces into this fight and so on and on ", scenes: dummyScenes, imageUrl: "Rocky_running"),
             ]
+        
+        return dummyMovies
     }
 }
