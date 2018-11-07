@@ -11,9 +11,9 @@ import Moya
 
 enum MovieService {
     case movies
-    case movie(identifier: Int)
-    case scenesForMovieWith(identifier: Int)
-    case scene(identifier: Int)
+    case movie(identifier: String)
+    case scenesForMovieWith(identifier: String)
+    case scene(identifier: String)
 }
 
 extension MovieService: TargetType {

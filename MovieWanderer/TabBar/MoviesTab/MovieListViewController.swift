@@ -66,17 +66,18 @@ private extension MovieListViewController {
     }
     
     private func openDetailFor(_ movie: Movie) {
-        let movieDetailViewController = MovieDetailViewController(movie: movie)
+        let viewModel = MovieDetailViewModel(movie: movie)
+        let movieDetailViewController = MovieDetailViewController(viewModel: viewModel)
         
-            presentTransition = RightToLeftTransition()
-            dismissTransition = LeftToRightTransition()
-            
-            movieDetailViewController.modalPresentationStyle = .custom
-            movieDetailViewController.transitioningDelegate = self
-            
-            present(movieDetailViewController, animated: true, completion: { [weak self] in
-                self?.presentTransition = nil
-            })
+        presentTransition = RightToLeftTransition()
+        dismissTransition = LeftToRightTransition()
+        
+        movieDetailViewController.modalPresentationStyle = .custom
+        movieDetailViewController.transitioningDelegate = self
+        
+        present(movieDetailViewController, animated: true, completion: { [weak self] in
+            self?.presentTransition = nil
+        })
     }
 }
 

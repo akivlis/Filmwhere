@@ -23,7 +23,6 @@ final class SceneDetailViewController: UIViewController {
         self.scenes = scenes
         self.currentIndex = currentIndex
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -106,8 +105,6 @@ private extension SceneDetailViewController {
             make.left.equalToSuperview().inset(15)
             make.height.width.equalTo(25)
         }
-        
-//        pagerView.backgroundColor = .red
         
         pagerView.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(40)

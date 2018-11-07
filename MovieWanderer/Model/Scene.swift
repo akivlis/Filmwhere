@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Scene {
+struct Scene {
     
     let id: String
     let title: String
@@ -37,6 +37,31 @@ extension Scene: Equatable {
             lhs.description == rhs.description &&
             lhs.latitude == rhs.latitude &&
             lhs.longitude == rhs.longitude
+    }
+}
+
+extension Scene: Decodable {
+    
+    fileprivate enum Keys: String, CodingKey {
+        case id
+        case title
+        case description
+        case imageUrl
+        case latitude
+        case longitude
+        case country
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: Keys.self)
+        let id: String = try container.decode(String.self, forKey: .id)
+        let title: String = try container.decode(String.self, forKey: .title)
+        let description: String = try container.decode(String.self, forKey: .description)
+        let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
+        let latitude: Double = try container.decode(Double.self, forKey: .latitude)
+        let longitude: Double = try container.decode(Double.self, forKey: .longitude)
+        let country: String = try container.decode(String.self, forKey: .description)
+        self.init(id: id, title: title, description: description, latitude: latitude, longitude: longitude, imageURL: imageUrl, country: country)
     }
 }
 

@@ -35,6 +35,7 @@ extension Movie: Decodable {
         case description
         case imageUrl
         case sceneCount
+        case scenes
     }
     
     init(from decoder: Decoder) throws {
@@ -43,7 +44,8 @@ extension Movie: Decodable {
         let title: String = try container.decode(String.self, forKey: .title)
         let description: String = try container.decode(String.self, forKey: .description)
         let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
-        let sceneCount: Int = try container.decode(Int.self, forKey: .sceneCount)
-        self.init(id: id, title: title, description: description, scenes: [Scene](), sceneCount: sceneCount, imageUrl: imageUrl)
+        let sceneCount: Int = try container.decodeIfPresent(Int.self, forKey: .sceneCount) ?? 0
+        let scenes: [Scene] = try container.decodeIfPresent([Scene].self, forKey: .scenes) ?? []
+        self.init(id: id, title: title, description: description, scenes: scenes, sceneCount: sceneCount, imageUrl: imageUrl)
     }
 }

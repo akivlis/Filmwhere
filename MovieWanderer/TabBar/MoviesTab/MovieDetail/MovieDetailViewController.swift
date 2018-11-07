@@ -14,7 +14,7 @@ class MovieDetailViewController: UIViewController {
 
     private let verticalScenesView : VerticalScenesView
     private let disposeBag = DisposeBag()
-    private let movie: Movie
+    private let viewModel: MovieDetailViewModel
     private let scenesTitleLabel = UILabel()
     private let backButton = UIButton()
     private let numberOfPlacesLabel = UILabel()
@@ -22,10 +22,9 @@ class MovieDetailViewController: UIViewController {
 
     // MARK: Init
     
-    init(movie: Movie) {
-        self.movie = movie
-        verticalScenesView = VerticalScenesView(movie: movie)
-        
+    init(viewModel: MovieDetailViewModel) {
+        self.viewModel = viewModel
+        verticalScenesView = VerticalScenesView(movie: viewModel.movie)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -39,13 +38,15 @@ class MovieDetailViewController: UIViewController {
         setupViews()
         setupContraints()
         setupObservables()
+        
+        viewModel.loadScenes()
     }
 }
 
 private extension MovieDetailViewController {
     
     private func setupViews() {
-        title = self.movie.title
+        title = viewModel.title
         view.backgroundColor = .white
         
         view.addSubview(verticalScenesView)
@@ -75,16 +76,23 @@ private extension MovieDetailViewController {
     }
     
     private func setupObservables() {
+        viewModel.displayScenes$
+            .subscribe(onNext: { scenes in
+                self.verticalScenesView.setScenes(scenes: scenes)
+            })
+            .disposed(by: disposeBag)
+                
         verticalScenesView.showMapTapped$
             .subscribe(onNext: { [unowned self] _ in
-                let modalViewController = MapViewController(places: self.movie.scenes)
+                let modalViewController = MapViewController(places: self.viewModel.scenes)
                 self.present(modalViewController, animated: true, completion: nil)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
         
         //TODO: scenestableView should be private, expose only click
         verticalScenesView.scenesCollectionView.rx.itemSelected
             .subscribe(onNext: { [unowned self] index in
-                let sceneDetailViewController = SceneDetailViewController(scenes: self.movie.scenes, currentIndex: index.row)
+                let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes, currentIndex: index.row)
                 sceneDetailViewController.modalPresentationStyle = .overFullScreen
                 self.present(sceneDetailViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)

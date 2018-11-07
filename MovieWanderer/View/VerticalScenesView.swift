@@ -12,13 +12,14 @@ import RxSwift
 
 class VerticalScenesView: UIView {
     
-    private let movie: Movie
     private var _showMapTapped$ = PublishSubject<()>()
     var showMapTapped$: Observable<()>{
         return _showMapTapped$
     }
     
+    private let movie: Movie
     private var headerView: MovieHeaderView?
+    private var scenes: [Scene]
     private let showHeader: Bool
     
     let scenesCollectionView: UICollectionView = {
@@ -41,8 +42,9 @@ class VerticalScenesView: UIView {
     }()
     
     init(movie: Movie, showHeader: Bool = true) {
-        self.movie = movie
+        self.movie = movie // movie should be only in movieHeaderView
         self.showHeader = showHeader
+        self.scenes = movie.scenes
         super.init(frame: .zero)
         backgroundColor = .clear
 
@@ -53,6 +55,11 @@ class VerticalScenesView: UIView {
         scenesCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+//        scenesCollectionView.reloadData()
+    }
+    
+    func setScenes(scenes: [Scene]) {
+        self.scenes = scenes
         scenesCollectionView.reloadData()
     }
     
@@ -68,14 +75,14 @@ extension VerticalScenesView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movie.scenes.count
+        return scenes.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SceneCollectionViewCell.reuseIdentifier, for: indexPath)
         if let sceneCell = cell as? SceneCollectionViewCell {
             
-            let viewModel = SceneCellViewModel(scene: movie.scenes[indexPath.row])
+            let viewModel = SceneCellViewModel(scene: scenes[indexPath.row])
             sceneCell.bindViewModel(viewModel)
             return sceneCell
         }

@@ -25,7 +25,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l7S-22-PuO">
                                 <rect key="frame" x="0.0" y="0.0" width="671" height="450"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rocky" translatesAutoresizingMaskIntoConstraints="NO" id="wAX-i7-0cz">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rocky_running" translatesAutoresizingMaskIntoConstraints="NO" id="wAX-i7-0cz">
                                         <rect key="frame" x="0.0" y="0.0" width="671" height="377.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="wAX-i7-0cz" secondAttribute="height" multiplier="16:9" id="Mz0-J7-ZAM"/>
@@ -93,6 +93,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Rocky" width="1920" height="1080"/>
+        <image name="Rocky_running" width="1920" height="1080"/>
     </resources>
 </document>
