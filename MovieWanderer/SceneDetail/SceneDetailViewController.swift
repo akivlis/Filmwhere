@@ -34,9 +34,10 @@ final class SceneDetailViewController: UIViewController {
         
         commonInit()
         
-        closeButton.rx.tap.subscribe(onNext: { _ in
-            self.dismiss(animated: true, completion: nil)
-        }).disposed(by: disposeBag)
+        closeButton.rx.tap
+            .subscribe(onNext: { _ in
+                self.dismiss(animated: true, completion: nil)
+            }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
