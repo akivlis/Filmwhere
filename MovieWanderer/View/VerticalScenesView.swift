@@ -28,6 +28,9 @@ class VerticalScenesView: UIView {
             layout.scrollDirection = .vertical
             layout.minimumInteritemSpacing = 0
             layout.minimumLineSpacing = 10
+//            layout.estimatedItemSize = CGSize(width: 50, height: 400)
+            layout.headerReferenceSize = CGSize(width: 50, height: 400)
+//            layout.headerReferenceSize = UICollectionViewFlowLayoutAutomaticSize
             layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
             return layout
         }()
@@ -55,7 +58,6 @@ class VerticalScenesView: UIView {
         scenesCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-//        scenesCollectionView.reloadData()
     }
     
     func setScenes(scenes: [Scene]) {
@@ -117,15 +119,6 @@ extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
         let width = collectionView.bounds.width - 40 //TODO: add variable here to match the margin with the header
         let height: CGFloat = 180
         return CGSize(width: width, height: height)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        if showHeader {
-            let width = collectionView.bounds.width
-            let height: CGFloat = 500
-            return CGSize(width: width, height: height)
-        }
-        return .zero
     }
 }
 

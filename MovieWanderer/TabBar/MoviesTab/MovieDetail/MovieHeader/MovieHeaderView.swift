@@ -22,7 +22,6 @@ class MovieHeaderView: UICollectionReusableView {
 
     private lazy var moviePhoto: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Lokrum")
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
         return imageView
@@ -188,7 +187,7 @@ private extension MovieHeaderView {
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(goToMapButton.snp.bottom).offset(10)
+            make.top.equalTo(photoContainerView.snp.bottom).offset(padding)
             make.leading.trailing.equalToSuperview().inset(padding)
         }
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
