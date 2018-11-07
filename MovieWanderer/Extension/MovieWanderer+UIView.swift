@@ -33,7 +33,7 @@ extension CALayer {
         self.shadowOffset = .zero
         self.shadowOpacity = 0.4
         self.shadowRadius = 4.0
-        self.shadowColor = UIColor.black.cgColor
+        self.shadowColor = UIColor.gray.cgColor
         self.masksToBounds = false
         if cornerRadius != 0 {
             addShadowWithRoundedCorners()

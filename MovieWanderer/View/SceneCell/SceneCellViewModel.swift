@@ -18,7 +18,6 @@ struct SceneCellViewModel {
     }
     
     var description: String {
-        return "Very long test movie scene description which says something important about the scene" 
         return scene.description
     }
     
