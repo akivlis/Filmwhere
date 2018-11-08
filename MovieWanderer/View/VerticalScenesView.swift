@@ -38,6 +38,7 @@ class VerticalScenesView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isUserInteractionEnabled = true
         collectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: SceneCollectionViewCell.reuseIdentifier)
+        collectionView.register(Uini)
         collectionView.register(header: MovieHeaderView.self)
         collectionView.backgroundColor = .white
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -119,6 +120,8 @@ extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
         let width = collectionView.bounds.width - 40 //TODO: add variable here to match the margin with the header
         let height: CGFloat = 180
         return CGSize(width: width, height: height)
+        
+        return UICollectionViewFlowLayoutAutomaticSize
     }
 }
 

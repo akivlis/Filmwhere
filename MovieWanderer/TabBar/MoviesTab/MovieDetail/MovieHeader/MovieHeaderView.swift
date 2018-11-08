@@ -154,10 +154,9 @@ private extension MovieHeaderView {
         addSubview(goToMapButton)
         addSubview(titleLabel)
         
-        stackView.addArrangedSubview(descriptionLabel)
-        stackView.addArrangedSubview(openMoreButton)
-        addSubview(stackView)
-
+//        stackView.addArrangedSubview(descriptionLabel)
+//        stackView.addArrangedSubview(openMoreButton)
+//        addSubview(stackView)
     }
     
     private func setupConstraints() {
@@ -187,19 +186,19 @@ private extension MovieHeaderView {
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(photoContainerView.snp.bottom).offset(padding)
+            make.top.equalTo(goToMapButton.snp.bottom).offset(10)
             make.leading.trailing.equalToSuperview().inset(padding)
         }
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
-        stackView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(6)
-            make.leading.trailing.equalTo(titleLabel)
-            make.bottom.lessThanOrEqualToSuperview()
-        }
+//        stackView.snp.makeConstraints { make in
+//            make.top.equalTo(titleLabel.snp.bottom).offset(6)
+//            make.leading.trailing.equalTo(titleLabel)
+//            make.bottom.lessThanOrEqualToSuperview()
+//        }
         
-        descriptionLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        openMoreButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
+//        descriptionLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+//        openMoreButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }
     
     private func setupObservables() {
