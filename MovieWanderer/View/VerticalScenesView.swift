@@ -28,17 +28,22 @@ class VerticalScenesView: UIView {
             layout.scrollDirection = .vertical
             layout.minimumInteritemSpacing = 0
             layout.minimumLineSpacing = 10
-//            layout.estimatedItemSize = CGSize(width: 50, height: 400)
-            layout.headerReferenceSize = CGSize(width: 50, height: 400)
-//            layout.headerReferenceSize = UICollectionViewFlowLayoutAutomaticSize
-            layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+            
+            let width = UIScreen.main.bounds.size.width
+            layout.estimatedItemSize = CGSize(width: 400, height: 10)
+            
+//            layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize //CGSize(width: 200, height: 1)
+//            layout.itemSize = CGSize(width: 100, height: 100)
+//            layout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+            layout.headerReferenceSize = CGSize(width: 50, height: 300)
+            layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.isUserInteractionEnabled = true
-        collectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: SceneCollectionViewCell.reuseIdentifier)
-        collectionView.register(Uini)
+//        collectionView.register(nibName: "ExpandableDescriptionCollectionViewCell", cell: ExpandableDescriptionCollectionViewCell.self)
+        collectionView.register(ExpandableDescriptionCollectionViewCell.self)
         collectionView.register(header: MovieHeaderView.self)
         collectionView.backgroundColor = .white
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -54,6 +59,7 @@ class VerticalScenesView: UIView {
 
         scenesCollectionView.dataSource = self
         scenesCollectionView.delegate = self
+        scenesCollectionView.backgroundColor = .blue
         
         addSubview(scenesCollectionView)
         scenesCollectionView.snp.makeConstraints { make in
@@ -78,14 +84,30 @@ extension VerticalScenesView: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return scenes.count
+        return scenes.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ExpandableDescriptionCollectionViewCell.reuseIdentifier, for: indexPath)
+            if let expandableCell = cell as? ExpandableDescriptionCollectionViewCell {
+                return expandableCell
+            }
+        }
+        
+//        let cell = tableView.dequeueReusableCell(withIdentifier: viewModel.reuseIdentifier(for: indexPath), for: indexPath)
+//
+//        if let chapterCell = cell as? ChapterTableViewCell {
+//            if let cellViewModel = viewModel.chapterCellViewModel(indexPath: indexPath) {
+//                chapterCell.bindViewModel(viewModel: cellViewModel)
+//            }
+//        }
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SceneCollectionViewCell.reuseIdentifier, for: indexPath)
         if let sceneCell = cell as? SceneCollectionViewCell {
-            
-            let viewModel = SceneCellViewModel(scene: scenes[indexPath.row])
+            let index = indexPath.row - 1
+            let viewModel = SceneCellViewModel(scene: scenes[index])
             sceneCell.bindViewModel(viewModel)
             return sceneCell
         }
@@ -116,12 +138,12 @@ extension VerticalScenesView: UICollectionViewDelegate {
 
 extension VerticalScenesView: UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width - 40 //TODO: add variable here to match the margin with the header
-        let height: CGFloat = 180
-        return CGSize(width: width, height: height)
-        
-        return UICollectionViewFlowLayoutAutomaticSize
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+////        return UICollectionViewFlowLayoutAutomaticSize
+//
+//        let width = collectionView.bounds.width - 40 //TODO: add variable here to match the margin with the header
+//        let height: CGFloat = 180
+//        return CGSize(width: width, height: 300)
+//    }
 }
 
