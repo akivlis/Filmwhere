@@ -112,7 +112,7 @@ private extension MovieHeaderView {
     }
     
     private func setupConstraints() {
-        let padding: CGFloat = 20
+        let padding : CGFloat = Constants.movieDetailViewControllerPadding
         
         photoContainerView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
@@ -138,8 +138,9 @@ private extension MovieHeaderView {
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(goToMapButton.snp.bottom).offset(10)
+            make.top.equalTo(goToMapButton.snp.bottom).offset(4)
             make.leading.trailing.equalToSuperview().inset(padding)
+            make.bottom.equalToSuperview()
         }
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
     }

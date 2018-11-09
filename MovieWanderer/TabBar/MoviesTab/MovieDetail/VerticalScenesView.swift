@@ -126,13 +126,11 @@ extension VerticalScenesView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 280
-        //UITableViewAutomaticDimension
-        //TODO: automatic header size
+        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 300
+        return 280
     }
 }
 
