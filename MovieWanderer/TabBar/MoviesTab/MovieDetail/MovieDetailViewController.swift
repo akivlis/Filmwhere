@@ -90,24 +90,24 @@ private extension MovieDetailViewController {
             .disposed(by: disposeBag)
         
         //TODO: scenestableView should be private, expose only click
-        verticalScenesView.scenesCollectionView.rx.itemSelected
-            .subscribe(onNext: { [unowned self] index in
-                let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes, currentIndex: index.row)
-                sceneDetailViewController.modalPresentationStyle = .overFullScreen
-                self.present(sceneDetailViewController, animated: true, completion: nil)
-            }).disposed(by: disposeBag)
+//        verticalScenesView.scenesTableView.rx.itemSelected
+//            .subscribe(onNext: { [unowned self] index in
+//                let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes, currentIndex: index.row)
+//                sceneDetailViewController.modalPresentationStyle = .overFullScreen
+//                self.present(sceneDetailViewController, animated: true, completion: nil)
+//            }).disposed(by: disposeBag)
         
         backButton.rx.tap
             .subscribe(onNext: { [unowned self] in
                 self.dismiss(animated: true)
             }).disposed(by: disposeBag)
         
-        verticalScenesView.scenesCollectionView.rx.didScroll
+        verticalScenesView.scenesTableView.rx.didScroll
             .subscribe(onNext: { _ in
                 
                 //todo: probably calculate this number (120) based on image height
-                if self.verticalScenesView.scenesCollectionView.contentOffset.y > 120 {
-                    let offset = self.verticalScenesView.scenesCollectionView.contentOffset.y / 80 //check this number
+                if self.verticalScenesView.scenesTableView.contentOffset.y > 120 {
+                    let offset = self.verticalScenesView.scenesTableView.contentOffset.y / 80 //check this number
                     let number = offset - 1
                         self.animateNavigationBar(offset: number)
                 } else {

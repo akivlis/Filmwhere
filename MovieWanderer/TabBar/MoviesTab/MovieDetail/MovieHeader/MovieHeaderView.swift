@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import RxSwift
 
-class MovieHeaderView: UICollectionReusableView {
+class MovieHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Properties
     
@@ -90,8 +90,8 @@ class MovieHeaderView: UICollectionReusableView {
     
     // MARK: Init
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         commonInit()
     }
     

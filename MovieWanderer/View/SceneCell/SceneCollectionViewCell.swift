@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SceneCollectionViewCell: UICollectionViewCell {
+class SceneCollectionViewCell: UITableViewCell {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

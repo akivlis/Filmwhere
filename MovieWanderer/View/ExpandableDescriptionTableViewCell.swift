@@ -1,5 +1,5 @@
 //
-//  ExpandableDescriptionCollectionViewCell.swift
+//  ExpandableDescriptionTableViewCell.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 08.11.18.
@@ -33,10 +33,7 @@ fileprivate enum CellState {
     
 }
 
-class ExpandableDescriptionCollectionViewCell: UICollectionViewCell {
-
-    @IBOutlet weak var moreButton: UIButton!
-    @IBOutlet weak var descriptionLabel: UILabel!
+class ExpandableDescriptionTableViewCell: UITableViewCell {
     
     private var state: CellState = .collapsed {
         didSet {
@@ -44,9 +41,14 @@ class ExpandableDescriptionCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    private var _reloadCell$ = PublishSubject<()>()
+    var reloadCell$: Observable<()>{
+        return _reloadCell$
+    }
+    
     private var disposeBag = DisposeBag()
     
-    private lazy var subtitleLabel: UILabel = {
+    private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
         label.sizeToFit()
@@ -73,27 +75,12 @@ class ExpandableDescriptionCollectionViewCell: UICollectionViewCell {
         return stackView
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        descriptionLabel.sizeToFit()
-        
-        
-        
-        moreButton.rx.tap
-            .subscribe(onNext: { _ in
-                self.state = self.state == .collapsed ? .expanded : .collapsed
-            })
-            .disposed(by: disposeBag)
-
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        subtitleLabel.text = "Liz Gilbert (Julia Roberts) thought she had everything she wanted in life: a home, a husband and a successful career. Now newly divorced and facing a turning point, she finds that she is confused about what is important to her. Daring to step out of her comfort zone, Liz embarks on a quest of self-discovery that takes her to Italy, India and Bali."
+        descriptionLabel.text = "Liz Gilbert (Julia Roberts) thought she had everything she wanted in life: a home, a husband and a successful career. Now newly divorced and facing a turning point, she finds that she is confused about what is important to her. Daring to step out of her comfort zone, Liz embarks on a quest of self-discovery that takes her to Italy, India and Bali."
         backgroundColor = .green
-        stackView.addArrangedSubview(subtitleLabel)
+        stackView.addArrangedSubview(descriptionLabel)
         stackView.addArrangedSubview(openMoreButton)
         
         contentView.addSubview(stackView)
@@ -102,6 +89,13 @@ class ExpandableDescriptionCollectionViewCell: UICollectionViewCell {
            make.edges.equalToSuperview()
             make.width.equalToSuperview()
         }
+        
+        openMoreButton.rx.tap
+            .subscribe(onNext: { _ in
+                self.state = self.state == .collapsed ? .expanded : .collapsed
+            })
+//            .disposed(by: disposeBag)
+
     }
     
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
@@ -118,11 +112,13 @@ class ExpandableDescriptionCollectionViewCell: UICollectionViewCell {
     }
     
     private func toggle() {
-        UIView.animate(withDuration: 0.25) {
+//        UIView.animate(withDuration: 0.25) {
             self.descriptionLabel.numberOfLines = self.state.numberOfLines
-            self.moreButton.setTitle(self.state.buttonTitle, for: .normal)
-            self.layoutIfNeeded()
-        }
-    }
+            self.openMoreButton.setTitle(self.state.buttonTitle, for: .normal)
+            self._reloadCell$.onNext(())
+//            self.layoutIfNeeded()
+//        }
+//        self._reloadCell$.onNext(())
 
+    }
 }

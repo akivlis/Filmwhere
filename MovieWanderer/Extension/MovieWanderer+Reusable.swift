@@ -32,6 +32,10 @@ extension UITableView {
     public func register<T: Reuseable>(headerFooter view: T.Type) {
         register(view, forHeaderFooterViewReuseIdentifier: view.reuseIdentifier)
     }
+    
+    public func register<T: Reuseable>(nibName: String, cell: T.Type) {
+        register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: cell.reuseIdentifier)
+    }
 }
 
 extension UICollectionView {
