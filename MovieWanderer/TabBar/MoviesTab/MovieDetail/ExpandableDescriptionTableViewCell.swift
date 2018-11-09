@@ -35,6 +35,8 @@ fileprivate enum CellState {
 
 class ExpandableDescriptionTableViewCell: UITableViewCell {
     
+    private(set) var disposeBag = DisposeBag()
+    
     private var state: CellState = .collapsed {
         didSet {
             toggle()
@@ -46,11 +48,9 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
         return _reloadCell$
     }
     
-    private var disposeBag = DisposeBag()
-    
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 3
         label.sizeToFit()
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.textColor = .gray
@@ -81,7 +81,7 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
         selectionStyle = .none
         
         descriptionLabel.text = "Liz Gilbert (Julia Roberts) thought she had everything she wanted in life: a home, a husband and a successful career. Now newly divorced and facing a turning point, she finds that she is confused about what is important to her. Daring to step out of her comfort zone, Liz embarks on a quest of self-discovery that takes her to Italy, India and Bali."
-        backgroundColor = .green
+//        backgroundColor = .green
         stackView.addArrangedSubview(descriptionLabel)
         stackView.addArrangedSubview(openMoreButton)
         
@@ -129,13 +129,8 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     }
     
     private func toggle() {
-//        UIView.animate(withDuration: 0.25) {
             self.descriptionLabel.numberOfLines = self.state.numberOfLines
             self.openMoreButton.setTitle(self.state.buttonTitle, for: .normal)
             self._reloadCell$.onNext(())
-//            self.layoutIfNeeded()
-//        }
-//        self._reloadCell$.onNext(())
-
     }
 }

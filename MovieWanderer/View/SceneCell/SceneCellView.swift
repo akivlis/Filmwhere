@@ -70,13 +70,15 @@ private extension SceneCellView {
             make.edges.equalToSuperview()
         }
         // Snapkit constraint do not work in this case, used standart instead
-        backgroundImageView.addConstraint(NSLayoutConstraint(item: backgroundImageView,
-                                                             attribute: .height,
-                                                             relatedBy: .equal,
-                                                             toItem: backgroundImageView,
-                                                             attribute: .width,
-                                                             multiplier: 9.0 / 16.0,
-                                                             constant: 0))
+        let aspectRatioConstraint = NSLayoutConstraint(item: backgroundImageView,
+                                                       attribute: .height,
+                                                       relatedBy: .equal,
+                                                       toItem: backgroundImageView,
+                                                       attribute: .width,
+                                                       multiplier: 9.0 / 16.0,
+                                                       constant: 0)
+        aspectRatioConstraint.priority = .defaultHigh
+        backgroundImageView.addConstraint(aspectRatioConstraint)
         
         stackView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview().inset(8)

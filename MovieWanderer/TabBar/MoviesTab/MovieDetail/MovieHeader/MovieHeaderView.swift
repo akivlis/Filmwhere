@@ -102,9 +102,7 @@ private extension MovieHeaderView {
         setupConstraints()
     }
     
-    private func setupViews() {
-        backgroundColor = .yellow
-    
+    private func setupViews() {    
         photoContainerView.addSubview(moviePhoto)
         photoContainerView.clipsToBounds = true
         addSubview(photoContainerView)

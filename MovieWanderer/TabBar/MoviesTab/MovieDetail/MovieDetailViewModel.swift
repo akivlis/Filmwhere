@@ -57,7 +57,7 @@ class MovieDetailViewModel {
 //                guard let strongSelf = self else { return }
 //                let alert = strongSelf.createErrorAlert(message: error.localizedDescription)
 //                strongSelf._showAlert$.onNext(alert)
-                print(error)
+//                print(error)
             }.disposed(by: disposeBag)
     }
     
