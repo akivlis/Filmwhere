@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SceneCollectionViewCell: UITableViewCell {
+class SceneCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -30,9 +30,7 @@ class SceneCollectionViewCell: UITableViewCell {
     func bindViewModel(_ viewModel: SceneCellViewModel){
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.description
-//        distanceButton.setTitle(viewModel.distanceFromMe, for: .normal)
         backgroundImageView.image = viewModel.sceneImage
-
     }
 }
 

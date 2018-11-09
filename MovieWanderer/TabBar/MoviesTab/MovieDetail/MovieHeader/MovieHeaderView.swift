@@ -27,39 +27,12 @@ class MovieHeaderView: UITableViewHeaderFooterView {
         return imageView
     }()
     
-    private lazy var descriptionLabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 3
-        label.sizeToFit()
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.textColor = .gray
-        label.contentMode = .top
-        return label
-    }()
-    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .title3)
         label.textColor = .myDarkGray
         return label
-    }()
-    
-    private lazy var openMoreButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("More", for: .normal)
-        button.setTitleColor(.myRed, for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
-        button.titleLabel?.textAlignment = .left
-        return button
-    }()
-    
-    private lazy var stackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.alignment = .leading
-        stackView.distribution = .fill
-        return stackView
     }()
     
     private lazy var goToMapButton: UIButton = {
@@ -82,12 +55,6 @@ class MovieHeaderView: UITableViewHeaderFooterView {
     private var imageViewHeightLayoutConstraint: Constraint?
     private var imageViewBottomLayoutConstraint: Constraint?
     
-    private var isDescriptionExtended = false {
-        didSet {
-            setNeedsLayout()
-        }
-    }
-    
     // MARK: Init
     
     override init(reuseIdentifier: String?) {
@@ -96,26 +63,19 @@ class MovieHeaderView: UITableViewHeaderFooterView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        commonInit()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         gradient.frame = moviePhoto.bounds
-
-        // want to set openMoreButton only once, cause then there is a strange animation when expanding/closing
-        if !didSetConstraints {
-            openMoreButton.isHidden = !descriptionLabel.isTruncated() //&& !isDescriptionExtended
-        }
-        didSetConstraints = true
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
-    
     
     func bindViewModel(_ viewModel: MovieHeaderViewModel) {
         moviePhoto.kf.setImage(with: viewModel.imageUrl) {
@@ -124,7 +84,6 @@ class MovieHeaderView: UITableViewHeaderFooterView {
                 self.moviePhoto.image =  viewModel.placeholderImage
             }
         }
-        descriptionLabel.text = viewModel.description
         titleLabel.text = viewModel.title
     }
     
@@ -141,11 +100,10 @@ private extension MovieHeaderView {
     private func commonInit() {
         setupViews()
         setupConstraints()
-        setupObservables()
     }
     
     private func setupViews() {
-        backgroundColor = .white
+        backgroundColor = .yellow
     
         photoContainerView.addSubview(moviePhoto)
         photoContainerView.clipsToBounds = true
@@ -153,10 +111,6 @@ private extension MovieHeaderView {
     
         addSubview(goToMapButton)
         addSubview(titleLabel)
-        
-//        stackView.addArrangedSubview(descriptionLabel)
-//        stackView.addArrangedSubview(openMoreButton)
-//        addSubview(stackView)
     }
     
     private func setupConstraints() {
@@ -190,31 +144,5 @@ private extension MovieHeaderView {
             make.leading.trailing.equalToSuperview().inset(padding)
         }
         titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        
-//        stackView.snp.makeConstraints { make in
-//            make.top.equalTo(titleLabel.snp.bottom).offset(6)
-//            make.leading.trailing.equalTo(titleLabel)
-//            make.bottom.lessThanOrEqualToSuperview()
-//        }
-        
-//        descriptionLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-//        openMoreButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
-    }
-    
-    private func setupObservables() {
-        openMoreButton.rx.tap
-            .subscribe(onNext: { _ in
-                self.showMoreOrLess()
-            }).disposed(by: disposeBag)
-    }
-    
-    private func showMoreOrLess() {
-        isDescriptionExtended = !isDescriptionExtended
-        
-        UIView.animate(withDuration: 0.25) {
-            self.descriptionLabel.numberOfLines = self.isDescriptionExtended ? 0 : 3
-            self.openMoreButton.setTitle(self.isDescriptionExtended ? "Less" : "More", for: .normal)
-            self.layoutIfNeeded()
-        }
     }
 }

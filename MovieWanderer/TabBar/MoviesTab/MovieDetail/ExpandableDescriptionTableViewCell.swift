@@ -78,6 +78,8 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        selectionStyle = .none
+        
         descriptionLabel.text = "Liz Gilbert (Julia Roberts) thought she had everything she wanted in life: a home, a husband and a successful career. Now newly divorced and facing a turning point, she finds that she is confused about what is important to her. Daring to step out of her comfort zone, Liz embarks on a quest of self-discovery that takes her to Italy, India and Bali."
         backgroundColor = .green
         stackView.addArrangedSubview(descriptionLabel)
@@ -86,8 +88,8 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
         contentView.addSubview(stackView)
         
         stackView.snp.makeConstraints { make in
-           make.edges.equalToSuperview()
-            make.width.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview().inset(4)
         }
         
         openMoreButton.rx.tap
@@ -96,6 +98,21 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
             })
 //            .disposed(by: disposeBag)
 
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        
+//        // want to set openMoreButton only once, cause then there is a strange animation when expanding/closing
+//        if !didSetConstraints {
+//            openMoreButton.isHidden = !descriptionLabel.isTruncated() //&& !isDescriptionExtended
+//        }
+//        didSetConstraints = true
+
+//        let padding : CGFloat = 20
+//        contentView.frame = UIEdgeInsetsInsetRect(contentView.frame,
+//                                                  UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding))
     }
     
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {

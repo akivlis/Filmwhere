@@ -30,6 +30,7 @@ class VerticalScenesView: UIView {
         tableView.backgroundColor = .white
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.register(ExpandableDescriptionTableViewCell.self)
+        tableView.register(SceneTableViewCell.self)
         tableView.register(headerFooter: MovieHeaderView.self)
         return tableView
     }()
@@ -43,7 +44,7 @@ class VerticalScenesView: UIView {
 
         scenesTableView.dataSource = self
         scenesTableView.delegate = self
-        scenesTableView.backgroundColor = .blue
+//        scenesTableView.backgroundColor = .blue
         
         addSubview(scenesTableView)
         scenesTableView.snp.makeConstraints { make in
@@ -64,9 +65,7 @@ class VerticalScenesView: UIView {
 extension VerticalScenesView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-//            scenes.count + 1
-
+        return scenes.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -76,24 +75,20 @@ extension VerticalScenesView: UITableViewDataSource {
             if let expandableCell = cell as? ExpandableDescriptionTableViewCell {
                 expandableCell.reloadCell$
                     .subscribe(onNext: { [weak self] in
-
-                        UIView.animate(withDuration: 1) {
+                        UIView.animate(withDuration: 0.25) {
                             tableView.beginUpdates()
                             tableView.endUpdates()
                         }
-
                     })
                 return expandableCell
             }
         }
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: SceneCollectionViewCell.reuseIdentifier, for: indexPath)
-        if let sceneCell = cell as? SceneCollectionViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SceneTableViewCell.reuseIdentifier, for: indexPath)
+        if let sceneCell = cell as? SceneTableViewCell {
             let index = indexPath.row - 1
             let viewModel = SceneCellViewModel(scene: scenes[index])
             sceneCell.bindViewModel(viewModel)
-            
-            
             return sceneCell
         }
         return cell
@@ -130,7 +125,7 @@ extension VerticalScenesView: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 300
+        return 280
         //UITableViewAutomaticDimension
     }
     
