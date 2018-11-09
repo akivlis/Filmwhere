@@ -90,12 +90,12 @@ private extension MovieDetailViewController {
             .disposed(by: disposeBag)
         
         //TODO: scenestableView should be private, expose only click
-//        verticalScenesView.scenesTableView.rx.itemSelected
-//            .subscribe(onNext: { [unowned self] index in
-//                let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes, currentIndex: index.row)
-//                sceneDetailViewController.modalPresentationStyle = .overFullScreen
-//                self.present(sceneDetailViewController, animated: true, completion: nil)
-//            }).disposed(by: disposeBag)
+        verticalScenesView.scenesTableView.rx.itemSelected
+            .subscribe(onNext: { [unowned self] index in
+                let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes, currentIndex: index.row - 1)
+                sceneDetailViewController.modalPresentationStyle = .overFullScreen
+                self.present(sceneDetailViewController, animated: true, completion: nil)
+            }).disposed(by: disposeBag)
         
         backButton.rx.tap
             .subscribe(onNext: { [unowned self] in
