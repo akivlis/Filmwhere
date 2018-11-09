@@ -44,7 +44,6 @@ class VerticalScenesView: UIView {
 
         scenesTableView.dataSource = self
         scenesTableView.delegate = self
-//        scenesTableView.backgroundColor = .blue
         
         addSubview(scenesTableView)
         scenesTableView.snp.makeConstraints { make in
@@ -74,12 +73,10 @@ extension VerticalScenesView: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(withIdentifier: ExpandableDescriptionTableViewCell.reuseIdentifier, for: indexPath)
             if let expandableCell = cell as? ExpandableDescriptionTableViewCell {
                 expandableCell.reloadCell$
-                    .subscribe(onNext: { [weak self] in
-                        UIView.animate(withDuration: 0.25) {
+                    .subscribe(onNext: { _ in
                             tableView.beginUpdates()
                             tableView.endUpdates()
-                        }
-                    })
+                    }).disposed(by: expandableCell.disposeBag)
                 return expandableCell
             }
         }
