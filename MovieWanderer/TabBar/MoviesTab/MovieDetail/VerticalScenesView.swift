@@ -72,6 +72,7 @@ extension VerticalScenesView: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ExpandableDescriptionTableViewCell.reuseIdentifier, for: indexPath)
             if let expandableCell = cell as? ExpandableDescriptionTableViewCell {
+                expandableCell.setDescription(movie.description)
                 expandableCell.reloadCell$
                     .subscribe(onNext: { _ in
                             tableView.beginUpdates()
@@ -117,7 +118,10 @@ extension VerticalScenesView: UITableViewDelegate {
         return UITableViewAutomaticDimension
     }
     
-    public func tableView(_: UITableView, estimatedHeightForRowAt _: IndexPath) -> CGFloat {
+    public func tableView(_: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 90
+        }
         return 200
     }
     

@@ -50,7 +50,6 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 3
         label.sizeToFit()
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.textColor = .gray
@@ -60,7 +59,6 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     
     private lazy var openMoreButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("More", for: .normal)
         button.setTitleColor(.myRed, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
         button.titleLabel?.textAlignment = .left
@@ -75,34 +73,21 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
         return stackView
     }()
     
+    // MARK: Init
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        selectionStyle = .none
-        
-        descriptionLabel.text = "Liz Gilbert (Julia Roberts) thought she had everything she wanted in life: a home, a husband and a successful career. Now newly divorced and facing a turning point, she finds that she is confused about what is important to her. Daring to step out of her comfort zone, Liz embarks on a quest of self-discovery that takes her to Italy, India and Bali."
-//        backgroundColor = .green
-        stackView.addArrangedSubview(descriptionLabel)
-        stackView.addArrangedSubview(openMoreButton)
-        
-        contentView.addSubview(stackView)
-        
-        stackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.top.bottom.equalToSuperview().inset(4)
-        }
-        
-        openMoreButton.rx.tap
-            .subscribe(onNext: { _ in
-                self.state = self.state == .collapsed ? .expanded : .collapsed
-            })
-//            .disposed(by: disposeBag)
-
+        commonInit()
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         
 //        // want to set openMoreButton only once, cause then there is a strange animation when expanding/closing
 //        if !didSetConstraints {
@@ -118,19 +103,59 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
         return contentView.systemLayoutSizeFitting(CGSize(width: targetSize.width, height: 1))
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
     }
     
+    // MARK: Public
+    
+    func setDescription(_ description: String) {
+        descriptionLabel.text = description
+    }
+}
+
+private extension ExpandableDescriptionTableViewCell {
+    
+    private func commonInit() {
+        setupViews()
+        setupConstraints()
+        setupObservables()
+    }
+    
+    private func setupViews() {
+        selectionStyle = .none
+        
+        self.descriptionLabel.numberOfLines = self.state.numberOfLines
+        self.openMoreButton.setTitle(self.state.buttonTitle, for: .normal)
+        
+        descriptionLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        openMoreButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        
+        stackView.addArrangedSubview(descriptionLabel)
+        stackView.addArrangedSubview(openMoreButton)
+        contentView.addSubview(stackView)
+    }
+    
+    private func setupConstraints() {
+        stackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.top.bottom.equalToSuperview().inset(4)
+        }
+    }
+    
+    private func setupObservables() {
+        openMoreButton.rx.tap
+            .subscribe(onNext: { _ in
+                self.state = self.state == .collapsed ? .expanded : .collapsed
+            })
+        //            .disposed(by: disposeBag)
+    }
+    
     private func toggle() {
-            self.descriptionLabel.numberOfLines = self.state.numberOfLines
-            self.openMoreButton.setTitle(self.state.buttonTitle, for: .normal)
-            self._reloadCell$.onNext(())
+        self.descriptionLabel.numberOfLines = self.state.numberOfLines
+        self.openMoreButton.setTitle(self.state.buttonTitle, for: .normal)
+        self._reloadCell$.onNext(())
     }
 }
