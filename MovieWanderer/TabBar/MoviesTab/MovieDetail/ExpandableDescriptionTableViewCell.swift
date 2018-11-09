@@ -30,12 +30,13 @@ fileprivate enum CellState {
             return 0
         }
     }
-    
 }
 
 class ExpandableDescriptionTableViewCell: UITableViewCell {
     
     private(set) var disposeBag = DisposeBag()
+    
+    private var didSetConstraints = false
     
     private var state: CellState = .collapsed {
         didSet {
@@ -85,20 +86,14 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
         commonInit()
     }
     
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         
-//        // want to set openMoreButton only once, cause then there is a strange animation when expanding/closing
-//        if !didSetConstraints {
-//            openMoreButton.isHidden = !descriptionLabel.isTruncated() //&& !isDescriptionExtended
-//        }
-//        didSetConstraints = true
-
-//        let padding : CGFloat = 20
-//        contentView.frame = UIEdgeInsetsInsetRect(contentView.frame,
-//                                                  UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding))
-    }
+        // want to set openMoreButton only once, cause then there is a strange animation when expanding/closing
+        if !didSetConstraints {
+            openMoreButton.isHidden = !descriptionLabel.isTruncated() //&& !isDescriptionExtended
+        }
+        didSetConstraints = true
     }
 
     override func prepareForReuse() {
