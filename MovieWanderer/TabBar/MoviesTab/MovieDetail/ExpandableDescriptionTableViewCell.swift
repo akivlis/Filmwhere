@@ -99,9 +99,6 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
 //        contentView.frame = UIEdgeInsetsInsetRect(contentView.frame,
 //                                                  UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding))
     }
-    
-    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
-        return contentView.systemLayoutSizeFitting(CGSize(width: targetSize.width, height: 1))
     }
 
     override func prepareForReuse() {
