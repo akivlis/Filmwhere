@@ -99,6 +99,7 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         disposeBag = DisposeBag()
+        setupObservables()
     }
     
     // MARK: Public
@@ -142,7 +143,7 @@ private extension ExpandableDescriptionTableViewCell {
             .subscribe(onNext: { _ in
                 self.state = self.state == .collapsed ? .expanded : .collapsed
             })
-        //            .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
     
     private func toggle() {
