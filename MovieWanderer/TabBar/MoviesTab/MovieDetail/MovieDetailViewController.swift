@@ -69,7 +69,7 @@ private extension MovieDetailViewController {
         }
         
         backButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(15)
+            make.left.equalToSuperview().inset(Constants.movieDetailViewControllerPadding)
             make.centerY.equalTo(animatingBarView).offset(10)
             make.height.width.equalTo(25)
         }

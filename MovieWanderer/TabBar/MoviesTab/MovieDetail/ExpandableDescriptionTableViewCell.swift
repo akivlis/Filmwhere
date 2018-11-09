@@ -132,8 +132,10 @@ private extension ExpandableDescriptionTableViewCell {
     }
     
     private func setupConstraints() {
+        let padding : CGFloat = Constants.movieDetailViewControllerPadding
+
         stackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
+            make.leading.trailing.equalToSuperview().inset(padding)
             make.top.bottom.equalToSuperview().inset(4)
         }
     }

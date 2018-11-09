@@ -43,6 +43,7 @@ private extension SceneCellView {
     private func setupViews() {
         backgroundImageView.clipsToBounds = true
         backgroundImageView.layer.cornerRadius = 8
+        backgroundImageView.contentMode = .scaleAspectFill
         addSubview(backgroundImageView)
         
         gradientView.colors = (UIColor.clear, UIColor.black)
@@ -76,7 +77,7 @@ private extension SceneCellView {
                                                        toItem: backgroundImageView,
                                                        attribute: .width,
                                                        multiplier: 9.0 / 16.0,
-                                                       constant: 0)
+                                                       constant: -30)
         aspectRatioConstraint.priority = .defaultHigh
         backgroundImageView.addConstraint(aspectRatioConstraint)
         

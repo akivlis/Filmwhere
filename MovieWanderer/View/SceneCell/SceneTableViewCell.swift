@@ -27,7 +27,7 @@ class SceneTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        let padding : CGFloat = 20
+        let padding : CGFloat = Constants.movieDetailViewControllerPadding
         contentView.frame = UIEdgeInsetsInsetRect(contentView.frame,
                                                   UIEdgeInsets(top: 0, left: padding, bottom: 10, right: padding))
     }

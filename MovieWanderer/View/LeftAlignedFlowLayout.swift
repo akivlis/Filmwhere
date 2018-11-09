@@ -13,6 +13,8 @@ struct Constants {
         static let cellWidth: CGFloat = UIScreen.main.bounds.width - 60 // TODO: calculate correct width
         static let lineSpacing: CGFloat = 10
     }
+    
+    static let movieDetailViewControllerPadding: CGFloat = 10
 }
 
 class LeftAlignedFlowLayout: UICollectionViewFlowLayout {
