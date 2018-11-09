@@ -32,9 +32,6 @@ class MovieListViewModel {
     }
     
     func loadMovies() {
-        
-        self._displayMovies$.onNext(dummyMovies())
-
         provider.rx.request(.movies)
             .map([Movie].self)
             .subscribe(onSuccess: { [weak self] movies in
@@ -43,6 +40,7 @@ class MovieListViewModel {
                 guard let strongSelf = self else { return }
                 let alert = strongSelf.createErrorAlert(message: error.localizedDescription)
                 strongSelf._showAlert$.onNext(alert)
+                strongSelf._displayMovies$.onNext(strongSelf.dummyMovies())
         }.disposed(by: disposeBag)
     }
     

@@ -104,7 +104,7 @@ private extension MapView {
     private func commonInit() {
         setupMapView()
         registerAnnotationViewClasses()
-        setupStyleWith(jsonFileName: "ultra-light-style")
+//        setupStyleWith(jsonFileName: "ultra-light-style")
     }
     
     private func setupMapView() {

@@ -61,7 +61,7 @@ final class SceneCarouselView: UIView {
 extension SceneCarouselView: UICollectionViewDataSource {
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return  0 //scenes.count
+        return  scenes.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
