@@ -10,11 +10,11 @@ import UIKit
 
 struct Constants {
     struct ScenesCollection {
-        static let cellWidth: CGFloat = UIScreen.main.bounds.width - 60 // TODO: calculate correct width
+        static let cellWidth: CGFloat = (UIScreen.main.bounds.width / 4) * 3 
         static let lineSpacing: CGFloat = 10
     }
     
-    static let movieDetailViewControllerPadding: CGFloat = 10
+    static let movieDetailViewControllerPadding: CGFloat = 20
 }
 
 class LeftAlignedFlowLayout: UICollectionViewFlowLayout {

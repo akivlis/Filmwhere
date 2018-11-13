@@ -21,7 +21,7 @@ struct MovieCellViewModel {
     }
     
     var placeholderImage: UIImage {
-        return UIImage(named: "placeholder")!
+        return UIImage(named: "eat_pray")!
     }
     
     var title: String {

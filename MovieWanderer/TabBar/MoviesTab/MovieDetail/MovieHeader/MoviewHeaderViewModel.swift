@@ -28,12 +28,12 @@ struct MovieHeaderViewModel {
         return true
     }
     
-    var imageUrl: URL {
-        return URL(string: movie.imageUrl)!
+    var imageUrl: URL? {
+        return URL(string: movie.imageUrl)
     }
     
     var placeholderImage: UIImage {
-        return UIImage(named: "placeholder")!
+        return UIImage(named: "Rocky")!
     }
     
 }

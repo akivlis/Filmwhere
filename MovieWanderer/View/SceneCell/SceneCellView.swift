@@ -46,7 +46,8 @@ private extension SceneCellView {
         backgroundImageView.contentMode = .scaleAspectFill
         addSubview(backgroundImageView)
         
-        gradientView.colors = (UIColor.clear, UIColor.black)
+        let blackColor = UIColor.black.withAlphaComponent(0.9)
+        gradientView.colors = (UIColor.clear, blackColor)
         backgroundImageView.insertSubview(gradientView, at: 0)
 
         titleLabel.textColor = .white
@@ -76,8 +77,8 @@ private extension SceneCellView {
                                                        relatedBy: .equal,
                                                        toItem: backgroundImageView,
                                                        attribute: .width,
-                                                       multiplier: 9.0 / 16.0,
-                                                       constant: -30)
+                                                       multiplier: 9.0 / 21.0,
+                                                       constant: 0)
         aspectRatioConstraint.priority = .defaultHigh
         backgroundImageView.addConstraint(aspectRatioConstraint)
         

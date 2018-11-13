@@ -106,7 +106,7 @@ private extension MovieDetailViewController {
             .subscribe(onNext: { _ in
                 
                 //todo: probably calculate this number (120) based on image height
-                if self.verticalScenesView.scenesTableView.contentOffset.y > 120 {
+                if self.verticalScenesView.scenesTableView.contentOffset.y > 160 {
                     let offset = self.verticalScenesView.scenesTableView.contentOffset.y / 80 //check this number
                     let number = offset - 1
                         self.animateNavigationBar(offset: number)

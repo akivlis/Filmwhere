@@ -28,7 +28,7 @@ public extension UIColor {
 
     public static let lightGreen = UIColor.color(fromHexString: "#DAE7DF")
     
-    public static let myRed = UIColor.color(fromHexString: "#F95F62")
+    public static let myRed = UIColor.color(fromHexString: "#E84E1A")
     
     public static let myDarkGray = UIColor.color(fromHexString: "#343F4B")
     

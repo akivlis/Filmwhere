@@ -21,7 +21,7 @@ class MainTabBarController: UITabBarController {
     
     private func loadTabs(){
         let movieListViewController = MovieListViewController()
-        movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "camera-icon"), tag: 0)
+        movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "movies-icon"), tag: 0)
         
         let localizationViewController = LocalizationViewController()
         localizationViewController.tabBarItem = UITabBarItem(title: "Maps", image: UIImage(named: "map-icon"), tag: 1)
