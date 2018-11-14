@@ -60,7 +60,7 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     
     private lazy var openMoreButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitleColor(.darkBordo, for: .normal)
+        button.setTitleColor(.darkGreen, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
         button.titleLabel?.textAlignment = .left
         return button
@@ -125,8 +125,6 @@ private extension ExpandableDescriptionTableViewCell {
         
         descriptionLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
         descriptionLabel.setContentCompressionResistancePriority(.defaultHigh, for: .vertical)
-        
-//        openMoreButton.setContentHuggingPriority(.defaultHigh, for: .vertical)
         
         stackView.addArrangedSubview(descriptionLabel)
         stackView.addArrangedSubview(openMoreButton)
