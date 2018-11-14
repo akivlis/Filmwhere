@@ -14,26 +14,26 @@ class SceneAnnotation: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
     
-    init(place: Scene) {
-        coordinate = CLLocationCoordinate2D(latitude: place.latitude, longitude: place.longitude)
-        title = place.title
-        subtitle = place.description
+    init(scene: Scene) {
+        coordinate = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
+        title = scene.title
+        subtitle = scene.locationName
     }
 }
 
 struct MapViewViewModel {
     
-    let annotations: [SceneAnnotation]
+    let annotations: [SceneAnnotation] //TODO: rewrite to dictionary
 
-    private let places : [Scene]
+    private let scenes : [Scene]
     
-    init(places: [Scene]) {
-        self.places = places
-        annotations = places.map { SceneAnnotation.init(place: $0) }
+    init(scenes: [Scene]) {
+        self.scenes = scenes
+        annotations = scenes.map { SceneAnnotation.init(scene: $0) }
     }
     
     func getAnnotationForScene(_ scene: Scene) -> MKAnnotation? {
-        if let index = places.firstIndex(where: { $0.title == scene.title }) {
+        if let index = scenes.firstIndex(where: { $0.title == scene.title }) {
             return annotations[index]
         }
         return nil
@@ -48,7 +48,7 @@ struct MapViewViewModel {
     
     func getSceneForAnnotation(_ annotation: MKAnnotation) -> Scene? {
         if let index = annotations.firstIndex(where: { $0.title == annotation.title }) {
-            return places[index]
+            return scenes[index]
         }
         return nil
     }

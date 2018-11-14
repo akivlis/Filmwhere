@@ -13,16 +13,27 @@ struct Scene {
     let id: String
     let title: String
     let description: String
+    let locationName: String
     let latitude: Double
     let longitude: Double
     let imageURL: String
     let country : String
 
     
-    init(id: String = "", title: String, description: String, latitude: Double, longitude: Double, imageURL: String = "imageURL", country: String = "Philadelphia, USA") {
+    init(id: String = "",
+         title: String,
+         description: String,
+         locationName: String = "Art Museum Stairs",
+         latitude: Double,
+         longitude: Double,
+         imageURL: String = "imageURL",
+         country: String = "Philadelphia, USA"
+        )
+    {
         self.id = id
         self.title = title
         self.description = description
+        self.locationName = locationName
         self.latitude = latitude
         self.longitude = longitude
         self.country = country

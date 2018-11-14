@@ -37,13 +37,17 @@ class MovieHeaderView: UITableViewHeaderFooterView {
     
     private lazy var goToMapButton: UIButton = {
         let goToMapButton =   UIButton(type: .system)
-        goToMapButton.setTitle("Show on map", for: .normal)
+//        goToMapButton.setTitle("Show on map", for: .normal)
+        goToMapButton.setImage(UIImage(named: "pin_ios_image"), for: .normal)
         goToMapButton.tintColor = .white
         goToMapButton.backgroundColor = .myRed
-        goToMapButton.titleLabel?.font =  UIFont.preferredFont(forTextStyle: .subheadline)
-        goToMapButton.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
-        goToMapButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 24)
-        goToMapButton.layer.cornerRadius = 4
+//        goToMapButton.titleLabel?.font =  UIFont.preferredFont(forTextStyle: .subheadline)
+//        goToMapButton.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
+        let inset: CGFloat = 10
+        goToMapButton.contentMode = .center
+//        goToMapButton.imageEdgeInsets = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+//        goToMapButton.contentEdgeInsets = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+//        goToMapButton.layer.cornerRadius = 4
         return goToMapButton
     }()
     
@@ -70,6 +74,8 @@ class MovieHeaderView: UITableViewHeaderFooterView {
     override func layoutSubviews() {
         super.layoutSubviews()
         gradient.frame = moviePhoto.bounds
+        goToMapButton.layer.cornerRadius = goToMapButton.frame.width / 2
+
     }
     
     override func prepareForReuse() {
@@ -123,7 +129,7 @@ private extension MovieHeaderView {
                                                              relatedBy: .equal,
                                                              toItem: photoContainerView,
                                                              attribute: .width,
-                                                             multiplier: 9.0 / 16.0,
+                                                             multiplier: 3.0 / 4.0,
                                                              constant: 0))
         
         moviePhoto.snp.makeConstraints { make in
@@ -133,12 +139,14 @@ private extension MovieHeaderView {
         }
         
         goToMapButton.snp.makeConstraints { make in
+            make.width.equalTo(50)
+            make.width.equalTo(goToMapButton.snp.height)
             make.right.equalToSuperview().inset(padding)
             make.centerY.equalTo(photoContainerView.snp.bottom)
         }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(goToMapButton.snp.bottom).offset(4)
+            make.top.equalTo(goToMapButton.snp.bottom)
             make.leading.trailing.equalToSuperview().inset(padding)
             make.bottom.equalToSuperview()
         }

@@ -18,7 +18,7 @@ class MapView: UIView {
         return sceneSelected
     }
     
-    var viewModel : MapViewViewModel = MapViewViewModel(places: [Scene]()) {
+    var viewModel : MapViewViewModel = MapViewViewModel(scenes: [Scene]()) {
         didSet {
             showAnnotationsAndZoom()
         }

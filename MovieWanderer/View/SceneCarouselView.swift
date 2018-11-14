@@ -20,6 +20,7 @@ final class SceneCarouselView: UIView {
     private let cellWidth: CGFloat = Constants.ScenesCollection.cellWidth
     private let disposeBag = DisposeBag()
     private var _scrolledToScene$ = PublishSubject<Scene>()
+    private let movieTitleLabel = UILabel()
     
     private let scenesCollectionView: UICollectionView = {
         let myCollectionViewFlowLayout: LeftAlignedFlowLayout = {
@@ -27,10 +28,14 @@ final class SceneCarouselView: UIView {
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = Constants.ScenesCollection.lineSpacing
             layout.minimumInteritemSpacing = 0
-            layout.sectionInset = UIEdgeInsets(top: 0, left: Constants.ScenesCollection.lineSpacing, bottom: 0, right: Constants.ScenesCollection.lineSpacing)
+            layout.sectionInset = UIEdgeInsets(top: 0,
+                                               left: Constants.ScenesCollection.lineSpacing,
+                                               bottom: 0,
+                                               right: Constants.ScenesCollection.lineSpacing)
             return layout
         }()
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: myCollectionViewFlowLayout)
+        let collectionView = UICollectionView(frame: .zero,
+                                              collectionViewLayout: myCollectionViewFlowLayout)
         return collectionView
     }()
     
@@ -107,20 +112,32 @@ private extension SceneCarouselView {
     
     private func setupViews() {
         backgroundColor = .white
+
+        movieTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        movieTitleLabel.text = "Rocky Balboa"
+        movieTitleLabel.sizeToFit()
+        addSubview(movieTitleLabel)
         
-        scenesCollectionView.register(UINib(nibName: "SceneCell", bundle: nil), forCellWithReuseIdentifier: SceneCollectionViewCell.reuseIdentifier)
+        scenesCollectionView.register(nibName: "SceneCell", cell: SceneCollectionViewCell.self)
         scenesCollectionView.backgroundColor = .clear
         scenesCollectionView.isPagingEnabled = false
-        scenesCollectionView.decelerationRate  =  UIScrollViewDecelerationRateFast
+        scenesCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
         scenesCollectionView.showsHorizontalScrollIndicator = false
         addSubview(scenesCollectionView)
     }
     
     private func setupConstraints() {
+        let padding: CGFloat = 5
+        
+        movieTitleLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(Constants.ScenesCollection.lineSpacing)
+            make.top.equalToSuperview().inset(padding)
+        }
+        
         scenesCollectionView.snp.makeConstraints { make in
-            make.right.left.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalToSuperview().inset(Constants.ScenesCollection.lineSpacing)
-            make.top.equalToSuperview().inset(30)
+            make.top.equalTo(movieTitleLabel.snp.bottom).offset(padding)
         }
     }
     

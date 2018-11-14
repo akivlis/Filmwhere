@@ -38,7 +38,7 @@ private extension MapAndScenesCarouselView {
     }
     
     private func setupViews() {
-        mapView.viewModel = MapViewViewModel(places: scenes)
+        mapView.viewModel = MapViewViewModel(scenes: scenes)
         addSubview(mapView)
         
         scenesCarousel = SceneCarouselView(scenes: scenes)
