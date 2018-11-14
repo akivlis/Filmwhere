@@ -10,12 +10,6 @@ import MapKit
 
 class SceneAnnotationView: MKMarkerAnnotationView {
     
-    override var isSelected: Bool {
-        didSet {
-            markerTintColor = .black
-        }
-    }
-    
     override var annotation: MKAnnotation? {
         willSet {
             if (newValue as? SceneAnnotation) != nil {

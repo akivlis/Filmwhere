@@ -12,12 +12,6 @@ import MapKit
 
 class ClusterAnnotationView: MKMarkerAnnotationView {
     
-    override var isSelected: Bool {
-        didSet {
-            markerTintColor = .yellow
-        }
-    }
-    
     override var annotation: MKAnnotation? {
         willSet {
             if (newValue as? MKClusterAnnotation) != nil {
