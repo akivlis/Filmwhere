@@ -56,10 +56,10 @@ final class SceneCarouselView: UIView {
         scenesCollectionView.reloadData()
     }
     
-    func scrollToIndex(_ index: Int) {
+    func scrollToIndex(_ index: Int, animated: Bool) {
         let x = index * (Int(cellWidth) + Int(lineSpacing)) //TODO: change
             let point =  CGPoint(x: CGFloat(x) ,y: scenesCollectionView.contentOffset.y)
-            scenesCollectionView.setContentOffset(point, animated: true)
+            scenesCollectionView.setContentOffset(point, animated: animated)
     }
 }
 

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import SnapKit
 
 final class MapAndScenesCarouselView: UIView {
     
@@ -15,6 +16,11 @@ final class MapAndScenesCarouselView: UIView {
     private var scenesCarousel: SceneCarouselView!
     private let mapView = MapView()
     private let disposeBag = DisposeBag()
+    private var bottomConstraint : Constraint?
+    private let sceneViewHeigh: CGFloat = 200 // TODO: how to calculate this
+    private var scenesHidden = false
+    
+    private let tapOnMap = UITapGestureRecognizer()
     
     init(scenes: [Scene]) {
         self.scenes = scenes
@@ -39,6 +45,7 @@ private extension MapAndScenesCarouselView {
     
     private func setupViews() {
         mapView.viewModel = MapViewViewModel(scenes: scenes)
+        mapView.addGestureRecognizer(tapOnMap)
         addSubview(mapView)
         
         scenesCarousel = SceneCarouselView(scenes: scenes)
@@ -47,13 +54,14 @@ private extension MapAndScenesCarouselView {
     
     private func setupConstraints() {
         mapView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-            make.bottom.equalTo(scenesCarousel.snp.top)
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         }
 
         scenesCarousel.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview()
-            make.height.equalTo(200)
+            make.leading.trailing.equalToSuperview()
+            bottomConstraint = make.bottom.equalTo(mapView).constraint
+            make.height.equalTo(sceneViewHeigh)
         }
     }
     
@@ -61,11 +69,52 @@ private extension MapAndScenesCarouselView {
         scenesCarousel.scrolledToScene$
             .subscribe(onNext: { [unowned self] scene in
                 self.mapView.highlight(scene)
-            }).disposed(by: disposeBag) // use dispose bag of the cell?
+            })
+            .disposed(by: disposeBag) // use dispose bag of the cell?
         
         mapView.sceneSelected$
             .subscribe(onNext: { [unowned self] index in
-                self.scenesCarousel.scrollToIndex(index)
-            }).disposed(by: disposeBag)
+                if self.scenesHidden {
+                    self.scenesCarousel.scrollToIndex(index, animated: false)
+                    self.showScenes()
+                } else {
+                    self.scenesCarousel.scrollToIndex(index, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
+        
+        tapOnMap.rx.event
+            .filter { recognizer -> Bool in
+                let tapLocation = recognizer.location(in: self.mapView)
+                if let subview = self.hitTest(tapLocation, with: nil) {
+                    if subview.isKind(of: NSClassFromString("MKAnnotationContainerView")!){
+                        print("Tapped out")
+                        return true
+                    }
+                }
+                return false
+            }
+            .map { _ in () }
+            .asObservable()
+            .subscribe(onNext: { [weak self] in
+                self?.hideScenes()
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func hideScenes() {
+        UIView.animate(withDuration: 0.25) {
+            self.bottomConstraint?.update(offset: self.sceneViewHeigh)
+            self.scenesHidden = true
+            self.layoutIfNeeded()
+        }
+    }
+    
+    private func showScenes() {
+        UIView.animate(withDuration: 0.25) {
+            self.bottomConstraint?.update(offset: 0)
+            self.scenesHidden = false
+            self.layoutIfNeeded()
+        }
     }
 }
