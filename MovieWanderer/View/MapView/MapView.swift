@@ -60,6 +60,7 @@ class MapView: UIView {
         
         if let annotation = viewModel.getAnnotationForScene(scene) {
             mapView.selectAnnotation(annotation, animated: true)
+            
             //TODO: implement custom highligting, do nt call select cause the observable emits
         }
         print("Highlight scene: \(scene.title)")
@@ -74,19 +75,37 @@ class MapView: UIView {
 
 extension MapView: MKMapViewDelegate {
     
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print("selected \(String(describing: view.annotation?.title))")
-        view.setSelected(true, animated: false)
-        view.isHighlighted  = true
         
-        if let customMarker = view as? SceneAnnotationView {
-            customMarker.markerTintColor = .black
+        if let customView = view as? MKMarkerAnnotationView {
+            customView.markerTintColor = .myRed
+            
+            // select whole cluster when scrolled to a specific scene
+            if let cluster = customView.cluster {
+                if let clusterView = cluster as? ClusterAnnotationView {
+                    clusterView.markerTintColor = .myRed
+                }
+                cluster.setSelected(true, animated: true)
+            }
         }
         
         //maybe just use idex
         if let index = viewModel.getIndexForAnnotation(view.annotation!) {
             sceneSelected.onNext(index)
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+        
+        if let customView = view as? MKMarkerAnnotationView {
+            customView.markerTintColor = .black
+            
+            if let cluster = customView.cluster {
+                if let clusterView = cluster as? ClusterAnnotationView {
+                    clusterView.markerTintColor = .black
+                }
+                cluster.setSelected(false, animated: true)
+            }
         }
     }
     
@@ -104,7 +123,7 @@ private extension MapView {
     private func commonInit() {
         setupMapView()
         registerAnnotationViewClasses()
-//        setupStyleWith(jsonFileName: "ultra-light-style")
+        setupStyleWith(jsonFileName: "ultra-light-style")
     }
     
     private func setupMapView() {
@@ -117,8 +136,10 @@ private extension MapView {
     }
     
     private func registerAnnotationViewClasses() {
-         mapView.register(SceneAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        mapView.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
+        mapView.register(SceneAnnotationView.self,
+                         forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+        mapView.register(ClusterAnnotationView.self,
+                         forAnnotationViewWithReuseIdentifier:  MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
     }
     
     private func showAnnotationsAndZoom() {
