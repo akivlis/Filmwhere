@@ -14,9 +14,10 @@ class SceneAnnotationView: MKMarkerAnnotationView {
         willSet {
             if (newValue as? SceneAnnotation) != nil {
                 clusteringIdentifier = MKMapViewDefaultAnnotationViewReuseIdentifier
-                markerTintColor = .black
+                markerTintColor = .darkBordo
                 glyphImage = UIImage(named: "projector")
             }
         }
     }
 }
+

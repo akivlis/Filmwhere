@@ -71,10 +71,10 @@ private extension SceneDetailPagerViewCell {
         subtitleLabel.numberOfLines = 0
         
         actionButton.setTitle("Action button", for: .normal)
-        actionButton.setTitleColor(.myRed, for: .normal)
+        actionButton.setTitleColor(.darkGreen, for: .normal)
         actionButton.backgroundColor = .clear
         actionButton.layer.borderWidth = 1
-        actionButton.layer.borderColor = UIColor.myRed.cgColor
+        actionButton.layer.borderColor = UIColor.darkGreen.cgColor
         actionButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         actionButton.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
         actionButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 24)

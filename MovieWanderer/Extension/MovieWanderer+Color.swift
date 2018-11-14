@@ -16,21 +16,21 @@ public extension UIColor {
     
     public static let appBlue = UIColor.color(fromHexString: "#007FFF")
     
-    public static let grayishGreen = UIColor.color(fromHexString: "#ACC8C2")
+    public static let darkGreen = UIColor.color(fromHexString: "#357F68")
 
-    public static let darkGreen = UIColor.color(fromHexString: "#6C7B6F")
+    public static let lightBordo = UIColor.color(fromHexString: "##9f6778")
 
     public static let darkPink = UIColor.color(fromHexString: "#A85077")
 
     public static let pink = UIColor.color(fromHexString: "#DD7EB5")
 
-    public static let veryLightPink = UIColor.color(fromHexString: "##f7efed")
+    public static let lightPink = UIColor.color(fromHexString: "#F2D8E5")
 
-    public static let lightGreen = UIColor.color(fromHexString: "#DAE7DF")
+    public static let sand = UIColor.color(fromHexString: "##D9C897")
     
-    public static let myRed = UIColor.color(fromHexString: "##FF1493")
+    public static let darkBordo = UIColor.color(fromHexString: "#5F021F")
     
-    public static let myDarkGray = UIColor.color(fromHexString: "#343F4B")
+    public static let see = UIColor.color(fromHexString: "#D3EBED")
     
     
     

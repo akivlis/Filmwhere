@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let tabBarViewController = MainTabBarController()
         window?.rootViewController = tabBarViewController
         window?.makeKeyAndVisible()
-        UINavigationBar.appearance().tintColor = .myRed
+        UINavigationBar.appearance().tintColor = .darkBordo
         
         return true
     }

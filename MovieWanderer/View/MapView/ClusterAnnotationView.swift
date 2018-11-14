@@ -16,7 +16,7 @@ class ClusterAnnotationView: MKMarkerAnnotationView {
         willSet {
             if (newValue as? MKClusterAnnotation) != nil {
                 clusteringIdentifier = MKMapViewDefaultClusterAnnotationViewReuseIdentifier
-                markerTintColor = .black
+                markerTintColor = .darkBordo
                 glyphImage = UIImage(named: "projector")
             }
         }
