@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SceneCellView: UIView {
     
@@ -29,7 +30,13 @@ class SceneCellView: UIView {
     func bindViewModel(_ viewModel: SceneCellViewModel){
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.description
-        backgroundImageView.image = viewModel.sceneImage
+        
+        backgroundImageView.kf.setImage(with: viewModel.imageUrl) {
+            image, error, cacheType, imageURL in
+            if error != nil {
+                self.backgroundImageView.image =  viewModel.placeholderImage
+            }
+        }
     }
 }
 

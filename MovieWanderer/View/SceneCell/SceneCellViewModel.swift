@@ -29,12 +29,12 @@ struct SceneCellViewModel {
         return "50 km"
     }
 
-    var sceneImage: UIImage {
-        if let image = UIImage(named: scene.title) {
-            return image
-        }
-        // TODO: remove a make it optiona
-        return UIImage(named: "Dany")!
+    var imageUrl: URL {
+        return URL(string: scene.imageURL)!
+    }
+    
+    var placeholderImage: UIImage {
+        return UIImage(named: "eat_pray")!
     }
 }
 
