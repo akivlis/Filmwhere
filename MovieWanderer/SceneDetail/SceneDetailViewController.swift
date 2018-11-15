@@ -18,10 +18,12 @@ final class SceneDetailViewController: UIViewController {
     private let blurredView = UIVisualEffectView()
     private let scenes: [Scene]
     private let currentIndex: Int
+    private let titleLabel = UILabel()
     
-    init(scenes: [Scene], currentIndex: Int) {
+    init(scenes: [Scene], currentIndex: Int, title: String) {
         self.scenes = scenes
         self.currentIndex = currentIndex
+        self.titleLabel.text = title
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -31,7 +33,6 @@ final class SceneDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         commonInit()
         
         closeButton.rx.tap
@@ -46,11 +47,16 @@ final class SceneDetailViewController: UIViewController {
         DispatchQueue.main.async {
             self.pagerView.scrollToItem(at: self.currentIndex, animated: false)
         }
+        self.setNeedsStatusBarAppearanceUpdate()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         closeButton.layer.cornerRadius = closeButton.bounds.width / 2
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .default
     }
 }
 
@@ -79,17 +85,23 @@ private extension SceneDetailViewController {
     }
     
     private func setupViews() {
-        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffect = UIBlurEffect(style: .light)
         blurredView.effect = blurEffect
         view.addSubview(blurredView)
+        
+        view.addSubview(titleLabel)
         
         pagerView.backgroundColor = .clear
         pagerView.register(SceneDetailPagerViewCell.self, forCellWithReuseIdentifier: SceneDetailPagerViewCell.reuseIdentifier)
         view.addSubview(pagerView)
         pagerView.interitemSpacing = 10
         
-        let width = UIScreen.main.bounds.width - 60
-        let size = CGSize(width: width, height: 570) //TODO: change
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height - 40
+        let newWidth = width - 60
+        let newHeight = (height / width) * newWidth
+        let size = CGSize(width: newWidth, height: newHeight) //TODO: change
+        
         pagerView.itemSize = size
         
         if let image = UIImage(named: "close-icon")?.withRenderingMode(.alwaysTemplate) {
@@ -102,15 +114,20 @@ private extension SceneDetailViewController {
     
     private func setupConstraints() {
         closeButton.snp.makeConstraints { make in
-            make.centerY.equalTo(pagerView.snp.top)
-            make.left.equalToSuperview().inset(15)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(15)
+            make.leading.equalToSuperview().inset(15)
             make.height.width.equalTo(25)
         }
         
+        titleLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(closeButton)
+            make.centerX.equalToSuperview()
+        }
+        
         pagerView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(40)
-            make.leading.trailing.equalToSuperview()//.inset(20)
-            make.bottom.equalToSuperview().inset(40)
+            make.top.equalTo(closeButton.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(40)
         }
         
         blurredView.snp.makeConstraints { make in

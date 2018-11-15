@@ -23,7 +23,7 @@ struct Scene {
     init(id: String = "",
          title: String,
          description: String,
-         locationName: String = "Art Museum Stairs",
+         locationName: String = "starirs",
          latitude: Double,
          longitude: Double,
          imageURL: String = "imageURL",
@@ -61,6 +61,7 @@ extension Scene: Decodable {
         case latitude
         case longitude
         case country
+        case locationName
     }
     
     init(from decoder: Decoder) throws {
@@ -68,11 +69,12 @@ extension Scene: Decodable {
         let id: String = try container.decode(String.self, forKey: .id)
         let title: String = try container.decode(String.self, forKey: .title)
         let description: String = try container.decode(String.self, forKey: .description)
+        let locationName: String = try container.decode(String.self, forKey: .locationName)
         let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
         let latitude: Double = try container.decode(Double.self, forKey: .latitude)
         let longitude: Double = try container.decode(Double.self, forKey: .longitude)
         let country: String = try container.decode(String.self, forKey: .description)
-        self.init(id: id, title: title, description: description, latitude: latitude, longitude: longitude, imageURL: imageUrl, country: country)
+        self.init(id: id, title: title, description: description, locationName: locationName, latitude: latitude, longitude: longitude, imageURL: imageUrl, country: country)
     }
 }
 

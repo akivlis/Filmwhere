@@ -40,6 +40,7 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
             image, error, cacheType, imageURL in
             if error != nil {
                 self.backgroundImageView.image =  viewModel.placeholderImage
+                self.gradientView.isHidden = false
             }
         }
     }
@@ -62,10 +63,12 @@ private extension SceneDetailPagerViewCell {
         
         let black = UIColor.black.withAlphaComponent(0.8)
         gradientView.colors = (UIColor.clear, black)
+        gradientView.isHidden = true
         backgroundImageView.insertSubview(gradientView, at: 0)
         
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.clipsToBounds = true
+        backgroundImageView.kf.indicatorType = .activity
         
         titleLabel.textColor = .white
         titleLabel.font = UIFont.regular(withSize: UIDevice.iPhoneNarrow ? 15 : 18)
@@ -110,7 +113,7 @@ private extension SceneDetailPagerViewCell {
                                                   relatedBy: .equal,
                                                   toItem: backgroundImageView,
                                                   attribute: .width,
-                                                  multiplier: 9.0 / 16.0,
+                                                  multiplier: 3.0 / 4.0,
                                                   constant: 0))
         
         titleLabel.snp.makeConstraints { make in
@@ -120,7 +123,7 @@ private extension SceneDetailPagerViewCell {
         
         gradientView.snp.makeConstraints { make in
             make.left.right.bottom.equalTo(backgroundImageView)
-            make.top.equalTo(titleLabel.snp.top)//.inset(10)
+            make.top.equalTo(titleLabel.snp.top)
         }
         
         subtitleLabel.snp.makeConstraints { make in

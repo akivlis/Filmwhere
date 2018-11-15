@@ -56,6 +56,7 @@ private extension SceneCellView {
         let blackColor = UIColor.black.withAlphaComponent(0.9)
         gradientView.colors = (UIColor.clear, blackColor)
         backgroundImageView.insertSubview(gradientView, at: 0)
+        backgroundImageView.kf.indicatorType = .activity
 
         titleLabel.textColor = .white
         titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)

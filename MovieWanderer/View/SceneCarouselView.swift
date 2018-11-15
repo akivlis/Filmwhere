@@ -11,15 +11,20 @@ import RxSwift
 
 final class SceneCarouselView: UIView {
     
+    private var _scrolledToScene$ = PublishSubject<Scene>()
     var scrolledToScene$: Observable<Scene> {
         return _scrolledToScene$
+    }
+    
+    private var _selectSceneCell$ = PublishSubject<Int>()
+    var selectSceneCell$: Observable<Int> {
+        return _selectSceneCell$
     }
     
     private let lineSpacing: CGFloat = Constants.ScenesCollection.lineSpacing
     private var scenes = [Scene]()
     private let cellWidth: CGFloat = Constants.ScenesCollection.cellWidth
     private let disposeBag = DisposeBag()
-    private var _scrolledToScene$ = PublishSubject<Scene>()
     private let movieTitleLabel = UILabel()
     
     private let scenesCollectionView: UICollectionView = {
@@ -82,8 +87,7 @@ extension SceneCarouselView: UICollectionViewDataSource {
 extension SceneCarouselView: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedScene = scenes[indexPath.row]
-        _scrolledToScene$.onNext(selectedScene)
+        _selectSceneCell$.onNext(indexPath.row)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {

@@ -73,6 +73,7 @@ private extension MovieListViewController {
         
         movieDetailViewController.modalPresentationStyle = .custom
         movieDetailViewController.transitioningDelegate = self
+        movieDetailViewController.modalPresentationCapturesStatusBarAppearance = true
         
         present(movieDetailViewController, animated: true, completion: { [weak self] in
             self?.presentTransition = nil

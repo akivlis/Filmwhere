@@ -102,7 +102,8 @@ private extension MovieHeaderView {
         setupConstraints()
     }
     
-    private func setupViews() {    
+    private func setupViews() {
+        moviePhoto.kf.indicatorType = .activity
         photoContainerView.addSubview(moviePhoto)
         photoContainerView.clipsToBounds = true
         addSubview(photoContainerView)
@@ -123,7 +124,7 @@ private extension MovieHeaderView {
                                                              relatedBy: .equal,
                                                              toItem: photoContainerView,
                                                              attribute: .width,
-                                                             multiplier: 3.0 / 4.0,
+                                                             multiplier: 9.0 / 16.0,
                                                              constant: 0))
         
         moviePhoto.snp.makeConstraints { make in

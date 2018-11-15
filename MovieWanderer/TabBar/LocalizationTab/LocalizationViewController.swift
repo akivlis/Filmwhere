@@ -19,14 +19,17 @@ class LocalizationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupViews()
+        setupConstraints()
+        setupObservables()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if mapView.scenesHidden {
-        mapView.scenesHidden = false
+            mapView.scenesHidden = false
         }
     }
 }
@@ -34,7 +37,6 @@ class LocalizationViewController: UIViewController {
 private extension LocalizationViewController {
     
     private func setupViews() {
-      
         let scenes : [Scene] = [Scene(title: "Jamie", description: "Hahaha", latitude: 48.225660, longitude: 16.399509),
                                 Scene(title: "Lokrum", description: "Hihihhi", latitude: 48.228176, longitude: 16.395046),
                                 Scene(title: "Stairs", description: "Bla bla bla", latitude: 48.206959, longitude: 16.390454),
@@ -44,9 +46,25 @@ private extension LocalizationViewController {
         mapView = MapAndScenesCarouselView(scenes: scenes)
         
         view.addSubview(mapView)
+    }
+    
+    private func setupConstraints() {
         mapView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
+    }
+    
+    private func setupObservables() {
+        mapView.openSceneDetail$
+            .subscribe(onNext: { scenes, index in
+                self.openSceneDetail(scenes: scenes, index: index)
+            })
+    }
+    
+    private func openSceneDetail(scenes: [Scene], index: Int) {
+        let sceneDetailViewController = SceneDetailViewController(scenes: scenes, currentIndex: index, title: "All")
+        sceneDetailViewController.modalPresentationStyle = .overFullScreen
+        self.present(sceneDetailViewController, animated: true, completion: nil)
     }
 }

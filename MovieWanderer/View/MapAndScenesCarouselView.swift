@@ -12,6 +12,11 @@ import SnapKit
 
 final class MapAndScenesCarouselView: UIView {
     
+    private var _openSceneDetail$ = PublishSubject<([Scene], Int)>()
+    var openSceneDetail$: Observable<([Scene], Int)>{
+        return _openSceneDetail$
+    }
+    
     var scenesHidden = false {
         didSet {
             if scenesHidden {
@@ -67,16 +72,23 @@ private extension MapAndScenesCarouselView {
         }
 
         scenesCarousel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
             bottomConstraint = make.bottom.equalTo(mapView).constraint
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(sceneViewHeigh)
         }
     }
     
     private func setupObservables() {
         scenesCarousel.scrolledToScene$
-            .subscribe(onNext: { [unowned self] scene in
-                self.mapView.highlight(scene)
+            .subscribe(onNext: { [weak self] scene in
+                self?.mapView.highlight(scene)
+            })
+            .disposed(by: disposeBag) // use dispose bag of the cell?
+        
+        scenesCarousel.selectSceneCell$
+            .subscribe(onNext: { [weak self] index in
+                guard let strongSelf = self else { return }
+                strongSelf._openSceneDetail$.onNext((strongSelf.scenes, index))
             })
             .disposed(by: disposeBag) // use dispose bag of the cell?
         

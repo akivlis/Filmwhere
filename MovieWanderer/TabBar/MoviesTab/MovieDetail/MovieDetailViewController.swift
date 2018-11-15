@@ -41,6 +41,15 @@ class MovieDetailViewController: UIViewController {
         
         viewModel.loadScenes()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 private extension MovieDetailViewController {
@@ -52,7 +61,9 @@ private extension MovieDetailViewController {
         view.addSubview(verticalScenesView)
         view.addSubview(animatingBarView)
         
-        backButton.setImage(UIImage(named: "back-icon"), for: .normal)
+        let backButtonImage = UIImage(named: "back-icon")?.withRenderingMode(.alwaysTemplate)
+        backButton.setImage(backButtonImage, for: .normal)
+        backButton.tintColor = .white
         backButton.imageEdgeInsets =  UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
         view.addSubview(backButton)
     }
@@ -92,8 +103,12 @@ private extension MovieDetailViewController {
         //TODO: scenestableView should be private, expose only click
         verticalScenesView.scenesTableView.rx.itemSelected
             .subscribe(onNext: { [unowned self] index in
-                let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes, currentIndex: index.row - 1)
+                let correctIndex = index.row - 1 // because first cell is expendable cell
+                let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes,
+                                                                          currentIndex: correctIndex,
+                                                                          title: self.viewModel.movie.title)
                 sceneDetailViewController.modalPresentationStyle = .overFullScreen
+                sceneDetailViewController.modalPresentationCapturesStatusBarAppearance = true
                 self.present(sceneDetailViewController, animated: true, completion: nil)
             }).disposed(by: disposeBag)
         
