@@ -21,6 +21,14 @@ class LocalizationViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if mapView.scenesHidden {
+            mapView.scenesHidden = false
+        }
+    }
 }
 
 private extension LocalizationViewController {

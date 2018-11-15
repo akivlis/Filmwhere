@@ -12,14 +12,22 @@ import SnapKit
 
 final class MapAndScenesCarouselView: UIView {
     
+    var scenesHidden = false {
+        didSet {
+            if scenesHidden {
+                hideScenes()
+            } else {
+                showScenes()
+            }
+        }
+    }
+    
     private let scenes: [Scene]
     private var scenesCarousel: SceneCarouselView!
     private let mapView = MapView()
     private let disposeBag = DisposeBag()
     private var bottomConstraint : Constraint?
     private let sceneViewHeigh: CGFloat = 200 // TODO: how to calculate this
-    private var scenesHidden = false
-    
     private let tapOnMap = UITapGestureRecognizer()
     
     init(scenes: [Scene]) {
@@ -76,7 +84,7 @@ private extension MapAndScenesCarouselView {
             .subscribe(onNext: { [unowned self] index in
                 if self.scenesHidden {
                     self.scenesCarousel.scrollToIndex(index, animated: false)
-                    self.showScenes()
+                    self.scenesHidden = false
                 } else {
                     self.scenesCarousel.scrollToIndex(index, animated: true)
                 }
@@ -87,6 +95,7 @@ private extension MapAndScenesCarouselView {
             .filter { recognizer -> Bool in
                 let tapLocation = recognizer.location(in: self.mapView)
                 if let subview = self.hitTest(tapLocation, with: nil) {
+                    //TODO: check this for clusterView
                     if subview.isKind(of: NSClassFromString("MKAnnotationContainerView")!){
                         return true
                     }
@@ -96,7 +105,8 @@ private extension MapAndScenesCarouselView {
             .map { _ in () }
             .asObservable()
             .subscribe(onNext: { [weak self] in
-                self?.hideScenes()
+                guard let strongSelf = self else { return }
+                strongSelf.scenesHidden = true
             })
             .disposed(by: disposeBag)
     }
@@ -104,7 +114,6 @@ private extension MapAndScenesCarouselView {
     private func hideScenes() {
         UIView.animate(withDuration: 0.25) {
             self.bottomConstraint?.update(offset: self.sceneViewHeigh)
-            self.scenesHidden = true
             self.layoutIfNeeded()
         }
     }
@@ -112,7 +121,6 @@ private extension MapAndScenesCarouselView {
     private func showScenes() {
         UIView.animate(withDuration: 0.25) {
             self.bottomConstraint?.update(offset: 0)
-            self.scenesHidden = false
             self.layoutIfNeeded()
         }
     }
