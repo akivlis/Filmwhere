@@ -118,7 +118,7 @@ private extension SceneCarouselView {
         movieTitleLabel.sizeToFit()
         addSubview(movieTitleLabel)
         
-        scenesCollectionView.register(nibName: "SceneCell", cell: SceneCollectionViewCell.self)
+        scenesCollectionView.register(SceneCollectionViewCell.self)
         scenesCollectionView.backgroundColor = .clear
         scenesCollectionView.isPagingEnabled = false
         scenesCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
