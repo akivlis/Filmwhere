@@ -35,9 +35,7 @@ class MovieListViewModel {
         provider.rx.request(.movies)
             .map([Movie].self)
             .subscribe(onSuccess: { [weak self] movies in
-                var reversed = movies
-                reversed.reverse()
-                self?._displayMovies$.onNext(reversed)
+                self?._displayMovies$.onNext(movies)
             }) { [weak self] error in
                 guard let strongSelf = self else { return }
                 let alert = strongSelf.createErrorAlert(message: error.localizedDescription)

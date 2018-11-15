@@ -15,6 +15,8 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var numberOfScenesLabel: UILabel!
+
     
     private let mapIcon: UIImageView = {
         let imageView = UIImageView()
@@ -47,6 +49,7 @@ class MovieTableViewCell: UITableViewCell {
     func bindViewModel(_ viewModel: MovieCellViewModel) {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
+        numberOfScenesLabel.text = viewModel.numberOfScenes
         
         movieImageView.kf.setImage(with: viewModel.imageUrl) {
             image, error, cacheType, imageURL in

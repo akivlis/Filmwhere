@@ -85,6 +85,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="movieImageView" destination="wAX-i7-0cz" id="QDI-On-6c6"/>
+                <outlet property="numberOfScenesLabel" destination="RzC-ua-pBI" id="E4Q-yd-afi"/>
                 <outlet property="roundView" destination="cid-gW-N97" id="XCg-nw-gW9"/>
                 <outlet property="subtitleLabel" destination="jLo-yb-9Ih" id="NOM-8z-IFa"/>
                 <outlet property="titleLabel" destination="I1Q-12-Mvz" id="Jas-SL-t79"/>

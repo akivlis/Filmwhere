@@ -88,7 +88,6 @@ private extension MapAndScenesCarouselView {
                 let tapLocation = recognizer.location(in: self.mapView)
                 if let subview = self.hitTest(tapLocation, with: nil) {
                     if subview.isKind(of: NSClassFromString("MKAnnotationContainerView")!){
-                        print("Tapped out")
                         return true
                     }
                 }
