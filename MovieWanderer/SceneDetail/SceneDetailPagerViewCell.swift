@@ -35,7 +35,13 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     func bindViewModel(_ viewModel: SceneDetailPagerViewCellViewModel) {
         titleLabel.text = viewModel.scene.title
         subtitleLabel.text = viewModel.description
-        backgroundImageView.image = viewModel.image
+        
+        backgroundImageView.kf.setImage(with: viewModel.imageUrl) {
+            image, error, cacheType, imageURL in
+            if error != nil {
+                self.backgroundImageView.image =  viewModel.placeholderImage
+            }
+        }
     }
 }
 

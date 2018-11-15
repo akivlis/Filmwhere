@@ -26,7 +26,7 @@ class LocalizationViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if mapView.scenesHidden {
-            mapView.scenesHidden = false
+        mapView.scenesHidden = false
         }
     }
 }
