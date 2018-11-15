@@ -152,7 +152,7 @@ private extension MapView {
     }
     
     private func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,                                                                 regionRadius, regionRadius)
+        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,                                                                 latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         mapView.setRegion(coordinateRegion, animated: false)
     }
     
@@ -164,7 +164,7 @@ private extension MapView {
         guard let tileOverlay = try? MapKitGoogleStyler.buildOverlay(with: overlayFileURL) else {
             return
         }
-        mapView.add(tileOverlay)
+        mapView.addOverlay(tileOverlay)
     }
 }
 

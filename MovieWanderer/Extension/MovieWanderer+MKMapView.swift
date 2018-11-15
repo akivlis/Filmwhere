@@ -69,7 +69,7 @@ extension MKMapView{
         
         // use the zoom level to compute the region
         let span = self.coordinateSpanWithCenterCoordinate(centerCoordinate: centerCoordinate, zoomLevel: zoomLevel)
-        let region = MKCoordinateRegionMake(centerCoordinate, span)
+        let region = MKCoordinateRegion(center: centerCoordinate, span: span)
         if region.center.longitude == -180.00000000{
             print("Invalid Region")
         }

@@ -44,11 +44,11 @@ extension UICollectionView {
     }
     
     public func register<T: Reuseable>(header view: T.Type) {
-        register(view, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: view.reuseIdentifier)
+        register(view, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: view.reuseIdentifier)
     }
     
     public func register<T: Reuseable>(footer view: T.Type) {
-        register(view, forSupplementaryViewOfKind: UICollectionElementKindSectionFooter, withReuseIdentifier: view.reuseIdentifier)
+        register(view, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: view.reuseIdentifier)
     }
     
     public func register<T: Reuseable>(nibName: String, cell: T.Type) {

@@ -13,7 +13,7 @@ import FSPagerView
 final class SceneDetailViewController: UIViewController {
     
     private let disposeBag = DisposeBag()
-    private let closeButton = UIButton(type: UIButtonType.system)
+    private let closeButton = UIButton(type: UIButton.ButtonType.system)
     private let pagerView = FSPagerView()
     private let blurredView = UIVisualEffectView()
     private let scenes: [Scene]

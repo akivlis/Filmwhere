@@ -12,7 +12,7 @@ class SceneTableViewCell: UITableViewCell {
 
     private lazy var sceneView = SceneCellView()
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
@@ -28,8 +28,7 @@ class SceneTableViewCell: UITableViewCell {
         super.layoutSubviews()
         
         let padding : CGFloat = Constants.movieDetailViewControllerPadding
-        contentView.frame = UIEdgeInsetsInsetRect(contentView.frame,
-                                                  UIEdgeInsets(top: 0, left: padding, bottom: 10, right: padding))
+        contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 0, left: padding, bottom: 10, right: padding))
     }
     
     func bindViewModel(_ viewModel: SceneCellViewModel) {

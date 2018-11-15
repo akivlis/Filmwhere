@@ -125,7 +125,7 @@ private extension SceneCarouselView {
         scenesCollectionView.register(SceneCollectionViewCell.self)
         scenesCollectionView.backgroundColor = .clear
         scenesCollectionView.isPagingEnabled = false
-        scenesCollectionView.decelerationRate = UIScrollViewDecelerationRateFast
+        scenesCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         scenesCollectionView.showsHorizontalScrollIndicator = false
         addSubview(scenesCollectionView)
     }
