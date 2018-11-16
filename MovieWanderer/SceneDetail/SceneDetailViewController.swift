@@ -50,11 +50,6 @@ final class SceneDetailViewController: UIViewController {
         self.setNeedsStatusBarAppearanceUpdate()
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        closeButton.layer.cornerRadius = closeButton.bounds.width / 2
-    }
-    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .default
     }

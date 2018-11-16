@@ -59,6 +59,7 @@ private extension MapViewController {
         if let image = UIImage(named: "close-icon")?.withRenderingMode(.alwaysTemplate) {
             closeButton.setImage(image, for: .normal)
         }
+        closeButton.imageEdgeInsets =  UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         closeButton.tintColor = .white
         view.addSubview(closeButton)
     }
@@ -69,8 +70,8 @@ private extension MapViewController {
         }
         
         closeButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(20)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(15)
+            make.leading.equalToSuperview().inset(15)
             make.height.width.equalTo(25)
         }
         

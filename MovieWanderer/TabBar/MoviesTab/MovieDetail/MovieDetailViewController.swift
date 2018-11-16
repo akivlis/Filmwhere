@@ -19,6 +19,13 @@ class MovieDetailViewController: UIViewController {
     private let backButton = UIButton()
     private let numberOfPlacesLabel = UILabel()
     private let animatingBarView = AnimatingBarView()
+   
+    private var currentStyle = UIStatusBarStyle.lightContent {
+        didSet {
+            backButton.tintColor = currentStyle == .lightContent ? .white : .black
+            setNeedsStatusBarAppearanceUpdate()
+        }
+    }
 
     // MARK: Init
     
@@ -48,7 +55,7 @@ class MovieDetailViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
-        return .lightContent
+        return currentStyle
     }
 }
 
@@ -64,7 +71,7 @@ private extension MovieDetailViewController {
         let backButtonImage = UIImage(named: "back-icon")?.withRenderingMode(.alwaysTemplate)
         backButton.setImage(backButtonImage, for: .normal)
         backButton.tintColor = .white
-        backButton.imageEdgeInsets =  UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        backButton.imageEdgeInsets =  UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         view.addSubview(backButton)
     }
     
@@ -78,11 +85,11 @@ private extension MovieDetailViewController {
             make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(64)
         }
-        
+
         backButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(Constants.movieDetailViewControllerPadding)
             make.centerY.equalTo(animatingBarView).offset(10)
-            make.height.width.equalTo(30)
+            make.leading.equalToSuperview().inset(15)
+            make.height.width.equalTo(25)
         }
     }
     
@@ -92,7 +99,7 @@ private extension MovieDetailViewController {
                 self.verticalScenesView.setScenes(scenes: scenes)
             })
             .disposed(by: disposeBag)
-                
+        
         verticalScenesView.showMapTapped$
             .subscribe(onNext: { [unowned self] _ in
                 let modalViewController = MapViewController(places: self.viewModel.scenes)
@@ -110,29 +117,26 @@ private extension MovieDetailViewController {
                 sceneDetailViewController.modalPresentationStyle = .overFullScreen
                 sceneDetailViewController.modalPresentationCapturesStatusBarAppearance = true
                 self.present(sceneDetailViewController, animated: true, completion: nil)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
         
         backButton.rx.tap
             .subscribe(onNext: { [unowned self] in
                 self.dismiss(animated: true)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
         
-        verticalScenesView.scenesTableView.rx.didScroll
-            .subscribe(onNext: { _ in
-                
-                //todo: probably calculate this number (120) based on image height
-                if self.verticalScenesView.scenesTableView.contentOffset.y > 160 {
-                    let offset = self.verticalScenesView.scenesTableView.contentOffset.y / 80 //check this number
-                    let number = offset - 1
-                        self.animateNavigationBar(offset: number)
-                } else {
-                    self.animateNavigationBar(offset: 0.0)
-                }
-            }).disposed(by: disposeBag)
-    }
-    
-    private func animateNavigationBar(offset: CGFloat) {
-        animatingBarView.setColorWith(alpha: offset)
+        verticalScenesView.updateStatusBarStyle$
+            .subscribe(onNext: { style in
+                self.currentStyle = style
+            })
+            .disposed(by: disposeBag)
+        
+        verticalScenesView.updateNavigationBarAlpha$
+            .subscribe(onNext: { alpha in
+                self.animatingBarView.setColorWith(alpha: alpha)
+            })
+            .disposed(by: disposeBag)
     }
 }
 

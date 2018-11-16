@@ -17,6 +17,18 @@ class VerticalScenesView: UIView {
         return _showMapTapped$
     }
     
+    private var _updateStatusBarStyle$ = BehaviorSubject<UIStatusBarStyle>(value: .lightContent)
+    var updateStatusBarStyle$ : Observable<UIStatusBarStyle> {
+        return _updateStatusBarStyle$
+            .distinctUntilChanged()
+    }
+    
+    private var _updateNavigationBarAlpha$ = PublishSubject<CGFloat>()
+    var updateNavigationBarAlpha$: Observable<CGFloat>{
+        return _updateNavigationBarAlpha$
+            .distinctUntilChanged()
+    }
+    
     private let movie: Movie
     private var headerView: MovieHeaderView?
     private var scenes: [Scene]
@@ -112,6 +124,20 @@ extension VerticalScenesView: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         headerView?.updatePosition(withInset: scrollView.contentInset.top, contentOffset: scrollView.contentOffset.y)
+        
+        //todo: probably calculate this number (120) based on image height
+        if scrollView.contentOffset.y > 120 {
+            let offset = scrollView.contentOffset.y / 80 //check this number
+            var number = offset - 1
+            if number > 1 {
+                number = 1
+            }
+            _updateNavigationBarAlpha$.onNext(number)
+            _updateStatusBarStyle$.onNext(.default)
+        } else {
+            _updateNavigationBarAlpha$.onNext(0.0)
+            _updateStatusBarStyle$.onNext(.lightContent)
+        }
     }
     
     public func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
