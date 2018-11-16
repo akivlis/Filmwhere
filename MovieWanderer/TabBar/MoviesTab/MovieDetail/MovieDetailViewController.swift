@@ -115,7 +115,6 @@ private extension MovieDetailViewController {
                                                                           currentIndex: correctIndex,
                                                                           title: self.viewModel.movie.title)
                 sceneDetailViewController.modalPresentationStyle = .overFullScreen
-                sceneDetailViewController.modalPresentationCapturesStatusBarAppearance = true
                 self.present(sceneDetailViewController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)

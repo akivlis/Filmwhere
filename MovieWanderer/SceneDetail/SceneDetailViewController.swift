@@ -20,6 +20,12 @@ final class SceneDetailViewController: UIViewController {
     private let currentIndex: Int
     private let titleLabel = UILabel()
     
+    private let topGradient : GradientView = {
+        let gradient = GradientView()
+        gradient.colors = (UIColor.black.withAlphaComponent(0.5), .clear)
+        return gradient
+    }()
+    
     init(scenes: [Scene], currentIndex: Int, title: String) {
         self.scenes = scenes
         self.currentIndex = currentIndex
@@ -34,11 +40,6 @@ final class SceneDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         commonInit()
-        
-        closeButton.rx.tap
-            .subscribe(onNext: { _ in
-                self.dismiss(animated: true, completion: nil)
-            }).disposed(by: disposeBag)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,7 +52,7 @@ final class SceneDetailViewController: UIViewController {
     }
     
     override var preferredStatusBarStyle : UIStatusBarStyle {
-        return .default
+        return .lightContent
     }
 }
 
@@ -75,15 +76,21 @@ private extension SceneDetailViewController {
     private func commonInit() {
         setupViews()
         setupConstraints()
+        setupObservables()
         
         pagerView.dataSource = self
     }
     
     private func setupViews() {
+        modalPresentationCapturesStatusBarAppearance = true
+        
         let blurEffect = UIBlurEffect(style: .light)
         blurredView.effect = blurEffect
         view.addSubview(blurredView)
         
+        view.addSubview(topGradient)
+        
+        titleLabel.textColor = .white
         view.addSubview(titleLabel)
         
         pagerView.backgroundColor = .clear
@@ -102,12 +109,17 @@ private extension SceneDetailViewController {
         if let image = UIImage(named: "close-icon")?.withRenderingMode(.alwaysTemplate) {
             closeButton.setImage(image, for: .normal)
         }
-        closeButton.tintColor = .black
+        closeButton.tintColor = .white
         closeButton.imageEdgeInsets =  UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
         view.addSubview(closeButton)
     }
     
     private func setupConstraints() {
+        topGradient.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(80)
+        }
+        
         closeButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(15)
             make.leading.equalToSuperview().inset(15)
@@ -128,5 +140,12 @@ private extension SceneDetailViewController {
         blurredView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    private func setupObservables() {
+        closeButton.rx.tap
+            .subscribe(onNext: { _ in
+                self.dismiss(animated: true, completion: nil)
+            }).disposed(by: disposeBag)
     }
 }
