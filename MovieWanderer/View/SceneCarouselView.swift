@@ -117,7 +117,7 @@ private extension SceneCarouselView {
     private func setupViews() {
         backgroundColor = .white
 
-        movieTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        movieTitleLabel.font = UIFont.preferredFont(forTextStyle: .body).bold()
         movieTitleLabel.textColor = .darkGreen
         movieTitleLabel.text = "Rocky Balboa"
         movieTitleLabel.sizeToFit()

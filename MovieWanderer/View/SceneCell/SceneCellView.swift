@@ -48,23 +48,23 @@ private extension SceneCellView {
     }
     
     private func setupViews() {
+        backgroundImageView.backgroundColor = .lightGray
         backgroundImageView.clipsToBounds = true
         backgroundImageView.layer.cornerRadius = 6
         backgroundImageView.contentMode = .scaleAspectFill
-        addSubview(backgroundImageView)
-        
-        let blackColor = UIColor.black.withAlphaComponent(0.9)
-        gradientView.colors = (UIColor.clear, blackColor)
-        backgroundImageView.insertSubview(gradientView, at: 0)
         backgroundImageView.kf.indicatorType = .activity
+        addSubview(backgroundImageView)
+
+        gradientView.colors = (.clear, UIColor.black.withAlphaComponent(0.8))
+        backgroundImageView.insertSubview(gradientView, at: 0)
 
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline).bold()
         stackView.addArrangedSubview(titleLabel)
         
         stackView.addArrangedSubview(subtitleLabel)
         subtitleLabel.textColor = .white
-        subtitleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        subtitleLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
         
         stackView.axis = .vertical
         stackView.alignment = .leading
@@ -72,7 +72,6 @@ private extension SceneCellView {
         stackView.spacing = 4
         stackView.isLayoutMarginsRelativeArrangement = true
         addSubview(stackView)
-        
     }
     
     private func setupConstraints() {
