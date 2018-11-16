@@ -83,7 +83,7 @@ private extension MovieDetailViewController {
         
         animatingBarView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(64)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.top).inset(44)
         }
 
         backButton.snp.makeConstraints { make in
