@@ -22,7 +22,7 @@ final class SceneDetailViewController: UIViewController {
     
     private let topGradient : GradientView = {
         let gradient = GradientView()
-        gradient.colors = (UIColor.black.withAlphaComponent(0.5), .clear)
+        gradient.colors = (UIColor.black.withAlphaComponent(0.7), .clear)
         return gradient
     }()
     

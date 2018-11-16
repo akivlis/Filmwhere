@@ -42,8 +42,8 @@ private extension LocalizationViewController {
                                 Scene(title: "Stairs", description: "Bla bla bla", latitude: 48.206959, longitude: 16.390454),
                                 Scene(title: "Dany", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)]
         
-        let movie = Movie(title: "", description: "", scenes: scenes, imageUrl: "")
-        mapView = MapAndScenesCarouselView(scenes: scenes)
+        let movie = Movie(title: "Game Of Thrones", description: "", scenes: scenes, imageUrl: "")
+        mapView = MapAndScenesCarouselView(scenes: scenes, title: movie.title)
         
         view.addSubview(mapView)
     }
@@ -59,7 +59,7 @@ private extension LocalizationViewController {
         mapView.openSceneDetail$
             .subscribe(onNext: { scenes, index in
                 self.openSceneDetail(scenes: scenes, index: index)
-            })
+            }).disposed(by: disposeBag) // TODO: reload dispose bag when viewController dissaper???
     }
     
     private func openSceneDetail(scenes: [Scene], index: Int) {

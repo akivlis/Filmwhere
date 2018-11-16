@@ -44,10 +44,11 @@ final class SceneCarouselView: UIView {
         return collectionView
     }()
     
-    init(scenes: [Scene]) {
+    init(scenes: [Scene], title: String) {
         super.init(frame: .zero)
         
         self.scenes = scenes
+        movieTitleLabel.text = title
         commonInit()
     }
     
@@ -119,7 +120,6 @@ private extension SceneCarouselView {
 
         movieTitleLabel.font = UIFont.preferredFont(forTextStyle: .body).bold()
         movieTitleLabel.textColor = .darkGreen
-        movieTitleLabel.text = "Rocky Balboa"
         movieTitleLabel.sizeToFit()
         addSubview(movieTitleLabel)
         

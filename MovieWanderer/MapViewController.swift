@@ -25,9 +25,11 @@ final class MapViewController: UIViewController {
     private let closeButton = UIButton(type: .system)
     private let disposeBag = DisposeBag()
     private let scenes: [Scene]
+    private let movieTitle: String
 
-    init(places: [Scene]) {
-        self.scenes = places
+    init(scenes: [Scene], title: String) {
+        self.scenes = scenes
+        self.movieTitle = title
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -51,7 +53,7 @@ final class MapViewController: UIViewController {
 private extension MapViewController {
     
     private func setupViews(){
-        mapAndScenesView = MapAndScenesCarouselView(scenes: scenes)
+        mapAndScenesView = MapAndScenesCarouselView(scenes: scenes, title: movieTitle)
         view.addSubview(mapAndScenesView)
         
         view.addSubview(topGradient)

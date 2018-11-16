@@ -102,7 +102,7 @@ private extension MovieDetailViewController {
         
         verticalScenesView.showMapTapped$
             .subscribe(onNext: { [unowned self] _ in
-                let modalViewController = MapViewController(places: self.viewModel.scenes)
+                let modalViewController = MapViewController(scenes: self.viewModel.scenes, title: self.viewModel.movie.title)
                 self.present(modalViewController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
