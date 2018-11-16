@@ -118,6 +118,7 @@ private extension SceneCarouselView {
         backgroundColor = .white
 
         movieTitleLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        movieTitleLabel.textColor = .darkGreen
         movieTitleLabel.text = "Rocky Balboa"
         movieTitleLabel.sizeToFit()
         addSubview(movieTitleLabel)

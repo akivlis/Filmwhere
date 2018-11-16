@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SceneTableViewCell: UITableViewCell {
+final class SceneTableViewCell: UITableViewCell {
 
     private lazy var sceneView = SceneCellView()
 
@@ -16,12 +16,15 @@ class SceneTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         selectionStyle = .none
-        
         contentView.addSubview(sceneView)
         
         sceneView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
     
     override func layoutSubviews() {
@@ -34,15 +37,4 @@ class SceneTableViewCell: UITableViewCell {
     func bindViewModel(_ viewModel: SceneCellViewModel) {
         sceneView.bindViewModel(viewModel)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

@@ -49,7 +49,7 @@ private extension SceneCellView {
     
     private func setupViews() {
         backgroundImageView.clipsToBounds = true
-        backgroundImageView.layer.cornerRadius = 8
+        backgroundImageView.layer.cornerRadius = 6
         backgroundImageView.contentMode = .scaleAspectFill
         addSubview(backgroundImageView)
         

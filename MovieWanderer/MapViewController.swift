@@ -15,6 +15,12 @@ final class MapViewController: UIViewController {
         return closeButton.rx.tap.asObservable()
     }
     
+    private let topGradient : GradientView = {
+        let gradient = GradientView()
+        gradient.colors = (UIColor.black.withAlphaComponent(0.5), .clear)
+        return gradient
+    }()
+    
     private var mapAndScenesView: MapAndScenesCarouselView!
     private let closeButton = UIButton(type: .system)
     private let disposeBag = DisposeBag()
@@ -36,6 +42,10 @@ final class MapViewController: UIViewController {
         setupConstraints()
         setupObservables()
     }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
 }
 
 private extension MapViewController {
@@ -44,9 +54,12 @@ private extension MapViewController {
         mapAndScenesView = MapAndScenesCarouselView(scenes: scenes)
         view.addSubview(mapAndScenesView)
         
-        if let image = UIImage(named: "close-icon") {
+        view.addSubview(topGradient)
+        
+        if let image = UIImage(named: "close-icon")?.withRenderingMode(.alwaysTemplate) {
             closeButton.setImage(image, for: .normal)
         }
+        closeButton.tintColor = .white
         view.addSubview(closeButton)
     }
     
@@ -59,6 +72,11 @@ private extension MapViewController {
             make.left.equalToSuperview().inset(20)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(20)
             make.height.width.equalTo(25)
+        }
+        
+        topGradient.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(80)
         }
     }
     
