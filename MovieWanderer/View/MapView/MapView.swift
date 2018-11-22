@@ -19,6 +19,9 @@ class MapView: UIView {
     }
     
     var viewModel : MapViewViewModel = MapViewViewModel(scenes: [Scene]()) {
+        willSet {
+            removeAllAnnotations()
+        }
         didSet {
             showAnnotationsAndZoom()
         }
@@ -27,7 +30,6 @@ class MapView: UIView {
     private let sceneSelected = PublishSubject<Int>()
     private let locationManager = CLLocationManager()
     private let disposeBag = DisposeBag()
-    private let regionRadius: CLLocationDistance = 10000
     private let mapView = MKMapView()
     
     // MARK: Init
@@ -147,13 +149,14 @@ private extension MapView {
     }
     
     private func showAnnotationsAndZoom() {
-        mapView.addAnnotations(viewModel.annotations)
-        mapView.showAnnotations(viewModel.annotations, animated: false)
+        DispatchQueue.main.async {
+            self.mapView.addAnnotations(self.viewModel.annotations)
+            self.mapView.showAnnotations(self.viewModel.annotations, animated: true)
+        }
     }
     
-    private func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegion(center: location.coordinate,                                                                 latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
-        mapView.setRegion(coordinateRegion, animated: false)
+    private func removeAllAnnotations() {
+        mapView.removeAnnotations(viewModel.annotations)
     }
     
     private func configureTileOverlayWith(jsonFileName: String) {

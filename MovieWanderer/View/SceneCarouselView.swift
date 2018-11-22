@@ -57,8 +57,9 @@ final class SceneCarouselView: UIView {
         commonInit()
     }
     
-    func setScenes(scenes: [Scene]) {
+    func setScenes(scenes: [Scene], title: String) {
         self.scenes = scenes
+        movieTitleLabel.text = title
         scenesCollectionView.reloadData()
     }
     

@@ -18,7 +18,6 @@ struct Scene {
     let longitude: Double
     let imageURL: String
     let country : String
-
     
     init(id: String = "",
          title: String,

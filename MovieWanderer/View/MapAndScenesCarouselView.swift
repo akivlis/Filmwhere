@@ -27,27 +27,39 @@ final class MapAndScenesCarouselView: UIView {
         }
     }
     
-    private let scenes: [Scene]
-    private var scenesCarousel: SceneCarouselView!
+    private var scenes: [Scene]
+    private let scenesCarousel: SceneCarouselView
     private let mapView = MapView()
     private let disposeBag = DisposeBag()
     private var bottomConstraint : Constraint?
     private let sceneViewHeigh: CGFloat = 200 // TODO: how to calculate this
     private let tapOnMap = UITapGestureRecognizer()
-    private let title: String
     
     init(scenes: [Scene], title: String) {
         self.scenes = scenes
-        self.title = title
+        mapView.viewModel = MapViewViewModel(scenes: scenes)
+        scenesCarousel = SceneCarouselView(scenes: scenes, title: title)
         super.init(frame: .zero)
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
-        self.scenes = [Scene]()
-        self.title = "All"
-        super.init(coder: aDecoder)
-        commonInit()
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // Public
+    
+    func update(scenes: [Scene]) {
+        self.scenes = scenes
+        mapView.viewModel = MapViewViewModel(scenes: scenes)
+        scenesCarousel.setScenes(scenes: scenes, title: "All")
+    }
+    
+    func update(movie: Movie) {
+        self.scenes = movie.scenes
+        mapView.viewModel = MapViewViewModel(scenes: movie.scenes)
+        scenesCarousel.setScenes(scenes: movie.scenes, title: movie.title)
     }
 }
 
@@ -60,11 +72,9 @@ private extension MapAndScenesCarouselView {
     }
     
     private func setupViews() {
-        mapView.viewModel = MapViewViewModel(scenes: scenes)
         mapView.addGestureRecognizer(tapOnMap)
         addSubview(mapView)
         
-        scenesCarousel = SceneCarouselView(scenes: scenes, title: title)
         addSubview(scenesCarousel)
     }
     

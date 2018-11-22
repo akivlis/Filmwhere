@@ -16,6 +16,18 @@ class LocalizationViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     var mapView: MapAndScenesCarouselView!
+    let searchBar = UISearchBar()
+    let viewModel : LocalizationViewModel
+    
+    init(viewModel: LocalizationViewModel) {
+        self.viewModel = viewModel
+        mapView = MapAndScenesCarouselView(scenes: viewModel.scenes, title: "All")
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +35,8 @@ class LocalizationViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupObservables()
+        
+        searchBar.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,26 +46,30 @@ class LocalizationViewController: UIViewController {
             mapView.scenesHidden = false
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        searchBar.endEditing(true)
+    }
 }
 
 private extension LocalizationViewController {
     
     private func setupViews() {
-        let scenes : [Scene] = [Scene(title: "Jamie", description: "Hahaha", latitude: 48.225660, longitude: 16.399509),
-                                Scene(title: "Lokrum", description: "Hihihhi", latitude: 48.228176, longitude: 16.395046),
-                                Scene(title: "Stairs", description: "Bla bla bla", latitude: 48.206959, longitude: 16.390454),
-                                Scene(title: "Dany", description: "Bla bla bla", latitude:  48.157614, longitude: 17.075666)]
-        
-        let movie = Movie(title: "Game Of Thrones", description: "", scenes: scenes, imageUrl: "")
-        mapView = MapAndScenesCarouselView(scenes: scenes, title: movie.title)
-        
         view.addSubview(mapView)
+        
+        searchBar.barStyle = .default
+        view.addSubview(searchBar)
     }
     
     private func setupConstraints() {
         mapView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+        }
+        
+        searchBar.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
         }
     }
     
@@ -66,5 +84,30 @@ private extension LocalizationViewController {
         let sceneDetailViewController = SceneDetailViewController(scenes: scenes, currentIndex: index, title: "All")
         sceneDetailViewController.modalPresentationStyle = .overFullScreen
         self.present(sceneDetailViewController, animated: true, completion: nil)
+    }
+}
+
+extension LocalizationViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+
+        //todo: show potential results
+        if searchText.isEmpty {
+            mapView.update(scenes: viewModel.scenes)
+        }
+       
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let searchText = searchBar.text {
+            if let movie = viewModel.getMovie(for: searchText) {
+                mapView.update(movie: movie)
+            }
+        }
+        searchBar.resignFirstResponder()
     }
 }
