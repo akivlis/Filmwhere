@@ -104,8 +104,9 @@ extension LocalizationViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchText = searchBar.text {
-            if let movie = viewModel.getMovie(for: searchText) {
-                mapView.update(movie: movie)
+            if let movies = viewModel.getMovie(for: searchText) {
+                print(movies)
+                mapView.update(movie: movies.first!)
             }
         }
         searchBar.resignFirstResponder()

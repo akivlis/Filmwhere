@@ -24,7 +24,7 @@ struct LocalizationViewModel {
         self.scenes = movies.flatMap { $0.scenes }
     }
     
-    func getMovies(for text: String) -> [Movie]? {
+    func getMovie(for text: String) -> [Movie]? {
         return movies.filter { $0.title.lowercased().contains(text.lowercased()) }
     }
 }
