@@ -18,7 +18,9 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private let containerView = UIView()
     private let actionButton = UIButton()
     private let gradientView = GradientView()
-
+    private let addressStackView = UIStackView()
+    private let pinImage = UIImageView()
+    private let addressLabel = UILabel()
     
     // MARK: - Init
     
@@ -56,7 +58,7 @@ private extension SceneDetailPagerViewCell {
     }
     
     private func setupViews() {
-        containerView.layer.cornerRadius = 8.0
+        containerView.layer.cornerRadius = 6.0
         containerView.layer.masksToBounds = true
         containerView.backgroundColor = .white
         addSubview(containerView)
@@ -91,6 +93,7 @@ private extension SceneDetailPagerViewCell {
         
         containerView.addSubview(backgroundImageView)
         containerView.addSubview(titleLabel)
+        containerView.addSubview(addressStackView)
         containerView.addSubview(subtitleLabel)
         containerView.addSubview(actionButton)
     }
