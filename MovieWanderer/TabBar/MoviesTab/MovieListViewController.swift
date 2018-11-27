@@ -15,9 +15,25 @@ class MovieListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private let viewModel = MovieListViewModel()
     
+    private let moviesModelController : MoviesModelController
     
     var presentTransition: UIViewControllerAnimatedTransitioning?
     var dismissTransition: UIViewControllerAnimatedTransitioning?
+    
+    init(moviesModelController: MoviesModelController) {
+        self.moviesModelController = moviesModelController
+        super.init(nibName: nil, bundle: nil)
+        
+        self.moviesModelController.moviesUpdated$
+            .subscribe(onNext: { [weak self] movies in
+                self?.listView.movies = movies
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +41,7 @@ class MovieListViewController: UIViewController {
         setupViews()
         setupObservables()
         
-        viewModel.loadMovies()
+//        viewModel.loadMovies()
     }
 }
 
@@ -51,11 +67,11 @@ private extension MovieListViewController {
             })
             .disposed(by: disposeBag)
         
-        viewModel.displayMovies$
-            .subscribe(onNext: { [weak self] movies in
-                self?.listView.movies = movies
-            })
-            .disposed(by: disposeBag)
+//        viewModel.displayMovies$
+//            .subscribe(onNext: { [weak self] movies in
+//                self?.listView.movies = movies
+//            })
+//            .disposed(by: disposeBag)
         
         viewModel.showAlert$
             .subscribe(onNext: { [weak self] alert in

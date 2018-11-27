@@ -1,5 +1,5 @@
 //
-//  NetworkConstants.swift
+//  Endpoint.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 01.11.18.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct NetworkConstants {
+struct Endpoint {
     
     static let apiBaseURL: URL = {
         let urlString = "http://ec2-18-196-244-225.eu-central-1.compute.amazonaws.com:8080/api"
@@ -17,5 +17,5 @@ struct NetworkConstants {
     }()
     
     static let apiVersion: String = "v1"
-    
+
 }

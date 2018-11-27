@@ -15,14 +15,24 @@ import SnapKit
 class LocalizationViewController: UIViewController {
     
     let disposeBag = DisposeBag()
-    var mapView: MapAndScenesCarouselView!
+    let mapView: MapAndScenesCarouselView
     let searchBar = UISearchBar()
     let viewModel : LocalizationViewModel
+    let movieModelController: MoviesModelController
     
-    init(viewModel: LocalizationViewModel) {
-        self.viewModel = viewModel
-        mapView = MapAndScenesCarouselView(scenes: viewModel.scenes, title: "All")
+    init(moviesModelController: MoviesModelController) {
+        self.viewModel = LocalizationViewModel(scenes: moviesModelController.allScenes)
+        self.movieModelController = moviesModelController
+        mapView = MapAndScenesCarouselView(scenes: moviesModelController.allScenes, title: "All")
         super.init(nibName: nil, bundle: nil)
+        
+        moviesModelController.moviesUpdated$
+            .subscribe(onNext: { [weak self] movies in
+                let scenes = movies.flatMap { $0.scenes }
+                self?.mapView.update(scenes: scenes)
+                print("Scenes in MapView have been updated")
+            })
+        .disposed(by: disposeBag)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -58,7 +68,7 @@ private extension LocalizationViewController {
         view.addSubview(mapView)
         
         searchBar.barStyle = .default
-        view.addSubview(searchBar)
+//        view.addSubview(searchBar)
     }
     
     private func setupConstraints() {
@@ -66,11 +76,11 @@ private extension LocalizationViewController {
             make.leading.trailing.top.equalToSuperview()
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
-        
-        searchBar.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
-        }
+//        
+//        searchBar.snp.makeConstraints { make in
+//            make.leading.trailing.equalToSuperview().inset(10)
+//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(10)
+//        }
     }
     
     private func setupObservables() {

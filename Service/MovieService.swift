@@ -18,7 +18,7 @@ enum MovieService {
 
 extension MovieService: TargetType {
     
-    var baseURL: URL { return NetworkConstants.apiBaseURL }
+    var baseURL: URL { return Endpoint.apiBaseURL }
 
     var path: String {
         switch self {
@@ -51,7 +51,7 @@ extension MovieService: TargetType {
 }
 
 
-//var baseURL: URL { return NetworkConstants.apiBaseURL }
+//var baseURL: URL { return Endpoint.apiBaseURL }
 //
 //var path: String {
 //    switch self {
