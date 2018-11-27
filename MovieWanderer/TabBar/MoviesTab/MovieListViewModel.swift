@@ -39,8 +39,8 @@ class MovieListViewModel {
             }) { [weak self] error in
                 guard let strongSelf = self else { return }
                 let alert = strongSelf.createErrorAlert(message: error.localizedDescription)
-//                strongSelf._showAlert$.onNext(alert)
-                strongSelf._displayMovies$.onNext(strongSelf.dummyMovies())
+                strongSelf._showAlert$.onNext(alert)
+//                strongSelf._displayMovies$.onNext(strongSelf.dummyMovies())
         }.disposed(by: disposeBag)
     }
     

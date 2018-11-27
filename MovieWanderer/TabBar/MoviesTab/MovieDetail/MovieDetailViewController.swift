@@ -46,7 +46,7 @@ class MovieDetailViewController: UIViewController {
         setupContraints()
         setupObservables()
         
-        viewModel.loadScenes()
+        self.verticalScenesView.setScenes(scenes: viewModel.scenes)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -94,11 +94,6 @@ private extension MovieDetailViewController {
     }
     
     private func setupObservables() {
-        viewModel.displayScenes$
-            .subscribe(onNext: { scenes in
-                self.verticalScenesView.setScenes(scenes: scenes)
-            })
-            .disposed(by: disposeBag)
         
         verticalScenesView.showMapTapped$
             .subscribe(onNext: { [unowned self] _ in
