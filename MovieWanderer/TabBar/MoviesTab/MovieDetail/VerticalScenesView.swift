@@ -80,7 +80,6 @@ extension VerticalScenesView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
- 
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: ExpandableDescriptionTableViewCell.reuseIdentifier, for: indexPath)
             if let expandableCell = cell as? ExpandableDescriptionTableViewCell {
@@ -105,7 +104,6 @@ extension VerticalScenesView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
- 
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: MovieHeaderView.reuseIdentifier)
         if let movieHeader = headerView as? MovieHeaderView {
             movieHeader.bindViewModel(MovieHeaderViewModel(movie: movie))

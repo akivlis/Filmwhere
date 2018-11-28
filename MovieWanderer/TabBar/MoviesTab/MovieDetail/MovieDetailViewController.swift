@@ -105,6 +105,7 @@ private extension MovieDetailViewController {
         //TODO: scenestableView should be private, expose only click
         verticalScenesView.scenesTableView.rx.itemSelected
             .subscribe(onNext: { [unowned self] index in
+                guard index.row > 0 else { return }
                 let correctIndex = index.row - 1 // because first cell is expendable cell
                 let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes,
                                                                           currentIndex: correctIndex,
