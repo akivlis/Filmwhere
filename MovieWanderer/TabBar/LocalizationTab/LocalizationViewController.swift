@@ -74,7 +74,14 @@ private extension LocalizationViewController {
         mapView.openSceneDetail$
             .subscribe(onNext: { scenes, index in
                 self.openSceneDetail(scenes: scenes, index: index)
-            }).disposed(by: disposeBag) // TODO: reload dispose bag when viewController dissaper???
+            })
+            .disposed(by: disposeBag) // TODO: reload dispose bag when viewController dissaper???
+        
+        mapView.presentMapsActionSheet$
+            .subscribe(onNext: { [weak self] alert in
+                self?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func openSceneDetail(scenes: [Scene], index: Int) {

@@ -17,6 +17,8 @@ final class MapAndScenesCarouselView: UIView {
         return _openSceneDetail$
     }
     
+    let presentMapsActionSheet$: Observable<UIAlertController>
+    
     var scenesHidden = false {
         didSet {
             if scenesHidden {
@@ -39,6 +41,7 @@ final class MapAndScenesCarouselView: UIView {
         self.scenes = scenes
         mapView.viewModel = MapViewViewModel(scenes: scenes)
         scenesCarousel = SceneCarouselView(scenes: scenes, title: title)
+        presentMapsActionSheet$ = mapView.presentMapsActionSheet$
         super.init(frame: .zero)
         commonInit()
     }

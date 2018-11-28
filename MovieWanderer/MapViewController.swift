@@ -81,6 +81,12 @@ private extension MapViewController {
             make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(80)
         }
+        
+        mapAndScenesView.presentMapsActionSheet$
+            .subscribe(onNext: { [weak self] alert in
+                self?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func setupObservables() {
