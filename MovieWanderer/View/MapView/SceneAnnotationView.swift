@@ -7,9 +7,10 @@
 //
 
 import MapKit
+import RxSwift
 
 class SceneAnnotationView: MKMarkerAnnotationView {
-    
+
     override var annotation: MKAnnotation? {
         willSet {
             if (newValue as? SceneAnnotation) != nil {
@@ -18,6 +19,20 @@ class SceneAnnotationView: MKMarkerAnnotationView {
                 glyphImage = UIImage(named: "projector")
             }
         }
+    }
+    
+    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
+        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
+        
+        let navigateButton = UIButton(type: .detailDisclosure)
+        let image = UIImage(named: "navigation_icon")?.withRenderingMode(.alwaysTemplate)
+        navigateButton.setImage(image, for: .normal)
+        navigateButton.tintColor = .darkBordo
+        rightCalloutAccessoryView = navigateButton
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }
 

@@ -77,8 +77,13 @@ class MapView: UIView {
 
 extension MapView: MKMapViewDelegate {
     
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        if let annotation = view.annotation as? SceneAnnotation {
+            openMapFor(annotation)
+        }
+    }
+    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
         if let customView = view as? MKMarkerAnnotationView {
             customView.markerTintColor = .darkBordo
             
@@ -102,7 +107,6 @@ extension MapView: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        
         if let customView = view as? MKMarkerAnnotationView {
             customView.markerTintColor = .darkBordo
             
@@ -114,6 +118,7 @@ extension MapView: MKMapViewDelegate {
             }
         }
     }
+    
     
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let tileOverlay = overlay as? MKTileOverlay {
@@ -168,6 +173,20 @@ private extension MapView {
             return
         }
         mapView.addOverlay(tileOverlay)
+    }
+    
+    private func openMapFor(_ sceneAnnotation: SceneAnnotation) {
+        let regionDistance : CLLocationDistance = 10000
+        let coordinates = sceneAnnotation.coordinate
+        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = sceneAnnotation.subtitle
+        mapItem.openInMaps(launchOptions: options)
     }
 }
 
