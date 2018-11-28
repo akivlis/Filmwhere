@@ -29,7 +29,7 @@ struct MovieCellViewModel {
     }
     
     var numberOfScenes: String {
-        return "\(movie.sceneCount)"
+        return "\(movie.scenes.count)"
     }
    
     

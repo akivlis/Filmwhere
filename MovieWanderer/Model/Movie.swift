@@ -14,17 +14,15 @@ struct Movie {
     let title: String
     let description: String
     let scenes: [Scene]
-    let sceneCount: Int
     let imageUrl: String
     
-    init(id: String = "", title: String, description: String, scenes: [Scene], sceneCount: Int = 1, imageUrl: String) {
+    init(id: String = "", title: String, description: String, scenes: [Scene], imageUrl: String) {
         self.id = id
         self.title = title
         self.description = description
         self.scenes = scenes
         self.imageUrl = imageUrl
-        self.sceneCount = sceneCount
-    }    
+    }
 }
 
 extension Movie: Decodable {
@@ -34,7 +32,6 @@ extension Movie: Decodable {
         case title
         case description
         case imageUrl
-        case sceneCount
         case scenes
     }
     
@@ -44,8 +41,7 @@ extension Movie: Decodable {
         let title: String = try container.decode(String.self, forKey: .title)
         let description: String = try container.decode(String.self, forKey: .description)
         let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
-        let sceneCount: Int = try container.decodeIfPresent(Int.self, forKey: .sceneCount) ?? 0
         let scenes: [Scene] = try container.decodeIfPresent([Scene].self, forKey: .scenes) ?? []
-        self.init(id: id, title: title, description: description, scenes: scenes, sceneCount: sceneCount, imageUrl: imageUrl)
+        self.init(id: id, title: title, description: description, scenes: scenes, imageUrl: imageUrl)
     }
 }
