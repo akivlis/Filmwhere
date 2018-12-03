@@ -10,11 +10,12 @@ import UIKit
 import RxSwift
 
 class PictureViewController: BaseCloseViewController {
-
+    
     @IBOutlet weak var currentImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setNeedsStatusBarAppearanceUpdate()
         
         canRotate()
     }
@@ -28,5 +29,9 @@ class PictureViewController: BaseCloseViewController {
         
     }
     
-      @objc func canRotate() -> Void {}
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    @objc func canRotate() -> Void {}
 }
