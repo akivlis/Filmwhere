@@ -15,5 +15,18 @@ class PictureViewController: BaseCloseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        canRotate()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        if (self.isMovingFromParent) {
+            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+        }
+        
+    }
+    
+      @objc func canRotate() -> Void {}
 }
