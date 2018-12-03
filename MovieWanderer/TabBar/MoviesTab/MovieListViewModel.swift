@@ -12,47 +12,6 @@ import Moya
 
 class MovieListViewModel {
     
-    private var _displayMovies$ = PublishSubject<[Movie]>()
-    var displayMovies$: Observable<[Movie]> {
-        return _displayMovies$
-    }
-    
-    private let _showAlert$ = PublishSubject<UIAlertController>()
-    var showAlert$: Observable<UIAlertController> {
-        return _showAlert$
-    }
-    
-    private let provider: MoyaProvider<MovieService>
-    private let disposeBag = DisposeBag()
-    
-    // MARK: - Init
-    
-    init(provider: MoyaProvider<MovieService> = MoyaProvider<MovieService>()) {
-        self.provider = provider
-    }
-    
-    func loadMovies() {
-        provider.rx.request(.movies)
-            .map([Movie].self)
-            .subscribe(onSuccess: { [weak self] movies in
-                self?._displayMovies$.onNext(movies)
-            }) { [weak self] error in
-                guard let strongSelf = self else { return }
-                let alert = strongSelf.createErrorAlert(message: error.localizedDescription)
-                strongSelf._showAlert$.onNext(alert)
-//                strongSelf._displayMovies$.onNext(strongSelf.dummyMovies())
-        }.disposed(by: disposeBag)
-    }
-    
-    // MARK: - Helper
-    
-    private func createErrorAlert( message: String?) -> UIAlertController {
-        let okAction = UIAlertAction(title: "OK".localized, style: .default, handler: nil)
-        let alert = UIAlertController(title: "Ooops", message: message, preferredStyle: .alert)
-        alert.addAction(okAction)
-        return alert
-    }
-    
     private func dummyMovies() -> [Movie] {
         let dummyScenes : [Scene] = [
             Scene(title: "Rocky", description: "Hahaha", latitude:39.962920, longitude: -75.157235, imageURL: "Rocky_running"),

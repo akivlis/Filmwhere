@@ -11,6 +11,8 @@ import RxSwift
 
 final class MovieListView : UIView  {
     
+    let refreshControl = UIRefreshControl()
+    
     var movies = [Movie]() {
         didSet {
             movieTableView.reloadData()
@@ -49,7 +51,6 @@ final class MovieListView : UIView  {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
 }
 
 // MARK: - UITableViewDataSource
@@ -90,10 +91,10 @@ private extension MovieListView {
     }
     
     private func setupViews() {
-//        refreshControl.tintColor = .myRed
-//        refreshControl.attributedTitle = NSAttributedString(string: "Downloading movies...")
-        
-//        movieTableView.refreshControl = refreshControl
+        refreshControl.tintColor = .darkBordo
+        refreshControl.attributedTitle = NSAttributedString(string: "Downloading movies...")
+        movieTableView.refreshControl = refreshControl
+
         addSubview(movieTableView)
     }
     

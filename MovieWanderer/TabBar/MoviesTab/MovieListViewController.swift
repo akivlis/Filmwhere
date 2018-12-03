@@ -13,7 +13,6 @@ class MovieListViewController: UIViewController {
 
     private let listView = MovieListView()
     private let disposeBag = DisposeBag()
-    private let viewModel = MovieListViewModel()
     
     private let moviesModelController : MoviesModelController
     
@@ -26,7 +25,15 @@ class MovieListViewController: UIViewController {
         
         self.moviesModelController.moviesUpdated$
             .subscribe(onNext: { [weak self] movies in
+                self?.stopRefreshing()
                 self?.listView.movies = movies
+            })
+            .disposed(by: disposeBag)
+        
+        self.moviesModelController.showAlert$
+            .subscribe(onNext: { [weak self] alert in
+                self?.present(alert, animated: true, completion: nil)
+                self?.stopRefreshing()
             })
             .disposed(by: disposeBag)
     }
@@ -41,8 +48,10 @@ class MovieListViewController: UIViewController {
         setupViews()
         setupObservables()
         
-//        viewModel.loadMovies()
+        listView.refreshControl.addTarget(self, action: #selector(refreshMovieData), for: .valueChanged)
     }
+    
+   
 }
 
 private extension MovieListViewController {
@@ -67,17 +76,6 @@ private extension MovieListViewController {
             })
             .disposed(by: disposeBag)
         
-//        viewModel.displayMovies$
-//            .subscribe(onNext: { [weak self] movies in
-//                self?.listView.movies = movies
-//            })
-//            .disposed(by: disposeBag)
-        
-        viewModel.showAlert$
-            .subscribe(onNext: { [weak self] alert in
-                self?.present(alert, animated: true, completion: nil)
-            })
-            .disposed(by: disposeBag)
     }
     
     private func openDetailFor(_ movie: Movie) {
@@ -94,6 +92,16 @@ private extension MovieListViewController {
         present(movieDetailViewController, animated: true, completion: { [weak self] in
             self?.presentTransition = nil
         })
+    }
+    
+    @objc private func refreshMovieData() {
+        self.moviesModelController.loadMovies()
+    }
+    
+    private func stopRefreshing() {
+//         updateView()
+        self.listView.refreshControl.endRefreshing()
+//        self.activityIndicatorView.stopAnimating()
     }
 }
 
