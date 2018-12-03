@@ -71,6 +71,13 @@ extension SceneDetailViewController: FSPagerViewDataSource {
     }
 }
 
+extension SceneDetailViewController : FSPagerViewDelegate {
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        let pictureViewController = PictureViewController()
+        self.present(pictureViewController, animated: true, completion: nil)
+    }
+}
+
 private extension SceneDetailViewController {
     
     private func commonInit() {
@@ -79,6 +86,7 @@ private extension SceneDetailViewController {
         setupObservables()
         
         pagerView.dataSource = self
+        pagerView.delegate = self
     }
     
     private func setupViews() {
