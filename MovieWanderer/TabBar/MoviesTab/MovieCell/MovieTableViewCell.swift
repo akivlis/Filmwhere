@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import SkeletonView
 
 class MovieTableViewCell: UITableViewCell {
     
@@ -26,6 +27,7 @@ class MovieTableViewCell: UITableViewCell {
         
         selectionStyle = .none
         setupViews()
+        showSkeleton()
     }
     
     override func layoutSubviews() {
@@ -51,6 +53,8 @@ class MovieTableViewCell: UITableViewCell {
                 self.movieImageView.image =  viewModel.placeholderImage
             }
         }
+        
+        hideSkeleton()
     }
 }
 
@@ -61,5 +65,19 @@ private extension MovieTableViewCell {
         movieImageView.kf.indicatorType = .activity
         
         numberOfScenesLabel.textColor = .darkGreen
+    }
+    
+    private func showSkeleton() {
+        movieImageView.showAnimatedGradientSkeleton()
+        titleLabel.showAnimatedGradientSkeleton()
+        subtitleLabel.showAnimatedGradientSkeleton()
+        numberOfScenesLabel.showAnimatedGradientSkeleton()
+    }
+    
+    private func hideSkeleton() {
+        movieImageView.hideSkeleton()
+        titleLabel.hideSkeleton()
+        subtitleLabel.hideSkeleton()
+        numberOfScenesLabel.hideSkeleton()
     }
 }

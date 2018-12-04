@@ -99,7 +99,6 @@ private extension MovieListViewController {
     }
     
     private func stopRefreshing() {
-//         updateView()
         self.listView.refreshControl.endRefreshing()
 //        self.activityIndicatorView.stopAnimating()
     }

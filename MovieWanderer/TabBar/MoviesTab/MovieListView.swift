@@ -58,15 +58,18 @@ final class MovieListView : UIView  {
 extension MovieListView : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movies.count
+        let count = movies.count
+        return count == 0 ? 3 : count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.reuseIdentifier, for: indexPath)
         
         if let movieCell = cell as? MovieTableViewCell {
-            let viewModel = MovieCellViewModel(movie: movies[indexPath.row])
-            movieCell.bindViewModel(viewModel)
+            if movies.count != 0 {
+                let viewModel = MovieCellViewModel(movie: movies[indexPath.row])
+                movieCell.bindViewModel(viewModel)
+            }
         }
         return cell
     }
@@ -78,6 +81,7 @@ extension MovieListView : UITableViewDataSource {
 extension MovieListView : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard movies.count > 0 else { return }
         let selectedMovie = movies[indexPath.row]
         _movieTapped.onNext(selectedMovie)
     }
