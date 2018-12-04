@@ -60,7 +60,7 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     
     private lazy var openMoreButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitleColor(.darkGreen, for: .normal)
+        button.setTitleColor(.lightGreen, for: .normal)
         button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
         button.titleLabel?.textAlignment = .left
         return button

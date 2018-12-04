@@ -14,7 +14,7 @@ class MainTabBarController: UITabBarController {
         super.viewDidLoad()
 
         loadTabs()
-        tabBar.tintColor = UIColor.darkGreen
+        tabBar.tintColor = UIColor.brightPink
         tabBar.barTintColor = UIColor.white
         tabBar.backgroundColor = UIColor.white
     }

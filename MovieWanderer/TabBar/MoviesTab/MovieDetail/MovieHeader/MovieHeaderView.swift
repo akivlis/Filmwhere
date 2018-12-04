@@ -32,19 +32,13 @@ class MovieHeaderView: UITableViewHeaderFooterView {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.preferredFont(forTextStyle: .title1).bold()
-        label.textColor = UIColor.darkGray
+        label.textColor = UIColor.black
         return label
     }()
     
-    private lazy var goToMapButton: UIButton = {
-        let button = UIButton(type: .system)
+    private lazy var goToMapButton: ActionButton = {
+        let button = ActionButton()
         button.setTitle("Show on map", for: .normal)
-        button.tintColor = .white
-        button.backgroundColor = .darkGreen
-        button.titleLabel?.font =  UIFont.preferredFont(forTextStyle: .subheadline)
-        button.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
-        button.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 24)
-        button.layer.cornerRadius = 4
         return button
     }()
     

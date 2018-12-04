@@ -15,8 +15,20 @@ final class GradientView: UIView {
         didSet { updateLayer() }
     }
     
+    var direction: GradientDirection = .horizontal {
+        didSet { updateLayer() }
+    }
+    
     private func updateLayer() {
         let layer = self.layer as! CAGradientLayer
         layer.colors = colors.map { [$0.start.cgColor, $0.end.cgColor] }
+        if direction == .vertical {
+            layer.startPoint = CGPoint(x: 0.0, y: 0.5)
+            layer.endPoint = CGPoint(x: 1.0, y: 0.5)
+        }
     }
+}
+
+enum GradientDirection {
+    case vertical, horizontal
 }

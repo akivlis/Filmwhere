@@ -90,12 +90,12 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let customView = view as? MKMarkerAnnotationView {
-            customView.markerTintColor = .darkBordo
+            customView.markerTintColor = .brightPink
             
             // select whole cluster when scrolled to a specific scene
             if let cluster = customView.cluster {
                 if let clusterView = cluster as? ClusterAnnotationView {
-                    clusterView.markerTintColor = .darkBordo
+                    clusterView.markerTintColor = .brightPink
 
                     let annotationFromCluster = clusterView.annotation
                     let annotationFromClick = view.annotation
@@ -113,11 +113,11 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         if let customView = view as? MKMarkerAnnotationView {
-            customView.markerTintColor = .darkBordo
+            customView.markerTintColor = .brightPink
             
             if let cluster = customView.cluster {
                 if let clusterView = cluster as? ClusterAnnotationView {
-                    clusterView.markerTintColor = .darkBordo
+                    clusterView.markerTintColor = .brightPink
                 }
                 cluster.setSelected(false, animated: true)
             }

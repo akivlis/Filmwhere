@@ -15,7 +15,7 @@ class SceneAnnotationView: MKMarkerAnnotationView {
         willSet {
             if (newValue as? SceneAnnotation) != nil {
                 clusteringIdentifier = MKMapViewDefaultAnnotationViewReuseIdentifier
-                markerTintColor = .darkBordo
+                markerTintColor = .brightPink
                 glyphImage = UIImage(named: "projector")
             }
         }
@@ -27,7 +27,7 @@ class SceneAnnotationView: MKMarkerAnnotationView {
         let navigateButton = UIButton(type: .detailDisclosure)
         let image = UIImage(named: "navigation_icon")?.withRenderingMode(.alwaysTemplate)
         navigateButton.setImage(image, for: .normal)
-        navigateButton.tintColor = .darkBordo
+        navigateButton.tintColor = .brightPink
         rightCalloutAccessoryView = navigateButton
     }
     

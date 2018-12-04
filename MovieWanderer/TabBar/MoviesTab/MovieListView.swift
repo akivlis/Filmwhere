@@ -95,7 +95,7 @@ private extension MovieListView {
     }
     
     private func setupViews() {
-        refreshControl.tintColor = .darkBordo
+        refreshControl.tintColor = .brightPink
         refreshControl.attributedTitle = NSAttributedString(string: "Downloading movies...")
         movieTableView.refreshControl = refreshControl
 
