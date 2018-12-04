@@ -73,14 +73,17 @@ final class SceneCarouselView: UIView {
 extension SceneCarouselView: UICollectionViewDataSource {
 
     func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
-        return  scenes.count
+        let count = scenes.count
+        return count == 0 ? 2 : count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SceneCollectionViewCell.reuseIdentifier, for: indexPath)
         if let scalingCell = cell as? SceneCollectionViewCell {
-            let cellViewModel = SceneCellViewModel(scene: scenes[indexPath.row])
-            scalingCell.bindViewModel(cellViewModel)
+            if scenes.count != 0 {
+                let cellViewModel = SceneCellViewModel(scene: scenes[indexPath.row])
+                scalingCell.bindViewModel(cellViewModel)
+            }
         }
         return cell
     }
@@ -89,6 +92,7 @@ extension SceneCarouselView: UICollectionViewDataSource {
 extension SceneCarouselView: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard scenes.count > 0 else { return }
         _selectSceneCell$.onNext(indexPath.row)
     }
     
@@ -96,6 +100,7 @@ extension SceneCarouselView: UICollectionViewDelegate {
         let index = scrollView.contentOffset.x / (cellWidth + lineSpacing)
         let roundedIndex: Int = Int(abs(index.rounded()))
         
+        guard scenes.count > 0 else { return }
         let selectedScene = scenes[roundedIndex]
         _scrolledToScene$.onNext(selectedScene)
     }

@@ -53,7 +53,6 @@ class MovieTableViewCell: UITableViewCell {
                 self.movieImageView.image =  viewModel.placeholderImage
             }
         }
-        
         hideSkeleton()
     }
 }

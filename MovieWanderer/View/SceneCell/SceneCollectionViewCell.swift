@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class SceneCollectionViewCell: UICollectionViewCell {
 
@@ -20,13 +21,18 @@ class SceneCollectionViewCell: UICollectionViewCell {
         sceneView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        sceneView.showSkeleton()
     }
     
     func bindViewModel(_ viewModel: SceneCellViewModel) {
         sceneView.bindViewModel(viewModel)
+        sceneView.hideSkeleton()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 }
+
+
+

@@ -38,6 +38,14 @@ class SceneCellView: UIView {
             }
         }
     }
+    
+    func showSkeleton() {
+        backgroundImageView.showAnimatedGradientSkeleton()
+    }
+    
+    func hideSkeleton() {
+        backgroundImageView.hideSkeleton()
+    }
 }
 
 private extension SceneCellView {
