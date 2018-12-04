@@ -13,10 +13,10 @@ import RxSwift
 
 class SceneDetailPagerViewCell: FSPagerViewCell {
     
-    var scenePhotoTapped$: Observable<()>{
+    var scenePhotoTapped$: Observable<UIImage?>{
         return sceneImageView.rx.tapGesture()
             .skip(1) // not sure why this is called first time when the cell is displayed
-            .map { _ in () }
+            .map { _ in self.sceneImageView.image }
             .asObservable()
     }
     

@@ -68,9 +68,12 @@ extension SceneDetailViewController: FSPagerViewDataSource {
             sceneCell.bindViewModel(viewModel)
             
             sceneCell.scenePhotoTapped$
-                .subscribe(onNext: { [weak self] _ in
-                    self?.openPictureDetail()
-                }).disposed(by: sceneCell.disposeBag)
+                .subscribe(onNext: { optionalImage in
+                    if let image = optionalImage {
+                        self.open(images: [image])
+                    }
+                })
+                .disposed(by: sceneCell.disposeBag)
         }
         return cell
     }
@@ -154,8 +157,8 @@ private extension SceneDetailViewController {
             }).disposed(by: disposeBag)
     }
     
-    private func openPictureDetail() {
-        let pictureViewController = PictureViewController(dismissOnPullDown: true)
+    private func open(images: [UIImage]) {
+        let pictureViewController = PictureViewController(pictures: images)
         pictureViewController.modalPresentationStyle = .overCurrentContext
         self.present(pictureViewController, animated: true, completion: nil)
     }

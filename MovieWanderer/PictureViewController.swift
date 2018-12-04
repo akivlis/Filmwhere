@@ -13,11 +13,30 @@ class PictureViewController: BaseCloseViewController {
     
     @IBOutlet weak var currentImageView: UIImageView!
     
+    let pictures: [UIImage]
+    
+    init(pictures: [UIImage]) {
+        self.pictures = pictures
+        super.init(dismissOnPullDown: true)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.pictures = [UIImage]()
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNeedsStatusBarAppearanceUpdate()
         
         canRotate()
+        
+        //TODO: implement for multiple pictures
+        if let picture = pictures.first {
+            currentImageView.image = picture
+        } else {
+            currentImageView.image = nil
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
