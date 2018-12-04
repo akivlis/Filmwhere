@@ -61,6 +61,7 @@ class MovieTableViewCell: UITableViewCell {
 private extension MovieTableViewCell {
     
     private func setupViews() {
+        movieImageView.image = nil
         roundView.layer.cornerRadius = 8.0
         movieImageView.kf.indicatorType = .activity
         
