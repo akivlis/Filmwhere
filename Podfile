@@ -11,6 +11,8 @@ target ‘MovieWanderer’ do
     pod 'Alamofire', '~> 4.7.3' #used by moya
     pod 'FSPagerView'
     pod 'Kingfisher', '~> 4.0'
+    pod 'SkeletonView'
+    pod 'RxGesture'
 
   target 'MovieWandererTests' do
     pod 'RxBlocking', '~> 4.0'

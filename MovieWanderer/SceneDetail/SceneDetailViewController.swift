@@ -66,16 +66,13 @@ extension SceneDetailViewController: FSPagerViewDataSource {
         if let sceneCell = cell as? SceneDetailPagerViewCell {
             let viewModel = SceneDetailPagerViewCellViewModel(scene: scenes[index])
             sceneCell.bindViewModel(viewModel)
+            
+            sceneCell.scenePhotoTapped$
+                .subscribe(onNext: { [weak self] _ in
+                    self?.openPictureDetail()
+                }).disposed(by: sceneCell.disposeBag)
         }
         return cell
-    }
-}
-
-extension SceneDetailViewController : FSPagerViewDelegate {
-    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        let pictureViewController = PictureViewController(dismissOnPullDown: true)
-        pictureViewController.modalPresentationStyle = .overCurrentContext
-        self.present(pictureViewController, animated: true, completion: nil)
     }
 }
 
@@ -87,7 +84,6 @@ private extension SceneDetailViewController {
         setupObservables()
         
         pagerView.dataSource = self
-        pagerView.delegate = self
     }
     
     private func setupViews() {
@@ -156,5 +152,11 @@ private extension SceneDetailViewController {
             .subscribe(onNext: { _ in
                 self.dismiss(animated: true, completion: nil)
             }).disposed(by: disposeBag)
+    }
+    
+    private func openPictureDetail() {
+        let pictureViewController = PictureViewController(dismissOnPullDown: true)
+        pictureViewController.modalPresentationStyle = .overCurrentContext
+        self.present(pictureViewController, animated: true, completion: nil)
     }
 }

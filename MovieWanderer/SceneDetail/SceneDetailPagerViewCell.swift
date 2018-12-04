@@ -8,10 +8,21 @@
 
 import FSPagerView
 import UIKit
+import RxGesture
+import RxSwift
 
 class SceneDetailPagerViewCell: FSPagerViewCell {
     
-    private let backgroundImageView = UIImageView()
+    var scenePhotoTapped$: Observable<()>{
+        return sceneImageView.rx.tapGesture()
+            .skip(1) // not sure why this is called first time when the cell is displayed
+            .map { _ in () }
+            .asObservable()
+    }
+    
+    private(set) var disposeBag = DisposeBag()
+    
+    private let sceneImageView = UIImageView()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
     private let stackView = UIStackView()
@@ -38,13 +49,18 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
         titleLabel.text = viewModel.scene.title
         subtitleLabel.text = viewModel.description
         
-        backgroundImageView.kf.setImage(with: viewModel.imageUrl) {
+        sceneImageView.kf.setImage(with: viewModel.imageUrl) {
             image, error, cacheType, imageURL in
             if error != nil {
-                self.backgroundImageView.image =  viewModel.placeholderImage
+                self.sceneImageView.image =  viewModel.placeholderImage
                 self.gradientView.isHidden = false
             }
         }
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
     }
 }
 
@@ -66,11 +82,11 @@ private extension SceneDetailPagerViewCell {
         let black = UIColor.black.withAlphaComponent(0.8)
         gradientView.colors = (UIColor.clear, black)
         gradientView.isHidden = true
-        backgroundImageView.insertSubview(gradientView, at: 0)
+        sceneImageView.insertSubview(gradientView, at: 0)
         
-        backgroundImageView.contentMode = .scaleAspectFill
-        backgroundImageView.clipsToBounds = true
-        backgroundImageView.kf.indicatorType = .activity
+        sceneImageView.contentMode = .scaleAspectFill
+        sceneImageView.clipsToBounds = true
+        sceneImageView.kf.indicatorType = .activity
         
         titleLabel.textColor = .white
         titleLabel.font = UIFont.regular(withSize: UIDevice.iPhoneNarrow ? 15 : 18)
@@ -91,7 +107,7 @@ private extension SceneDetailPagerViewCell {
         actionButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 24)
         actionButton.layer.cornerRadius = 4
         
-        containerView.addSubview(backgroundImageView)
+        containerView.addSubview(sceneImageView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(addressStackView)
         containerView.addSubview(subtitleLabel)
@@ -106,31 +122,31 @@ private extension SceneDetailPagerViewCell {
             make.edges.equalToSuperview().inset(5)
         }
         
-        backgroundImageView.snp.makeConstraints { make in
+        sceneImageView.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
         }
         
         // Snapkit constraint do not work in this case, used standart instead
-        backgroundImageView.addConstraint(NSLayoutConstraint(item: backgroundImageView,
+        sceneImageView.addConstraint(NSLayoutConstraint(item: sceneImageView,
                                                   attribute: .height,
                                                   relatedBy: .equal,
-                                                  toItem: backgroundImageView,
+                                                  toItem: sceneImageView,
                                                   attribute: .width,
                                                   multiplier: 3.0 / 4.0,
                                                   constant: 0))
         
         titleLabel.snp.makeConstraints { make in
             make.trailing.leading.equalToSuperview().inset(margin)
-            make.bottom.equalTo(backgroundImageView).inset(5)
+            make.bottom.equalTo(sceneImageView).inset(5)
         }
         
         gradientView.snp.makeConstraints { make in
-            make.left.right.bottom.equalTo(backgroundImageView)
+            make.left.right.bottom.equalTo(sceneImageView)
             make.top.equalTo(titleLabel.snp.top)
         }
         
         subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(backgroundImageView.snp.bottom).offset(margin)
+            make.top.equalTo(sceneImageView.snp.bottom).offset(margin)
             make.trailing.leading.equalToSuperview().inset(margin)
         }
         
