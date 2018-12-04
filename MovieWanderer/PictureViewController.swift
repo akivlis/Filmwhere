@@ -13,11 +13,15 @@ class PictureViewController: BaseCloseViewController {
     
     @IBOutlet weak var currentImageView: UIImageView!
     
+    private var panGestureRecognizer: UIPanGestureRecognizer?
+    private var originalPosition: CGPoint?
+    private var currentPositionTouched: CGPoint?
+    
     let pictures: [UIImage]
     
     init(pictures: [UIImage]) {
         self.pictures = pictures
-        super.init(dismissOnPullDown: true)
+        super.init(dismissOnPullDown: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,6 +43,7 @@ class PictureViewController: BaseCloseViewController {
         }
         
         view.addTopGradient()
+        addPanGestureRecognizer()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,4 +60,59 @@ class PictureViewController: BaseCloseViewController {
     }
     
     @objc func canRotate() -> Void {}
+}
+
+private extension PictureViewController {
+    private func addPanGestureRecognizer() {
+        panGestureRecognizer = UIPanGestureRecognizer()
+        view.addGestureRecognizer(panGestureRecognizer!)
+        
+        panGestureRecognizer!.rx.event
+            .subscribe(onNext: { [weak self] panGesture in
+                self?.panGestureAction(panGesture)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func panGestureAction(_ panGesture: UIPanGestureRecognizer) {
+        let translation = panGesture.translation(in: view)
+        
+        if panGesture.state == .began {
+            originalPosition = currentImageView.center
+            currentPositionTouched = panGesture.location(in: view)
+            closeButton.isHidden = true
+            self.view.hideTopGradient()
+        } else if panGesture.state == .changed {
+            currentImageView.frame.origin = CGPoint(x: translation.x,
+                                                    y: translation.y)
+            let positive = abs(translation.y)
+            let alpha = 1 - (positive / self.view.frame.size.height)
+            self.view.backgroundColor = UIColor.black.withAlphaComponent(alpha)
+            
+        } else if panGesture.state == .ended {
+            let velocity = panGesture.velocity(in: view)
+            
+            if velocity.y >= 1500 {
+                UIView.animate(withDuration: 0.2
+                    , animations: {
+                        // move the whole view down
+                        self.currentImageView.frame.origin = CGPoint(x: self.currentImageView.frame.origin.x,
+                                                                     y: self.currentImageView.frame.size.height)
+                        self.view.backgroundColor = UIColor.clear
+                        self.view.hideTopGradient()
+                }, completion: { isCompleted in
+                    if isCompleted {
+                        self.dismiss(animated: false, completion: nil)
+                    }
+                })
+            } else {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.currentImageView.center = self.originalPosition!
+                    self.view.backgroundColor = UIColor.black
+                    self.closeButton.isHidden = false
+                    self.view.showTopGradient()
+                })
+            }
+        }
+    }
 }
