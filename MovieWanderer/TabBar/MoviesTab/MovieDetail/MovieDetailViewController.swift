@@ -71,7 +71,8 @@ private extension MovieDetailViewController {
         let backButtonImage = UIImage(named: "back-icon")?.withRenderingMode(.alwaysTemplate)
         backButton.setImage(backButtonImage, for: .normal)
         backButton.tintColor = .white
-        backButton.imageEdgeInsets =  UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        let inset: CGFloat = 5
+        backButton.imageEdgeInsets =  UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         view.addSubview(backButton)
     }
     
@@ -89,7 +90,7 @@ private extension MovieDetailViewController {
         backButton.snp.makeConstraints { make in
             make.centerY.equalTo(animatingBarView).offset(10)
             make.leading.equalToSuperview().inset(15)
-            make.height.width.equalTo(25)
+            make.height.width.equalTo(30)
         }
     }
     

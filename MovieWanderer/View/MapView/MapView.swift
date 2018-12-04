@@ -124,7 +124,6 @@ extension MapView: MKMapViewDelegate {
         }
     }
     
-    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let tileOverlay = overlay as? MKTileOverlay {
             return MKTileOverlayRenderer(tileOverlay: tileOverlay)

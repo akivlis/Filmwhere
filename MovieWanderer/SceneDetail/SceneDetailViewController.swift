@@ -86,7 +86,7 @@ private extension SceneDetailViewController {
     private func setupViews() {
         modalPresentationCapturesStatusBarAppearance = true
         
-        let blurEffect = UIBlurEffect(style: .light)
+        let blurEffect = UIBlurEffect(style: .dark)
         blurredView.effect = blurEffect
         view.addSubview(blurredView)
         
