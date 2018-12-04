@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 
+let gradientViewTag: Int = 1
+
 extension UIView {
     
     // NOTE: Be aware where you call this! A good place to do it is layoutSubviews, because you need the frame so you can't do it in viewDidLoad.
@@ -29,6 +31,7 @@ extension UIView {
     func addTopGradient() {
          let topGradient : GradientView = {
             let gradient = GradientView()
+            gradient.tag = gradientViewTag
             gradient.colors = (UIColor.black.withAlphaComponent(0.5), .clear)
             return gradient
         }()
@@ -41,6 +44,25 @@ extension UIView {
         }
         bringSubviewToFront(topGradient)
     }
+    
+    func removeTopGradient() {
+        if let gradientView = self.subviews.first as? GradientView {
+            gradientView.removeFromSuperview()
+        }
+    }
+    
+    func hideTopGradient() {
+        if let gradientView = self.viewWithTag(gradientViewTag) as? GradientView {
+            gradientView.isHidden = true
+        }
+    }
+    
+    func showTopGradient() {
+        if let gradientView = self.viewWithTag(gradientViewTag) as? GradientView {
+            gradientView.isHidden = false
+        }
+    }
+    
 }
 
 extension CALayer {

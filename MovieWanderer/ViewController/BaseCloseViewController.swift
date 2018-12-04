@@ -16,7 +16,7 @@ class BaseCloseViewController: UIViewController {
     let disposeBag = DisposeBag()
     
     private let  dismissOnPullDown: Bool
-    private let closeButton = UIButton(type: UIButton.ButtonType.system)
+    let closeButton = UIButton(type: UIButton.ButtonType.system)
     
     private var panGestureRecognizer: UIPanGestureRecognizer?
     private var originalPosition: CGPoint?
@@ -95,7 +95,10 @@ private extension BaseCloseViewController {
     
     private func panGestureAction(_ panGesture: UIPanGestureRecognizer) {
         let translation = panGesture.translation(in: view)
-        
+
+        if translation.y < 0 {
+            return
+        }
         if panGesture.state == .began {
             originalPosition = view.center
             currentPositionTouched = panGesture.location(in: view)
