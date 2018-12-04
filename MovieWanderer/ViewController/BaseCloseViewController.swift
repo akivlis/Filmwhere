@@ -12,22 +12,40 @@ import RxSwift
 // ViewController with close button on the right side
 
 class BaseCloseViewController: UIViewController {
-
-    private let closeButton = UIButton(type: UIButton.ButtonType.system)
+    
     let disposeBag = DisposeBag()
     
+    private let  dismissOnPullDown: Bool
+    private let closeButton = UIButton(type: UIButton.ButtonType.system)
+    
+    private var panGestureRecognizer: UIPanGestureRecognizer?
+    private var originalPosition: CGPoint?
+    private var currentPositionTouched: CGPoint?
+    
+    init(dismissOnPullDown: Bool = false) {
+        self.dismissOnPullDown = dismissOnPullDown
+        super.init(nibName: nil, bundle: nil)
+        commonInit()
+    }
+    
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        dismissOnPullDown = false
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
+        dismissOnPullDown = false
         super.init(coder: aDecoder)
         commonInit()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if dismissOnPullDown {
+            addPanGestureRecognizer()
+        }
     }
 }
 
@@ -63,4 +81,50 @@ private extension BaseCloseViewController {
             })
             .disposed(by: disposeBag)
     }
+    
+    private func addPanGestureRecognizer() {
+        panGestureRecognizer = UIPanGestureRecognizer()
+        view.addGestureRecognizer(panGestureRecognizer!)
+        
+        panGestureRecognizer!.rx.event
+            .subscribe(onNext: { [weak self] panGesture in
+                self?.panGestureAction(panGesture)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func panGestureAction(_ panGesture: UIPanGestureRecognizer) {
+        let translation = panGesture.translation(in: view)
+        
+        if panGesture.state == .began {
+            originalPosition = view.center
+            currentPositionTouched = panGesture.location(in: view)
+        } else if panGesture.state == .changed {
+            view.frame.origin = CGPoint(
+                x: view.frame.origin.x,
+                y: translation.y
+            )
+        } else if panGesture.state == .ended {
+            let velocity = panGesture.velocity(in: view)
+            
+            if velocity.y >= 1500 {
+                UIView.animate(withDuration: 0.2
+                    , animations: {
+                        self.view.frame.origin = CGPoint(
+                            x: self.view.frame.origin.x,
+                            y: self.view.frame.size.height
+                        )
+                }, completion: { (isCompleted) in
+                    if isCompleted {
+                        self.dismiss(animated: false, completion: nil)
+                    }
+                })
+            } else {
+                UIView.animate(withDuration: 0.2, animations: {
+                    self.view.center = self.originalPosition!
+                })
+            }
+        }
+    }
 }
+

@@ -24,7 +24,7 @@ final class MapViewController: BaseCloseViewController {
     init(scenes: [Scene], title: String) {
         self.scenes = scenes
         self.movieTitle = title
-        super.init(nibName: nil, bundle: nil)
+        super.init(dismissOnPullDown: false)
     }
     
     required init?(coder aDecoder: NSCoder) {

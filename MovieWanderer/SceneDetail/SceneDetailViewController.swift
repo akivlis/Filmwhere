@@ -73,7 +73,8 @@ extension SceneDetailViewController: FSPagerViewDataSource {
 
 extension SceneDetailViewController : FSPagerViewDelegate {
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
-        let pictureViewController = PictureViewController()
+        let pictureViewController = PictureViewController(dismissOnPullDown: true)
+        pictureViewController.modalPresentationStyle = .overCurrentContext
         self.present(pictureViewController, animated: true, completion: nil)
     }
 }
