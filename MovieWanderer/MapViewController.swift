@@ -11,12 +11,6 @@ import RxSwift
 
 final class MapViewController: BaseCloseViewController {
 
-    private let topGradient : GradientView = {
-        let gradient = GradientView()
-        gradient.colors = (UIColor.black.withAlphaComponent(0.5), .clear)
-        return gradient
-    }()
-    
     private var mapAndScenesView: MapAndScenesCarouselView!
     private let scenes: [Scene]
     private let movieTitle: String
@@ -49,17 +43,12 @@ private extension MapViewController {
     private func setupViews(){
         mapAndScenesView = MapAndScenesCarouselView(scenes: scenes, title: movieTitle)
         view.addSubview(mapAndScenesView)
-        view.addSubview(topGradient)
+        view.addTopGradient()
     }
     
     private func setupConstraints() {
         mapAndScenesView.snp.makeConstraints { make in
            make.edges.equalToSuperview()
-        }
-
-        topGradient.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(80)
         }
         
         mapAndScenesView.presentMapsActionSheet$

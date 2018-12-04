@@ -48,12 +48,6 @@ class MovieHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     
-    private let topGradient : GradientView = {
-        let gradient = GradientView()
-        gradient.colors = (UIColor.black.withAlphaComponent(0.5), .clear)
-        return gradient
-    }()
-    
     private lazy var photoContainerView = UIView()
     
     private var didSetConstraints = false
@@ -109,7 +103,7 @@ private extension MovieHeaderView {
         photoContainerView.clipsToBounds = true
         addSubview(photoContainerView)
         
-        moviePhoto.insertSubview(topGradient, at: 0)
+        moviePhoto.addTopGradient()
     
         addSubview(goToMapButton)
         addSubview(titleLabel)
@@ -134,11 +128,6 @@ private extension MovieHeaderView {
             make.leading.trailing.equalToSuperview()
             imageViewBottomLayoutConstraint = make.bottom.equalToSuperview().constraint
             imageViewHeightLayoutConstraint = make.height.equalToSuperview().constraint
-        }
-        
-        topGradient.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(80)
         }
         
         goToMapButton.snp.makeConstraints { make in

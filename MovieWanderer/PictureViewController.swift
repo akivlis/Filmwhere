@@ -37,6 +37,8 @@ class PictureViewController: BaseCloseViewController {
         } else {
             currentImageView.image = nil
         }
+        
+        view.addTopGradient()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

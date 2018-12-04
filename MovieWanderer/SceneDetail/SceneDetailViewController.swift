@@ -20,12 +20,6 @@ final class SceneDetailViewController: UIViewController {
     private let currentIndex: Int
     private let titleLabel = UILabel()
     
-    private let topGradient : GradientView = {
-        let gradient = GradientView()
-        gradient.colors = (UIColor.black.withAlphaComponent(0.7), .clear)
-        return gradient
-    }()
-    
     init(scenes: [Scene], currentIndex: Int, title: String) {
         self.scenes = scenes
         self.currentIndex = currentIndex
@@ -96,7 +90,7 @@ private extension SceneDetailViewController {
         blurredView.effect = blurEffect
         view.addSubview(blurredView)
         
-        view.addSubview(topGradient)
+        view.addTopGradient()
         
         titleLabel.textColor = .white
         view.addSubview(titleLabel)
@@ -123,10 +117,6 @@ private extension SceneDetailViewController {
     }
     
     private func setupConstraints() {
-        topGradient.snp.makeConstraints { make in
-            make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(80)
-        }
         
         closeButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(15)

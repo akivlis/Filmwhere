@@ -26,6 +26,21 @@ extension UIView {
         }
     }
     
+    func addTopGradient() {
+         let topGradient : GradientView = {
+            let gradient = GradientView()
+            gradient.colors = (UIColor.black.withAlphaComponent(0.5), .clear)
+            return gradient
+        }()
+        
+        addSubview(topGradient)
+        
+        topGradient.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(80)
+        }
+        bringSubviewToFront(topGradient)
+    }
 }
 
 extension CALayer {
@@ -69,20 +84,6 @@ extension CALayer {
 }
 
 extension UILabel {
-    func set(image: UIImage, with text: String) {
-        let attachment = NSTextAttachment()
-        attachment.image = image
-        attachment.bounds = CGRect(x: 0, y: 0, width: 15, height: 15)
-        let attachmentStr = NSAttributedString(attachment: attachment)
-        
-        let mutableAttributedString = NSMutableAttributedString()
-        mutableAttributedString.append(attachmentStr)
-        
-        let textString = NSAttributedString(string: text, attributes: [.font: self.font])
-        mutableAttributedString.append(textString)
-        
-        self.attributedText = mutableAttributedString
-    }
     
     func isTruncated() -> Bool {
         guard let labelText = text else {
