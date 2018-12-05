@@ -29,8 +29,7 @@ struct MovieCellViewModel {
     }
     
     var numberOfScenes: String {
-        return "\(movie.scenes.count)"
+        let placesString = movie.scenes.count > 1 ? "places" : "place"
+        return "\(movie.scenes.count) \(placesString)"
     }
-   
-    
 }

@@ -16,8 +16,8 @@ class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var movieImageView: UIImageView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var numberOfScenesLabel: UILabel!
-
+    @IBOutlet weak var numberButton: UIButton!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -38,14 +38,13 @@ class MovieTableViewCell: UITableViewCell {
         movieImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
  
         roundView.layer.addShadow()
+        numberButton.layer.cornerRadius = 4
     }
     
     func bindViewModel(_ viewModel: MovieCellViewModel) {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
-        numberOfScenesLabel.text = viewModel.numberOfScenes
-
-//        numberOfScenesLabel.set(image: UIImage(named: "projector")!, with: viewModel.numberOfScenes)
+        numberButton.setTitle(viewModel.numberOfScenes, for: .normal)        
         
         movieImageView.kf.setImage(with: viewModel.imageUrl) {
             image, error, cacheType, imageURL in
@@ -64,20 +63,21 @@ private extension MovieTableViewCell {
         roundView.layer.cornerRadius = 8.0
         movieImageView.kf.indicatorType = .activity
         
-        numberOfScenesLabel.textColor = .darkGreen
+        let icon = UIImage(named: "clapper_small")?.withRenderingMode(.alwaysTemplate)
+        numberButton.setImage(icon, for: .normal)
     }
     
     private func showSkeleton() {
         movieImageView.showAnimatedGradientSkeleton()
         titleLabel.showAnimatedGradientSkeleton()
         subtitleLabel.showAnimatedGradientSkeleton()
-        numberOfScenesLabel.showAnimatedGradientSkeleton()
+        numberButton.showAnimatedGradientSkeleton()
     }
     
     private func hideSkeleton() {
         movieImageView.hideSkeleton()
         titleLabel.hideSkeleton()
         subtitleLabel.hideSkeleton()
-        numberOfScenesLabel.hideSkeleton()
+        numberButton.hideSkeleton()
     }
 }

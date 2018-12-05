@@ -37,21 +37,12 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="qen-D1-FwW">
                                         <rect key="frame" x="0.0" y="377.5" width="671" height="72.5"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="top" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7o-A5-uZ2">
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="top" spacingType="standard" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7o-A5-uZ2">
                                                 <rect key="frame" x="8" y="8" width="655" height="38.5"/>
                                                 <subviews>
                                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="751" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I1Q-12-Mvz" userLabel="NumberOfScenesLabel">
-                                                        <rect key="frame" x="0.0" y="0.0" width="605" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="655" height="20.5"/>
                                                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <nil key="textColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </label>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0OO-NQ-bP0">
-                                                        <rect key="frame" x="613" y="0.0" width="42" height="20.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                         <userDefinedRuntimeAttributes>
@@ -74,13 +65,26 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="249" layoutMarginsFollowReadableWidth="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8nE-4O-XEZ">
+                                <rect key="frame" x="620" y="349.5" width="43" height="20"/>
+                                <color key="backgroundColor" red="0.92941176470588238" green="0.30196078431372547" blue="0.43137254901960786" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption2"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="contentEdgeInsets" minX="7" minY="3" maxX="5" maxY="3"/>
+                                <inset key="imageEdgeInsets" minX="-2" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="123" image="clapper_small">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="l7S-22-PuO" secondAttribute="bottom" constant="4" id="2bw-0X-fcw"/>
                             <constraint firstItem="l7S-22-PuO" firstAttribute="leading" secondItem="cid-gW-N97" secondAttribute="leading" id="95j-GA-zym"/>
                             <constraint firstItem="l7S-22-PuO" firstAttribute="top" secondItem="cid-gW-N97" secondAttribute="top" id="B9f-wE-S1g"/>
+                            <constraint firstItem="8nE-4O-XEZ" firstAttribute="bottom" secondItem="wAX-i7-0cz" secondAttribute="bottom" constant="-8" id="ZJA-MD-qmC"/>
                             <constraint firstAttribute="trailing" secondItem="l7S-22-PuO" secondAttribute="trailing" id="oAS-ZK-6Ma"/>
+                            <constraint firstItem="8nE-4O-XEZ" firstAttribute="trailing" secondItem="wAX-i7-0cz" secondAttribute="trailing" constant="-8" id="yeB-cL-akj"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -94,15 +98,16 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="movieImageView" destination="wAX-i7-0cz" id="QDI-On-6c6"/>
-                <outlet property="numberOfScenesLabel" destination="0OO-NQ-bP0" id="SYC-UH-mnx"/>
+                <outlet property="numberButton" destination="8nE-4O-XEZ" id="dbu-ZS-9WJ"/>
                 <outlet property="roundView" destination="cid-gW-N97" id="XCg-nw-gW9"/>
                 <outlet property="subtitleLabel" destination="jLo-yb-9Ih" id="NOM-8z-IFa"/>
                 <outlet property="titleLabel" destination="I1Q-12-Mvz" id="Jas-SL-t79"/>
             </connections>
-            <point key="canvasLocation" x="-76.5" y="-712"/>
+            <point key="canvasLocation" x="-77.599999999999994" y="-712.44377811094455"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Rocky" width="1920" height="1080"/>
+        <image name="clapper_small" width="12" height="12"/>
     </resources>
 </document>
