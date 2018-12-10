@@ -35,8 +35,8 @@ class MovieTableViewCell: UITableViewCell {
         
         movieImageView.layer.cornerRadius  = 4.0
         movieImageView.layer.masksToBounds = true
-//        movieImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-//        roundView.layer.addShadow()
+        movieImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        roundView.layer.addShadow()
         numberButton.layer.cornerRadius = numberButton.bounds.height / 2 // 4
     }
     
@@ -59,7 +59,7 @@ private extension MovieTableViewCell {
     
     private func setupViews() {
         movieImageView.image = nil
-        roundView.layer.cornerRadius = 8.0
+        roundView.layer.cornerRadius = 4.0
         movieImageView.kf.indicatorType = .activity
         
         titleLabel.font = UIFont.bold(textStyle: .title2)

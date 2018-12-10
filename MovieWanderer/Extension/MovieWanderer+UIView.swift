@@ -68,8 +68,8 @@ extension UIView {
 extension CALayer {
     func addShadow() {
         self.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        self.shadowOpacity = 0.4
-        self.shadowRadius = 3.0
+        self.shadowOpacity = 0.2
+        self.shadowRadius = 6.0
         self.shadowColor = UIColor.gray.cgColor
         self.masksToBounds = false
         if cornerRadius != 0 {
