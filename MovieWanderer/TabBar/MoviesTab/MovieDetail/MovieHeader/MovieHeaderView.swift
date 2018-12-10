@@ -115,7 +115,7 @@ private extension MovieHeaderView {
                                                              relatedBy: .equal,
                                                              toItem: photoContainerView,
                                                              attribute: .width,
-                                                             multiplier: 9.0 / 16.0,
+                                                             multiplier: 3.0 / 4.0,
                                                              constant: 0))
         
         moviePhoto.snp.makeConstraints { make in

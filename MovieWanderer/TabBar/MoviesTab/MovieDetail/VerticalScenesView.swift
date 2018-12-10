@@ -124,8 +124,8 @@ extension VerticalScenesView: UITableViewDelegate {
         headerView?.updatePosition(withInset: scrollView.contentInset.top, contentOffset: scrollView.contentOffset.y)
         
         //todo: probably calculate this number (120) based on image height
-        if scrollView.contentOffset.y > 120 {
-            let offset = scrollView.contentOffset.y / 80 //check this number
+        if scrollView.contentOffset.y > 190 {
+            let offset = scrollView.contentOffset.y / 120 //check this number
             var number = offset - 1
             if number > 1 {
                 number = 1
