@@ -70,7 +70,6 @@ class MapView: UIView {
             
             //TODO: implement custom highligting, do nt call select cause the observable emits
         }
-        print("Highlight scene: \(scene.title)")
     }
     
     func setupStyleWith(jsonFileName: String) {
