@@ -20,6 +20,12 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
             .asObservable()
     }
     
+    var navigateButtonTapped$: Observable<()> {
+        return actionButton.rx.tap
+            .map { _ in () }
+        .asObservable()
+    }
+    
     private(set) var disposeBag = DisposeBag()
     
     private let sceneImageView = UIImageView()
@@ -27,7 +33,7 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private let subtitleLabel = UILabel()
     private let stackView = UIStackView()
     private let containerView = UIView()
-    private let actionButton = UIButton()
+    private let actionButton = ActionButton()
     private let gradientView = GradientView()
     private let addressStackView = UIStackView()
     private let pinImage = UIImageView()
@@ -53,9 +59,9 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
             image, error, cacheType, imageURL in
             if error != nil {
                 self.sceneImageView.image =  viewModel.placeholderImage
-                self.gradientView.isHidden = false
             }
         }
+        self.gradientView.isHidden = false
     }
     
     override func prepareForReuse() {
@@ -89,23 +95,15 @@ private extension SceneDetailPagerViewCell {
         sceneImageView.kf.indicatorType = .activity
         
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.regular(textStyle: .subheadline)
+        titleLabel.font = UIFont.regular(textStyle: .headline)
         titleLabel.textAlignment = .left
         
         subtitleLabel.textColor = .gray
-        subtitleLabel.font = UIFont.regular(textStyle: .subheadline)
+        subtitleLabel.font = UIFont.thin(textStyle: .footnote)
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
         
-        actionButton.setTitle("Action button", for: .normal)
-        actionButton.setTitleColor(.lightGreen, for: .normal)
-        actionButton.backgroundColor = .clear
-        actionButton.layer.borderWidth = 1
-        actionButton.layer.borderColor = UIColor.lightGreen.cgColor
-        actionButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
-        actionButton.titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
-        actionButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 24)
-        actionButton.layer.cornerRadius = 4
+        actionButton.setTitle("Navigate", for: .normal)
         
         containerView.addSubview(sceneImageView)
         containerView.addSubview(titleLabel)
@@ -132,7 +130,7 @@ private extension SceneDetailPagerViewCell {
                                                   relatedBy: .equal,
                                                   toItem: sceneImageView,
                                                   attribute: .width,
-                                                  multiplier: 3.0 / 4.0,
+                                                  multiplier: 9.0 / 16.0,
                                                   constant: 0))
         
         titleLabel.snp.makeConstraints { make in
@@ -142,7 +140,7 @@ private extension SceneDetailPagerViewCell {
         
         gradientView.snp.makeConstraints { make in
             make.left.right.bottom.equalTo(sceneImageView)
-            make.top.equalTo(titleLabel.snp.top)
+            make.top.equalTo(titleLabel.snp.top).offset(-10)
         }
         
         subtitleLabel.snp.makeConstraints { make in
@@ -155,7 +153,6 @@ private extension SceneDetailPagerViewCell {
             make.bottom.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
         }
-        
     }
 }
 

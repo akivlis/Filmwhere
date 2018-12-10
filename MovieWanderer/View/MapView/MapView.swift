@@ -13,11 +13,7 @@ import RxSwift
 import MapKitGoogleStyler
 
 class MapView: UIView {
-    
-    var presentMapsActionSheet$: Observable<UIAlertController> {
-        return presentMapsActionSheet
-    }
-    
+  
     var sceneSelected$ : Observable<Int> {
         return sceneSelected
     }
@@ -31,26 +27,27 @@ class MapView: UIView {
         }
     }
     
+    var presentMapsActionSheet$: Observable<UIAlertController> {
+        return navigationModelController.presentMapsActionSheet$
+    }
+    
     private let sceneSelected = PublishSubject<Int>()
     private let locationManager = CLLocationManager()
     private let disposeBag = DisposeBag()
     private let mapView = MKMapView()
-    private let presentMapsActionSheet = PublishSubject<UIAlertController>()
+    private let navigationModelController : MapNavigationModelController
     
     // MARK: Init
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    
-    init(viewModel: MapViewViewModel) {
+    init(viewModel: MapViewViewModel, navigationModelController: MapNavigationModelController) {
+        self.navigationModelController = navigationModelController
         super.init(frame: .zero)
         self.viewModel = viewModel
         commonInit()
     }
     
     required init?(coder aDecoder: NSCoder) {
+        self.navigationModelController = MapNavigationModelController()
         super.init(coder: aDecoder)
         commonInit()
     }
@@ -83,7 +80,7 @@ extension MapView: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation as? SceneAnnotation {
-            openMapsFor(annotation)
+            navigationModelController.openMapsFor(annotation.coordinate, with: annotation.subtitle)
         }
     }
     
@@ -178,51 +175,7 @@ private extension MapView {
         mapView.addOverlay(tileOverlay)
     }
     
-    private func openMapsFor(_ sceneAnnotation: SceneAnnotation) {
-        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Open in Apple Maps",
-                                      style: .default,
-                                      handler: { [weak self ] _ in
-            self?.openAppleMapsFor(sceneAnnotation)
-        }))
-        alert.addAction(UIAlertAction(title: "Open in Google Maps",
-                                      style: . default,
-                                      handler: { [weak self ] _ in
-            self?.openGoogleMapsFor(sceneAnnotation)
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        presentMapsActionSheet.onNext(alert)
-    }
     
-    private func openAppleMapsFor(_ sceneAnnotation: SceneAnnotation) {
-        let coordinates = sceneAnnotation.coordinate
-        let regionDistance : CLLocationDistance = 10000
-        let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
-        let options: [String: Any] = [
-            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
-            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span),
-            MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving
-        ]
-        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
-        let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = sceneAnnotation.subtitle
-        mapItem.openInMaps(launchOptions: options)
-    }
-    
-    private func openGoogleMapsFor(_ sceneAnnotation: SceneAnnotation) {
-        let coordinates = sceneAnnotation.coordinate
-
-        let urlString = "comgooglemaps://?center=\(coordinates.latitude),\(coordinates.longitude)&zoom=14&views=traffic&q=\(coordinates.latitude),\(coordinates.longitude)"
-        if let googleUrl = URL(string: urlString) {
-            if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
-                UIApplication.shared.open(googleUrl, options: [:], completionHandler: nil)
-            } else {
-                UIApplication.shared.open(URL(string: "http://maps.google.com/maps?q=loc:\(coordinates.latitude),\(coordinates.longitude)&zoom=14&views=traffic")!, options: [:], completionHandler: nil)
-                print("Can't use comgooglemaps://")
-            }
-        }
-    }
 }
 
 

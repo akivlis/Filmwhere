@@ -85,7 +85,7 @@ private extension LocalizationViewController {
     }
     
     private func openSceneDetail(scenes: [Scene], index: Int) {
-        let sceneDetailViewController = SceneDetailViewController(scenes: scenes, currentIndex: index, title: "All")
+        let sceneDetailViewController = SceneDetailViewController(scenes: scenes, currentIndex: index, title: "All", navigationModelController: MapNavigationModelController())
         sceneDetailViewController.modalPresentationStyle = .overFullScreen
         self.present(sceneDetailViewController, animated: true, completion: nil)
     }

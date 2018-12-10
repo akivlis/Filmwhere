@@ -110,7 +110,8 @@ private extension MovieDetailViewController {
                 let correctIndex = index.row - 1 // because first cell is expendable cell
                 let sceneDetailViewController = SceneDetailViewController(scenes: self.viewModel.scenes,
                                                                           currentIndex: correctIndex,
-                                                                          title: self.viewModel.movie.title)
+                                                                          title: self.viewModel.movie.title,
+                                                                          navigationModelController: MapNavigationModelController())
                 sceneDetailViewController.modalPresentationStyle = .overFullScreen
                 self.present(sceneDetailViewController, animated: true, completion: nil)
             })

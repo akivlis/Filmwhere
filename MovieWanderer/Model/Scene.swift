@@ -72,7 +72,7 @@ extension Scene: Decodable {
         let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
         let latitude: Double = try container.decode(Double.self, forKey: .latitude)
         let longitude: Double = try container.decode(Double.self, forKey: .longitude)
-        let country: String = try container.decode(String.self, forKey: .description)
+        let country: String = try container.decode(String.self, forKey: .country)
         self.init(id: id, title: title, description: description, locationName: locationName, latitude: latitude, longitude: longitude, imageURL: imageUrl, country: country)
     }
 }

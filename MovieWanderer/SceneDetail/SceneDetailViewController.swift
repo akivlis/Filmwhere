@@ -19,11 +19,13 @@ final class SceneDetailViewController: UIViewController {
     private let scenes: [Scene]
     private let currentIndex: Int
     private let titleLabel = UILabel()
+    private let navigationModelController: MapNavigationModelController
     
-    init(scenes: [Scene], currentIndex: Int, title: String) {
+    init(scenes: [Scene], currentIndex: Int, title: String, navigationModelController: MapNavigationModelController) {
         self.scenes = scenes
         self.currentIndex = currentIndex
         self.titleLabel.text = title
+        self.navigationModelController = navigationModelController
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -58,16 +60,25 @@ extension SceneDetailViewController: FSPagerViewDataSource {
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: SceneDetailPagerViewCell.reuseIdentifier, at: index)
         if let sceneCell = cell as? SceneDetailPagerViewCell {
-            let viewModel = SceneDetailPagerViewCellViewModel(scene: scenes[index])
+            let currentScene = scenes[index]
+            let viewModel = SceneDetailPagerViewCellViewModel(scene: currentScene)
             sceneCell.bindViewModel(viewModel)
             
             sceneCell.scenePhotoTapped$
-                .subscribe(onNext: { optionalImage in
+                .subscribe(onNext: { [weak self] optionalImage in
                     if let image = optionalImage {
-                        self.open(images: [image])
+                        self?.open(images: [image])
                     }
                 })
                 .disposed(by: sceneCell.disposeBag)
+            
+            sceneCell.navigateButtonTapped$
+                .subscribe(onNext: { [weak self] _ in
+                    //TODO: check if the current scene is correct
+                    print("Current scene: \(currentScene.title)")
+                    self?.navigationModelController.openMapsFor(currentScene)
+                })
+            .disposed(by: disposeBag)
         }
         return cell
     }
@@ -145,6 +156,12 @@ private extension SceneDetailViewController {
             .subscribe(onNext: { _ in
                 self.dismiss(animated: true, completion: nil)
             }).disposed(by: disposeBag)
+        
+        navigationModelController.presentMapsActionSheet$
+            .subscribe(onNext: { [weak self] alert in
+                self?.present(alert, animated: true, completion: nil)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func open(images: [UIImage]) {

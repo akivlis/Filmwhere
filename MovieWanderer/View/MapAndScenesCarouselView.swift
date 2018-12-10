@@ -31,7 +31,7 @@ final class MapAndScenesCarouselView: UIView {
     
     private var scenes: [Scene]
     private let scenesCarousel: SceneCarouselView
-    private let mapView = MapView()
+    private let mapView : MapView
     private let disposeBag = DisposeBag()
     private var bottomConstraint : Constraint?
     private let sceneViewHeigh: CGFloat = 200 // TODO: how to calculate this
@@ -39,7 +39,8 @@ final class MapAndScenesCarouselView: UIView {
     
     init(scenes: [Scene], title: String) {
         self.scenes = scenes
-        mapView.viewModel = MapViewViewModel(scenes: scenes)
+        self.mapView = MapView(viewModel: MapViewViewModel(scenes: scenes),
+                               navigationModelController: MapNavigationModelController())
         scenesCarousel = SceneCarouselView(scenes: scenes, title: title)
         presentMapsActionSheet$ = mapView.presentMapsActionSheet$
         super.init(frame: .zero)
@@ -49,7 +50,6 @@ final class MapAndScenesCarouselView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // Public
     
