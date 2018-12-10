@@ -44,9 +44,9 @@ private extension ActionButton {
     private func commonInit() {
         backgroundColor = .lightGreen
         setTitleColor(.white, for: .normal)
-        titleLabel?.font =  UIFont.preferredFont(forTextStyle: .subheadline)
+        titleLabel?.font =  UIFont.medium(textStyle: .subheadline)
         titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
-        contentEdgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 24)
+        contentEdgeInsets = UIEdgeInsets(top: 7, left: 0, bottom: 7, right: 24)
     }
    
     private func applyGradient(colors: [CGColor]) {

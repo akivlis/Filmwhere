@@ -9,13 +9,14 @@
 import UIKit
 
 fileprivate enum FontWeight: String {
-    case ultralight = "UltraLight"
-    case light = "Light"
-    case regular = "Regular"
-    case semibold = "SemiBold"
-    case bold = "Bold"
-    case ultrabold = "UltraBold"
-    case heavy = "Heavy"
+    case light = "-Light"
+    case medium = "-Medium"
+    case regular = ""
+    case thin = "-Thin"
+    case ultralight = "-UltraLight"
+    case bold = "-Bold"
+    case condensedBlack = "-CondensedBlack"
+    case condensedBold = "-CondensedBold"
     
     fileprivate func toSystemWeight() -> UIFont.Weight {
         switch self {
@@ -25,48 +26,41 @@ fileprivate enum FontWeight: String {
             return UIFont.Weight.light
         case .regular:
             return UIFont.Weight.regular
-        case .semibold:
-            return UIFont.Weight.semibold
         case .bold:
             return UIFont.Weight.bold
-        case .ultrabold, .heavy:
-            return UIFont.Weight.heavy
+        default:
+            return UIFont.Weight.regular
         }
     }
 }
 
 extension UIFont {
-    
-    static func ultralight(withSize size: CGFloat, isItalic: Bool = false) -> UIFont {
-        return UIFont.customFont(withSize: size, weight: .ultralight, isItalic: isItalic)
+    static func light(textStyle style: UIFont.TextStyle, isItalic: Bool = false) -> UIFont {
+        return UIFont.customFont(forTextStyle: style, weight: .light, isItalic: isItalic)
     }
     
-    static func light(withSize size: CGFloat, isItalic: Bool = false) -> UIFont {
-        return UIFont.customFont(withSize: size, weight: .light, isItalic: isItalic)
+    static func medium(textStyle style: UIFont.TextStyle, isItalic: Bool = false) -> UIFont {
+        return UIFont.customFont(forTextStyle: style, weight: .medium, isItalic: isItalic)
     }
     
-    static func regular(withSize size: CGFloat, isItalic: Bool = false) -> UIFont {
-        return UIFont.customFont(withSize: size, weight: .regular, isItalic: isItalic)
+    static func regular(textStyle style: UIFont.TextStyle, isItalic: Bool = false) -> UIFont {
+        return UIFont.customFont(forTextStyle: style, weight: .regular, isItalic: isItalic)
     }
     
-    static func semibold(withSize size: CGFloat, isItalic: Bool = false) -> UIFont {
-        return UIFont.customFont(withSize: size, weight: .semibold, isItalic: isItalic)
+    static func thin(textStyle style: UIFont.TextStyle, isItalic: Bool = false) -> UIFont {
+        return UIFont.customFont(forTextStyle: style, weight: .thin, isItalic: isItalic)
     }
     
-    static func bold(withSize size: CGFloat, isItalic: Bool = false) -> UIFont {
-        return UIFont.customFont(withSize: size, weight: .bold, isItalic: isItalic)
+    static func ultralight(textStyle style: UIFont.TextStyle, isItalic: Bool = false) -> UIFont {
+        return UIFont.customFont(forTextStyle: style, weight: .ultralight, isItalic: isItalic)
     }
     
-    static func ultrabold(withSize size: CGFloat, isItalic: Bool = false) -> UIFont {
-        return UIFont.customFont(withSize: size, weight: .ultrabold, isItalic: isItalic)
+    static func bold(textStyle style: UIFont.TextStyle, isItalic: Bool = false) -> UIFont {
+        return UIFont.customFont(forTextStyle: style, weight: .bold, isItalic: isItalic)
     }
     
-    static func heavy(withSize size: CGFloat, isItalic: Bool = false) -> UIFont {
-        return UIFont.customFont(withSize: size, weight: .heavy, isItalic: isItalic)
-    }
-    
-    static func circularBold(withSize size: CGFloat) -> UIFont? {
-        return UIFont(name: "CircularStd-Bold", size: size)
+    static func condensedBold(textStyle style: UIFont.TextStyle, isItalic: Bool = false) -> UIFont {
+        return UIFont.customFont(forTextStyle: style, weight: .condensedBold, isItalic: isItalic)
     }
 }
 
@@ -83,21 +77,57 @@ extension UIFont {
         }
         return font
     }
+    
+    fileprivate static func customFont(forTextStyle textStyle: UIFont.TextStyle, weight: FontWeight = .regular, isItalic: Bool = false) -> UIFont {
+        let italic = isItalic ? "Italic" : ""
+        let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
+        let fontName = "HelveticaNeue\(weight.rawValue)\(italic)"
+        
+//        let families = UIFont.familyNames
+//        families.sorted().forEach {
+//            print("\($0)")
+//            let names = UIFont.fontNames(forFamilyName: $0)
+//            print(names)
+//        }
+//
+        let fontSize = textStyle.size
+        
+        guard let font = UIFont(name: fontName, size: fontSize) else {
+            return UIFont.systemFont(ofSize: fontSize, weight: weight.toSystemWeight())
+        }
+        return fontMetrics.scaledFont(for: font)
+    }
 }
 
-extension UIFont {
-    func withTraits(traits:UIFontDescriptor.SymbolicTraits) -> UIFont {
-        let descriptor = fontDescriptor.withSymbolicTraits(traits)
-        return UIFont(descriptor: descriptor!, size: 0) //size 0 means keep the size as it is
+extension UIFont.TextStyle {
+    
+    var size: CGFloat {
+        switch self {
+        case .largeTitle:
+            return 34
+        case .title1:
+            return 28
+        case  .title2 :
+            return 22
+        case .title3:
+            return 20
+        case .headline:
+            return 17.0
+        case .subheadline:
+            return 15
+        case .body:
+            return 17
+        case .callout:
+            return 16
+        case .footnote:
+            return 13
+        case .caption1:
+            return 12
+        case .caption2:
+            return 11
+        default:
+            return 12
+        }
     }
-    
-    
-    func bold() -> UIFont {
-        return withTraits(traits: .traitBold)
-    }
-    
-    func italic() -> UIFont {
-        return withTraits(traits: .traitItalic)
-    }
-    
 }
+

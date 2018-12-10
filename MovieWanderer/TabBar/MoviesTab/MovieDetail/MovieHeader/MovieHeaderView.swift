@@ -31,8 +31,8 @@ class MovieHeaderView: UITableViewHeaderFooterView {
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = UIFont.preferredFont(forTextStyle: .title1).bold()
-        label.textColor = UIColor.black
+        label.font = UIFont.medium(textStyle: .title1) // or bold?
+        label.textColor = UIColor.rhinoBlack
         return label
     }()
     

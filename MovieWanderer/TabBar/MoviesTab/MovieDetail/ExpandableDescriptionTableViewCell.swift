@@ -52,7 +52,7 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
 //        label.sizeToFit()
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        label.font = UIFont.light(textStyle: .subheadline)
         label.textColor = .gray
         label.contentMode = .top
         return label
@@ -61,7 +61,7 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     private lazy var openMoreButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitleColor(.lightGreen, for: .normal)
-        button.titleLabel?.font = UIFont.preferredFont(forTextStyle: .footnote)
+        button.titleLabel?.font = UIFont.medium(textStyle: .footnote)
         button.titleLabel?.textAlignment = .left
         return button
     }()

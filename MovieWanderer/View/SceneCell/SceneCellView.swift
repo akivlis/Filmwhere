@@ -41,10 +41,12 @@ class SceneCellView: UIView {
     
     func showSkeleton() {
         backgroundImageView.showAnimatedGradientSkeleton()
+        gradientView.isHidden = true
     }
     
     func hideSkeleton() {
         backgroundImageView.hideSkeleton()
+        gradientView.isHidden = false
     }
 }
 
@@ -67,12 +69,12 @@ private extension SceneCellView {
         backgroundImageView.insertSubview(gradientView, at: 0)
 
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline).bold()
+        titleLabel.font = UIFont.bold(textStyle: .subheadline)
         stackView.addArrangedSubview(titleLabel)
         
         stackView.addArrangedSubview(subtitleLabel)
         subtitleLabel.textColor = .white
-        subtitleLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        subtitleLabel.font = UIFont.light(textStyle: .footnote)
         
         stackView.axis = .vertical
         stackView.alignment = .leading

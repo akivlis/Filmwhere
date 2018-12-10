@@ -33,12 +33,11 @@ class MovieTableViewCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        movieImageView.layer.cornerRadius  = 8.0
+        movieImageView.layer.cornerRadius  = 4.0
         movieImageView.layer.masksToBounds = true
-        movieImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
- 
-        roundView.layer.addShadow()
-        numberButton.layer.cornerRadius = 4
+//        movieImageView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+//        roundView.layer.addShadow()
+        numberButton.layer.cornerRadius = numberButton.bounds.height / 2 // 4
     }
     
     func bindViewModel(_ viewModel: MovieCellViewModel) {
@@ -63,21 +62,21 @@ private extension MovieTableViewCell {
         roundView.layer.cornerRadius = 8.0
         movieImageView.kf.indicatorType = .activity
         
-        let icon = UIImage(named: "clapper_small")?.withRenderingMode(.alwaysTemplate)
-        numberButton.setImage(icon, for: .normal)
+        titleLabel.font = UIFont.bold(textStyle: .title2)
+        subtitleLabel.font = UIFont.thin(textStyle: .subheadline)
     }
     
     private func showSkeleton() {
         movieImageView.showAnimatedGradientSkeleton()
         titleLabel.showAnimatedGradientSkeleton()
         subtitleLabel.showAnimatedGradientSkeleton()
-        numberButton.showAnimatedGradientSkeleton()
+        numberButton.isHidden = true
     }
     
     private func hideSkeleton() {
         movieImageView.hideSkeleton()
         titleLabel.hideSkeleton()
         subtitleLabel.hideSkeleton()
-        numberButton.hideSkeleton()
+        numberButton.isHidden = false
     }
 }

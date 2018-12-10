@@ -25,6 +25,9 @@ public extension UIColor {
     public static let brightPink = UIColor.color(fromHexString: "#ED4D6E")
     
     public static let see = UIColor.color(fromHexString: "#D3EBED")
+    
+    public static let rhinoBlack = UIColor.color(fromHexString: "#282E36")
+    
 }
 
 

@@ -89,11 +89,11 @@ private extension SceneDetailPagerViewCell {
         sceneImageView.kf.indicatorType = .activity
         
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.regular(withSize: UIDevice.iPhoneNarrow ? 15 : 18)
+        titleLabel.font = UIFont.regular(textStyle: .subheadline)
         titleLabel.textAlignment = .left
         
         subtitleLabel.textColor = .gray
-        subtitleLabel.font = UIFont.regular(withSize: UIDevice.iPhoneNarrow ? 14 : 14)
+        subtitleLabel.font = UIFont.regular(textStyle: .subheadline)
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
         
