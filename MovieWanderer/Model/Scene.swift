@@ -41,7 +41,6 @@ struct Scene {
 }
 
 extension Scene: Equatable {
-
     static func == (lhs: Scene, rhs: Scene) -> Bool {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
@@ -71,9 +70,8 @@ extension Scene: Decodable {
         let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
         let latitude: Double = try container.decode(Double.self, forKey: .latitude)
         let longitude: Double = try container.decode(Double.self, forKey: .longitude)
-        let location = (latitude, latitude)
         let country: String = try container.decode(String.self, forKey: .country)
-        self.init(id: id, title: title, description: description, locationName: locationName, location: location, imageURL: imageUrl, country: country)
+        self.init(id: id, title: title, description: description, locationName: locationName, location: (latitude, longitude), imageURL: imageUrl, country: country)
     }
 }
 

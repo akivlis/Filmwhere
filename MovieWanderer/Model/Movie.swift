@@ -41,7 +41,13 @@ extension Movie: Decodable {
         let title: String = try container.decode(String.self, forKey: .title)
         let description: String = try container.decode(String.self, forKey: .description)
         let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
-        let scenes: [Scene] = try container.decodeIfPresent([Scene].self, forKey: .scenes) ?? []
+        var scenes: [Scene] = try container.decodeIfPresent([Scene].self, forKey: .scenes) ?? []
+        
+        //This is not a very nice solution, but havent found a better way
+        for index in scenes.indices {
+            scenes[index].movieTitle = title
+        }
+        
         self.init(id: id, title: title, description: description, scenes: scenes, imageUrl: imageUrl)
     }
 }
