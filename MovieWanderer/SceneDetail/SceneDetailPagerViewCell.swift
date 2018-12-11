@@ -31,13 +31,13 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private let sceneImageView = UIImageView()
     private let titleLabel = UILabel()
     private let subtitleLabel = UILabel()
-    private let stackView = UIStackView()
+    private let contentStackView = UIStackView()
     private let containerView = UIView()
     private let actionButton = ActionButton()
     private let gradientView = GradientView()
-    private let addressStackView = UIStackView()
     private let pinImage = UIImageView()
     private let addressLabel = UILabel()
+    private let movieTitleLabel = UILabel()
     
     // MARK: - Init
     
@@ -54,6 +54,8 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     func bindViewModel(_ viewModel: SceneDetailPagerViewCellViewModel) {
         titleLabel.text = viewModel.scene.title
         subtitleLabel.text = viewModel.description
+        addressLabel.text = viewModel.location
+        movieTitleLabel.text = viewModel.movieTitle
         
         sceneImageView.kf.setImage(with: viewModel.imageUrl) {
             image, error, cacheType, imageURL in
@@ -93,22 +95,35 @@ private extension SceneDetailPagerViewCell {
         sceneImageView.contentMode = .scaleAspectFill
         sceneImageView.clipsToBounds = true
         sceneImageView.kf.indicatorType = .activity
+        containerView.addSubview(sceneImageView)
         
         titleLabel.textColor = .white
         titleLabel.font = UIFont.regular(textStyle: .headline)
         titleLabel.textAlignment = .left
+        containerView.addSubview(titleLabel)
+        
+        contentStackView.axis = .vertical
+        contentStackView.distribution = .fill
+        contentStackView.alignment = .leading
+        contentStackView.spacing = 4
+        containerView.addSubview(contentStackView)
+
+        movieTitleLabel.font = UIFont.regular(textStyle: .subheadline)
+        movieTitleLabel.textColor = UIColor.rhinoBlack
+        contentStackView.addArrangedSubview(movieTitleLabel)
+        
+        addressLabel.font = UIFont.light(textStyle: .footnote)
+        addressLabel.textColor = UIColor.rhinoBlack
+        contentStackView.addArrangedSubview(addressLabel)
         
         subtitleLabel.textColor = .gray
         subtitleLabel.font = UIFont.thin(textStyle: .footnote)
         subtitleLabel.textAlignment = .left
         subtitleLabel.numberOfLines = 0
+        contentStackView.addArrangedSubview(subtitleLabel)
         
         actionButton.setTitle("Navigate", for: .normal)
         
-        containerView.addSubview(sceneImageView)
-        containerView.addSubview(titleLabel)
-        containerView.addSubview(addressStackView)
-        containerView.addSubview(subtitleLabel)
         containerView.addSubview(actionButton)
     }
     
@@ -143,15 +158,16 @@ private extension SceneDetailPagerViewCell {
             make.top.equalTo(titleLabel.snp.top).offset(-10)
         }
         
-        subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(sceneImageView.snp.bottom).offset(margin)
+        contentStackView.snp.makeConstraints { make in
+            make.top.equalTo(sceneImageView.snp.bottom).offset(8)
             make.trailing.leading.equalToSuperview().inset(margin)
+            make.bottom.lessThanOrEqualTo(actionButton.snp.top).inset(-5)
         }
         
         actionButton.snp.makeConstraints { make in
-            make.top.greaterThanOrEqualTo(subtitleLabel.snp.bottom).offset(10)
             make.bottom.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
+            make.height.equalTo(30)
         }
     }
 }

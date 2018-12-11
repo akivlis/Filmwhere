@@ -23,4 +23,12 @@ struct SceneDetailPagerViewCellViewModel {
     var placeholderImage: UIImage {
         return UIImage(named: "eat_pray")!
     }
+    
+    var location: String {
+        return "\(scene.locationName), \(scene.country)"
+    }
+    
+    var movieTitle: String {
+        return "Movie title" // TODO: return correct movie title here
+    }
 }
