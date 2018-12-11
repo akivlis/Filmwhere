@@ -109,11 +109,11 @@ private extension SceneDetailPagerViewCell {
         containerView.addSubview(contentStackView)
 
         movieTitleLabel.font = UIFont.regular(textStyle: .subheadline)
-        movieTitleLabel.textColor = UIColor.rhinoBlack
+        movieTitleLabel.textColor = .rhinoBlack
         contentStackView.addArrangedSubview(movieTitleLabel)
         
         addressLabel.font = UIFont.light(textStyle: .footnote)
-        addressLabel.textColor = UIColor.rhinoBlack
+        addressLabel.textColor = .gray
         contentStackView.addArrangedSubview(addressLabel)
         
         subtitleLabel.textColor = .gray

@@ -15,7 +15,8 @@ class SceneAnnotation: NSObject, MKAnnotation {
     var subtitle: String?
     
     init(scene: Scene) {
-        coordinate = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
+        coordinate = CLLocationCoordinate2D(latitude: scene.location.latitude,
+                                            longitude: scene.location.longitude)
         title = scene.title
         subtitle = scene.locationName
     }

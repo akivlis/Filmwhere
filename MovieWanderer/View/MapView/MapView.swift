@@ -59,7 +59,8 @@ class MapView: UIView {
     }
     
     func highlight(_ scene: Scene) {
-        let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
+        let coordinates = CLLocationCoordinate2D(latitude: scene.location.latitude,
+                                                 longitude: scene.location.longitude)
         mapView.setCenter(coordinates, animated: true)
         
         if let annotation = viewModel.getAnnotationForScene(scene) {

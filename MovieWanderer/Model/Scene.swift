@@ -14,29 +14,29 @@ struct Scene {
     let title: String
     let description: String
     let locationName: String
-    let latitude: Double
-    let longitude: Double
+    let location: (latitude: Double, longitude: Double)
     let imageURL: String
     let country : String
+    var movieTitle: String?
     
-    init(id: String = "",
+    init(id: String,
          title: String,
          description: String,
-         locationName: String = "starirs",
-         latitude: Double,
-         longitude: Double,
-         imageURL: String = "imageURL",
-         country: String = "Philadelphia, USA"
+         locationName: String,
+         location: (latitude: Double, longitude: Double),
+         imageURL: String,
+         country: String,
+         movieTitle: String? = ""
         )
     {
         self.id = id
         self.title = title
         self.description = description
         self.locationName = locationName
-        self.latitude = latitude
-        self.longitude = longitude
+        self.location = location
         self.country = country
         self.imageURL = imageURL
+        self.movieTitle = movieTitle
     }
 }
 
@@ -45,8 +45,7 @@ extension Scene: Equatable {
     static func == (lhs: Scene, rhs: Scene) -> Bool {
         return lhs.title == rhs.title &&
             lhs.description == rhs.description &&
-            lhs.latitude == rhs.latitude &&
-            lhs.longitude == rhs.longitude
+            lhs.location == rhs.location
     }
 }
 
@@ -72,8 +71,9 @@ extension Scene: Decodable {
         let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
         let latitude: Double = try container.decode(Double.self, forKey: .latitude)
         let longitude: Double = try container.decode(Double.self, forKey: .longitude)
+        let location = (latitude, latitude)
         let country: String = try container.decode(String.self, forKey: .country)
-        self.init(id: id, title: title, description: description, locationName: locationName, latitude: latitude, longitude: longitude, imageURL: imageUrl, country: country)
+        self.init(id: id, title: title, description: description, locationName: locationName, location: location, imageURL: imageUrl, country: country)
     }
 }
 

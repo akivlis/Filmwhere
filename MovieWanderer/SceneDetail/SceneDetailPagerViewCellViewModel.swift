@@ -29,6 +29,6 @@ struct SceneDetailPagerViewCellViewModel {
     }
     
     var movieTitle: String {
-        return "Movie title" // TODO: return correct movie title here
+        return scene.movieTitle ?? ""
     }
 }

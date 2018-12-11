@@ -18,7 +18,8 @@ class MapNavigationModelController {
     private let presentMapsActionSheet = PublishSubject<UIAlertController>()
     
     func openMapsFor(_ scene: Scene) {
-        let coordinates = CLLocationCoordinate2D(latitude: scene.latitude, longitude: scene.longitude)
+        let coordinates = CLLocationCoordinate2D(latitude: scene.location.latitude,
+                                                 longitude: scene.location.longitude)
         openMapsFor(coordinates, with: scene.locationName)
     }
     
