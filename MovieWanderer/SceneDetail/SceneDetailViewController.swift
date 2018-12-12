@@ -75,10 +75,17 @@ extension SceneDetailViewController: FSPagerViewDataSource {
             sceneCell.navigateButtonTapped$
                 .subscribe(onNext: { [weak self] _ in
                     //TODO: check if the current scene is correct
-                    print("Current scene: \(currentScene.title)")
                     self?.navigationModelController.openMapsFor(currentScene)
                 })
             .disposed(by: disposeBag)
+            
+            sceneCell.takePhotoButtonTapped$
+                .subscribe(onNext: { [weak self] _ in
+                    let cameraViewController = CameraViewController()
+                    self?.present(cameraViewController, animated: true, completion: nil)
+                })
+                .disposed(by: disposeBag)
+
         }
         return cell
     }

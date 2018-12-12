@@ -21,9 +21,15 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     }
     
     var navigateButtonTapped$: Observable<()> {
-        return actionButton.rx.tap
+        return navigateButton.rx.tap
             .map { _ in () }
         .asObservable()
+    }
+    
+    var takePhotoButtonTapped$: Observable<()> {
+        return takePictureButton.rx.tap
+            .map { _ in () }
+            .asObservable()
     }
     
     private(set) var disposeBag = DisposeBag()
@@ -32,8 +38,10 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let contentStackView = UIStackView()
+    private let buttonsStackView = UIStackView()
     private let containerView = UIView()
-    private let actionButton = ActionButton()
+    private let navigateButton = ActionButton()
+    private let takePictureButton = ActionButton()
     private let gradientView = GradientView()
     private let pinImage = UIImageView()
     private let addressLabel = IconButton()
@@ -124,9 +132,18 @@ private extension SceneDetailPagerViewCell {
         descriptionLabel.numberOfLines = 0
         contentStackView.addArrangedSubview(descriptionLabel)
         
-        actionButton.setTitle("Navigate", for: .normal)
+        buttonsStackView.axis = .horizontal
+        buttonsStackView.distribution = .equalSpacing
+        buttonsStackView.spacing = 8
+        buttonsStackView.alignment = .center
         
-        containerView.addSubview(actionButton)
+        navigateButton.setTitle("Navigate", for: .normal)
+        buttonsStackView.addArrangedSubview(navigateButton)
+        
+        takePictureButton.setTitle("Take Photo", for: .normal)
+        buttonsStackView.addArrangedSubview(takePictureButton)
+        
+        containerView.addSubview(buttonsStackView)
     }
     
     private func setupConstraints() {
@@ -159,18 +176,14 @@ private extension SceneDetailPagerViewCell {
             make.left.right.bottom.equalTo(sceneImageView)
             make.top.equalTo(titleLabel.snp.top).offset(-10)
         }
-        
-//        addressLabel.snp.makeConstraints { make in
-////            make.height.equalTo(30)
-//        }
-        
+
         contentStackView.snp.makeConstraints { make in
             make.top.equalTo(sceneImageView.snp.bottom).offset(8)
             make.trailing.leading.equalToSuperview().inset(margin)
-            make.bottom.lessThanOrEqualTo(actionButton.snp.top).inset(-5)
+            make.bottom.lessThanOrEqualTo(navigateButton.snp.top).inset(-5)
         }
         
-        actionButton.snp.makeConstraints { make in
+        buttonsStackView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().inset(20)
             make.centerX.equalToSuperview()
             make.height.equalTo(30)

@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 
-// ViewController with close button on the right side
+// ViewController with close button on the left side
 
 class BaseCloseViewController: UIViewController {
     

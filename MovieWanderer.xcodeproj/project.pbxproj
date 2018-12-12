@@ -55,6 +55,7 @@
 		3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */; };
 		3DB9845021BE649A00C992A1 /* MapNavigationModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9844F21BE649A00C992A1 /* MapNavigationModelController.swift */; };
 		3DB9845221BFEF0600C992A1 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9845121BFEF0600C992A1 /* IconButton.swift */; };
+		3DB9845421C1120100C992A1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9845321C1120100C992A1 /* CameraViewController.swift */; };
 		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
 		3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */; };
 		3DC5CBC52152DAA200EEE30B /* SceneDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC5CBC42152DAA200EEE30B /* SceneDetailViewController.swift */; };
@@ -136,6 +137,7 @@
 		3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+MKMapView.swift"; sourceTree = "<group>"; };
 		3DB9844F21BE649A00C992A1 /* MapNavigationModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigationModelController.swift; sourceTree = "<group>"; };
 		3DB9845121BFEF0600C992A1 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		3DB9845321C1120100C992A1 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedFlowLayout.swift; sourceTree = "<group>"; };
 		3DC5CBC42152DAA200EEE30B /* SceneDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailViewController.swift; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				3D2A9FBC21B4E340001C0322 /* BaseCloseViewController.swift */,
+				3DB9845321C1120100C992A1 /* CameraViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				3D57493B214E8AB60050E658 /* ClusterAnnotationView.swift in Sources */,
 				3D0F6FE0218AEC7C001712A9 /* Endpoint.swift in Sources */,
 				3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */,
+				3DB9845421C1120100C992A1 /* CameraViewController.swift in Sources */,
 				3DB9845221BFEF0600C992A1 /* IconButton.swift in Sources */,
 				3D4A868620C72BF4009AB176 /* MovieWanderer+Reusable.swift in Sources */,
 				3DC5CBCC2152E8C900EEE30B /* MovieWanderer+UIDevice.swift in Sources */,
