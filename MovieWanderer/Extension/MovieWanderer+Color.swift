@@ -14,7 +14,7 @@ public extension UIColor {
     
     public static let lightGray = UIColor.color(fromHexString: "#EDEDED")
     
-    public static let lightGreen = UIColor.color(fromHexString: "#248CDC")
+    public static let lightBlue = UIColor.color(fromHexString: "#248CDC")
     
     public static let lemonGreen = UIColor.color(fromHexString: "#C0DF85")
 

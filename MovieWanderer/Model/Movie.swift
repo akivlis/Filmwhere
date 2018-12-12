@@ -47,7 +47,6 @@ extension Movie: Decodable {
         for index in scenes.indices {
             scenes[index].movieTitle = title
         }
-        
         self.init(id: id, title: title, description: description, scenes: scenes, imageUrl: imageUrl)
     }
 }

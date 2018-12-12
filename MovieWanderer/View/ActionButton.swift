@@ -42,7 +42,7 @@ final class ActionButton: UIButton {
 private extension ActionButton {
     
     private func commonInit() {
-        backgroundColor = .lightGreen
+        backgroundColor = .lightBlue
         setTitleColor(.white, for: .normal)
         setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .highlighted)
         titleLabel?.font =  UIFont.medium(textStyle: .subheadline)
