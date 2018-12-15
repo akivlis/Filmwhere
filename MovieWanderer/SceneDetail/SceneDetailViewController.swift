@@ -81,14 +81,28 @@ extension SceneDetailViewController: FSPagerViewDataSource {
             
             sceneCell.takePhotoButtonTapped$
                 .subscribe(onNext: { [weak self] _ in
-                    let cameraViewController = CameraViewController()
-                    self?.present(cameraViewController, animated: true, completion: nil)
+                   self?.takePhoto()
                 })
                 .disposed(by: disposeBag)
 
         }
         return cell
     }
+}
+
+extension SceneDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let chosenImage = info[UIImagePickerController.InfoKey.originalImage]
+        
+        print(info)
+    }
+    
 }
 
 private extension SceneDetailViewController {
@@ -175,5 +189,14 @@ private extension SceneDetailViewController {
         let pictureViewController = PictureViewController(pictures: images)
         pictureViewController.modalPresentationStyle = .overCurrentContext
         self.present(pictureViewController, animated: true, completion: nil)
+    }
+    
+    private func takePhoto() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let cameraViewController = CameraViewController()
+            cameraViewController.sourceType = .camera
+            cameraViewController.delegate = self
+            self.present(cameraViewController, animated: true, completion: nil)
+        }
     }
 }

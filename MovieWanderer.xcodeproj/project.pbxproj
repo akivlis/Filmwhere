@@ -47,6 +47,7 @@
 		3D574939214E8AA80050E658 /* SceneAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D574938214E8AA80050E658 /* SceneAnnotationView.swift */; };
 		3D57493B214E8AB60050E658 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D57493A214E8AB60050E658 /* ClusterAnnotationView.swift */; };
 		3D58E57021B68814005E6AE5 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D58E56F21B68814005E6AE5 /* ActionButton.swift */; };
+		3D6372C321C1FAE300B8E808 /* CameraOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6372C221C1FAE300B8E808 /* CameraOverlayView.swift */; };
 		3D68E8C821951EB100A4470D /* SceneCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68E8C721951EB100A4470D /* SceneCellView.swift */; };
 		3D68E8CA2195206200A4470D /* SceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68E8C92195206200A4470D /* SceneTableViewCell.swift */; };
 		3D803588202B9E5B00A51585 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D803587202B9E5B00A51585 /* Scene.swift */; };
@@ -129,6 +130,7 @@
 		3D574938214E8AA80050E658 /* SceneAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneAnnotationView.swift; sourceTree = "<group>"; };
 		3D57493A214E8AB60050E658 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		3D58E56F21B68814005E6AE5 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		3D6372C221C1FAE300B8E808 /* CameraOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraOverlayView.swift; sourceTree = "<group>"; };
 		3D68E8C721951EB100A4470D /* SceneCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCellView.swift; sourceTree = "<group>"; };
 		3D68E8C92195206200A4470D /* SceneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewCell.swift; sourceTree = "<group>"; };
 		3D803587202B9E5B00A51585 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 				3D0F6FD3218849A2001712A9 /* AnimatingBarView.swift */,
 				3D58E56F21B68814005E6AE5 /* ActionButton.swift */,
 				3DB9845121BFEF0600C992A1 /* IconButton.swift */,
+				3D6372C221C1FAE300B8E808 /* CameraOverlayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -729,6 +732,7 @@
 				3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */,
 				3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */,
 				3D68E8CA2195206200A4470D /* SceneTableViewCell.swift in Sources */,
+				3D6372C321C1FAE300B8E808 /* CameraOverlayView.swift in Sources */,
 				3D68E8C821951EB100A4470D /* SceneCellView.swift in Sources */,
 				214D73042105147F00F16983 /* SceneCarouselView.swift in Sources */,
 				3D574934214D6F140050E658 /* MovieService.swift in Sources */,

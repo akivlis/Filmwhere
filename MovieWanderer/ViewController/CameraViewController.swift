@@ -8,11 +8,25 @@
 
 import UIKit
 
-class CameraViewController: BaseCloseViewController {
+class CameraViewController: UIImagePickerController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        showsCameraControls = false
+        
+        
+        let overlayView = CameraOverlayView(frame: self.view.frame)
+        
+        self.cameraOverlayView = overlayView
+        
+        overlayView.takePictureButton.rx.tapGesture()
+            .subscribe(onNext: { _ in
+                print("Take picture button tapped")
+                self.takePicture()
+            })
+        
     }
+    
+    
 }
