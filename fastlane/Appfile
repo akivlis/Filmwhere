@@ -1,0 +1,8 @@
+app_identifier("silvi.MovieWanderer") # The bundle identifier of your app
+apple_id("silvia.kuzmova21@gmail.com") # Your Apple email address
+
+itc_team_id("119490029") # App Store Connect Team ID
+team_id("J9P8F4UWBG") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile
