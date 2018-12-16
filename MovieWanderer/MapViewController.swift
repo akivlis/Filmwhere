@@ -50,16 +50,26 @@ private extension MapViewController {
         mapAndScenesView.snp.makeConstraints { make in
            make.edges.equalToSuperview()
         }
-        
+    }
+    
+    private func setupObservables() {
         mapAndScenesView.presentMapsActionSheet$
             .subscribe(onNext: { [weak self] alert in
                 self?.present(alert, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
+        
+        mapAndScenesView.openSceneDetail$
+            .subscribe(onNext: { scenes, index in
+                self.openSceneDetail(scenes: scenes, index: index)
+            })
+            .disposed(by: disposeBag)
     }
     
-    private func setupObservables() {
-
+    private func openSceneDetail(scenes: [Scene], index: Int) {
+        let sceneDetailViewController = SceneDetailViewController(scenes: scenes, currentIndex: index, title: self.movieTitle, navigationModelController: MapNavigationModelController())
+        sceneDetailViewController.modalPresentationStyle = .overFullScreen
+        self.present(sceneDetailViewController, animated: true, completion: nil)
     }
 }
 
