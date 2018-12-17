@@ -35,17 +35,15 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private(set) var disposeBag = DisposeBag()
     
     private let sceneImageView = UIImageView()
-    private let titleLabel = UILabel()
     private let descriptionLabel = UILabel()
     private let contentStackView = UIStackView()
     private let buttonsStackView = UIStackView()
     private let containerView = UIView()
     private let navigateButton = ActionButton()
     private let takePictureButton = ActionButton()
-    private let gradientView = GradientView()
     private let pinImage = UIImageView()
     private let addressLabel = IconButton()
-    private let movieTitleLabel = UILabel()
+    private let sceneTitleLabel = UILabel()
     
     // MARK: - Init
     
@@ -60,12 +58,11 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     }
     
     func bindViewModel(_ viewModel: SceneDetailPagerViewCellViewModel) {
-        titleLabel.text = viewModel.scene.title
+        sceneTitleLabel.text = viewModel.scene.title
         descriptionLabel.text = viewModel.description
         
         let icon = UIImage(named: "location_icon_small")
         addressLabel.setTitle(viewModel.location, icon: icon!)
-        movieTitleLabel.text = viewModel.movieTitle
         
         sceneImageView.kf.setImage(with: viewModel.imageUrl) {
             image, error, cacheType, imageURL in
@@ -73,7 +70,6 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
                 self.sceneImageView.image =  viewModel.placeholderImage
             }
         }
-        self.gradientView.isHidden = false
     }
     
     override func prepareForReuse() {
@@ -97,20 +93,10 @@ private extension SceneDetailPagerViewCell {
         containerView.backgroundColor = .white
         addSubview(containerView)
         
-        let black = UIColor.black.withAlphaComponent(0.8)
-        gradientView.colors = (UIColor.clear, black)
-        gradientView.isHidden = true
-        sceneImageView.insertSubview(gradientView, at: 0)
-        
         sceneImageView.contentMode = .scaleAspectFill
         sceneImageView.clipsToBounds = true
         sceneImageView.kf.indicatorType = .activity
         containerView.addSubview(sceneImageView)
-        
-        titleLabel.textColor = .white
-        titleLabel.font = UIFont.medium(textStyle: .headline)
-        titleLabel.textAlignment = .left
-        containerView.addSubview(titleLabel)
         
         contentStackView.axis = .vertical
         contentStackView.distribution = .fill
@@ -118,9 +104,10 @@ private extension SceneDetailPagerViewCell {
         contentStackView.spacing = 4
         containerView.addSubview(contentStackView)
 
-        movieTitleLabel.font = UIFont.regular(textStyle: .subheadline)
-        movieTitleLabel.textColor = .black
-        contentStackView.addArrangedSubview(movieTitleLabel)
+        sceneTitleLabel.font = UIFont.medium(textStyle: .headline)
+        sceneTitleLabel.textColor = .black
+        sceneTitleLabel.numberOfLines = 0
+        contentStackView.addArrangedSubview(sceneTitleLabel)
         
         addressLabel.titleLabel?.font = UIFont.light(textStyle: .caption1)
         addressLabel.setTitleColor(.black, for: .normal)
@@ -167,16 +154,6 @@ private extension SceneDetailPagerViewCell {
                                                   attribute: .width,
                                                   multiplier: 9.0 / 16.0,
                                                   constant: 0))
-        
-        titleLabel.snp.makeConstraints { make in
-            make.trailing.leading.equalToSuperview().inset(margin)
-            make.bottom.equalTo(sceneImageView).inset(5)
-        }
-        
-        gradientView.snp.makeConstraints { make in
-            make.left.right.bottom.equalTo(sceneImageView)
-            make.top.equalTo(titleLabel.snp.top).offset(-10)
-        }
 
         contentStackView.snp.makeConstraints { make in
             make.top.equalTo(sceneImageView.snp.bottom).offset(8)

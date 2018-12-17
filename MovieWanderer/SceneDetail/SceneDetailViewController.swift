@@ -90,6 +90,13 @@ extension SceneDetailViewController: FSPagerViewDataSource {
     }
 }
 
+extension SceneDetailViewController: FSPagerViewDelegate {
+    func pagerViewDidScroll(_ pagerView: FSPagerView) {
+        let index = pagerView.currentIndex
+        self.titleLabel.text = scenes[index].movieTitle
+    }
+}
+
 extension SceneDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -113,6 +120,7 @@ private extension SceneDetailViewController {
         setupObservables()
         
         pagerView.dataSource = self
+        pagerView.delegate = self
     }
     
     private func setupViews() {
