@@ -136,6 +136,7 @@ private extension MapView {
         setupMapView()
         registerAnnotationViewClasses()
 //        setupStyleWith(jsonFileName: "ultra-light-style")
+        showAnnotationsAndZoom()
     }
     
     private func setupMapView() {
