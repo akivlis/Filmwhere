@@ -21,7 +21,7 @@ struct SceneDetailPagerViewCellViewModel {
     }
     
     var placeholderImage: UIImage {
-        return UIImage(named: "eat_pray")!
+        return UIImage(named: "placeholder")!
     }
     
     var location: String {
