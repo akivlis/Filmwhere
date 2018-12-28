@@ -19,6 +19,10 @@ class MainTabBarController: UITabBarController {
         tabBar.backgroundColor = UIColor.white
     }
     
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     private func loadTabs(){
         let moviesModelController = MoviesModelController(movies: [Movie]())
         moviesModelController.loadMovies()

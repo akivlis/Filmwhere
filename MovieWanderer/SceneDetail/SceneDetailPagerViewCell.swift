@@ -111,6 +111,7 @@ private extension SceneDetailPagerViewCell {
         
         addressLabel.titleLabel?.font = UIFont.light(textStyle: .caption1)
         addressLabel.setTitleColor(.black, for: .normal)
+        addressLabel.sizeToFit()
         contentStackView.addArrangedSubview(addressLabel)
         
         descriptionLabel.textColor = .rhinoBlack
@@ -129,7 +130,7 @@ private extension SceneDetailPagerViewCell {
         
         takePictureButton.setTitle("Take Photo", for: .normal)
         buttonsStackView.addArrangedSubview(takePictureButton)
-        takePictureButton.isHidden = true
+//        takePictureButton.isHidden = true
         
         containerView.addSubview(buttonsStackView)
     }

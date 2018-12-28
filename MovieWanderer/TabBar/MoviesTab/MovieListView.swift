@@ -37,7 +37,6 @@ final class MovieListView : UIView  {
         return tableView
     }()
     
-    
     // MARK: - Init
     
     override init(frame: CGRect) {

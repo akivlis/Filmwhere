@@ -97,21 +97,6 @@ extension SceneDetailViewController: FSPagerViewDelegate {
     }
 }
 
-extension SceneDetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        
-        let chosenImage = info[UIImagePickerController.InfoKey.originalImage]
-        
-        print(info)
-    }
-    
-}
-
 private extension SceneDetailViewController {
     
     private func commonInit() {
@@ -202,8 +187,6 @@ private extension SceneDetailViewController {
     private func takePhoto() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             let cameraViewController = CameraViewController()
-            cameraViewController.sourceType = .camera
-            cameraViewController.delegate = self
             self.present(cameraViewController, animated: true, completion: nil)
         }
     }
