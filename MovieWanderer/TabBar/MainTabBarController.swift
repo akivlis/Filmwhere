@@ -31,7 +31,7 @@ class MainTabBarController: UITabBarController {
         movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "movies-icon"), tag: 0)
         
         let localizationViewController = LocalizationViewController(moviesModelController: moviesModelController)
-        localizationViewController.tabBarItem = UITabBarItem(title: "Maps", image: UIImage(named: "map-icon"), tag: 1)
+        localizationViewController.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "map-icon"), tag: 1)
         
         let profileViewController = ProfileViewController()
         profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile-icon"), tag: 2)
@@ -40,7 +40,7 @@ class MainTabBarController: UITabBarController {
         let profileNavigationViewController = UINavigationController(rootViewController: profileViewController)
         
         
-        viewControllers = [movieNavigationViewController, localizationViewController, profileNavigationViewController ]
+        viewControllers = [movieNavigationViewController, localizationViewController ]
         selectedViewController = movieNavigationViewController
     }
 
