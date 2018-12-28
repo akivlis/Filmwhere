@@ -35,7 +35,7 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private(set) var disposeBag = DisposeBag()
     
     private let sceneImageView = UIImageView()
-    private let descriptionLabel = UILabel()
+    private let descriptionLabel = UITextView()
     private let contentStackView = UIStackView()
     private let buttonsStackView = UIStackView()
     private let containerView = UIView()
@@ -101,7 +101,7 @@ private extension SceneDetailPagerViewCell {
         contentStackView.axis = .vertical
         contentStackView.distribution = .fill
         contentStackView.alignment = .leading
-        contentStackView.spacing = 4
+        contentStackView.spacing = 6
         containerView.addSubview(contentStackView)
 
         sceneTitleLabel.font = UIFont.medium(textStyle: .headline)
@@ -115,9 +115,12 @@ private extension SceneDetailPagerViewCell {
         contentStackView.addArrangedSubview(addressLabel)
         
         descriptionLabel.textColor = .rhinoBlack
-        descriptionLabel.font = UIFont.thin(textStyle: .footnote)
+        descriptionLabel.font = UIFont.thin(textStyle: .subheadline)
         descriptionLabel.textAlignment = .left
-        descriptionLabel.numberOfLines = 0
+        descriptionLabel.isEditable = false
+        descriptionLabel.showsVerticalScrollIndicator = false
+        descriptionLabel.isSelectable = false
+        descriptionLabel.isScrollEnabled = true
         contentStackView.addArrangedSubview(descriptionLabel)
         
         buttonsStackView.axis = .horizontal
@@ -156,10 +159,14 @@ private extension SceneDetailPagerViewCell {
                                                   multiplier: 9.0 / 16.0,
                                                   constant: 0))
 
+        descriptionLabel.snp.makeConstraints { make in
+            make.width.equalToSuperview()
+        }
+        
         contentStackView.snp.makeConstraints { make in
             make.top.equalTo(sceneImageView.snp.bottom).offset(8)
             make.trailing.leading.equalToSuperview().inset(margin)
-            make.bottom.lessThanOrEqualTo(navigateButton.snp.top).inset(-5)
+            make.bottom.equalTo(navigateButton.snp.top).inset(-5)
         }
         
         buttonsStackView.snp.makeConstraints { make in
