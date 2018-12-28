@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="alphaSlider" destination="25U-KB-9Yd" id="tPp-hJ-8i8"/>
                 <outlet property="captureButton" destination="V0j-I0-u8j" id="BYv-ZT-OKj"/>
+                <outlet property="closeButton" destination="PcS-jy-Ae5" id="vIy-UY-oTY"/>
                 <outlet property="flashButton" destination="5lk-gi-VAX" id="j8t-fe-5pm"/>
                 <outlet property="flipCameraButton" destination="o14-mt-FXt" id="Qij-9U-f1F"/>
                 <outlet property="overlayImageView" destination="Pf2-L0-hCK" id="9lD-Iy-H2j"/>
@@ -25,7 +26,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pf2-L0-hCK">
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pf2-L0-hCK">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V0j-I0-u8j" customClass="RecordButton" customModule="MovieWanderer" customModuleProvider="target">
@@ -46,6 +47,7 @@
                 </button>
                 <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="25U-KB-9Yd">
                     <rect key="frame" x="80" y="522" width="215" height="31"/>
+                    <color key="tintColor" red="0.92941176469999998" green="0.30196078430000001" blue="0.43137254899999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </slider>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o14-mt-FXt" userLabel="Swich Camera Button">
                     <rect key="frame" x="82" y="598.5" width="22" height="22"/>
@@ -54,6 +56,10 @@
                         <constraint firstAttribute="height" constant="22" id="k6W-xM-7oX"/>
                     </constraints>
                     <state key="normal" image="flipCamera"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcS-jy-Ae5">
+                    <rect key="frame" x="30" y="40" width="37" height="37"/>
+                    <state key="normal" image="close-icon"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,7 +72,9 @@
                 <constraint firstItem="5lk-gi-VAX" firstAttribute="trailing" secondItem="25U-KB-9Yd" secondAttribute="trailing" id="LmP-s4-9Mo"/>
                 <constraint firstItem="25U-KB-9Yd" firstAttribute="leading" secondItem="dP6-eB-r26" secondAttribute="leading" constant="82" id="RBs-IF-lO8"/>
                 <constraint firstItem="5lk-gi-VAX" firstAttribute="centerY" secondItem="V0j-I0-u8j" secondAttribute="centerY" id="YTd-NX-orW"/>
+                <constraint firstItem="PcS-jy-Ae5" firstAttribute="top" secondItem="dP6-eB-r26" secondAttribute="top" constant="20" id="b39-Mn-lc2"/>
                 <constraint firstItem="o14-mt-FXt" firstAttribute="centerY" secondItem="V0j-I0-u8j" secondAttribute="centerY" id="b8X-tc-f1d"/>
+                <constraint firstItem="PcS-jy-Ae5" firstAttribute="leading" secondItem="dP6-eB-r26" secondAttribute="leading" constant="30" id="fBv-rW-Nku"/>
                 <constraint firstItem="Pf2-L0-hCK" firstAttribute="leading" secondItem="O6L-Xn-uxa" secondAttribute="leading" id="iSd-Ky-TS9"/>
                 <constraint firstItem="25U-KB-9Yd" firstAttribute="centerX" secondItem="O6L-Xn-uxa" secondAttribute="centerX" id="jQ6-fr-Ros"/>
                 <constraint firstItem="Pf2-L0-hCK" firstAttribute="top" secondItem="O6L-Xn-uxa" secondAttribute="top" id="kXG-fW-Sl8"/>
@@ -77,6 +85,7 @@
         </view>
     </objects>
     <resources>
+        <image name="close-icon" width="37.5" height="37.5"/>
         <image name="flashOutline" width="18" height="30"/>
         <image name="flipCamera" width="30" height="23"/>
     </resources>

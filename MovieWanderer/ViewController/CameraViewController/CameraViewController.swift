@@ -8,34 +8,32 @@
 
 import UIKit
 
-class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate {
+class CameraViewController: SwiftyCamViewController {
     
     @IBOutlet weak var captureButton    : RecordButton!
     @IBOutlet weak var flipCameraButton : UIButton!
     @IBOutlet weak var flashButton      : UIButton!
     @IBOutlet weak var overlayImageView: UIImageView!
     @IBOutlet weak var alphaSlider: UISlider!
+    @IBOutlet weak var closeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        shouldPrompToAppSettings = true
-        cameraDelegate = self
-        maximumVideoDuration = 10.0
-        shouldUseDeviceOrientation = true
-        allowAutoRotate = true
-        audioEnabled = false
-        
-        // disable capture button until session starts
-        captureButton.buttonEnabled = false
+       
+        setupCamera()
         
         let backgroundImage = UIImage(named: "eat_pray")!
-        overlayImageView.image = backgroundImage
-        overlayImageView.alpha = 0.5
+        let rotatedPhoto = backgroundImage.fixedOrientation().imageRotatedByDegrees(degrees: 90.0)
         
-        //        alphaSlider.rx.
+        overlayImageView.image = rotatedPhoto
+        overlayImageView.alpha = 0.5
         
         alphaSlider.addTarget(self, action: #selector(changedValue(_:)), for: .valueChanged)
         
+        closeButton.rx.tapGesture()
+            .subscribe(onNext: { [weak self] _ in
+            self?.dismiss(animated: true, completion: nil)
+        })
         
     }
     
@@ -50,9 +48,20 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     
     @objc func changedValue(_ sender: UISlider) {
         let alphaValue = sender.value
-        print("value is" , alphaValue);
         overlayImageView.alpha = CGFloat(alphaValue)
     }
+    
+    @IBAction func cameraSwitchTapped(_ sender: Any) {
+        switchCamera()
+    }
+    
+    @IBAction func toggleFlashTapped(_ sender: Any) {
+        flashEnabled = !flashEnabled
+        toggleFlashAnimation()
+    }
+}
+
+extension CameraViewController : SwiftyCamViewControllerDelegate {
     
     func swiftyCamSessionDidStartRunning(_ swiftyCam: SwiftyCamViewController) {
         print("Session did start running")
@@ -67,27 +76,9 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
         let originalImage = UIImage(named: "eat_pray")!
-        let rotatedPhoto = photo //.fixedOrientation().imageRotatedByDegrees(degrees: 90.0)
+        let newVC = SplitPhotoViewController(originalImage: originalImage, newImage: photo)
         
-        //        let mergedImage = photo.getMixedImg(image1: originalImage, image2: rotatedPhoto)
-        //UIImage.imageByCombiningImage(firstImage: originalImage, withImage: rotatedPhoto)
-        
-        let newVC = SplitPhotoViewController(originalImage: originalImage, newImage: rotatedPhoto)
-        
-        //        let newVC = PhotoViewController(image: photo)
         self.present(newVC, animated: true, completion: nil)
-    }
-    
-    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
-        print("Did Begin Recording")
-        captureButton.growButton()
-        hideButtons()
-    }
-    
-    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
-        print("Did finish Recording")
-        captureButton.shrinkButton()
-        showButtons()
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
@@ -110,15 +101,6 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didSwitchCameras camera: SwiftyCamViewController.CameraSelection) {
         print("Camera did change to \(camera.rawValue)")
         print(camera)
-    }
-    
-    @IBAction func cameraSwitchTapped(_ sender: Any) {
-        switchCamera()
-    }
-    
-    @IBAction func toggleFlashTapped(_ sender: Any) {
-        flashEnabled = !flashEnabled
-        toggleFlashAnimation()
     }
 }
 
@@ -168,3 +150,16 @@ extension CameraViewController {
     }
 }
 
+private extension CameraViewController {
+    
+    private func setupCamera() {
+        shouldPrompToAppSettings = true
+        cameraDelegate = self
+        shouldUseDeviceOrientation = true // ????
+        allowAutoRotate = true  /// ???
+        audioEnabled = false
+        
+        // disable capture button until session starts
+        captureButton.buttonEnabled = false
+    }
+}
