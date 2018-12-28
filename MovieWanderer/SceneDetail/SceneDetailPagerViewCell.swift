@@ -130,7 +130,7 @@ private extension SceneDetailPagerViewCell {
         
         takePictureButton.setTitle("Take Photo", for: .normal)
         buttonsStackView.addArrangedSubview(takePictureButton)
-//        takePictureButton.isHidden = true
+        takePictureButton.isHidden = true
         
         containerView.addSubview(buttonsStackView)
     }
