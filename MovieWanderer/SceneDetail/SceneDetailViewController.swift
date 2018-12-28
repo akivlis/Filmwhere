@@ -10,10 +10,8 @@ import UIKit
 import RxSwift
 import FSPagerView
 
-final class SceneDetailViewController: UIViewController {
+final class SceneDetailViewController: BaseCloseViewController {
     
-    private let disposeBag = DisposeBag()
-    private let closeButton = UIButton(type: UIButton.ButtonType.system)
     private let pagerView = FSPagerView()
     private let blurredView = UIVisualEffectView()
     private let scenes: [Scene]
@@ -26,7 +24,7 @@ final class SceneDetailViewController: UIViewController {
         self.currentIndex = currentIndex
         self.titleLabel.text = title
         self.navigationModelController = navigationModelController
-        super.init(nibName: nil, bundle: nil)
+        super.init(dismissOnPullDown: true)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -35,6 +33,7 @@ final class SceneDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         commonInit()
     }
     
