@@ -90,17 +90,18 @@ extension UIImage {
         return UIImage(cgImage: cgImage)
     }
     
-    func getMixedImg(image1: UIImage, image2: UIImage) -> UIImage {
+    @objc static func image(of color: UIColor, ofSize size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
+        let pixelRect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(pixelRect.size)
         
-        let size = CGSize(width: image1.size.width, height: image1.size.height + image2.size.height)
+        guard let currentContext = UIGraphicsGetCurrentContext() else { return nil }
         
-        UIGraphicsBeginImageContext(size)
+        currentContext.setFillColor(color.cgColor)
+        currentContext.fill(pixelRect)
         
-        image1.draw(in: CGRect(x: 0, y: 0, width: size.width, height: image1.size.height))
-        image2.draw(in: CGRect(x:0, y: image1.size.height, width: size.width, height: image2.size.height))
-        var finalImage = UIGraphicsGetImageFromCurrentImageContext()
+        let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
         
-        return finalImage!
+        return image
     }
 }

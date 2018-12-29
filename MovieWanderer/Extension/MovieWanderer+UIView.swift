@@ -105,6 +105,18 @@ extension CALayer {
     }
 }
 
+extension UIView {
+    
+    // Using a function since `var image` might conflict with an existing variable
+    // (like on `UIImageView`)
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
+
 extension UILabel {
     func isTruncated() -> Bool {
         guard let labelText = text else {
@@ -120,28 +132,5 @@ extension UILabel {
             context: nil).size
 
         return labelTextSize.height > bounds.size.height
-    }
-}
-
-extension UIApplication {
-    var statusBarView: UIView? {
-        return value(forKey: "statusBar") as? UIView
-    }
-}
-
-extension UIImage {
-    @objc static func image(of color: UIColor, ofSize size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
-        let pixelRect = CGRect(x: 0.0, y: 0.0, width: size.width, height: size.height)
-        UIGraphicsBeginImageContext(pixelRect.size)
-        
-        guard let currentContext = UIGraphicsGetCurrentContext() else { return nil }
-        
-        currentContext.setFillColor(color.cgColor)
-        currentContext.fill(pixelRect)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image
     }
 }

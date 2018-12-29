@@ -83,18 +83,35 @@ private extension SplitPhotoViewController {
         squarePhotoButton.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] recognizer in
                 self?.changePhotoAspectRatio(to: .square)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
         
         normalPhotoButton.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] recognizer in
                 self?.changePhotoAspectRatio(to: .normal)
-            }).disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
+        
+        savePhotoButton.rx.tap.asObservable()
+            .subscribe(onNext: { [weak self] recognizer in
+                self?.showFinalImage()
+            })
+            .disposed(by: disposeBag)
     }
     
     private func changePhotoAspectRatio(to: PhotoAspectRatio) {
         photosContainer.snp.updateConstraints { make in
             make.height.equalTo(photosContainer.snp.width)//.multipliedBy(4.0/3.0).constraint
         }
+    }
+    
+    private func showFinalImage() {
+        let size = photosContainer.frame.size
+        let finalPicture =  photosContainer.asImage()
+        let photoVC = PictureViewController(pictures: [finalPicture])
+        
+        
+        present(photoVC, animated: true, completion: nil)
     }
 }
 
