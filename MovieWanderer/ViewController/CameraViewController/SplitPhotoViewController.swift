@@ -20,6 +20,7 @@ class SplitPhotoViewController: UIViewController {
     @IBOutlet weak var squarePhotoButton: UIButton!
         
     private let disposeBag = DisposeBag()
+    private var heightConstraint : Constraint?
     
     private let originalImage: UIImage
     private let newImage: UIImage
@@ -72,11 +73,9 @@ private extension SplitPhotoViewController {
     }
     
     private func setupConstraints() {
-        
         photosContainer.snp.makeConstraints { make in
-            make.height.equalTo(photosContainer.snp.width).multipliedBy(4.0/3.0)
+            heightConstraint = make.height.equalTo(photosContainer.snp.width).multipliedBy(4.0/3.0).constraint
         }
-       
     }
     
     private func setupObservables() {
@@ -99,17 +98,16 @@ private extension SplitPhotoViewController {
             .disposed(by: disposeBag)
     }
     
-    private func changePhotoAspectRatio(to: PhotoAspectRatio) {
-        photosContainer.snp.updateConstraints { make in
-            make.height.equalTo(photosContainer.snp.width)//.multipliedBy(4.0/3.0).constraint
+    private func changePhotoAspectRatio(to aspectRatio: PhotoAspectRatio) {
+        heightConstraint?.deactivate()
+        photosContainer.snp.makeConstraints { make in
+            heightConstraint = make.height.equalTo(photosContainer.snp.width).multipliedBy(aspectRatio.multiplier).constraint
         }
     }
     
     private func showFinalImage() {
-        let size = photosContainer.frame.size
         let finalPicture =  photosContainer.asImage()
         let photoVC = PictureViewController(pictures: [finalPicture])
-        
         
         present(photoVC, animated: true, completion: nil)
     }
@@ -118,4 +116,13 @@ private extension SplitPhotoViewController {
 fileprivate enum PhotoAspectRatio {
     
     case normal, square
+    
+    var multiplier: CGFloat {
+        switch self {
+        case .normal:
+            return 4.0/3.0
+        case .square:
+            return 1/1
+        }
+    }
 }
