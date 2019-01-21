@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import RxSwift
 
-
 class MovieHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Properties
@@ -44,8 +43,6 @@ class MovieHeaderView: UITableViewHeaderFooterView {
     
     private lazy var photoContainerView = UIView()
     
-    private var didSetConstraints = false
-    private var containerHeightLayoutConstraint: Constraint?
     private var imageViewHeightLayoutConstraint: Constraint?
     private var imageViewBottomLayoutConstraint: Constraint?
     

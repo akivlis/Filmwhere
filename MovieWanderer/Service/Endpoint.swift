@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Endpoint {
     
     static let apiBaseURL: URL = {

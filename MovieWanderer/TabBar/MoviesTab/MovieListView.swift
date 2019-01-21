@@ -72,7 +72,6 @@ extension MovieListView : UITableViewDataSource {
         }
         return cell
     }
-
 }
 
 // MARK: - UITableViewDelegate

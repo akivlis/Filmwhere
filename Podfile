@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target ‘MovieWanderer’ do
   use_frameworks!
@@ -17,7 +17,6 @@ target ‘MovieWanderer’ do
   target 'MovieWandererTests' do
     pod 'RxBlocking', '~> 4.0'
     pod 'RxTest',     '~> 4.0'
-
   end
 
 end

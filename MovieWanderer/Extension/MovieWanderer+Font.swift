@@ -69,9 +69,9 @@ extension UIFont {
     // MARK: Definition
     
     fileprivate static func customFont(withSize size: CGFloat, weight: FontWeight, isItalic: Bool = false) -> UIFont {
-        let italic = isItalic ? "It" : ""
-        let fontName = "FibraOne-\(weight.rawValue)\(italic)"
-        
+        let italic = isItalic ? "Italic" : ""
+        let fontName = "HelveticaNeue\(weight.rawValue)\(italic)"
+
         guard let font = UIFont(name: fontName, size: size) else {
             return UIFont.systemFont(ofSize: size, weight: weight.toSystemWeight())
         }

@@ -53,7 +53,8 @@ extension UICollectionView {
     
     public func register<T: Reuseable>(nibName: String, cell: T.Type) {
         register(UINib(nibName: nibName, bundle: nil), forCellWithReuseIdentifier: cell.reuseIdentifier)
-    }}
+    }
+}
 
 //extension MKAnnotationView {
 //    public func register<T: Reuseable>(_ annotationView: T.Type) {

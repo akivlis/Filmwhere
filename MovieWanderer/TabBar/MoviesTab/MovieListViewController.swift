@@ -61,6 +61,7 @@ private extension MovieListViewController {
         navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.barTintColor = UIColor.white
         
+        
         title = "Movies"
         view.addSubview(listView)
         listView.backgroundColor = .white
