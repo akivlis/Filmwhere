@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 public extension UIColor {
     
     public static let lightGray = UIColor.color(fromHexString: "#EDEDED")
@@ -20,20 +19,18 @@ public extension UIColor {
 
     public static let lightOrange = UIColor.color(fromHexString: "#DEB986")
 
-    public static let lightPink = UIColor.color(fromHexString: "#DB6C79")
+    public static let lightPink = UIColor.color(fromHexString: "#EC6881")
+    
+    public static let brightPink = UIColor.color(fromHexString: "#EA4059")
 
-    public static let brightPink = UIColor.color(fromHexString: "#ED4D6E")
+    public static let veryBrightPink = UIColor.color(fromHexString: "#FF1C4D")
     
     public static let see = UIColor.color(fromHexString: "#D3EBED")
     
     public static let rhinoBlack = UIColor.color(fromHexString: "#282E36")
-    
 }
 
-
 public extension UIColor {
-    
-    
     
     public static func color(fromHexString: String, alpha:CGFloat? = 1.0) -> UIColor {
         // Convert hex string to an integer
