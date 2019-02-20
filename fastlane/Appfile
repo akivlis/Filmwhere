@@ -1,4 +1,4 @@
-app_identifier("silvi.MovieWanderer") # The bundle identifier of your app
+app_identifier("com.filmwhere.movieWanderer") # The bundle identifier of your app
 apple_id("silvia.kuzmova21@gmail.com") # Your Apple email address
 
 itc_team_id("119490029") # App Store Connect Team ID
