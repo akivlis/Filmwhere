@@ -58,8 +58,9 @@ class MovieTableViewCell: UITableViewCell {
 private extension MovieTableViewCell {
     
     private func setupViews() {
-        movieImageView.image = nil
         roundView.layer.cornerRadius = 4.0
+        
+        movieImageView.image = nil
         movieImageView.kf.indicatorType = .activity
         
         titleLabel.font = UIFont.bold(textStyle: .title2)

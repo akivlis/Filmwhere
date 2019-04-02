@@ -51,7 +51,6 @@ class ExpandableDescriptionTableViewCell: UITableViewCell {
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-//        label.sizeToFit()
         label.font = UIFont.light(textStyle: .subheadline)
         label.textColor = .gray
         label.contentMode = .top
