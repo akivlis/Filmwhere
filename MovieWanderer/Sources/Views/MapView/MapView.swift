@@ -183,9 +183,12 @@ private extension MapView {
         locationManager.requestAlwaysAuthorization()
         
         if CLLocationManager.locationServicesEnabled() {
-            //locationManager.startUpdatingHeading()
+//            locationManager.startUpdatingHeading()
             locationManager.startUpdatingLocation()
         }
+        
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .followWithHeading
     }
     
     private func configureTileOverlayWith(jsonFileName: String) {
