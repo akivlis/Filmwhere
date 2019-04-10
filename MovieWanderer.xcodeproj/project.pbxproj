@@ -25,8 +25,8 @@
 		3D2289112028FE010074D173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289102028FE010074D173 /* Assets.xcassets */; };
 		3D2289142028FE010074D173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289122028FE010074D173 /* LaunchScreen.storyboard */; };
 		3D22891F2028FE010074D173 /* MovieWandererTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22891E2028FE010074D173 /* MovieWandererTests.swift */; };
-		3D22892C2028FF080074D173 /* LocalizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892B2028FF080074D173 /* LocalizationViewController.swift */; };
-		3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892E2029006B0074D173 /* LocalizationViewModel.swift */; };
+		3D22892C2028FF080074D173 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892B2028FF080074D173 /* LocationViewController.swift */; };
+		3D22892F2029006B0074D173 /* LocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D22892E2029006B0074D173 /* LocationViewModel.swift */; };
 		3D26DDEA2135F510002704B9 /* MapAndScenesCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D26DDE92135F510002704B9 /* MapAndScenesCarouselView.swift */; };
 		3D2A9FBD21B4E340001C0322 /* BaseCloseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2A9FBC21B4E340001C0322 /* BaseCloseViewController.swift */; };
 		3D3E69A9206C15A800891580 /* MoviewHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3E69A8206C15A800891580 /* MoviewHeaderViewModel.swift */; };
@@ -118,8 +118,8 @@
 		3D22891A2028FE010074D173 /* MovieWandererTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MovieWandererTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D22891E2028FE010074D173 /* MovieWandererTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWandererTests.swift; sourceTree = "<group>"; };
 		3D2289202028FE010074D173 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3D22892B2028FF080074D173 /* LocalizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewController.swift; sourceTree = "<group>"; };
-		3D22892E2029006B0074D173 /* LocalizationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationViewModel.swift; sourceTree = "<group>"; };
+		3D22892B2028FF080074D173 /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		3D22892E2029006B0074D173 /* LocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewModel.swift; sourceTree = "<group>"; };
 		3D26DDE92135F510002704B9 /* MapAndScenesCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAndScenesCarouselView.swift; sourceTree = "<group>"; };
 		3D2A9FBC21B4E340001C0322 /* BaseCloseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCloseViewController.swift; sourceTree = "<group>"; };
 		3D3E69A8206C15A800891580 /* MoviewHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviewHeaderViewModel.swift; sourceTree = "<group>"; };
@@ -256,8 +256,8 @@
 		3D2289292028FEA20074D173 /* LocalizationTab */ = {
 			isa = PBXGroup;
 			children = (
-				3D22892B2028FF080074D173 /* LocalizationViewController.swift */,
-				3D22892E2029006B0074D173 /* LocalizationViewModel.swift */,
+				3D22892B2028FF080074D173 /* LocationViewController.swift */,
+				3D22892E2029006B0074D173 /* LocationViewModel.swift */,
 				3D22892A2028FEC60074D173 /* MovieScenes */,
 			);
 			path = LocalizationTab;
@@ -776,7 +776,7 @@
 				3D5176DB21B40B21009F4E24 /* PictureViewController.swift in Sources */,
 				3D5176D821AD593F009F4E24 /* MoviesModelController.swift in Sources */,
 				3D44B2C5205C46940086D867 /* Movie.swift in Sources */,
-				3D22892F2029006B0074D173 /* LocalizationViewModel.swift in Sources */,
+				3D22892F2029006B0074D173 /* LocationViewModel.swift in Sources */,
 				3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */,
 				3D2289082028FE010074D173 /* AppDelegate.swift in Sources */,
 				3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */,
@@ -822,7 +822,7 @@
 				3DF4E52821CF29270092F47A /* SwiftyCamViewControllerDelegate.swift in Sources */,
 				3D3E69A9206C15A800891580 /* MoviewHeaderViewModel.swift in Sources */,
 				3D3F8804205EBB1700EE3835 /* MapView.swift in Sources */,
-				3D22892C2028FF080074D173 /* LocalizationViewController.swift in Sources */,
+				3D22892C2028FF080074D173 /* LocationViewController.swift in Sources */,
 				3D0F6FD621888CBA001712A9 /* CustomTransition.swift in Sources */,
 				3D3F87FD205D8E1A00EE3835 /* MovieHeaderView.swift in Sources */,
 				3D1698522193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift in Sources */,

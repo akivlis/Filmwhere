@@ -44,6 +44,7 @@ private extension MapViewController {
         mapAndScenesView = MapAndScenesCarouselView(scenes: scenes, title: movieTitle)
         view.addSubview(mapAndScenesView)
         view.addTopGradient()
+        
     }
     
     private func setupConstraints() {

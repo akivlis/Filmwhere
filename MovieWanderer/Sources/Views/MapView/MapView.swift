@@ -142,7 +142,7 @@ extension MapView: CLLocationManagerDelegate {
 private extension MapView {
     
     private func commonInit() {
-        setupMapView()
+        setupViews()
         registerAnnotationViewClasses()
 //        setupStyleWith(jsonFileName: "ultra-light-style")
         showAnnotationsAndZoom()
@@ -150,7 +150,7 @@ private extension MapView {
         
     }
     
-    private func setupMapView() {
+    private func setupViews() {
         addSubview(mapView)
         mapView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -188,7 +188,6 @@ private extension MapView {
         }
         
         mapView.showsUserLocation = true
-        mapView.userTrackingMode = .followWithHeading
     }
     
     private func configureTileOverlayWith(jsonFileName: String) {

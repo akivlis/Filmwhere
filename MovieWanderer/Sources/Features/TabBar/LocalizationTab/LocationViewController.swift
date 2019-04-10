@@ -1,5 +1,5 @@
 //
-//  SceneListViewController.swift
+//  LocationViewController.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 05/02/2018.
@@ -12,7 +12,7 @@ import RxCocoa
 import SnapKit
 
 
-class LocalizationViewController: UIViewController {
+class LocationViewController: UIViewController {
     
     let disposeBag = DisposeBag()
     let mapView: MapAndScenesCarouselView
@@ -53,7 +53,7 @@ class LocalizationViewController: UIViewController {
     }
 }
 
-private extension LocalizationViewController {
+private extension LocationViewController {
     
     private func render() {
         mapView.update(scenes: moviesModelController.allScenes)

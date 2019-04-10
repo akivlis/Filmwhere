@@ -1,5 +1,5 @@
 //
-//  MovieScenesViewModel.swift
+//  LocationViewModel.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 05/02/2018.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct LocalizationViewModel {
+struct LocationViewModel {
     
     let scenes: [Scene]
     let movies: [Movie]
