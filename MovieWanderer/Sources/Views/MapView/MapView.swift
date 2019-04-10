@@ -130,6 +130,15 @@ extension MapView: MKMapViewDelegate {
     }
 }
 
+// MARK: - CLLocationManagerDelegate
+
+extension MapView: CLLocationManagerDelegate {
+    
+}
+
+
+// MARK: - Private
+
 private extension MapView {
     
     private func commonInit() {
@@ -137,6 +146,8 @@ private extension MapView {
         registerAnnotationViewClasses()
 //        setupStyleWith(jsonFileName: "ultra-light-style")
         showAnnotationsAndZoom()
+        determineCurrentLocation()
+        
     }
     
     private func setupMapView() {
@@ -166,6 +177,17 @@ private extension MapView {
         mapView.removeAnnotations(viewModel.annotations)
     }
     
+    private func determineCurrentLocation() {
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            //locationManager.startUpdatingHeading()
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
     private func configureTileOverlayWith(jsonFileName: String) {
         guard let overlayFileURLString = Bundle.main.path(forResource: jsonFileName, ofType: "json") else {
             return
@@ -179,5 +201,7 @@ private extension MapView {
     
     
 }
+
+
 
 

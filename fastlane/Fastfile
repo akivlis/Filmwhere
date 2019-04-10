@@ -28,7 +28,7 @@ platform :ios do
 lane :release do
   build_app(workspace: "MovieWanderer.xcworkspace", 
     		scheme: "MovieWanderer")
-  increment_build_number
+  # increment_build_number
   upload_to_app_store(force: true, skip_metadata: true, skip_screenshots: true)
 
 end
