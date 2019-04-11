@@ -64,12 +64,7 @@ class MovieHeaderView: UITableViewHeaderFooterView {
     }
     
     func bindViewModel(_ viewModel: MovieHeaderViewModel) {
-        moviePhoto.kf.setImage(with: viewModel.imageUrl) {
-            image, error, cacheType, imageURL in
-            if error != nil {
-                self.moviePhoto.image =  viewModel.placeholderImage
-            }
-        }
+        moviePhoto.kf.setImage(with: viewModel.imageUrl)
         titleLabel.text = viewModel.title
     }
     

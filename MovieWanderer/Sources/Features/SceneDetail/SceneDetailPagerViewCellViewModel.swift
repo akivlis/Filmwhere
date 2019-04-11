@@ -19,11 +19,7 @@ struct SceneDetailPagerViewCellViewModel {
     var imageUrl: URL {
         return URL(string: scene.imageURL)!
     }
-    
-    var placeholderImage: UIImage {
-        return UIImage(named: "placeholder")!
-    }
-    
+
     var location: String {
         return "\(scene.locationName), \(scene.country)"
     }

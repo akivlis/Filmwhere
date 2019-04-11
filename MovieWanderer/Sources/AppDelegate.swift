@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController) {
-            if (rootViewController.responds(to: Selector(("canRotate")))) {
+            if (rootViewController.responds(to: #selector(PictureViewController.canRotate))) {
                 // Unlock landscape view orientations for this view controller
                 return .allButUpsideDown;
             }

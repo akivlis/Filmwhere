@@ -44,13 +44,7 @@ class MovieTableViewCell: UITableViewCell {
         titleLabel.text = viewModel.title
         subtitleLabel.text = viewModel.subtitle
         numberButton.setTitle(viewModel.numberOfScenes, for: .normal)        
-        
-        movieImageView.kf.setImage(with: viewModel.imageUrl) {
-            image, error, cacheType, imageURL in
-            if error != nil {
-                self.movieImageView.image =  viewModel.placeholderImage
-            }
-        }
+        movieImageView.kf.setImage(with: viewModel.imageUrl)
         hideSkeleton()
     }
 }
@@ -60,6 +54,7 @@ private extension MovieTableViewCell {
     private func setupViews() {
         roundView.layer.cornerRadius = 4.0
         
+        movieImageView.backgroundColor = .gray
         movieImageView.image = nil
         movieImageView.kf.indicatorType = .activity
         

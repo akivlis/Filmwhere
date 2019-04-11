@@ -19,11 +19,7 @@ struct MovieCellViewModel {
     var imageUrl: URL {
         return URL(string: movie.imageUrl)!
     }
-    
-    var placeholderImage: UIImage {
-        return UIImage(named: "placeholder")!
-    }
-    
+
     var title: String {
         return movie.title
     }
