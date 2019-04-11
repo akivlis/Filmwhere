@@ -54,7 +54,7 @@ private extension MovieTableViewCell {
     private func setupViews() {
         roundView.layer.cornerRadius = 4.0
         
-        movieImageView.backgroundColor = .gray
+        movieImageView.backgroundColor = .lightGray
         movieImageView.image = nil
         movieImageView.kf.indicatorType = .activity
         

@@ -44,11 +44,11 @@ final class SceneCarouselView: UIView {
         return collectionView
     }()
     
-    init(scenes: [Scene], title: String) {
+    init(scenes: [Scene]) {
         super.init(frame: .zero)
         
         self.scenes = scenes
-        movieTitleLabel.text = title
+        movieTitleLabel.text = scenes.first?.movieTitle
         commonInit()
     }
     
@@ -57,9 +57,9 @@ final class SceneCarouselView: UIView {
         commonInit()
     }
     
-    func setScenes(scenes: [Scene], title: String) {
+    func setScenes(scenes: [Scene]) {
         self.scenes = scenes
-        movieTitleLabel.text = title
+        movieTitleLabel.text = scenes.first?.movieTitle
         scenesCollectionView.reloadData()
     }
     
@@ -67,6 +67,8 @@ final class SceneCarouselView: UIView {
         let x = index * (Int(cellWidth) + Int(lineSpacing)) //TODO: change
             let point =  CGPoint(x: CGFloat(x) ,y: scenesCollectionView.contentOffset.y)
             scenesCollectionView.setContentOffset(point, animated: animated)
+        
+        movieTitleLabel.text = scenes[index].movieTitle
     }
 }
 
@@ -94,6 +96,7 @@ extension SceneCarouselView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard scenes.count > 0 else { return }
         _selectSceneCell$.onNext(indexPath.row)
+        movieTitleLabel.text = scenes[indexPath.row].movieTitle
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
@@ -103,6 +106,7 @@ extension SceneCarouselView: UICollectionViewDelegate {
         guard scenes.count > 0 else { return }
         let selectedScene = scenes[roundedIndex]
         _scrolledToScene$.onNext(selectedScene)
+        movieTitleLabel.text = selectedScene.movieTitle
     }
 }
 

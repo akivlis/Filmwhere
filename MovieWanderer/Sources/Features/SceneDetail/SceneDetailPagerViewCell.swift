@@ -61,6 +61,7 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
         sceneTitleLabel.text = viewModel.scene.title
         descriptionLabel.text = viewModel.description
         addressLabel.setTitle(viewModel.location, icon: UIImage(named: "location_icon_small")!)
+        sceneImageView.kf.setImage(with: viewModel.imageUrl)
     }
     
     override func prepareForReuse() {
@@ -86,7 +87,7 @@ private extension SceneDetailPagerViewCell {
         
         sceneImageView.contentMode = .scaleAspectFill
         sceneImageView.clipsToBounds = true
-        sceneImageView.backgroundColor = .gray
+        sceneImageView.backgroundColor = .lightGray
         sceneImageView.kf.indicatorType = .activity
         containerView.addSubview(sceneImageView)
         

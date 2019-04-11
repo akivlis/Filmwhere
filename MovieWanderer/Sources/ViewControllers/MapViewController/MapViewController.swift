@@ -41,7 +41,7 @@ final class MapViewController: BaseCloseViewController {
 private extension MapViewController {
     
     private func setupViews(){
-        mapAndScenesView = MapAndScenesCarouselView(scenes: scenes, title: movieTitle)
+        mapAndScenesView = MapAndScenesCarouselView(scenes: scenes)
         view.addSubview(mapAndScenesView)
         view.addTopGradient()
         

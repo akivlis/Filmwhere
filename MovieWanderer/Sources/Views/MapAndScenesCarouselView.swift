@@ -37,11 +37,11 @@ final class MapAndScenesCarouselView: UIView {
     private let sceneViewHeigh: CGFloat = 200 // TODO: how to calculate this
     private let tapOnMap = UITapGestureRecognizer()
     
-    init(scenes: [Scene], title: String) {
+    init(scenes: [Scene]) {
         self.scenes = scenes
         self.mapView = MapView(viewModel: MapViewViewModel(scenes: scenes),
                                navigationModelController: MapNavigationModelController())
-        scenesCarousel = SceneCarouselView(scenes: scenes, title: title)
+        scenesCarousel = SceneCarouselView(scenes: scenes)
         presentMapsActionSheet$ = mapView.presentMapsActionSheet$
         super.init(frame: .zero)
         commonInit()
@@ -56,13 +56,13 @@ final class MapAndScenesCarouselView: UIView {
     func update(scenes: [Scene]) {
         self.scenes = scenes
         mapView.viewModel = MapViewViewModel(scenes: scenes)
-        scenesCarousel.setScenes(scenes: scenes, title: "All")
+        scenesCarousel.setScenes(scenes: scenes)
     }
     
     func update(movie: Movie) {
         self.scenes = movie.scenes
         mapView.viewModel = MapViewViewModel(scenes: movie.scenes)
-        scenesCarousel.setScenes(scenes: movie.scenes, title: movie.title)
+        scenesCarousel.setScenes(scenes: movie.scenes)
     }
 }
 

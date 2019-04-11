@@ -20,7 +20,7 @@ class LocationViewController: UIViewController {
     
     init(moviesModelController: MoviesModelController) {
         self.moviesModelController = moviesModelController
-        self.mapView = MapAndScenesCarouselView(scenes: moviesModelController.allScenes, title: "All")
+        self.mapView = MapAndScenesCarouselView(scenes: moviesModelController.allScenes)
         super.init(nibName: nil, bundle: nil)
         
         moviesModelController.moviesUpdated$
