@@ -1,22 +1,21 @@
 platform :ios, '11.0'
 
-target ‘MovieWanderer’ do
-  use_frameworks!
-
-    pod 'RxSwift',    '~> 4.0'
-    pod 'RxCocoa',    '~> 4.0'
-    pod 'SnapKit', '~> 4.0.0'
-    pod 'MapKitGoogleStyler'
-    pod 'Moya/RxSwift', '~> 11.0.2'
-    pod 'Alamofire', '~> 4.7.3' #used by moya
+target ‘Filmwhere’ do
+    use_frameworks!
+    
+    pod 'RxSwift', '~> 4.5'
+    pod 'RxCocoa' ,'~> 4.5'
+    pod 'SnapKit' ,'~> 4.0'
+    pod 'Moya/RxSwift','~> 13.0.0'
+    pod 'Alamofire', '~> 4.8' #used by moya
     pod 'FSPagerView'
-    pod 'Kingfisher', '~> 4.0'
+    pod 'Kingfisher', '~> 5.0'
     pod 'SkeletonView'
-    pod 'RxGesture'
-
-  target 'MovieWandererTests' do
-    pod 'RxBlocking', '~> 4.0'
-    pod 'RxTest',     '~> 4.0'
-  end
-
+    pod 'RxGesture', '~> 1.2'
+    
+    target 'MovieWandererTests' do
+        pod 'RxBlocking', '~> 4.0'
+        pod 'RxTest',     '~> 4.0'
+    end
+    
 end

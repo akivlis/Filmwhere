@@ -10,7 +10,6 @@
 import UIKit
 import MapKit
 import RxSwift
-import MapKitGoogleStyler
 
 class MapView: UIView {
   
@@ -68,10 +67,6 @@ class MapView: UIView {
             
             //TODO: implement custom highligting, do nt call select cause the observable emits
         }
-    }
-    
-    func setupStyleWith(jsonFileName: String) {
-        configureTileOverlayWith(jsonFileName: jsonFileName)
     }
 }
 
@@ -144,7 +139,6 @@ private extension MapView {
     private func commonInit() {
         setupViews()
         registerAnnotationViewClasses()
-//        setupStyleWith(jsonFileName: "ultra-light-style")
         showAnnotationsAndZoom()
         determineCurrentLocation()
         
@@ -188,17 +182,6 @@ private extension MapView {
         }
         
         mapView.showsUserLocation = true
-    }
-    
-    private func configureTileOverlayWith(jsonFileName: String) {
-        guard let overlayFileURLString = Bundle.main.path(forResource: jsonFileName, ofType: "json") else {
-            return
-        }
-        let overlayFileURL = URL(fileURLWithPath: overlayFileURLString)
-        guard let tileOverlay = try? MapKitGoogleStyler.buildOverlay(with: overlayFileURL) else {
-            return
-        }
-        mapView.addOverlay(tileOverlay)
     }
     
     

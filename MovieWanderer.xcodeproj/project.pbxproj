@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		095DED9ED1BE23F2F058F944 /* Pods_Filmwhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0D387F61FF46E29071D4F6 /* Pods_Filmwhere.framework */; };
+		1E820B9CA6CD782BE84A5BA1 /* Pods_Filmwhere_MovieWandererTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B359ED00A63C2567DD6593 /* Pods_Filmwhere_MovieWandererTests.framework */; };
 		214D73042105147F00F16983 /* SceneCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D73032105147F00F16983 /* SceneCarouselView.swift */; };
-		27CD6806A5D991424DC5BD5D /* Pods_MovieWanderer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E34055683A2757EBA9C5358 /* Pods_MovieWanderer.framework */; };
 		3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D05230E202906BC00A90A61 /* ScenesViewModel.swift */; };
 		3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */; };
 		3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523132029072300A90A61 /* SceneCellViewModel.swift */; };
@@ -96,7 +97,9 @@
 /* Begin PBXFileReference section */
 		09B4F15D97AA2C0205557CEA /* Pods-MovieWandererTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWandererTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWandererTests/Pods-MovieWandererTests.debug.xcconfig"; sourceTree = "<group>"; };
 		214D73032105147F00F16983 /* SceneCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCarouselView.swift; sourceTree = "<group>"; };
+		21A98895135AFABB829229AB /* Pods-Filmwhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmwhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Filmwhere/Pods-Filmwhere.release.xcconfig"; sourceTree = "<group>"; };
 		2C6C7BAC8429FADADDBAA7A8 /* Pods-MovieWanderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer.release.xcconfig"; sourceTree = "<group>"; };
+		3860A9C5DBCEDA29F5515693 /* Pods-Filmwhere-MovieWandererTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmwhere-MovieWandererTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filmwhere-MovieWandererTests/Pods-Filmwhere-MovieWandererTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3D05230E202906BC00A90A61 /* ScenesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewModel.swift; sourceTree = "<group>"; };
 		3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCollectionViewCell.swift; sourceTree = "<group>"; };
 		3D0523132029072300A90A61 /* SceneCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCellViewModel.swift; sourceTree = "<group>"; };
@@ -174,10 +177,14 @@
 		3DF4E53121CF2E460092F47A /* CameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
 		549F5945F2D00594116BF4CB /* Pods-MovieWanderer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer.debug.xcconfig"; sourceTree = "<group>"; };
 		79664667ABF1B8721D6BB3E2 /* Pods_MovieWanderer_MovieWandererTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieWanderer_MovieWandererTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		81BC0DBCCF5C2989B70EE6B5 /* Pods-Filmwhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmwhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filmwhere/Pods-Filmwhere.debug.xcconfig"; sourceTree = "<group>"; };
 		94EC0055371C4CDD884DD6B6 /* Pods-MovieWanderer-MovieWandererTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer-MovieWandererTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer-MovieWandererTests/Pods-MovieWanderer-MovieWandererTests.release.xcconfig"; sourceTree = "<group>"; };
 		9E34055683A2757EBA9C5358 /* Pods_MovieWanderer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieWanderer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB89FDE7B3A2EECED5E5592A /* Pods-Filmwhere-MovieWandererTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmwhere-MovieWandererTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Filmwhere-MovieWandererTests/Pods-Filmwhere-MovieWandererTests.release.xcconfig"; sourceTree = "<group>"; };
+		BC0D387F61FF46E29071D4F6 /* Pods_Filmwhere.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filmwhere.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4465A314D6709ECD98B3DCB /* Pods-MovieWanderer-MovieWandererTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer-MovieWandererTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer-MovieWandererTests/Pods-MovieWanderer-MovieWandererTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ECEA672BF83C17E2FFE9B489 /* Pods_MovieWandererTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieWandererTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1B359ED00A63C2567DD6593 /* Pods_Filmwhere_MovieWandererTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filmwhere_MovieWandererTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEC74F2247E107DACA0A02F2 /* Pods-MovieWandererTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWandererTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWandererTests/Pods-MovieWandererTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -186,7 +193,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				27CD6806A5D991424DC5BD5D /* Pods_MovieWanderer.framework in Frameworks */,
+				095DED9ED1BE23F2F058F944 /* Pods_Filmwhere.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +203,7 @@
 			files = (
 				B34021DCA5311F624324DAFF /* Pods_MovieWandererTests.framework in Frameworks */,
 				FF24765068D3C2E384990F18 /* Pods_MovieWanderer_MovieWandererTests.framework in Frameworks */,
+				1E820B9CA6CD782BE84A5BA1 /* Pods_Filmwhere_MovieWandererTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +532,8 @@
 				9E34055683A2757EBA9C5358 /* Pods_MovieWanderer.framework */,
 				ECEA672BF83C17E2FFE9B489 /* Pods_MovieWandererTests.framework */,
 				79664667ABF1B8721D6BB3E2 /* Pods_MovieWanderer_MovieWandererTests.framework */,
+				BC0D387F61FF46E29071D4F6 /* Pods_Filmwhere.framework */,
+				F1B359ED00A63C2567DD6593 /* Pods_Filmwhere_MovieWandererTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -537,6 +547,10 @@
 				FEC74F2247E107DACA0A02F2 /* Pods-MovieWandererTests.release.xcconfig */,
 				D4465A314D6709ECD98B3DCB /* Pods-MovieWanderer-MovieWandererTests.debug.xcconfig */,
 				94EC0055371C4CDD884DD6B6 /* Pods-MovieWanderer-MovieWandererTests.release.xcconfig */,
+				81BC0DBCCF5C2989B70EE6B5 /* Pods-Filmwhere.debug.xcconfig */,
+				21A98895135AFABB829229AB /* Pods-Filmwhere.release.xcconfig */,
+				3860A9C5DBCEDA29F5515693 /* Pods-Filmwhere-MovieWandererTests.debug.xcconfig */,
+				BB89FDE7B3A2EECED5E5592A /* Pods-Filmwhere-MovieWandererTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -660,7 +674,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MovieWanderer-MovieWandererTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Filmwhere-MovieWandererTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -673,11 +687,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Filmwhere/Pods-Filmwhere-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -691,7 +704,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -702,7 +714,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Filmwhere/Pods-Filmwhere-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6691AACA6E0D26D98454BE7C /* [CP] Check Pods Manifest.lock */ = {
@@ -716,7 +728,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-MovieWanderer-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Filmwhere-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -729,11 +741,10 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer-MovieWandererTests/Pods-MovieWanderer-MovieWandererTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Filmwhere-MovieWandererTests/Pods-Filmwhere-MovieWandererTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MapKitGoogleStyler/MapKitGoogleStyler.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
@@ -749,7 +760,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MapKitGoogleStyler.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
@@ -762,7 +772,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MovieWanderer-MovieWandererTests/Pods-MovieWanderer-MovieWandererTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Filmwhere-MovieWandererTests/Pods-Filmwhere-MovieWandererTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -982,7 +992,7 @@
 		};
 		3D2289242028FE010074D173 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 549F5945F2D00594116BF4CB /* Pods-MovieWanderer.debug.xcconfig */;
+			baseConfigurationReference = 81BC0DBCCF5C2989B70EE6B5 /* Pods-Filmwhere.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -992,7 +1002,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filmwhere.movieWanderer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = filmwhereDevelopmentProfile;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1000,7 +1010,7 @@
 		};
 		3D2289252028FE010074D173 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C6C7BAC8429FADADDBAA7A8 /* Pods-MovieWanderer.release.xcconfig */;
+			baseConfigurationReference = 21A98895135AFABB829229AB /* Pods-Filmwhere.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
@@ -1011,7 +1021,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.filmwhere.movieWanderer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = filmwhereDistributionProfile;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1019,7 +1029,7 @@
 		};
 		3D2289272028FE010074D173 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4465A314D6709ECD98B3DCB /* Pods-MovieWanderer-MovieWandererTests.debug.xcconfig */;
+			baseConfigurationReference = 3860A9C5DBCEDA29F5515693 /* Pods-Filmwhere-MovieWandererTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1028,7 +1038,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = silvi.MovieWandererTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieWanderer.app/MovieWanderer";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1037,7 +1047,7 @@
 		};
 		3D2289282028FE010074D173 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 94EC0055371C4CDD884DD6B6 /* Pods-MovieWanderer-MovieWandererTests.release.xcconfig */;
+			baseConfigurationReference = BB89FDE7B3A2EECED5E5592A /* Pods-Filmwhere-MovieWandererTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1046,7 +1056,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = silvi.MovieWandererTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MovieWanderer.app/MovieWanderer";
 				VERSIONING_SYSTEM = "apple-generic";
