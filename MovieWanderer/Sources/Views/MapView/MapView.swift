@@ -73,6 +73,21 @@ class MapView: UIView {
 // MARK: MKMapViewDelegate
 
 extension MapView: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+
+        guard !annotation.isKind(of: MKUserLocation.self) else {
+            return nil
+        }
+        
+        if let annotation = annotation as? SceneAnnotation {
+//            annotation.
+            return mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation)
+        }
+        
+        return nil
+
+    }
+    
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if let annotation = view.annotation as? SceneAnnotation {
@@ -141,7 +156,6 @@ private extension MapView {
         registerAnnotationViewClasses()
         showAnnotationsAndZoom()
         determineCurrentLocation()
-        
     }
     
     private func setupViews() {

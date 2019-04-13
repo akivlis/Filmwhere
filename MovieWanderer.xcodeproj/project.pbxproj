@@ -360,9 +360,8 @@
 		3D574937214E8A810050E658 /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				3DF6F0E422621352002BBC0D /* Annotation */,
 				3D3F8803205EBB1700EE3835 /* MapView.swift */,
-				3D574938214E8AA80050E658 /* SceneAnnotationView.swift */,
-				3D57493A214E8AB60050E658 /* ClusterAnnotationView.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -524,6 +523,15 @@
 				3DF4E53121CF2E460092F47A /* CameraViewController.xib */,
 			);
 			path = CameraViewController;
+			sourceTree = "<group>";
+		};
+		3DF6F0E422621352002BBC0D /* Annotation */ = {
+			isa = PBXGroup;
+			children = (
+				3D57493A214E8AB60050E658 /* ClusterAnnotationView.swift */,
+				3D574938214E8AA80050E658 /* SceneAnnotationView.swift */,
+			);
+			path = Annotation;
 			sourceTree = "<group>";
 		};
 		91D492FA57897B7F2F849727 /* Frameworks */ = {

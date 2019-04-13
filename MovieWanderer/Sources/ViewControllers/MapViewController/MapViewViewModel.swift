@@ -13,6 +13,8 @@ class SceneAnnotation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var imageName: String? = "GoT"
+
     
     init(scene: Scene) {
         coordinate = CLLocationCoordinate2D(latitude: scene.location.latitude,

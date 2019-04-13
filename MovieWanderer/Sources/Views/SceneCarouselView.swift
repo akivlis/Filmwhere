@@ -100,8 +100,11 @@ extension SceneCarouselView: UICollectionViewDelegate {
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        
         let index = scrollView.contentOffset.x / (cellWidth + lineSpacing)
         let roundedIndex: Int = Int(abs(index.rounded()))
+        
+        print("index: \(roundedIndex)")
         
         guard scenes.count > 0 else { return }
         let selectedScene = scenes[roundedIndex]
