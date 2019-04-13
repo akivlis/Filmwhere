@@ -11,7 +11,7 @@ import Foundation
 struct Endpoint {
     
     static let apiBaseURL: URL = {
-        let urlString = "http://ec2-18-196-244-225.eu-central-1.compute.amazonaws.com:8080/api"
+        let urlString = "http://ec2-54-93-251-176.eu-central-1.compute.amazonaws.com:8080/api"
         return URL(string: String(format: "%@/%@", urlString, apiVersion))!
     }()
     
