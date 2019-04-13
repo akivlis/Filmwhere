@@ -20,14 +20,14 @@ platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
     build_app(workspace: "MovieWanderer.xcworkspace", 
-    			scheme: "MovieWanderer")
+    			scheme: "Filmwhere")
     upload_to_testflight
   end
 
 
 lane :release do
   build_app(workspace: "MovieWanderer.xcworkspace", 
-    		scheme: "MovieWanderer")
+    		scheme: "Filmwhere")
   # increment_build_number
   upload_to_app_store(force: true, skip_metadata: true, skip_screenshots: true)
 
