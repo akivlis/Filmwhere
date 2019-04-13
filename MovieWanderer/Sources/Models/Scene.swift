@@ -18,6 +18,7 @@ struct Scene {
     let imageURL: String
     let country : String
     var movieTitle: String?
+    var movieURL: URL?
     
     init(id: String,
          title: String,

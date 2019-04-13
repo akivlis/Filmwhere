@@ -80,8 +80,9 @@ extension MapView: MKMapViewDelegate {
         }
         
         if let annotation = annotation as? SceneAnnotation {
-//            annotation.
-            return mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation)
+            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation)
+//            annotationView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            return annotationView
         }
         
         return nil

@@ -14,14 +14,14 @@ struct Movie {
     let title: String
     let description: String
     let scenes: [Scene]
-    let imageUrl: String
+    let imageURL: URL?
     
-    init(id: String = "", title: String, description: String, scenes: [Scene], imageUrl: String) {
+    init(id: String = "", title: String, description: String, scenes: [Scene], imageURL: URL?) {
         self.id = id
         self.title = title
         self.description = description
         self.scenes = scenes
-        self.imageUrl = imageUrl
+        self.imageURL = imageURL
     }
 }
 
@@ -40,13 +40,15 @@ extension Movie: Decodable {
         let id: String = try container.decode(String.self, forKey: .id)
         let title: String = try container.decode(String.self, forKey: .title)
         let description: String = try container.decode(String.self, forKey: .description)
-        let imageUrl: String = try container.decode(String.self, forKey: .imageUrl)
+        let imageUrlString: String = try container.decode(String.self, forKey: .imageUrl)
+        let imageURL = URL(string: imageUrlString)
         var scenes: [Scene] = try container.decodeIfPresent([Scene].self, forKey: .scenes) ?? []
         
         //This is not a very nice solution, but havent found a better way
         for index in scenes.indices {
             scenes[index].movieTitle = title
+            scenes[index].movieURL = imageURL
         }
-        self.init(id: id, title: title, description: description, scenes: scenes, imageUrl: imageUrl)
+        self.init(id: id, title: title, description: description, scenes: scenes, imageURL: imageURL)
     }
 }

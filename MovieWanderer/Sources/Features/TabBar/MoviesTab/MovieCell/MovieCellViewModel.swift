@@ -16,8 +16,8 @@ struct MovieCellViewModel {
         return movie.description
     }
     
-    var imageUrl: URL {
-        return URL(string: movie.imageUrl)!
+    var imageUrl: URL? {
+        return movie.imageURL
     }
 
     var title: String {

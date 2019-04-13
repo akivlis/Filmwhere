@@ -42,6 +42,7 @@ class SceneAnnotationView: MKAnnotationView {
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: nil)
         imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = UIColor.brightPink
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -49,13 +50,14 @@ class SceneAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         
+        self.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         backgroundColor = UIColor.clear
         
         addSubview(imageView)
         
         imageView.snp.makeConstraints { make in
-            make.width.height.equalTo(30)
-            make.leading.top.equalToSuperview()
+            make.edges.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
         
         let navigateButton = UIButton(type: .detailDisclosure)
@@ -63,7 +65,7 @@ class SceneAnnotationView: MKAnnotationView {
         navigateButton.setImage(image, for: .normal)
         navigateButton.tintColor = .brightPink
         rightCalloutAccessoryView = navigateButton
-        
+        isEnabled = true
         canShowCallout = true
     }
     
@@ -80,18 +82,15 @@ class SceneAnnotationView: MKAnnotationView {
         super.prepareForDisplay()
   
         if let annotation = annotation as? SceneAnnotation {
-            if let imageName = annotation.imageName, let image = UIImage(named: imageName) {
-                imageView.image = image
-            }
+            imageView.kf.setImage(with: annotation.imageURL)
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.layer.cornerRadius = imageView.frame.width / 2
-
-//        centerOffset = CGPoint(x: contentSize.width / 2, y: contentSize.height / 2)
-//
+        imageView.layer.borderColor = UIColor.brightPink.cgColor
+        imageView.layer.borderWidth = 1
     }
 }
 
