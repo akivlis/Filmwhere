@@ -8,9 +8,8 @@
 
 import UIKit
 import SkeletonView
-import FSPagerView
 
-class SceneCollectionViewCell: FSPagerViewCell {
+class SceneCollectionViewCell: UICollectionViewCell {
 
     private lazy var sceneView = SceneCellView()
     
@@ -23,7 +22,6 @@ class SceneCollectionViewCell: FSPagerViewCell {
             make.edges.equalToSuperview()
         }
         sceneView.showSkeleton()
-        self.contentView.layer.shadowRadius = 0
     }
     
     func bindViewModel(_ viewModel: SceneCellViewModel) {

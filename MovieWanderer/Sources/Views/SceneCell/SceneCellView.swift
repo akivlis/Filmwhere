@@ -29,7 +29,7 @@ class SceneCellView: UIView {
     
     func bindViewModel(_ viewModel: SceneCellViewModel){
         titleLabel.text = viewModel.title
-        subtitleLabel.text = viewModel.subtitle
+        subtitleLabel.text = viewModel.description
         backgroundImageView.kf.setImage(with: viewModel.imageUrl)
     }
     
@@ -63,12 +63,12 @@ private extension SceneCellView {
         backgroundImageView.insertSubview(gradientView, at: 0)
 
         titleLabel.textColor = .white
-        titleLabel.font = UIFont.light(textStyle: .subheadline)
+        titleLabel.font = UIFont.bold(textStyle: .subheadline)
         stackView.addArrangedSubview(titleLabel)
         
         stackView.addArrangedSubview(subtitleLabel)
         subtitleLabel.textColor = .white
-        subtitleLabel.font = UIFont.bold(textStyle: .footnote)
+        subtitleLabel.font = UIFont.light(textStyle: .footnote)
         
         stackView.axis = .vertical
         stackView.alignment = .leading
