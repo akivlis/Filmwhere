@@ -17,8 +17,8 @@ struct SceneCellViewModel {
         return scene.title
     }
     
-    var description: String {
-        return scene.description
+    var subtitle: String {
+        return scene.movieTitle ?? scene.description
     }
     
     var address: String {

@@ -34,7 +34,7 @@ final class MapAndScenesCarouselView: UIView {
     private let mapView : MapView
     private let disposeBag = DisposeBag()
     private var bottomConstraint : Constraint?
-    private let sceneViewHeigh: CGFloat = 200 // TODO: how to calculate this
+    private let sceneViewHeigh = Constants.ScenesCollection.height
     private let tapOnMap = UITapGestureRecognizer()
     
     init(scenes: [Scene]) {
