@@ -9,64 +9,36 @@
 import MapKit
 import RxSwift
 
-//class SceneAnnotationView: MKMarkerAnnotationView {
-//
-//    override var annotation: MKAnnotation? {
-//        willSet {
-//            if (newValue as? SceneAnnotation) != nil {
-//                clusteringIdentifier = nil
-////                MKMapViewDefaultAnnotationViewReuseIdentifier
-////                markerTintColor = .brightPink
-////                glyphImage = UIImage(named: "projector")
-//            }
-//        }
-//    }
-//
-//    override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
-//        super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-//
-//        let navigateButton = UIButton(type: .detailDisclosure)
-//        let image = UIImage(named: "navigation_icon")?.withRenderingMode(.alwaysTemplate)
-//        navigateButton.setImage(image, for: .normal)
-//        navigateButton.tintColor = .brightPink
-//        rightCalloutAccessoryView = navigateButton
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//    }
-//}
-
 class SceneAnnotationView: MKAnnotationView {
     
     private lazy var imageView: UIImageView = {
         let imageView = UIImageView(image: nil)
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = UIColor.brightPink
+        imageView.backgroundColor = UIColor.lightGray
         imageView.clipsToBounds = true
+        imageView.layer.borderColor = UIColor.brightPink.cgColor
+        imageView.layer.borderWidth = 1
         return imageView
     }()
     
+    private lazy var navigateButton: UIButton = {
+        let button = UIButton(type: .detailDisclosure)
+        let image = UIImage(named: "navigation_icon")?.withRenderingMode(.alwaysTemplate)
+        button.setImage(image, for: .normal)
+        button.tintColor = .lightPink
+        return button
+    }()
+    
+    private let normalWidth = CGFloat(30)
+    private let scaledUpWidth = CGFloat(40)
+
+    
+    // MARK: Init
+    
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        
-        self.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        backgroundColor = UIColor.clear
-        
-        addSubview(imageView)
-        
-        imageView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-            make.centerX.equalToSuperview()
-        }
-        
-        let navigateButton = UIButton(type: .detailDisclosure)
-        let image = UIImage(named: "navigation_icon")?.withRenderingMode(.alwaysTemplate)
-        navigateButton.setImage(image, for: .normal)
-        navigateButton.tintColor = .brightPink
-        rightCalloutAccessoryView = navigateButton
-        isEnabled = true
-        canShowCallout = true
+        setupViews()
+        setupConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,8 +61,40 @@ class SceneAnnotationView: MKAnnotationView {
     override func layoutSubviews() {
         super.layoutSubviews()
         imageView.layer.cornerRadius = imageView.frame.width / 2
-        imageView.layer.borderColor = UIColor.brightPink.cgColor
-        imageView.layer.borderWidth = 1
+    }
+    
+    func scaleImage(_ scaling: ScalingDirection) {
+        let newWidth = scaling == .up ? scaledUpWidth : normalWidth
+        
+        imageView.layer.cornerRadius = newWidth / 2
+        imageView.snp.updateConstraints { make in
+            make.width.height.equalTo(newWidth)
+        }
     }
 }
 
+// MARK: - Private
+
+private extension SceneAnnotationView {
+    func setupViews() {
+        self.frame = CGRect(x: 0, y: 0, width: normalWidth, height: normalWidth)
+        backgroundColor = UIColor.clear
+        
+        rightCalloutAccessoryView = navigateButton
+        isEnabled = true
+        canShowCallout = true
+        
+        addSubview(imageView)
+    }
+    
+    func setupConstraints() {
+        imageView.snp.makeConstraints { make in
+            make.width.height.equalTo(normalWidth)
+            make.centerX.equalToSuperview()
+        }
+    }
+}
+
+enum ScalingDirection {
+    case up, down
+}

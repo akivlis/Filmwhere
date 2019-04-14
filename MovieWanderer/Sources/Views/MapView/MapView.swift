@@ -74,19 +74,15 @@ class MapView: UIView {
 
 extension MapView: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-
         guard !annotation.isKind(of: MKUserLocation.self) else {
             return nil
         }
         
         if let annotation = annotation as? SceneAnnotation {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation)
-//            annotationView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
             return annotationView
         }
-        
         return nil
-
     }
     
     
@@ -97,38 +93,20 @@ extension MapView: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let customView = view as? MKMarkerAnnotationView {
-            customView.markerTintColor = .brightPink
-            
-            // select whole cluster when scrolled to a specific scene
-            if let cluster = customView.cluster {
-                if let clusterView = cluster as? ClusterAnnotationView {
-                    clusterView.markerTintColor = .brightPink
-
-                    let annotationFromCluster = clusterView.annotation
-                    let annotationFromClick = view.annotation
-                    print("the same: \(annotationFromCluster?.title == annotationFromClick?.title)")
-                }
-                cluster.setSelected(true, animated: true)
-            }
+        
+        if let sceneAnnotationView = view as? SceneAnnotationView {
+           sceneAnnotationView.scaleImage(.up)
+  
         }
         
-        //maybe just use idex
         if let index = viewModel.getIndexForAnnotation(view.annotation!) {
             sceneSelected.onNext(index)
         }
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
-        if let customView = view as? MKMarkerAnnotationView {
-            customView.markerTintColor = .brightPink
-            
-            if let cluster = customView.cluster {
-                if let clusterView = cluster as? ClusterAnnotationView {
-                    clusterView.markerTintColor = .brightPink
-                }
-                cluster.setSelected(false, animated: true)
-            }
+        if let sceneAnnotationView = view as? SceneAnnotationView {
+            sceneAnnotationView.scaleImage(.down)
         }
     }
     
@@ -198,8 +176,6 @@ private extension MapView {
         
         mapView.showsUserLocation = true
     }
-    
-    
 }
 
 
