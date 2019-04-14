@@ -11,7 +11,7 @@ target ‘Filmwhere’ do
     pod 'FSPagerView'
     pod 'Kingfisher', '~> 5.0'
     pod 'SkeletonView'
-    pod 'RxGesture', '~> 1.2'
+    pod 'RxGesture', '~> 2.2'
     
     target 'MovieWandererTests' do
         pod 'RxBlocking', '~> 4.0'

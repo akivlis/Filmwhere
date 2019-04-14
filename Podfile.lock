@@ -13,9 +13,9 @@ PODS:
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
-  - RxGesture (1.2.1):
-    - RxCocoa (~> 4.0)
-    - RxSwift (~> 4.0)
+  - RxGesture (2.2.0):
+    - RxCocoa (~> 4.5)
+    - RxSwift (~> 4.5)
   - RxSwift (4.5.0)
   - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
@@ -29,7 +29,7 @@ DEPENDENCIES:
   - Moya/RxSwift (~> 13.0.0)
   - RxBlocking (~> 4.0)
   - RxCocoa (~> 4.5)
-  - RxGesture (~> 1.2)
+  - RxGesture (~> 2.2)
   - RxSwift (~> 4.5)
   - RxTest (~> 4.0)
   - SkeletonView
@@ -67,12 +67,12 @@ SPEC CHECKSUMS:
   Result: bd966fac789cc6c1563440b348ab2598cc24d5c7
   RxBlocking: 79413e4d916f44bb3e113c5b2cc059e36fe58910
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
-  RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
+  RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
   SkeletonView: c2523c3c8c6510e273e49a3bf364a434744c3914
   SnapKit: ae1cdee794f6a7b8e909092c5244a79b9d1c9e26
 
-PODFILE CHECKSUM: 3217f4f87517fe54ad109a42566bbb3dc6aaf4fe
+PODFILE CHECKSUM: 9b6ca51ebbf6c6b0f76360fc2c907913f290c36d
 
 COCOAPODS: 1.6.1
