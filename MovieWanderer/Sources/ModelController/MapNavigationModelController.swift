@@ -56,8 +56,10 @@ class MapNavigationModelController {
     
     private func openGoogleMapsFor(_ coordinates: CLLocationCoordinate2D, locationName: String?) {
         let urlString = "comgooglemaps://?center=\(coordinates.latitude),\(coordinates.longitude)&zoom=14&views=traffic&q=\(coordinates.latitude),\(coordinates.longitude)"
+
         if let googleUrl = URL(string: urlString) {
             if (UIApplication.shared.canOpenURL(URL(string:"comgooglemaps://")!)) {
+                print("opening google maps")
                 UIApplication.shared.open(googleUrl, options: [:], completionHandler: nil)
             } else {
                 UIApplication.shared.open(URL(string: "http://maps.google.com/maps?q=loc:\(coordinates.latitude),\(coordinates.longitude)&zoom=14&views=traffic")!, options: [:], completionHandler: nil)
