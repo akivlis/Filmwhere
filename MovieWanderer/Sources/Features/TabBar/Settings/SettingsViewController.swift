@@ -13,11 +13,34 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupViews()
+        setupConstraints()
+        setupObservables()
+    }
+}
+
+private extension SettingsViewController {
+    
+    private func commonInit() {
+        setupViews()
+        setupConstraints()
+        setupObservables()
+    }
+    
+    private func setupViews(){
         title = "Settings"
         view.backgroundColor = .white
-        self.navigationController?.isNavigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.barTintColor = UIColor.white
+    }
+    
+    private func setupConstraints() {
+        
+    }
+    
+    private func setupObservables() {
+        
     }
 }

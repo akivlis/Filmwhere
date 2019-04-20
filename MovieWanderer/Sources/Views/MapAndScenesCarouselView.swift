@@ -96,6 +96,7 @@ private extension MapAndScenesCarouselView {
     
     private func setupObservables() {
         scenesCarousel.scrolledToScene$
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] scene in
                 self?.mapView.highlight(scene)
             })
