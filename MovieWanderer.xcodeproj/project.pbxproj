@@ -69,7 +69,7 @@
 		3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */; };
 		3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */; };
 		3DC79AF02030CD02008B0E49 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AEF2030CD02008B0E49 /* MovieListViewController.swift */; };
-		3DC79AF22030CD1D008B0E49 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AF12030CD1D008B0E49 /* ProfileViewController.swift */; };
+		3DC79AF22030CD1D008B0E49 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */; };
 		3DDF95492108C49600582D52 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF95482108C49600582D52 /* GradientView.swift */; };
 		3DF4E52421CF29270092F47A /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E51F21CF29260092F47A /* Orientation.swift */; };
 		3DF4E52521CF29270092F47A /* SwiftyCamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52021CF29260092F47A /* SwiftyCamViewController.swift */; };
@@ -164,7 +164,7 @@
 		3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+UIView.swift"; sourceTree = "<group>"; };
 		3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3DC79AEF2030CD02008B0E49 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
-		3DC79AF12030CD1D008B0E49 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3DDF95482108C49600582D52 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		3DF4E51F21CF29260092F47A /* Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
 		3DF4E52021CF29260092F47A /* SwiftyCamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamViewController.swift; sourceTree = "<group>"; };
@@ -425,7 +425,7 @@
 		3DC79AED2030CCC5008B0E49 /* ProfileTab */ = {
 			isa = PBXGroup;
 			children = (
-				3DC79AF12030CD1D008B0E49 /* ProfileViewController.swift */,
+				3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */,
 			);
 			path = ProfileTab;
 			sourceTree = "<group>";
@@ -811,7 +811,7 @@
 				3D574934214D6F140050E658 /* MovieService.swift in Sources */,
 				3DF4E52F21CF2C350092F47A /* SplitPhotoViewController.swift in Sources */,
 				3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */,
-				3DC79AF22030CD1D008B0E49 /* ProfileViewController.swift in Sources */,
+				3DC79AF22030CD1D008B0E49 /* SettingsViewController.swift in Sources */,
 				3DC79AF02030CD02008B0E49 /* MovieListViewController.swift in Sources */,
 				3DF4E52621CF29270092F47A /* SwiftyCamButton.swift in Sources */,
 				3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */,

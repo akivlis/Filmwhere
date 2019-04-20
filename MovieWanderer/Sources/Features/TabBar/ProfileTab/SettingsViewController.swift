@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  SettingsViewController.swift
 //  MovieWanderer
 //
 //  Created by Silvia Kuzmova on 11/02/2018.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class SettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Profile"
+        title = "Settings"
         view.backgroundColor = .white
         self.navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true

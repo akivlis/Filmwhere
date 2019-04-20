@@ -13,35 +13,68 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupViews()
         loadTabs()
-        tabBar.tintColor = UIColor.brightPink
-        tabBar.barTintColor = UIColor.white
-        tabBar.backgroundColor = UIColor.white
     }
     
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+}
+
+private extension MainTabBarController {
+    
+    private func setupViews() {
+        tabBar.tintColor = UIColor.brightPink
+        tabBar.barTintColor = UIColor.white
+        tabBar.backgroundColor = UIColor.white
     }
     
     private func loadTabs(){
         let moviesModelController = MoviesModelController(movies: [Movie]())
         moviesModelController.loadMovies()
         
-        let movieListViewController = MovieListViewController(moviesModelController: moviesModelController)
-        movieListViewController.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(named: "movies-icon"), tag: 0)
-        
+        let movieListViewController = UINavigationController(rootViewController: MovieListViewController(moviesModelController: moviesModelController))
         let locationViewController = LocationViewController(moviesModelController: moviesModelController)
-        locationViewController.tabBarItem = UITabBarItem(title: "Map", image: UIImage(named: "map-icon"), tag: 1)
+        let settingsViewController = UINavigationController(rootViewController: SettingsViewController())
         
-        let profileViewController = ProfileViewController()
-        profileViewController.tabBarItem = UITabBarItem(title: "Profile", image: UIImage(named: "profile-icon"), tag: 2)
+        let controllers = [movieListViewController, locationViewController, settingsViewController]
         
-        let movieNavigationViewController = UINavigationController(rootViewController: movieListViewController)
-        let profileNavigationViewController = UINavigationController(rootViewController: profileViewController)
-        
-        
-        viewControllers = [movieNavigationViewController, locationViewController ]
-        selectedViewController = movieNavigationViewController
+        controllers.enumerated().forEach {
+            let tab = Tab.allCases[$0.offset]
+            let tabBarItem = UITabBarItem(title: tab.title, image: UIImage(named: tab.imageName), tag: tab.rawValue)
+            $0.element.tabBarItem = tabBarItem
+        }
+        viewControllers = controllers
+        selectedViewController = viewControllers?.first
     }
+}
 
+
+enum Tab: Int, CaseIterable {
+    case movies
+    case location
+    case settings
+    
+    var title: String {
+        switch self {
+        case .movies:
+            return "Movies".localized
+        case .location:
+            return "Map".localized
+        case .settings:
+            return "Settings".localized
+        }
+    }
+    
+    var imageName: String {
+        switch self {
+        case .movies:
+            return "movies-icon"
+        case .location:
+            return "map-icon"
+        case .settings:
+            return "settings-icon"
+        }
+    }
 }
