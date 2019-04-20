@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 class SettingsViewController: UIViewController {
     
@@ -18,6 +19,7 @@ class SettingsViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupObservables()
     }
 }
 
@@ -52,6 +54,10 @@ extension SettingsViewController: UITableViewDataSource {
 // MARK: UITableViewDelegate
 
 extension SettingsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
@@ -93,4 +99,25 @@ private extension SettingsViewController {
             make.leading.trailing.equalToSuperview()
         }
     }
+    
+    private func setupObservables() {
+        viewModel.bind(cellTapped: tableView.rx.itemSelected.asObservable())
+        
+        viewModel.openURL$
+            .subscribe(onNext: { [weak self] url in
+                self?.open(url)
+            })
+            .disposed(by: viewModel.bag)
+
+    }
+    
+    func open(_ url: URL) {
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        } else {
+            let safariViewController = SFSafariViewController(url: url)
+            present(safariViewController, animated: true, completion: nil)
+        }
+    }
+    
 }

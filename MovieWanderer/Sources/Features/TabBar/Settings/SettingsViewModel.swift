@@ -11,15 +11,14 @@ import RxSwift
 
 class SettingsViewModel {
     
-    private let bag = DisposeBag()
+    let bag = DisposeBag()
     
     var openURL$: Observable<URL> {
         return openURL
     }
-    
     private let openURL = PublishSubject<URL>()
-
     
+
     var numberOfRows: Int {
         return SetttinsRow.allCases.count
     }
