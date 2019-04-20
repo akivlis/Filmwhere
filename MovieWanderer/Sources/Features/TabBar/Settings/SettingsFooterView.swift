@@ -35,8 +35,8 @@ private extension SettingsFooterView {
         backgroundView?.backgroundColor = .lightGray
         backgroundView = background
 
-        versionLabel.font = UIFont.medium(textStyle: .footnote)
-        versionLabel.textColor = .darkGray
+        versionLabel.font = UIFont.regular(textStyle: .footnote)
+        versionLabel.textColor = .gray
         versionLabel.textAlignment = .center
         
         if let versionNumber = UIApplication.appVersion {
