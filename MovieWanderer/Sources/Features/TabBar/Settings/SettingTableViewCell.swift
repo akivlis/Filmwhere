@@ -50,7 +50,7 @@ private extension SettingTableViewCell {
         iconView.tintColor = .gray
         stackView.addArrangedSubview(iconView)
         
-        titleLabel.textColor = .gray
+        titleLabel.textColor = .darkText
         stackView.addArrangedSubview(titleLabel)
     }
     

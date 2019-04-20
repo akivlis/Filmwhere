@@ -11,7 +11,7 @@ import SafariServices
 
 class SettingsViewController: UIViewController {
     
-    private lazy var tableView = UITableView()
+    private lazy var tableView = UITableView(frame: .zero, style: .grouped)
     private let viewModel = SettingsViewModel()
 
     override func viewDidLoad() {
@@ -42,13 +42,6 @@ extension SettingsViewController: UITableViewDataSource {
         let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: SettingsFooterView.reuseIdentifier) as! SettingsFooterView
         return footerView
     }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = UIView()
-        header.backgroundColor = .lightGray
-        return header
-    }
-    
 }
 
 // MARK: UITableViewDelegate
@@ -58,11 +51,7 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 70
     }
@@ -83,8 +72,6 @@ private extension SettingsViewController {
         
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.tableHeaderView = UIView()
-        tableView.sectionHeaderHeight = 30
         tableView.tableFooterView = UIView()
         tableView.backgroundColor = .lightGray
         tableView.register(SettingTableViewCell.self)
