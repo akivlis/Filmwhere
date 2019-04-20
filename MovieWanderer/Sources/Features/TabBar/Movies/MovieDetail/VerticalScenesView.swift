@@ -12,9 +12,9 @@ import RxSwift
 
 class VerticalScenesView: UIView {
     
-    private var _showMapTapped$ = PublishSubject<()>()
+    private var showMapTapped = PublishSubject<()>()
     var showMapTapped$: Observable<()>{
-        return _showMapTapped$
+        return showMapTapped
     }
     
     private var _updateStatusBarStyle$ = BehaviorSubject<UIStatusBarStyle>(value: .lightContent)
@@ -108,10 +108,11 @@ extension VerticalScenesView: UITableViewDataSource {
         if let movieHeader = headerView as? MovieHeaderView {
             movieHeader.bindViewModel(MovieHeaderViewModel(movie: movie))
             self.headerView = movieHeader
+            
             movieHeader.goToMap$
-                .subscribe(onNext: { [weak self] in
-                    self?._showMapTapped$.onNext(())
-                }).disposed(by:movieHeader.disposeBag)
+            .bind(to: showMapTapped)
+            .disposed(by: movieHeader.disposeBag)
+            
             return movieHeader
         }
         return headerView

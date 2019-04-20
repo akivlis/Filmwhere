@@ -24,23 +24,12 @@ class LeftAlignedFlowLayout: UICollectionViewFlowLayout {
         // TODO: this should use itemSize.width
         let pageWidth = Constants.ScenesCollection.cellWidth + self.minimumLineSpacing
         let approximatePage = proposedContentOffset.x / pageWidth
-
-        // Determine the current page based on velocity.
         let currentPage = (velocity.x < 0.0) ? floor(approximatePage) : ceil(approximatePage)
-
-        // Create custom flickVelocity.
         let flickVelocity = velocity.x * 0.3
         
-        // Check how many pages the user flicked, if <= 1 then flickedPages should return 0.
+        // Check how many pages the user flicked
         let flickedPages = (abs(round(flickVelocity)) <= 1) ? 0 : round(flickVelocity)
-
-        // Calculate newHorizontalOffset.
-        let newHorizontalOffset = ((currentPage + flickedPages) * pageWidth) //- self.collectionView!.contentInset.left
-//
-//        let lastIndex: CGFloat = 5
-//        if lastIndex == 5 {
-//            return proposedContentOffset
-//        }
+        let newHorizontalOffset = ((currentPage + flickedPages) * pageWidth) - self.collectionView!.contentInset.left
 
         return CGPoint(x: newHorizontalOffset, y: proposedContentOffset.y)
     }

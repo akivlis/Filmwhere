@@ -72,6 +72,7 @@ private extension LocationViewController {
     
     private func setupObservables() {
         mapView.openSceneDetail$
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { scenes, index in
                 self.openSceneDetail(scenes: scenes, index: index)
             })

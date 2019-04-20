@@ -13,8 +13,8 @@ import RxSwift
 
 class MapView: UIView {
   
-    var sceneSelected$ : Observable<Int> {
-        return sceneSelected
+    var scrollToSceneIndex$ : Observable<Int> {
+        return scrollToIndex
     }
     
     var viewModel : MapViewViewModel = MapViewViewModel(scenes: [Scene]()) {
@@ -30,11 +30,12 @@ class MapView: UIView {
         return navigationModelController.presentMapsActionSheet$
     }
     
-    private let sceneSelected = PublishSubject<Int>()
+    private let scrollToIndex = PublishSubject<Int>()
     private let locationManager = CLLocationManager()
     private let disposeBag = DisposeBag()
     private let mapView = MKMapView()
     private let navigationModelController : MapNavigationModelController
+    private var sceneHighlightedByScroll = false
     
     // MARK: Init
     
@@ -51,21 +52,17 @@ class MapView: UIView {
         commonInit()
     }
     
-    // MARK: public methods
+    // MARK: Public
     
-    func highlightSceneOnIndex(_ index: Int) {
-        mapView.selectAnnotation(mapView.annotations[index], animated: false)
-    }
-    
+    // IMPORTANT: Only call this method when scrolled to the the scene
     func highlight(_ scene: Scene) {
         let coordinates = CLLocationCoordinate2D(latitude: scene.location.latitude,
                                                  longitude: scene.location.longitude)
         mapView.setCenter(coordinates, animated: true)
         
         if let annotation = viewModel.getAnnotationForScene(scene) {
+            sceneHighlightedByScroll = true
             mapView.selectAnnotation(annotation, animated: true)
-            
-            //TODO: implement custom highligting, do nt call select cause the observable emits
         }
     }
 }
@@ -93,15 +90,17 @@ extension MapView: MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        
         if let sceneAnnotationView = view as? SceneAnnotationView {
            sceneAnnotationView.scaleImage(.up)
-  
         }
         
-        if let index = viewModel.getIndexForAnnotation(view.annotation!) {
-            sceneSelected.onNext(index)
+        // we should not scroll if the annotation was selected by scrolling already!!!
+        if !sceneHighlightedByScroll {
+            if let index = viewModel.getIndexForAnnotation(view.annotation!) {
+                scrollToIndex.onNext(index)
+            }
         }
+        sceneHighlightedByScroll = false
     }
     
     func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {

@@ -90,7 +90,7 @@ private extension SceneAnnotationView {
     func setupConstraints() {
         imageView.snp.makeConstraints { make in
             make.width.height.equalTo(normalWidth)
-            make.centerX.equalToSuperview()
+            make.center.equalToSuperview()
         }
     }
 }

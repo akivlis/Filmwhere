@@ -96,7 +96,7 @@ private extension MapAndScenesCarouselView {
     
     private func setupObservables() {
         scenesCarousel.scrolledToScene$
-            .observeOn(MainScheduler.instance)
+            .observeOn(MainScheduler.instance) // toto dal martin
             .subscribe(onNext: { [weak self] scene in
                 self?.mapView.highlight(scene)
             })
@@ -106,7 +106,7 @@ private extension MapAndScenesCarouselView {
             .bind(to: _openSceneDetail$)
             .disposed(by: disposeBag)
         
-        mapView.sceneSelected$
+        mapView.scrollToSceneIndex$
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] index in
                 if self.scenesHidden {
