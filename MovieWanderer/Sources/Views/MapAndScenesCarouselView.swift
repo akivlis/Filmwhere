@@ -12,8 +12,8 @@ import SnapKit
 
 final class MapAndScenesCarouselView: UIView {
     
-    private var _openSceneDetail$ = PublishSubject<([Scene], Int)>()
-    var openSceneDetail$: Observable<([Scene], Int)>{
+    private var _openSceneDetail$ = PublishSubject<ScenesAndIndex>()
+    var openSceneDetail$: Observable<ScenesAndIndex>{
         return _openSceneDetail$
     }
     
@@ -103,13 +103,11 @@ private extension MapAndScenesCarouselView {
             .disposed(by: disposeBag) // use dispose bag of the cell?
         
         scenesCarousel.selectSceneCell$
-            .subscribe(onNext: { [weak self] index in
-                guard let strongSelf = self else { return }
-                strongSelf._openSceneDetail$.onNext((strongSelf.scenes, index))
-            })
-            .disposed(by: disposeBag) // use dispose bag of the cell?
+            .bind(to: _openSceneDetail$)
+            .disposed(by: disposeBag)
         
         mapView.sceneSelected$
+            .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [unowned self] index in
                 if self.scenesHidden {
                     self.scenesCarousel.scrollToIndex(index, animated: false)
@@ -154,3 +152,5 @@ private extension MapAndScenesCarouselView {
         }
     }
 }
+
+typealias ScenesAndIndex = (scenes: [Scene], index: Int)

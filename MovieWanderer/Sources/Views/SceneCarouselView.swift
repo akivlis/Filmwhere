@@ -16,8 +16,8 @@ final class SceneCarouselView: UIView {
         return _scrolledToScene$
     }
     
-    private var _selectSceneCell$ = PublishSubject<Int>()
-    var selectSceneCell$: Observable<Int> {
+    private var _selectSceneCell$ = PublishSubject<ScenesAndIndex>()
+    var selectSceneCell$: Observable<ScenesAndIndex> {
         return _selectSceneCell$
     }
     
@@ -95,7 +95,7 @@ extension SceneCarouselView: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard scenes.count > 0 else { return }
-        _selectSceneCell$.onNext(indexPath.row)
+        _selectSceneCell$.onNext((scenes, indexPath.row))
         movieTitleLabel.text = scenes[indexPath.row].movieTitle
     }
     
