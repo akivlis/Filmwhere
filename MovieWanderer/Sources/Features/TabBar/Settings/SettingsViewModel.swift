@@ -11,6 +11,8 @@ import RxSwift
 
 class SettingsViewModel {
     
+    private let bag = DisposeBag()
+    
     var openURL$: Observable<URL> {
         return openURL
     }
@@ -26,18 +28,15 @@ class SettingsViewModel {
         return SetttinsRow(rawValue: index)!
     }
     
-
-    
-//    func bind(cellTapped: Observable<IndexPath>) {
-//        // todo: with flatmap???
-//        cellTapped
-//            .map { $0.row }
-//            .subscribe(onNext: { [unowned self] index in
-//                let tappedRow = SetttinsRow(rawValue: index)!
-//                self.handleTapOn(row: tappedRow)
-//            })
-//            .disposed(by: disposeBag)
-//    }
+    func bind(cellTapped: Observable<IndexPath>) {
+        cellTapped
+            .map { $0.row }
+            .subscribe(onNext: { [unowned self] index in
+                let tappedRow = SetttinsRow(rawValue: index)!
+                self.handleTapOn(row: tappedRow)
+            })
+            .disposed(by: bag)
+    }
 }
 
 private extension SettingsViewModel {
@@ -57,6 +56,15 @@ enum SetttinsRow: Int, CaseIterable {
             return "Privacy Policy"
         case .sendFeedback:
             return "Feedback"
+        }
+    }
+    
+    var iconName: String {
+        switch self {
+        case .privacyPolicy:
+            return "icon_privacy"
+        case .sendFeedback:
+            return "icon_feedback"
         }
     }
     

@@ -60,12 +60,9 @@ final class SceneCarouselView: UIView {
     }
     
     func scrollToIndex(_ index: Int, animated: Bool) {
-        let x = index * (Int(cellWidth) + Int(lineSpacing)) //TODO: change
-        
         scenesCollectionView.scrollToItem(at: IndexPath(row: index, section: 0),
                                           at: .left,
                                           animated: true)
-        print("SETTING CONTENT OFFSET!!!!!")
         movieTitleLabel.text = scenes[index].movieTitle
     }
 }

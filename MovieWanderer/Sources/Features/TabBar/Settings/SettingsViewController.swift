@@ -9,38 +9,88 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
+    
+    private lazy var tableView = UITableView()
+    private let viewModel = SettingsViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         setupConstraints()
-        setupObservables()
     }
 }
 
-private extension SettingsViewController {
+// MARK: UITableViewDataSource
+
+extension SettingsViewController: UITableViewDataSource {
     
-    private func commonInit() {
-        setupViews()
-        setupConstraints()
-        setupObservables()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.numberOfRows
     }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingTableViewCell.reuseIdentifier, for: indexPath) as! SettingTableViewCell
+        let row = viewModel.getRowFor(index: indexPath.row)
+        cell.set(row.title, iconName: row.iconName)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: SettingsFooterView.reuseIdentifier) as! SettingsFooterView
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = .lightGray
+        return header
+    }
+    
+}
+
+// MARK: UITableViewDelegate
+
+extension SettingsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 70
+    }
+}
+
+
+// MARK: - Private
+
+private extension SettingsViewController {
     
     private func setupViews(){
         title = "Settings"
         view.backgroundColor = .white
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
         navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationItem.largeTitleDisplayMode = .automatic
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.tableHeaderView = UIView()
+        tableView.sectionHeaderHeight = 30
+        tableView.tableFooterView = UIView()
+        tableView.backgroundColor = .lightGray
+        tableView.register(SettingTableViewCell.self)
+        tableView.register(headerFooter: SettingsFooterView.self)
+
+        view.addSubview(tableView)
     }
     
     private func setupConstraints() {
-        
-    }
-    
-    private func setupObservables() {
-        
+        tableView.snp.makeConstraints { make in
+            make.top.bottom.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.equalToSuperview()
+        }
     }
 }

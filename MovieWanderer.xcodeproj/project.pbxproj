@@ -34,6 +34,9 @@
 		3D3F87F6205D835E00EE3835 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */; };
 		3D3F87FD205D8E1A00EE3835 /* MovieHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87FC205D8E1A00EE3835 /* MovieHeaderView.swift */; };
 		3D3F8804205EBB1700EE3835 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F8803205EBB1700EE3835 /* MapView.swift */; };
+		3D3FE270226B88E800ED5FD0 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FE26F226B88E800ED5FD0 /* SettingTableViewCell.swift */; };
+		3D3FE272226B977200ED5FD0 /* SettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FE271226B977200ED5FD0 /* SettingsFooterView.swift */; };
+		3D3FE274226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FE273226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift */; };
 		3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C2205C42B40086D867 /* MovieListView.swift */; };
 		3D44B2C5205C46940086D867 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C4205C46940086D867 /* Movie.swift */; };
 		3D44B2C8205C48D80086D867 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C7205C48D80086D867 /* MovieTableViewCell.swift */; };
@@ -130,6 +133,9 @@
 		3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		3D3F87FC205D8E1A00EE3835 /* MovieHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeaderView.swift; sourceTree = "<group>"; };
 		3D3F8803205EBB1700EE3835 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		3D3FE26F226B88E800ED5FD0 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		3D3FE271226B977200ED5FD0 /* SettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooterView.swift; sourceTree = "<group>"; };
+		3D3FE273226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+UIApplication.swift"; sourceTree = "<group>"; };
 		3D44B2C2205C42B40086D867 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
 		3D44B2C4205C46940086D867 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		3D44B2C7205C48D80086D867 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
@@ -417,6 +423,7 @@
 				3DC5CBC92152E84B00EEE30B /* MovieWanderer+Font.swift */,
 				3DC5CBCB2152E8C900EEE30B /* MovieWanderer+UIDevice.swift */,
 				3D83DD6F21D6203300099C06 /* MovieWanderer+UIImage.swift */,
+				3D3FE273226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -437,6 +444,8 @@
 			children = (
 				3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */,
 				3D5D82D9226AEDA8001F94F1 /* SettingsViewModel.swift */,
+				3D3FE26F226B88E800ED5FD0 /* SettingTableViewCell.swift */,
+				3D3FE271226B977200ED5FD0 /* SettingsFooterView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -816,6 +825,7 @@
 				3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */,
 				3D68E8CA2195206200A4470D /* SceneTableViewCell.swift in Sources */,
 				3D6372C321C1FAE300B8E808 /* CameraOverlayView.swift in Sources */,
+				3D3FE274226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift in Sources */,
 				3D68E8C821951EB100A4470D /* SceneCellView.swift in Sources */,
 				214D73042105147F00F16983 /* SceneCarouselView.swift in Sources */,
 				3D574934214D6F140050E658 /* MovieService.swift in Sources */,
@@ -823,6 +833,7 @@
 				3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */,
 				3DC79AF22030CD1D008B0E49 /* SettingsViewController.swift in Sources */,
 				3DC79AF02030CD02008B0E49 /* MovieListViewController.swift in Sources */,
+				3D3FE270226B88E800ED5FD0 /* SettingTableViewCell.swift in Sources */,
 				3DF4E52621CF29270092F47A /* SwiftyCamButton.swift in Sources */,
 				3D5D82DD226AEFA3001F94F1 /* NetworkConstants.swift in Sources */,
 				3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */,
@@ -855,6 +866,7 @@
 				3D0F6FD621888CBA001712A9 /* CustomTransition.swift in Sources */,
 				3D3F87FD205D8E1A00EE3835 /* MovieHeaderView.swift in Sources */,
 				3D1698522193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift in Sources */,
+				3D3FE272226B977200ED5FD0 /* SettingsFooterView.swift in Sources */,
 				3D3F87F6205D835E00EE3835 /* MovieDetailViewModel.swift in Sources */,
 				3D44B2C8205C48D80086D867 /* MovieTableViewCell.swift in Sources */,
 				3D0F6FD4218849A2001712A9 /* AnimatingBarView.swift in Sources */,
