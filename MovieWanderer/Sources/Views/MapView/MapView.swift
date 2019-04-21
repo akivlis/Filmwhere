@@ -36,6 +36,7 @@ class MapView: UIView {
     private let mapView = MKMapView()
     private let navigationModelController : MapNavigationModelController
     private var sceneHighlightedByScroll = false
+    private let trackingButton = MKUserTrackingButton()
     
     // MARK: Init
     
@@ -50,6 +51,7 @@ class MapView: UIView {
         self.navigationModelController = MapNavigationModelController()
         super.init(coder: aDecoder)
         commonInit()
+     
     }
     
     // MARK: Public
@@ -74,7 +76,7 @@ extension MapView: MKMapViewDelegate {
         guard !annotation.isKind(of: MKUserLocation.self) else {
             return nil
         }
-        
+
         if let annotation = annotation as? SceneAnnotation {
             let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier, for: annotation)
             return annotationView
@@ -94,7 +96,7 @@ extension MapView: MKMapViewDelegate {
            sceneAnnotationView.scaleImage(.up)
         }
         
-        // we should not scroll if the annotation was selected by scrolling already!!!
+        // we do not scroll if the annotation was selected by scrolling already!!!
         if !sceneHighlightedByScroll {
             if let index = viewModel.getIndexForAnnotation(view.annotation!) {
                 scrollToIndex.onNext(index)
@@ -142,6 +144,15 @@ private extension MapView {
             make.edges.equalToSuperview()
         }
         mapView.delegate = self
+        
+        trackingButton.mapView = mapView
+        trackingButton.layer.cornerRadius = 6
+        
+        addSubview(trackingButton)
+        trackingButton.snp.makeConstraints { make in
+            make.trailing.equalToSuperview().inset(8)
+            make.top.equalToSuperview().inset(30)
+        }
        
     }
     
