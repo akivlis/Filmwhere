@@ -16,8 +16,8 @@ final class SceneCarouselView: UIView {
         return _scrolledToScene$
     }
     
-    private var _selectSceneCell$ = PublishSubject<Int>()
-    var selectSceneCell$: Observable<Int> {
+    private var _selectSceneCell$ = PublishSubject<ScenesAndIndex>()
+    var selectSceneCell$: Observable<ScenesAndIndex> {
         return _selectSceneCell$
     }
     
@@ -33,10 +33,6 @@ final class SceneCarouselView: UIView {
             layout.scrollDirection = .horizontal
             layout.minimumLineSpacing = Constants.ScenesCollection.lineSpacing
             layout.minimumInteritemSpacing = 0
-            layout.sectionInset = UIEdgeInsets(top: 0,
-                                               left: Constants.ScenesCollection.lineSpacing,
-                                               bottom: 0,
-                                               right: Constants.ScenesCollection.lineSpacing)
             return layout
         }()
         let collectionView = UICollectionView(frame: .zero,
@@ -64,10 +60,9 @@ final class SceneCarouselView: UIView {
     }
     
     func scrollToIndex(_ index: Int, animated: Bool) {
-        let x = index * (Int(cellWidth) + Int(lineSpacing)) //TODO: change
-            let point =  CGPoint(x: CGFloat(x) ,y: scenesCollectionView.contentOffset.y)
-            scenesCollectionView.setContentOffset(point, animated: animated)
-        
+        scenesCollectionView.scrollToItem(at: IndexPath(row: index, section: 0),
+                                          at: .left,
+                                          animated: true)
         movieTitleLabel.text = scenes[index].movieTitle
     }
 }
@@ -95,16 +90,13 @@ extension SceneCarouselView: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard scenes.count > 0 else { return }
-        _selectSceneCell$.onNext(indexPath.row)
+        _selectSceneCell$.onNext((scenes, indexPath.row))
         movieTitleLabel.text = scenes[indexPath.row].movieTitle
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
         let index = scrollView.contentOffset.x / (cellWidth + lineSpacing)
         let roundedIndex: Int = Int(abs(index.rounded()))
-        
-        print("index: \(roundedIndex)")
         
         guard scenes.count > 0 else { return }
         let selectedScene = scenes[roundedIndex]
@@ -139,8 +131,13 @@ private extension SceneCarouselView {
         scenesCollectionView.register(SceneCollectionViewCell.self)
         scenesCollectionView.backgroundColor = .clear
         scenesCollectionView.isPagingEnabled = false
-        scenesCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
         scenesCollectionView.showsHorizontalScrollIndicator = false
+        scenesCollectionView.showsVerticalScrollIndicator = false
+        scenesCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast
+        scenesCollectionView.contentInset = UIEdgeInsets(top: 0,
+                                                         left: Constants.ScenesCollection.lineSpacing,
+                                                         bottom: 0,
+                                                         right: Constants.ScenesCollection.lineSpacing)
         addSubview(scenesCollectionView)
     }
     

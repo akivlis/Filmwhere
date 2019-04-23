@@ -33,6 +33,7 @@ extension UIView {
             let gradient = GradientView()
             gradient.tag = gradientViewTag
             gradient.colors = (UIColor.black.withAlphaComponent(0.5), .clear)
+            gradient.isUserInteractionEnabled = false
             return gradient
         }()
         

@@ -16,12 +16,12 @@
 		3D0F6FD4218849A2001712A9 /* AnimatingBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F6FD3218849A2001712A9 /* AnimatingBarView.swift */; };
 		3D0F6FD621888CBA001712A9 /* CustomTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F6FD521888CBA001712A9 /* CustomTransition.swift */; };
 		3D0F6FDA21894ED3001712A9 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0F6FD921894ED3001712A9 /* MovieTableViewCell.xib */; };
-		3D0F6FDE218AE3CB001712A9 /* MovieListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F6FDD218AE3CB001712A9 /* MovieListViewModel.swift */; };
 		3D0F6FE0218AEC7C001712A9 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0F6FDF218AEC7C001712A9 /* Endpoint.swift */; };
 		3D12F0B3210DE2DF00E3B83B /* ultra-light-style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */; };
 		3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */; };
 		3D1698522193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1698502193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift */; };
 		3D1E3DEB217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1E3DEA217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift */; };
+		3D215AE5226EE0B7002AEB8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D215AE4226EE0B7002AEB8F /* GoogleService-Info.plist */; };
 		3D2289082028FE010074D173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2289072028FE010074D173 /* AppDelegate.swift */; };
 		3D2289112028FE010074D173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289102028FE010074D173 /* Assets.xcassets */; };
 		3D2289142028FE010074D173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289122028FE010074D173 /* LaunchScreen.storyboard */; };
@@ -35,6 +35,9 @@
 		3D3F87F6205D835E00EE3835 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */; };
 		3D3F87FD205D8E1A00EE3835 /* MovieHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F87FC205D8E1A00EE3835 /* MovieHeaderView.swift */; };
 		3D3F8804205EBB1700EE3835 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3F8803205EBB1700EE3835 /* MapView.swift */; };
+		3D3FE270226B88E800ED5FD0 /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FE26F226B88E800ED5FD0 /* SettingTableViewCell.swift */; };
+		3D3FE272226B977200ED5FD0 /* SettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FE271226B977200ED5FD0 /* SettingsFooterView.swift */; };
+		3D3FE274226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FE273226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift */; };
 		3D44B2C3205C42B40086D867 /* MovieListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C2205C42B40086D867 /* MovieListView.swift */; };
 		3D44B2C5205C46940086D867 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C4205C46940086D867 /* Movie.swift */; };
 		3D44B2C8205C48D80086D867 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D44B2C7205C48D80086D867 /* MovieTableViewCell.swift */; };
@@ -48,6 +51,8 @@
 		3D574939214E8AA80050E658 /* SceneAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D574938214E8AA80050E658 /* SceneAnnotationView.swift */; };
 		3D57493B214E8AB60050E658 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D57493A214E8AB60050E658 /* ClusterAnnotationView.swift */; };
 		3D58E57021B68814005E6AE5 /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D58E56F21B68814005E6AE5 /* ActionButton.swift */; };
+		3D5D82DA226AEDA8001F94F1 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D82D9226AEDA8001F94F1 /* SettingsViewModel.swift */; };
+		3D5D82DD226AEFA3001F94F1 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5D82DC226AEFA3001F94F1 /* NetworkConstants.swift */; };
 		3D6372C321C1FAE300B8E808 /* CameraOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D6372C221C1FAE300B8E808 /* CameraOverlayView.swift */; };
 		3D68E8C821951EB100A4470D /* SceneCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68E8C721951EB100A4470D /* SceneCellView.swift */; };
 		3D68E8CA2195206200A4470D /* SceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D68E8C92195206200A4470D /* SceneTableViewCell.swift */; };
@@ -69,7 +74,7 @@
 		3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */; };
 		3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */; };
 		3DC79AF02030CD02008B0E49 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AEF2030CD02008B0E49 /* MovieListViewController.swift */; };
-		3DC79AF22030CD1D008B0E49 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AF12030CD1D008B0E49 /* ProfileViewController.swift */; };
+		3DC79AF22030CD1D008B0E49 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */; };
 		3DDF95492108C49600582D52 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF95482108C49600582D52 /* GradientView.swift */; };
 		3DF4E52421CF29270092F47A /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E51F21CF29260092F47A /* Orientation.swift */; };
 		3DF4E52521CF29270092F47A /* SwiftyCamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52021CF29260092F47A /* SwiftyCamViewController.swift */; };
@@ -106,13 +111,13 @@
 		3D0F6FD3218849A2001712A9 /* AnimatingBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingBarView.swift; sourceTree = "<group>"; };
 		3D0F6FD521888CBA001712A9 /* CustomTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTransition.swift; sourceTree = "<group>"; };
 		3D0F6FD921894ED3001712A9 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
-		3D0F6FDD218AE3CB001712A9 /* MovieListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModel.swift; sourceTree = "<group>"; };
 		3D0F6FDF218AEC7C001712A9 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		3D12F0B1210DE2AB00E3B83B /* Directions.geojson */ = {isa = PBXFileReference; lastKnownFileType = text; path = Directions.geojson; sourceTree = "<group>"; };
 		3D12F0B2210DE2DF00E3B83B /* ultra-light-style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "ultra-light-style.json"; sourceTree = "<group>"; };
 		3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewModel.swift; sourceTree = "<group>"; };
 		3D1698502193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		3D1E3DEA217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailPagerViewCellViewModel.swift; sourceTree = "<group>"; };
+		3D215AE4226EE0B7002AEB8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D2289042028FE010074D173 /* Filmwhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filmwhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2289072028FE010074D173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D2289102028FE010074D173 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -130,6 +135,9 @@
 		3D3F87F5205D835E00EE3835 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		3D3F87FC205D8E1A00EE3835 /* MovieHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeaderView.swift; sourceTree = "<group>"; };
 		3D3F8803205EBB1700EE3835 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		3D3FE26F226B88E800ED5FD0 /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		3D3FE271226B977200ED5FD0 /* SettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsFooterView.swift; sourceTree = "<group>"; };
+		3D3FE273226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+UIApplication.swift"; sourceTree = "<group>"; };
 		3D44B2C2205C42B40086D867 /* MovieListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListView.swift; sourceTree = "<group>"; };
 		3D44B2C4205C46940086D867 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		3D44B2C7205C48D80086D867 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
@@ -143,6 +151,8 @@
 		3D574938214E8AA80050E658 /* SceneAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneAnnotationView.swift; sourceTree = "<group>"; };
 		3D57493A214E8AB60050E658 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		3D58E56F21B68814005E6AE5 /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		3D5D82D9226AEDA8001F94F1 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		3D5D82DC226AEFA3001F94F1 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		3D6372C221C1FAE300B8E808 /* CameraOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraOverlayView.swift; sourceTree = "<group>"; };
 		3D68E8C721951EB100A4470D /* SceneCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCellView.swift; sourceTree = "<group>"; };
 		3D68E8C92195206200A4470D /* SceneTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneTableViewCell.swift; sourceTree = "<group>"; };
@@ -164,7 +174,7 @@
 		3DC79AE420308A68008B0E49 /* MovieWanderer+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+UIView.swift"; sourceTree = "<group>"; };
 		3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3DC79AEF2030CD02008B0E49 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
-		3DC79AF12030CD1D008B0E49 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3DDF95482108C49600582D52 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		3DF4E51F21CF29260092F47A /* Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
 		3DF4E52021CF29260092F47A /* SwiftyCamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamViewController.swift; sourceTree = "<group>"; };
@@ -261,14 +271,14 @@
 			path = MovieWandererTests;
 			sourceTree = "<group>";
 		};
-		3D2289292028FEA20074D173 /* LocalizationTab */ = {
+		3D2289292028FEA20074D173 /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				3D22892B2028FF080074D173 /* LocationViewController.swift */,
 				3D22892E2029006B0074D173 /* LocationViewModel.swift */,
 				3D22892A2028FEC60074D173 /* MovieScenes */,
 			);
-			path = LocalizationTab;
+			path = Map;
 			sourceTree = "<group>";
 		};
 		3D22892A2028FEC60074D173 /* MovieScenes */ = {
@@ -366,6 +376,14 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
+		3D5D82DB226AEF87001F94F1 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				3D5D82DC226AEFA3001F94F1 /* NetworkConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		3D803586202B9E4A00A51585 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +396,7 @@
 		3DC040192039EA2E00C1A86D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3D215AE4226EE0B7002AEB8F /* GoogleService-Info.plist */,
 				3D2289152028FE010074D173 /* Info.plist */,
 				3DC0401B2039EA9900C1A86D /* style.json */,
 				3D12F0B1210DE2AB00E3B83B /* Directions.geojson */,
@@ -407,6 +426,7 @@
 				3DC5CBC92152E84B00EEE30B /* MovieWanderer+Font.swift */,
 				3DC5CBCB2152E8C900EEE30B /* MovieWanderer+UIDevice.swift */,
 				3D83DD6F21D6203300099C06 /* MovieWanderer+UIImage.swift */,
+				3D3FE273226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -414,37 +434,40 @@
 		3DC79AE62030CBB0008B0E49 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				3DC79AEE2030CCCF008B0E49 /* MoviesTab */,
-				3DC79AED2030CCC5008B0E49 /* ProfileTab */,
-				3D2289292028FEA20074D173 /* LocalizationTab */,
 				3DC79AE72030CBE7008B0E49 /* MainTabBarController.swift */,
+				3D2289292028FEA20074D173 /* Map */,
+				3DC79AEE2030CCCF008B0E49 /* Movies */,
+				3DC79AED2030CCC5008B0E49 /* Settings */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
 		};
-		3DC79AED2030CCC5008B0E49 /* ProfileTab */ = {
+		3DC79AED2030CCC5008B0E49 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				3DC79AF12030CD1D008B0E49 /* ProfileViewController.swift */,
+				3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */,
+				3D5D82D9226AEDA8001F94F1 /* SettingsViewModel.swift */,
+				3D3FE26F226B88E800ED5FD0 /* SettingTableViewCell.swift */,
+				3D3FE271226B977200ED5FD0 /* SettingsFooterView.swift */,
 			);
-			path = ProfileTab;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		3DC79AEE2030CCCF008B0E49 /* MoviesTab */ = {
+		3DC79AEE2030CCCF008B0E49 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
 				3D3F87F2205D833600EE3835 /* MovieDetail */,
 				3D44B2C6205C48BD0086D867 /* MovieCell */,
 				3DC79AEF2030CD02008B0E49 /* MovieListViewController.swift */,
 				3D44B2C2205C42B40086D867 /* MovieListView.swift */,
-				3D0F6FDD218AE3CB001712A9 /* MovieListViewModel.swift */,
 			);
-			path = MoviesTab;
+			path = Movies;
 			sourceTree = "<group>";
 		};
 		3DED2C00225DEBB70082E7E8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3D5D82DB226AEF87001F94F1 /* Constants */,
 				3D2289072028FE010074D173 /* AppDelegate.swift */,
 				3DC79AE1203087BD008B0E49 /* Extensions */,
 				3DED2C01225DEBCF0082E7E8 /* Features */,
@@ -575,6 +598,7 @@
 				3D2289012028FE010074D173 /* Frameworks */,
 				3D2289022028FE010074D173 /* Resources */,
 				0D8A11B215557DA57BBA99F6 /* [CP] Embed Pods Frameworks */,
+				3D215AE6226EE262002AEB8F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -652,6 +676,7 @@
 			files = (
 				3DF4E53021CF2C350092F47A /* SplitPhotoViewController.xib in Resources */,
 				3DF4E53221CF2E460092F47A /* CameraViewController.xib in Resources */,
+				3D215AE5226EE0B7002AEB8F /* GoogleService-Info.plist in Resources */,
 				3D12F0B3210DE2DF00E3B83B /* ultra-light-style.json in Resources */,
 				3DC0401C2039EA9900C1A86D /* style.json in Resources */,
 				3D0F6FDA21894ED3001712A9 /* MovieTableViewCell.xib in Resources */,
@@ -698,6 +723,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Filmwhere/Pods-Filmwhere-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -706,11 +732,13 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -719,11 +747,30 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Filmwhere/Pods-Filmwhere-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3D215AE6226EE262002AEB8F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		6691AACA6E0D26D98454BE7C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -752,6 +799,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Filmwhere-MovieWandererTests/Pods-Filmwhere-MovieWandererTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -760,6 +808,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
@@ -767,6 +816,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -775,6 +825,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
@@ -799,21 +850,23 @@
 				3D2289082028FE010074D173 /* AppDelegate.swift in Sources */,
 				3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */,
 				3D574939214E8AA80050E658 /* SceneAnnotationView.swift in Sources */,
-				3D0F6FDE218AE3CB001712A9 /* MovieListViewModel.swift in Sources */,
 				3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */,
 				3DF4E52721CF29270092F47A /* PreviewView.swift in Sources */,
 				3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */,
 				3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */,
 				3D68E8CA2195206200A4470D /* SceneTableViewCell.swift in Sources */,
 				3D6372C321C1FAE300B8E808 /* CameraOverlayView.swift in Sources */,
+				3D3FE274226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift in Sources */,
 				3D68E8C821951EB100A4470D /* SceneCellView.swift in Sources */,
 				214D73042105147F00F16983 /* SceneCarouselView.swift in Sources */,
 				3D574934214D6F140050E658 /* MovieService.swift in Sources */,
 				3DF4E52F21CF2C350092F47A /* SplitPhotoViewController.swift in Sources */,
 				3DC79AE520308A68008B0E49 /* MovieWanderer+UIView.swift in Sources */,
-				3DC79AF22030CD1D008B0E49 /* ProfileViewController.swift in Sources */,
+				3DC79AF22030CD1D008B0E49 /* SettingsViewController.swift in Sources */,
 				3DC79AF02030CD02008B0E49 /* MovieListViewController.swift in Sources */,
+				3D3FE270226B88E800ED5FD0 /* SettingTableViewCell.swift in Sources */,
 				3DF4E52621CF29270092F47A /* SwiftyCamButton.swift in Sources */,
+				3D5D82DD226AEFA3001F94F1 /* NetworkConstants.swift in Sources */,
 				3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */,
 				3D864D602056DAA20069ECD0 /* VerticalScenesView.swift in Sources */,
 				3DC79AE82030CBE7008B0E49 /* MainTabBarController.swift in Sources */,
@@ -844,6 +897,7 @@
 				3D0F6FD621888CBA001712A9 /* CustomTransition.swift in Sources */,
 				3D3F87FD205D8E1A00EE3835 /* MovieHeaderView.swift in Sources */,
 				3D1698522193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift in Sources */,
+				3D3FE272226B977200ED5FD0 /* SettingsFooterView.swift in Sources */,
 				3D3F87F6205D835E00EE3835 /* MovieDetailViewModel.swift in Sources */,
 				3D44B2C8205C48D80086D867 /* MovieTableViewCell.swift in Sources */,
 				3D0F6FD4218849A2001712A9 /* AnimatingBarView.swift in Sources */,
@@ -852,6 +906,7 @@
 				3D44B2CA205C48ED0086D867 /* MovieCellViewModel.swift in Sources */,
 				3D803588202B9E5B00A51585 /* Scene.swift in Sources */,
 				3D58E57021B68814005E6AE5 /* ActionButton.swift in Sources */,
+				3D5D82DA226AEDA8001F94F1 /* SettingsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,6 +1059,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = J9P8F4UWBG;
 				INFOPLIST_FILE = "$(SRCROOT)/MovieWanderer/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1023,6 +1079,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = J9P8F4UWBG;
 				INFOPLIST_FILE = "$(SRCROOT)/MovieWanderer/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

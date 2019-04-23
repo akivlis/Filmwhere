@@ -20,14 +20,17 @@ struct Constants {
 class LeftAlignedFlowLayout: UICollectionViewFlowLayout {
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+
+        // TODO: this should use itemSize.width
+        let pageWidth = Constants.ScenesCollection.cellWidth + self.minimumLineSpacing
+        let approximatePage = proposedContentOffset.x / pageWidth
+        let currentPage = (velocity.x < 0.0) ? floor(approximatePage) : ceil(approximatePage)
+        let flickVelocity = velocity.x * 0.3
         
-        let spacing = self.minimumLineSpacing
-        let cellWidth : CGFloat = Constants.ScenesCollection.cellWidth // TODO: make this generic
-        let index = proposedContentOffset.x / cellWidth
-        
-        let roundedIndex = abs(index.rounded())
-        let x = roundedIndex * (cellWidth + spacing)
-        return CGPoint(x: x ,y: proposedContentOffset.y)
+        // Check how many pages the user flicked
+        let flickedPages = (abs(round(flickVelocity)) <= 1) ? 0 : round(flickVelocity)
+        let newHorizontalOffset = ((currentPage + flickedPages) * pageWidth) - self.collectionView!.contentInset.left
+
+        return CGPoint(x: newHorizontalOffset, y: proposedContentOffset.y)
     }
-    
 }

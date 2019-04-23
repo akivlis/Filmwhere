@@ -82,14 +82,6 @@ extension UIFont {
         let italic = isItalic ? "Italic" : ""
         let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
         let fontName = "HelveticaNeue\(weight.rawValue)\(italic)"
-        
-//        let families = UIFont.familyNames
-//        families.sorted().forEach {
-//            print("\($0)")
-//            let names = UIFont.fontNames(forFamilyName: $0)
-//            print(names)
-//        }
-//
         let fontSize = textStyle.size
         
         guard let font = UIFont(name: fontName, size: fontSize) else {
