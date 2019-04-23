@@ -21,6 +21,7 @@
 		3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */; };
 		3D1698522193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1698502193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift */; };
 		3D1E3DEB217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D1E3DEA217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift */; };
+		3D215AE5226EE0B7002AEB8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D215AE4226EE0B7002AEB8F /* GoogleService-Info.plist */; };
 		3D2289082028FE010074D173 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2289072028FE010074D173 /* AppDelegate.swift */; };
 		3D2289112028FE010074D173 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289102028FE010074D173 /* Assets.xcassets */; };
 		3D2289142028FE010074D173 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D2289122028FE010074D173 /* LaunchScreen.storyboard */; };
@@ -116,6 +117,7 @@
 		3D12F0BC210DEFA600E3B83B /* MapViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewViewModel.swift; sourceTree = "<group>"; };
 		3D1698502193F3E2009C9FC8 /* ExpandableDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		3D1E3DEA217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailPagerViewCellViewModel.swift; sourceTree = "<group>"; };
+		3D215AE4226EE0B7002AEB8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3D2289042028FE010074D173 /* Filmwhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filmwhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D2289072028FE010074D173 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3D2289102028FE010074D173 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -394,6 +396,7 @@
 		3DC040192039EA2E00C1A86D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3D215AE4226EE0B7002AEB8F /* GoogleService-Info.plist */,
 				3D2289152028FE010074D173 /* Info.plist */,
 				3DC0401B2039EA9900C1A86D /* style.json */,
 				3D12F0B1210DE2AB00E3B83B /* Directions.geojson */,
@@ -595,6 +598,7 @@
 				3D2289012028FE010074D173 /* Frameworks */,
 				3D2289022028FE010074D173 /* Resources */,
 				0D8A11B215557DA57BBA99F6 /* [CP] Embed Pods Frameworks */,
+				3D215AE6226EE262002AEB8F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -672,6 +676,7 @@
 			files = (
 				3DF4E53021CF2C350092F47A /* SplitPhotoViewController.xib in Resources */,
 				3DF4E53221CF2E460092F47A /* CameraViewController.xib in Resources */,
+				3D215AE5226EE0B7002AEB8F /* GoogleService-Info.plist in Resources */,
 				3D12F0B3210DE2DF00E3B83B /* ultra-light-style.json in Resources */,
 				3DC0401C2039EA9900C1A86D /* style.json in Resources */,
 				3D0F6FDA21894ED3001712A9 /* MovieTableViewCell.xib in Resources */,
@@ -718,6 +723,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Filmwhere/Pods-Filmwhere-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -726,11 +732,13 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -739,11 +747,30 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Filmwhere/Pods-Filmwhere-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3D215AE6226EE262002AEB8F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		6691AACA6E0D26D98454BE7C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -772,6 +799,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-Filmwhere-MovieWandererTests/Pods-Filmwhere-MovieWandererTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -780,6 +808,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 				"${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
@@ -787,6 +816,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSPagerView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -795,6 +825,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxBlocking.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxTest.framework",
 			);
@@ -1028,6 +1059,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = J9P8F4UWBG;
 				INFOPLIST_FILE = "$(SRCROOT)/MovieWanderer/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1047,6 +1079,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = J9P8F4UWBG;
 				INFOPLIST_FILE = "$(SRCROOT)/MovieWanderer/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

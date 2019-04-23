@@ -12,6 +12,9 @@ target ‘Filmwhere’ do
     pod 'Kingfisher', '~> 5.0'
     pod 'SkeletonView'
     pod 'RxGesture', '~> 2.2'
+    pod 'Firebase/Core'
+    pod 'Fabric', '~> 1.9.0'
+    pod 'Crashlytics', '~> 3.12.0'
     
     target 'MovieWandererTests' do
         pod 'RxBlocking', '~> 4.0'
