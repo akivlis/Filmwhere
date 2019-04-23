@@ -10,8 +10,8 @@ import Foundation
 
 class NetworkConstants {
     
-    static let privacyPolicy = "https://slovnik.aktuality.sk"
+    static let privacyPolicy = "https://s3.eu-central-1.amazonaws.com/filmwhere-metafiles/privacy-policy.html"
     
-    static let emailAddress = "silvia.kuzmova21@gmail.com"
+    static let emailAddress = "filmwhere@gmail.com"
     
 }

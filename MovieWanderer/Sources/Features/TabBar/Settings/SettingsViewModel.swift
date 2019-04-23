@@ -73,7 +73,7 @@ enum SetttinsRow: Int, CaseIterable {
             return NetworkConstants.privacyPolicy
         case .sendFeedback:
             let email = NetworkConstants.emailAddress
-            let subject = "Filmwhere feedback"
+            let subject = "Feedback"
             let body = ""
             let urlString = "mailto:\(email)?subject=\(subject)&body=\(body)"
             return urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
