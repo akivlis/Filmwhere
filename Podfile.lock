@@ -72,8 +72,8 @@ PODS:
   - RxSwift (4.5.0)
   - RxTest (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
-  - SkeletonView (1.4.2)
-  - SnapKit (4.2.0)
+  - SkeletonView (1.5)
+  - SnapKit (5.0.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8)
@@ -89,7 +89,7 @@ DEPENDENCIES:
   - RxSwift (~> 4.5)
   - RxTest (~> 4.0)
   - SkeletonView
-  - SnapKit (from `https://github.com/akivlis/SnapKit.git`, branch `develop`)
+  - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -113,16 +113,7 @@ SPEC REPOS:
     - RxSwift
     - RxTest
     - SkeletonView
-
-EXTERNAL SOURCES:
-  SnapKit:
-    :branch: develop
-    :git: https://github.com/akivlis/SnapKit.git
-
-CHECKOUT OPTIONS:
-  SnapKit:
-    :commit: eea05d74f073696202cd0bb8e744e4c89781a414
-    :git: https://github.com/akivlis/SnapKit.git
+    - SnapKit
 
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
@@ -144,9 +135,9 @@ SPEC CHECKSUMS:
   RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
   RxSwift: f172070dfd1a93d70a9ab97a5a01166206e1c575
   RxTest: 3ccb66bfbace0bf7df1c43a7c75d046f8ce60372
-  SkeletonView: c2523c3c8c6510e273e49a3bf364a434744c3914
-  SnapKit: ae1cdee794f6a7b8e909092c5244a79b9d1c9e26
+  SkeletonView: 6cbb80f82f8bdee3f9093e2fa03b84819b4bd826
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
 
-PODFILE CHECKSUM: 3ab18afd8903bb5c74be8bfc088b125ed64226a6
+PODFILE CHECKSUM: eb205e28bf68d437ccc4170566d2d62e2d5ce417
 
 COCOAPODS: 1.6.1
