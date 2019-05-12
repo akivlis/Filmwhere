@@ -29,6 +29,8 @@ extension UIView {
     }
     
     func addTopGradient() {
+        let height = UIApplication.shared.keyWindow!.safeAreaInsets.top + 60
+
          let topGradient : GradientView = {
             let gradient = GradientView()
             gradient.tag = gradientViewTag
@@ -41,7 +43,7 @@ extension UIView {
         
         topGradient.snp.makeConstraints { make in
             make.leading.trailing.top.equalToSuperview()
-            make.height.equalTo(80)
+            make.height.equalTo(height)
         }
         bringSubviewToFront(topGradient)
     }

@@ -18,6 +18,8 @@ class MovieHeaderView: UITableViewHeaderFooterView {
         return goToMapButton.rx.tap.asObservable()
     }
     
+    lazy var photoContainerView = UIView()
+
     private(set) var disposeBag = DisposeBag()
 
     private lazy var moviePhoto: UIImageView = {
@@ -40,8 +42,6 @@ class MovieHeaderView: UITableViewHeaderFooterView {
         button.setTitle("Show on map", for: .normal)
         return button
     }()
-    
-    private lazy var photoContainerView = UIView()
     
     private var imageViewHeightLayoutConstraint: Constraint?
     private var imageViewBottomLayoutConstraint: Constraint?

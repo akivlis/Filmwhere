@@ -33,6 +33,9 @@ class VerticalScenesView: UIView {
     private var headerView: MovieHeaderView?
     private var scenes: [Scene]
     private let showHeader: Bool
+    private lazy var navigationBarHeight: CGFloat = {
+        return UIApplication.shared.keyWindow!.safeAreaInsets.top + 44
+    }()
     
     let scenesTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -123,22 +126,24 @@ extension VerticalScenesView: UITableViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         headerView?.updatePosition(withInset: scrollView.contentInset.top, contentOffset: scrollView.contentOffset.y)
+
+        let offset = scrollView.contentOffset
         
-        //todo: probably calculate this number (120) based on image height
-        if scrollView.contentOffset.y > 190 {
-            let offset = scrollView.contentOffset.y / 120 //check this number
-            var number = offset - 1
-            if number > 1 {
-                number = 1
-            }
-            _updateNavigationBarAlpha$.onNext(number)
+        let start: CGFloat = navigationBarHeight
+        let imageHeight = headerView?.photoContainerView.frame.height ?? 250
+        let fullAlphaPoint: CGFloat =  imageHeight - start - navigationBarHeight - start // kolko musim scrollnut + (vyska imagu - start - navigation bar - cast co je skryta)
+        let calculatedAlpha = max(min((offset.y - start) / (start + fullAlphaPoint), 1), 0)
+        
+        _updateNavigationBarAlpha$.onNext(calculatedAlpha)
+        
+        if calculatedAlpha > 0.7 {
             _updateStatusBarStyle$.onNext(.default)
         } else {
-            _updateNavigationBarAlpha$.onNext(0.0)
             _updateStatusBarStyle$.onNext(.lightContent)
         }
     }
     
+
     public func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
