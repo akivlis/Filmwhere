@@ -10,6 +10,7 @@
 		095DED9ED1BE23F2F058F944 /* Pods_Filmwhere.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC0D387F61FF46E29071D4F6 /* Pods_Filmwhere.framework */; };
 		1E820B9CA6CD782BE84A5BA1 /* Pods_Filmwhere_MovieWandererTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B359ED00A63C2567DD6593 /* Pods_Filmwhere_MovieWandererTests.framework */; };
 		214D73042105147F00F16983 /* SceneCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 214D73032105147F00F16983 /* SceneCarouselView.swift */; };
+		3D02C77E229CF10D0029EE45 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D02C77D229CF10D0029EE45 /* CameraViewController.swift */; };
 		3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D05230E202906BC00A90A61 /* ScenesViewModel.swift */; };
 		3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */; };
 		3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D0523132029072300A90A61 /* SceneCellViewModel.swift */; };
@@ -63,7 +64,7 @@
 		3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */; };
 		3DB9845021BE649A00C992A1 /* MapNavigationModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9844F21BE649A00C992A1 /* MapNavigationModelController.swift */; };
 		3DB9845221BFEF0600C992A1 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9845121BFEF0600C992A1 /* IconButton.swift */; };
-		3DB9845421C1120100C992A1 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9845321C1120100C992A1 /* CameraViewController.swift */; };
+		3DB9845421C1120100C992A1 /* TakePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DB9845321C1120100C992A1 /* TakePhotoViewController.swift */; };
 		3DC0401C2039EA9900C1A86D /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3DC0401B2039EA9900C1A86D /* style.json */; };
 		3DC3A69A21090B4500E3B28D /* LeftAlignedFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */; };
 		3DC5CBC52152DAA200EEE30B /* SceneDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC5CBC42152DAA200EEE30B /* SceneDetailViewController.swift */; };
@@ -84,7 +85,7 @@
 		3DF4E52C21CF2BAD0092F47A /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52B21CF2BAD0092F47A /* RecordButton.swift */; };
 		3DF4E52F21CF2C350092F47A /* SplitPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52D21CF2C350092F47A /* SplitPhotoViewController.swift */; };
 		3DF4E53021CF2C350092F47A /* SplitPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF4E52E21CF2C350092F47A /* SplitPhotoViewController.xib */; };
-		3DF4E53221CF2E460092F47A /* CameraViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF4E53121CF2E460092F47A /* CameraViewController.xib */; };
+		3DF4E53221CF2E460092F47A /* TakePhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF4E53121CF2E460092F47A /* TakePhotoViewController.xib */; };
 		B34021DCA5311F624324DAFF /* Pods_MovieWandererTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ECEA672BF83C17E2FFE9B489 /* Pods_MovieWandererTests.framework */; };
 		FF24765068D3C2E384990F18 /* Pods_MovieWanderer_MovieWandererTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79664667ABF1B8721D6BB3E2 /* Pods_MovieWanderer_MovieWandererTests.framework */; };
 /* End PBXBuildFile section */
@@ -105,6 +106,7 @@
 		21A98895135AFABB829229AB /* Pods-Filmwhere.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmwhere.release.xcconfig"; path = "Pods/Target Support Files/Pods-Filmwhere/Pods-Filmwhere.release.xcconfig"; sourceTree = "<group>"; };
 		2C6C7BAC8429FADADDBAA7A8 /* Pods-MovieWanderer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer.release.xcconfig"; sourceTree = "<group>"; };
 		3860A9C5DBCEDA29F5515693 /* Pods-Filmwhere-MovieWandererTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmwhere-MovieWandererTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filmwhere-MovieWandererTests/Pods-Filmwhere-MovieWandererTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3D02C77D229CF10D0029EE45 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		3D05230E202906BC00A90A61 /* ScenesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScenesViewModel.swift; sourceTree = "<group>"; };
 		3D0523112029070C00A90A61 /* SceneCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCollectionViewCell.swift; sourceTree = "<group>"; };
 		3D0523132029072300A90A61 /* SceneCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCellViewModel.swift; sourceTree = "<group>"; };
@@ -163,7 +165,7 @@
 		3DA3B18920F5362500F15104 /* MovieWanderer+MKMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieWanderer+MKMapView.swift"; sourceTree = "<group>"; };
 		3DB9844F21BE649A00C992A1 /* MapNavigationModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavigationModelController.swift; sourceTree = "<group>"; };
 		3DB9845121BFEF0600C992A1 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
-		3DB9845321C1120100C992A1 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		3DB9845321C1120100C992A1 /* TakePhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakePhotoViewController.swift; sourceTree = "<group>"; };
 		3DC0401B2039EA9900C1A86D /* style.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
 		3DC3A69921090B4500E3B28D /* LeftAlignedFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftAlignedFlowLayout.swift; sourceTree = "<group>"; };
 		3DC5CBC42152DAA200EEE30B /* SceneDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDetailViewController.swift; sourceTree = "<group>"; };
@@ -184,7 +186,7 @@
 		3DF4E52B21CF2BAD0092F47A /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		3DF4E52D21CF2C350092F47A /* SplitPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitPhotoViewController.swift; sourceTree = "<group>"; };
 		3DF4E52E21CF2C350092F47A /* SplitPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitPhotoViewController.xib; sourceTree = "<group>"; };
-		3DF4E53121CF2E460092F47A /* CameraViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CameraViewController.xib; sourceTree = "<group>"; };
+		3DF4E53121CF2E460092F47A /* TakePhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TakePhotoViewController.xib; sourceTree = "<group>"; };
 		549F5945F2D00594116BF4CB /* Pods-MovieWanderer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieWanderer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieWanderer/Pods-MovieWanderer.debug.xcconfig"; sourceTree = "<group>"; };
 		79664667ABF1B8721D6BB3E2 /* Pods_MovieWanderer_MovieWandererTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieWanderer_MovieWandererTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81BC0DBCCF5C2989B70EE6B5 /* Pods-Filmwhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmwhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Filmwhere/Pods-Filmwhere.debug.xcconfig"; sourceTree = "<group>"; };
@@ -220,6 +222,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D02C77C229CEEA60029EE45 /* SplitPhoto */ = {
+			isa = PBXGroup;
+			children = (
+				3DF4E52E21CF2C350092F47A /* SplitPhotoViewController.xib */,
+				3DF4E52D21CF2C350092F47A /* SplitPhotoViewController.swift */,
+			);
+			path = SplitPhoto;
+			sourceTree = "<group>";
+		};
 		3D052310202906E500A90A61 /* SceneCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,7 +304,6 @@
 			isa = PBXGroup;
 			children = (
 				3DED2C02225DEBEC0082E7E8 /* MapViewController */,
-				3DF4E52A21CF2B4B0092F47A /* CameraViewController */,
 				3DF4E52921CF2B350092F47A /* PicturePreviewViewController */,
 				3D2A9FBC21B4E340001C0322 /* BaseCloseViewController.swift */,
 			);
@@ -464,6 +474,15 @@
 			path = Movies;
 			sourceTree = "<group>";
 		};
+		3DDB1684229CEDE300D92908 /* TakePhoto */ = {
+			isa = PBXGroup;
+			children = (
+				3D02C77C229CEEA60029EE45 /* SplitPhoto */,
+				3DF4E52A21CF2B4B0092F47A /* Camera */,
+			);
+			path = TakePhoto;
+			sourceTree = "<group>";
+		};
 		3DED2C00225DEBB70082E7E8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -484,6 +503,7 @@
 		3DED2C01225DEBCF0082E7E8 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				3DDB1684229CEDE300D92908 /* TakePhoto */,
 				3DC79AE62030CBB0008B0E49 /* TabBar */,
 				3DC5CBC62152E73E00EEE30B /* SceneDetail */,
 			);
@@ -537,15 +557,14 @@
 			path = PicturePreviewViewController;
 			sourceTree = "<group>";
 		};
-		3DF4E52A21CF2B4B0092F47A /* CameraViewController */ = {
+		3DF4E52A21CF2B4B0092F47A /* Camera */ = {
 			isa = PBXGroup;
 			children = (
-				3DB9845321C1120100C992A1 /* CameraViewController.swift */,
-				3DF4E52D21CF2C350092F47A /* SplitPhotoViewController.swift */,
-				3DF4E52E21CF2C350092F47A /* SplitPhotoViewController.xib */,
-				3DF4E53121CF2E460092F47A /* CameraViewController.xib */,
+				3D02C77D229CF10D0029EE45 /* CameraViewController.swift */,
+				3DB9845321C1120100C992A1 /* TakePhotoViewController.swift */,
+				3DF4E53121CF2E460092F47A /* TakePhotoViewController.xib */,
 			);
-			path = CameraViewController;
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		3DF6F0E422621352002BBC0D /* Annotation */ = {
@@ -675,7 +694,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DF4E53021CF2C350092F47A /* SplitPhotoViewController.xib in Resources */,
-				3DF4E53221CF2E460092F47A /* CameraViewController.xib in Resources */,
+				3DF4E53221CF2E460092F47A /* TakePhotoViewController.xib in Resources */,
 				3D215AE5226EE0B7002AEB8F /* GoogleService-Info.plist in Resources */,
 				3D12F0B3210DE2DF00E3B83B /* ultra-light-style.json in Resources */,
 				3DC0401C2039EA9900C1A86D /* style.json in Resources */,
@@ -862,6 +881,7 @@
 				3D6372C321C1FAE300B8E808 /* CameraOverlayView.swift in Sources */,
 				3D3FE274226B98D200ED5FD0 /* MovieWanderer+UIApplication.swift in Sources */,
 				3D68E8C821951EB100A4470D /* SceneCellView.swift in Sources */,
+				3D02C77E229CF10D0029EE45 /* CameraViewController.swift in Sources */,
 				214D73042105147F00F16983 /* SceneCarouselView.swift in Sources */,
 				3D574934214D6F140050E658 /* MovieService.swift in Sources */,
 				3DF4E52F21CF2C350092F47A /* SplitPhotoViewController.swift in Sources */,
@@ -886,7 +906,7 @@
 				3DF4E52421CF29270092F47A /* Orientation.swift in Sources */,
 				3D0F6FE0218AEC7C001712A9 /* Endpoint.swift in Sources */,
 				3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */,
-				3DB9845421C1120100C992A1 /* CameraViewController.swift in Sources */,
+				3DB9845421C1120100C992A1 /* TakePhotoViewController.swift in Sources */,
 				3DB9845221BFEF0600C992A1 /* IconButton.swift in Sources */,
 				3D4A868620C72BF4009AB176 /* MovieWanderer+Reusable.swift in Sources */,
 				3DC5CBCC2152E8C900EEE30B /* MovieWanderer+UIDevice.swift in Sources */,

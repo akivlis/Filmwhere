@@ -185,8 +185,9 @@ private extension SceneDetailViewController {
     
     private func takePhoto() {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraViewController = CameraViewController()
+            let cameraViewController = TakePhotoViewController()
             self.present(cameraViewController, animated: true, completion: nil)
         }
     }
 }
+
