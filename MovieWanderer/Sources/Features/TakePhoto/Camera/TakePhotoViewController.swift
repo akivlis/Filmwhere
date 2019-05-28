@@ -108,8 +108,10 @@ private extension TakePhotoViewController {
                 print(error ?? "Image capture error")
                 return
             }
+            let rotatedPhoto = capturedImage.fixedOrientation().imageRotatedByDegrees(degrees: -90.0)
+
             let originalImage = UIImage(named: "eat_pray")!
-            let newVC = SplitPhotoViewController(originalImage: originalImage, newImage: capturedImage)
+            let newVC = SplitPhotoViewController(originalImage: originalImage, newImage: rotatedPhoto)
             self.present(newVC, animated: true, completion: nil)
             
 //            try? PHPhotoLibrary.shared().performChangesAndWait {
