@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import SnapKit
+import Photos
 
 class SplitPhotoViewController: UIViewController {
     
@@ -106,10 +107,14 @@ private extension SplitPhotoViewController {
     }
     
     private func showFinalImage() {
-        let finalPicture =  photosContainer.asImage()
-        let photoVC = PictureViewController(pictures: [finalPicture])
+        let finalImage =  photosContainer.asImage()
         
-        present(photoVC, animated: true, completion: nil)
+        try? PHPhotoLibrary.shared().performChangesAndWait {
+            PHAssetChangeRequest.creationRequestForAsset(from: finalImage)
+        }
+        
+//        let photoVC = PictureViewController(pictures: [finalPicture])
+//        present(photoVC, animated: true, completion: nil)
     }
 }
 

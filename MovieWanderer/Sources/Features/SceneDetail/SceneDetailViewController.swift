@@ -79,8 +79,9 @@ extension SceneDetailViewController: FSPagerViewDataSource {
             .disposed(by: disposeBag)
             
             sceneCell.takePhotoButtonTapped$
-                .subscribe(onNext: { [weak self] _ in
-                   self?.takePhoto()
+                .subscribe(onNext: { [weak self] image in
+                    guard let `self` = self, let scenePhoto = image else { return }
+                    self.takePhoto(like: scenePhoto)
                 })
                 .disposed(by: disposeBag)
 
@@ -183,9 +184,9 @@ private extension SceneDetailViewController {
         self.present(pictureViewController, animated: true, completion: nil)
     }
     
-    private func takePhoto() {
+    private func takePhoto(like scenePhoto: UIImage) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraViewController = TakePhotoViewController()
+            let cameraViewController = TakePhotoViewController(sceneImage: scenePhoto)
             self.present(cameraViewController, animated: true, completion: nil)
         }
     }

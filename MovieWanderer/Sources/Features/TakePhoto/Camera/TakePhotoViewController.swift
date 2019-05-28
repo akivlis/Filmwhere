@@ -19,9 +19,18 @@ class TakePhotoViewController: UIViewController {
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet fileprivate var capturePreviewView: UIView!
     
-    let cameraController = CameraViewController()
-  
+    private let cameraController = CameraViewController()
     private let bag = DisposeBag()
+    private let sceneImage: UIImage
+    
+    init(sceneImage: UIImage) {
+        self.sceneImage = sceneImage
+        super.init(nibName: TakePhotoViewController.className(), bundle: nil)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +71,7 @@ private extension TakePhotoViewController {
     }
 
     private func setupViews() {
-        let backgroundImage = UIImage(named: "eat_pray")!
-        let rotatedPhoto = backgroundImage.fixedOrientation().imageRotatedByDegrees(degrees: 90.0)
+        let rotatedPhoto = sceneImage.fixedOrientation().imageRotatedByDegrees(degrees: 90.0)
         
         overlayImageView.image = rotatedPhoto
         overlayImageView.alpha = 0.5
@@ -102,21 +110,14 @@ private extension TakePhotoViewController {
     }
     
     private func takePhoto() {
-        
         cameraController.captureImage {(image, error) in
             guard let capturedImage = image else {
                 print(error ?? "Image capture error")
                 return
             }
             let rotatedPhoto = capturedImage.fixedOrientation().imageRotatedByDegrees(degrees: -90.0)
-
-            let originalImage = UIImage(named: "eat_pray")!
-            let newVC = SplitPhotoViewController(originalImage: originalImage, newImage: rotatedPhoto)
-            self.present(newVC, animated: true, completion: nil)
-            
-//            try? PHPhotoLibrary.shared().performChangesAndWait {
-//                PHAssetChangeRequest.creationRequestForAsset(from: image)
-//            }
+            let splitViewController = SplitPhotoViewController(originalImage: self.sceneImage, newImage: rotatedPhoto)
+            self.present(splitViewController, animated: true, completion: nil)
         }
     }
     

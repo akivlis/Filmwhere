@@ -26,9 +26,9 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
         .asObservable()
     }
     
-    var takePhotoButtonTapped$: Observable<()> {
+    var takePhotoButtonTapped$: Observable<UIImage?> {
         return takePictureButton.rx.tap
-            .map { _ in () }
+            .map { [unowned self] in self.sceneImageView.image }
             .asObservable()
     }
     
