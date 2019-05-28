@@ -30,7 +30,6 @@ class TakePhotoViewController: UIViewController {
         setupConstraints()
         setupObservables()
         setupCamera()
-        
     }
     
     override var prefersStatusBarHidden: Bool {
@@ -51,16 +50,15 @@ class TakePhotoViewController: UIViewController {
 private extension TakePhotoViewController {
     
     private func setupCamera() {
-            cameraController.prepare {(error) in
-                if let error = error {
-                    print(error)
-                }
-                
-                try? self.cameraController.displayPreview(on: self.capturePreviewView)
+        captureButton.isEnabled = false
+        
+        cameraController.prepare {(error) in
+            if let error = error {
+                print(error)
             }
-        // disable capture button until session starts
-//        captureButton.buttonEnabled = false
-  
+            try? self.cameraController.displayPreview(on: self.capturePreviewView)
+            self.captureButton.isEnabled = true
+        }
     }
 
     private func setupViews() {
