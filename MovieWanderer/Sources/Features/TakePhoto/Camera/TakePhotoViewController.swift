@@ -18,7 +18,6 @@ class TakePhotoViewController: UIViewController {
     @IBOutlet weak var alphaSlider: UISlider!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet fileprivate var capturePreviewView: UIView!
-
     
     let cameraController = CameraViewController()
   
@@ -52,7 +51,6 @@ class TakePhotoViewController: UIViewController {
 private extension TakePhotoViewController {
     
     private func setupCamera() {
-        
             cameraController.prepare {(error) in
                 if let error = error {
                     print(error)
@@ -62,12 +60,9 @@ private extension TakePhotoViewController {
             }
         // disable capture button until session starts
 //        captureButton.buttonEnabled = false
-
-        
+  
     }
-    
 
-    
     private func setupViews() {
         let backgroundImage = UIImage(named: "eat_pray")!
         let rotatedPhoto = backgroundImage.fixedOrientation().imageRotatedByDegrees(degrees: 90.0)
@@ -90,18 +85,67 @@ private extension TakePhotoViewController {
             .disposed(by: bag)
         
         captureButton.rx.tap
-            .subscribe(onNext: { _ in
-                print("capture button tap")
-                // take(photo)
+            .subscribe(onNext: { [weak self] _ in
+                self?.takePhoto()
             })
         .disposed(by: bag)
+        
+        flashButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.toggleFlash()
+            })
+            .disposed(by: bag)
+        
+        flipCameraButton.rx.tap
+            .subscribe(onNext: { [weak self] _ in
+                self?.switchCameras()
+            })
+            .disposed(by: bag)
     }
     
-    private func take(_ photo: UIImage) {
-        let originalImage = UIImage(named: "eat_pray")!
-        let newVC = SplitPhotoViewController(originalImage: originalImage, newImage: photo)
+    private func takePhoto() {
         
-        self.present(newVC, animated: true, completion: nil)
+        cameraController.captureImage {(image, error) in
+            guard let capturedImage = image else {
+                print(error ?? "Image capture error")
+                return
+            }
+            let originalImage = UIImage(named: "eat_pray")!
+            let newVC = SplitPhotoViewController(originalImage: originalImage, newImage: capturedImage)
+            self.present(newVC, animated: true, completion: nil)
+            
+//            try? PHPhotoLibrary.shared().performChangesAndWait {
+//                PHAssetChangeRequest.creationRequestForAsset(from: image)
+//            }
+        }
+    }
+    
+    func toggleFlash() {
+        if cameraController.flashMode == .on {
+            cameraController.flashMode = .off
+            flashButton.setImage(#imageLiteral(resourceName: "flash_inactive"), for: .normal)
+            
+        } else {
+            cameraController.flashMode = .on
+            flashButton.setImage(#imageLiteral(resourceName: "flash_active"), for: .normal)
+        }
+    }
+    
+    func switchCameras() {
+        do {
+            try cameraController.switchCameras()
+        } catch {
+            print(error)
+        }
+        
+        switch cameraController.currentCameraPosition {
+        case .some(.front):
+            flipCameraButton.setImage(#imageLiteral(resourceName: "flipCamera"), for: .normal)
+        case .some(.rear):
+            flipCameraButton.setImage(#imageLiteral(resourceName: "flipCamera"), for: .normal)
+        case .none:
+            return
+        }
     }
 }
 
