@@ -16,7 +16,7 @@
                 <outlet property="normalPhotoButton" destination="QR7-g1-GyG" id="gRq-M4-obB"/>
                 <outlet property="originalImageView" destination="cR7-B8-Mze" id="iOE-GG-xzK"/>
                 <outlet property="photosContainer" destination="bp0-Pm-i50" id="0Rf-cx-Jg2"/>
-                <outlet property="savePhotoButton" destination="b49-2p-j9H" id="mMn-8g-WXa"/>
+                <outlet property="shareButton" destination="b49-2p-j9H" id="mMn-8g-WXa"/>
                 <outlet property="squarePhotoButton" destination="f2g-lw-dmW" id="nnO-ay-IiJ"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -67,7 +67,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b49-2p-j9H" userLabel="Save Button">
                             <rect key="frame" x="250" y="0.0" width="125" height="80"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <state key="normal" title="Save"/>
+                            <state key="normal" title="Share"/>
                         </button>
                     </subviews>
                     <constraints>

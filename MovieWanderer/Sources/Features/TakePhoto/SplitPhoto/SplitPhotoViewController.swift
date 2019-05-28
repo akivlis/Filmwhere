@@ -17,7 +17,7 @@ class SplitPhotoViewController: UIViewController {
     @IBOutlet weak var newImageView: UIImageView!
     @IBOutlet weak var originalImageView: UIImageView!
     @IBOutlet weak var normalPhotoButton: UIButton!
-    @IBOutlet weak var savePhotoButton: UIButton!
+    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var squarePhotoButton: UIButton!
         
     private let disposeBag = DisposeBag()
@@ -92,9 +92,9 @@ private extension SplitPhotoViewController {
             })
             .disposed(by: disposeBag)
         
-        savePhotoButton.rx.tap.asObservable()
+        shareButton.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] recognizer in
-                self?.showFinalImage()
+                self?.shareImage()
             })
             .disposed(by: disposeBag)
     }
@@ -106,15 +106,10 @@ private extension SplitPhotoViewController {
         }
     }
     
-    private func showFinalImage() {
+    private func shareImage() {
         let finalImage =  photosContainer.asImage()
-        
-        try? PHPhotoLibrary.shared().performChangesAndWait {
-            PHAssetChangeRequest.creationRequestForAsset(from: finalImage)
-        }
-        
-//        let photoVC = PictureViewController(pictures: [finalPicture])
-//        present(photoVC, animated: true, completion: nil)
+        let activityViewController = UIActivityViewController(activityItems: [finalImage], applicationActivities: nil)
+        present(activityViewController, animated: true)
     }
 }
 
