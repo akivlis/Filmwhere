@@ -77,11 +77,6 @@
 		3DC79AF02030CD02008B0E49 /* MovieListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AEF2030CD02008B0E49 /* MovieListViewController.swift */; };
 		3DC79AF22030CD1D008B0E49 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */; };
 		3DDF95492108C49600582D52 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DDF95482108C49600582D52 /* GradientView.swift */; };
-		3DF4E52421CF29270092F47A /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E51F21CF29260092F47A /* Orientation.swift */; };
-		3DF4E52521CF29270092F47A /* SwiftyCamViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52021CF29260092F47A /* SwiftyCamViewController.swift */; };
-		3DF4E52621CF29270092F47A /* SwiftyCamButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52121CF29260092F47A /* SwiftyCamButton.swift */; };
-		3DF4E52721CF29270092F47A /* PreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52221CF29260092F47A /* PreviewView.swift */; };
-		3DF4E52821CF29270092F47A /* SwiftyCamViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52321CF29260092F47A /* SwiftyCamViewControllerDelegate.swift */; };
 		3DF4E52C21CF2BAD0092F47A /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52B21CF2BAD0092F47A /* RecordButton.swift */; };
 		3DF4E52F21CF2C350092F47A /* SplitPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF4E52D21CF2C350092F47A /* SplitPhotoViewController.swift */; };
 		3DF4E53021CF2C350092F47A /* SplitPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DF4E52E21CF2C350092F47A /* SplitPhotoViewController.xib */; };
@@ -178,11 +173,6 @@
 		3DC79AEF2030CD02008B0E49 /* MovieListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewController.swift; sourceTree = "<group>"; };
 		3DC79AF12030CD1D008B0E49 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3DDF95482108C49600582D52 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		3DF4E51F21CF29260092F47A /* Orientation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
-		3DF4E52021CF29260092F47A /* SwiftyCamViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamViewController.swift; sourceTree = "<group>"; };
-		3DF4E52121CF29260092F47A /* SwiftyCamButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamButton.swift; sourceTree = "<group>"; };
-		3DF4E52221CF29260092F47A /* PreviewView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewView.swift; sourceTree = "<group>"; };
-		3DF4E52321CF29260092F47A /* SwiftyCamViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyCamViewControllerDelegate.swift; sourceTree = "<group>"; };
 		3DF4E52B21CF2BAD0092F47A /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		3DF4E52D21CF2C350092F47A /* SplitPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitPhotoViewController.swift; sourceTree = "<group>"; };
 		3DF4E52E21CF2C350092F47A /* SplitPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitPhotoViewController.xib; sourceTree = "<group>"; };
@@ -245,7 +235,6 @@
 		3D2288FB2028FE010074D173 = {
 			isa = PBXGroup;
 			children = (
-				3DF4E51E21CF28FF0092F47A /* SwiftyCam */,
 				3D2289062028FE010074D173 /* MovieWanderer */,
 				3D22891D2028FE010074D173 /* MovieWandererTests */,
 				3D2289052028FE010074D173 /* Products */,
@@ -534,18 +523,6 @@
 				3D0F6FD521888CBA001712A9 /* CustomTransition.swift */,
 			);
 			path = Transitions;
-			sourceTree = "<group>";
-		};
-		3DF4E51E21CF28FF0092F47A /* SwiftyCam */ = {
-			isa = PBXGroup;
-			children = (
-				3DF4E51F21CF29260092F47A /* Orientation.swift */,
-				3DF4E52221CF29260092F47A /* PreviewView.swift */,
-				3DF4E52121CF29260092F47A /* SwiftyCamButton.swift */,
-				3DF4E52021CF29260092F47A /* SwiftyCamViewController.swift */,
-				3DF4E52321CF29260092F47A /* SwiftyCamViewControllerDelegate.swift */,
-			);
-			path = SwiftyCam;
 			sourceTree = "<group>";
 		};
 		3DF4E52921CF2B350092F47A /* PicturePreviewViewController */ = {
@@ -874,7 +851,6 @@
 				3D3F87F4205D835000EE3835 /* MovieDetailViewController.swift in Sources */,
 				3D574939214E8AA80050E658 /* SceneAnnotationView.swift in Sources */,
 				3D12F0BD210DEFA600E3B83B /* MapViewViewModel.swift in Sources */,
-				3DF4E52721CF29270092F47A /* PreviewView.swift in Sources */,
 				3DA3B18A20F5362500F15104 /* MovieWanderer+MKMapView.swift in Sources */,
 				3D0523122029070C00A90A61 /* SceneCollectionViewCell.swift in Sources */,
 				3D68E8CA2195206200A4470D /* SceneTableViewCell.swift in Sources */,
@@ -889,7 +865,6 @@
 				3DC79AF22030CD1D008B0E49 /* SettingsViewController.swift in Sources */,
 				3DC79AF02030CD02008B0E49 /* MovieListViewController.swift in Sources */,
 				3D3FE270226B88E800ED5FD0 /* SettingTableViewCell.swift in Sources */,
-				3DF4E52621CF29270092F47A /* SwiftyCamButton.swift in Sources */,
 				3D5D82DD226AEFA3001F94F1 /* NetworkConstants.swift in Sources */,
 				3D0523142029072300A90A61 /* SceneCellViewModel.swift in Sources */,
 				3D864D602056DAA20069ECD0 /* VerticalScenesView.swift in Sources */,
@@ -900,10 +875,8 @@
 				3D1E3DEB217D8FF0008DC3BD /* SceneDetailPagerViewCellViewModel.swift in Sources */,
 				3DC5CBC52152DAA200EEE30B /* SceneDetailViewController.swift in Sources */,
 				3D05230F202906BC00A90A61 /* ScenesViewModel.swift in Sources */,
-				3DF4E52521CF29270092F47A /* SwiftyCamViewController.swift in Sources */,
 				3D83DD7021D6203300099C06 /* MovieWanderer+UIImage.swift in Sources */,
 				3D57493B214E8AB60050E658 /* ClusterAnnotationView.swift in Sources */,
-				3DF4E52421CF29270092F47A /* Orientation.swift in Sources */,
 				3D0F6FE0218AEC7C001712A9 /* Endpoint.swift in Sources */,
 				3DA3B18820F52FBD00F15104 /* MapViewController.swift in Sources */,
 				3DB9845421C1120100C992A1 /* TakePhotoViewController.swift in Sources */,
@@ -914,7 +887,6 @@
 				3DB9845021BE649A00C992A1 /* MapNavigationModelController.swift in Sources */,
 				3DC79AE3203087E8008B0E49 /* MovieWanderer+Color.swift in Sources */,
 				3DF4E52C21CF2BAD0092F47A /* RecordButton.swift in Sources */,
-				3DF4E52821CF29270092F47A /* SwiftyCamViewControllerDelegate.swift in Sources */,
 				3D3E69A9206C15A800891580 /* MoviewHeaderViewModel.swift in Sources */,
 				3D3F8804205EBB1700EE3835 /* MapView.swift in Sources */,
 				3D22892C2028FF080074D173 /* LocationViewController.swift in Sources */,

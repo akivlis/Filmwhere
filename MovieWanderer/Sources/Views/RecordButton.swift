@@ -15,7 +15,7 @@
 
 import UIKit
 
-class RecordButton: SwiftyCamButton {
+class RecordButton: UIButton {
     
     private var circleBorder: CALayer!
     private var innerCircle: UIView!
