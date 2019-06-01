@@ -109,6 +109,23 @@ private extension SplitPhotoViewController {
     private func shareImage() {
         let finalImage =  photosContainer.asImage()
         let activityViewController = UIActivityViewController(activityItems: [finalImage], applicationActivities: nil)
+        
+        activityViewController.completionWithItemsHandler = { (activityType, completed, _, _) in
+            if activityType == .saveToCameraRoll {
+                var message: String?
+                var title = ""
+                
+                if completed {
+                    title = "Saved"
+                    message = "Photo was succesfully saved to your library :)"
+                } else {
+                    title = "Oops"
+                    message = "The photo was not saved to your library. Pls try again :)"
+                }
+                let alert = UIAlertController.createAlertController(withTitle: title, message: message, closeActionTitle: "OK")
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
         present(activityViewController, animated: true)
     }
 }
