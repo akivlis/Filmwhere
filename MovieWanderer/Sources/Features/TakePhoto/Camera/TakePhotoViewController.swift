@@ -84,8 +84,6 @@ private extension TakePhotoViewController {
     }
 
     private func setupViews() {
-        let rotatedPhoto = sceneImage.fixedOrientation().imageRotatedByDegrees(degrees: 90.0)
-        
         overlayImageView.image = sceneImage
         overlayImageView.alpha = 0.5
         

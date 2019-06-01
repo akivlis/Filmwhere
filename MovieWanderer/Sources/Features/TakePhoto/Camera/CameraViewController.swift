@@ -163,7 +163,7 @@ class CameraViewController: UIViewController {
         self.previewLayer?.connection?.videoOrientation = .landscapeRight
         
         view.layer.insertSublayer(self.previewLayer!, at: 0)
-        self.previewLayer?.frame = view.bounds
+        self.previewLayer?.frame = view.frame
     }
 }
 
