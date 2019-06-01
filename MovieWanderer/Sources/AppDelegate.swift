@@ -26,11 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController) {
             if (rootViewController.responds(to: #selector(PictureViewController.canRotate))) {
                 // Unlock landscape view orientations for this view controller
-                return .allButUpsideDown;
+                return .allButUpsideDown
+            }
+            
+            if ((rootViewController as? TakePhotoViewController) != nil) {
+                return .landscapeRight
             }
         }
         // Only allow portrait (standard behaviour)
-        return .portrait;
+        return .portrait
     }
 }
 

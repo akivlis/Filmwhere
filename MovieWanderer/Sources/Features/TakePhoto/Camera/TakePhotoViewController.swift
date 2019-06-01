@@ -40,13 +40,25 @@ class TakePhotoViewController: UIViewController {
         setupObservables()
         setupCamera()
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+//        if (self.isMovingFromParent) {
+//            UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
+//        }
+    }
+    
+    override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscapeRight
+    }
+    
+    open override var shouldAutorotate: Bool {
+        return false
+    }
     
     override var prefersStatusBarHidden: Bool {
         return true
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
     
     @objc func changedValue(_ sender: UISlider) {
@@ -55,6 +67,7 @@ class TakePhotoViewController: UIViewController {
     }
 }
 
+// MARK: - Private
 
 private extension TakePhotoViewController {
     
@@ -73,7 +86,7 @@ private extension TakePhotoViewController {
     private func setupViews() {
         let rotatedPhoto = sceneImage.fixedOrientation().imageRotatedByDegrees(degrees: 90.0)
         
-        overlayImageView.image = rotatedPhoto
+        overlayImageView.image = sceneImage
         overlayImageView.alpha = 0.5
         
         alphaSlider.addTarget(self, action: #selector(changedValue(_:)), for: .valueChanged)

@@ -143,15 +143,12 @@ class CameraViewController: UIViewController {
                 try configureDeviceInputs()
                 try configurePhotoOutput()
             }
-                
             catch {
                 DispatchQueue.main.async {
                     completionHandler(error)
                 }
-                
                 return
             }
-            
             DispatchQueue.main.async {
                 completionHandler(nil)
             }
@@ -163,10 +160,10 @@ class CameraViewController: UIViewController {
         
         self.previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
         self.previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        self.previewLayer?.connection?.videoOrientation = .portrait
+        self.previewLayer?.connection?.videoOrientation = .landscapeRight
         
         view.layer.insertSublayer(self.previewLayer!, at: 0)
-        self.previewLayer?.frame = view.frame
+        self.previewLayer?.frame = view.bounds
     }
 }
 
