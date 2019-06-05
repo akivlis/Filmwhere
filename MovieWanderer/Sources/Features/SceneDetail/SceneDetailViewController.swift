@@ -74,17 +74,17 @@ extension SceneDetailViewController: FSPagerViewDataSource {
             sceneCell.navigateButtonTapped$
                 .subscribe(onNext: { [weak self] _ in
                     //TODO: check if the current scene is correct
+                    print("Opening map for: \(currentScene.title)")
                     self?.navigationModelController.openMapsFor(currentScene)
                 })
-            .disposed(by: disposeBag)
+            .disposed(by: sceneCell.disposeBag)
             
             sceneCell.takePhotoButtonTapped$
-                .subscribe(onNext: { [weak self] image in
-                    guard let `self` = self, let scenePhoto = image else { return }
-                    self.takePhoto(like: scenePhoto)
+                .subscribe(onNext: { [weak self] tuple in
+                    guard let `self` = self, let scenePhoto = tuple.sceneImage else { return }
+                    self.takePhoto(like: scenePhoto, movieTitle: tuple.movieTitle)
                 })
-                .disposed(by: disposeBag)
-
+                .disposed(by: sceneCell.disposeBag)
         }
         return cell
     }
