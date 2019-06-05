@@ -22,9 +22,11 @@ class TakePhotoViewController: UIViewController {
     private let cameraController = CameraViewController()
     private let bag = DisposeBag()
     private let sceneImage: UIImage
+    private let movieTitle: String
     
-    init(sceneImage: UIImage) {
+    init(sceneImage: UIImage, movieTitle: String) {
         self.sceneImage = sceneImage
+        self.movieTitle =  movieTitle
         super.init(nibName: TakePhotoViewController.className(), bundle: nil)
     }
     
@@ -121,13 +123,15 @@ private extension TakePhotoViewController {
     }
     
     private func takePhoto() {
-        cameraController.captureImage {(image, error) in
+        cameraController.captureImage { image, error in
             guard let capturedImage = image else {
                 print(error ?? "Image capture error")
                 return
             }
             let rotatedPhoto = capturedImage.fixedOrientation().imageRotatedByDegrees(degrees: -90.0)
-            let splitViewController = SplitPhotoViewController(originalImage: self.sceneImage, newImage: rotatedPhoto)
+            let splitViewController = SplitPhotoViewController(originalImage: self.sceneImage,
+                                                               newImage: rotatedPhoto,
+                                                               movieTitle: self.movieTitle)
             self.present(splitViewController, animated: true, completion: nil)
         }
     }

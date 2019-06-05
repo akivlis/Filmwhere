@@ -20,17 +20,16 @@ class SplitPhotoViewController: UIViewController {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var squarePhotoButton: UIButton!
         
-    private let disposeBag = DisposeBag()
     private var heightConstraint : Constraint?
-    
+    private let disposeBag = DisposeBag()
     private let originalImage: UIImage
     private let newImage: UIImage
+    private let movieTitle: String
     
-    init(originalImage: UIImage, newImage: UIImage) {
-        
+    init(originalImage: UIImage, newImage: UIImage, movieTitle: String) {
         self.originalImage = originalImage
         self.newImage = newImage
-       
+        self.movieTitle = movieTitle
         super.init(nibName: "SplitPhotoViewController", bundle: nil)
     }
     
@@ -108,9 +107,11 @@ private extension SplitPhotoViewController {
     
     private func shareImage() {
         let finalImage =  photosContainer.asImage()
-        let activityViewController = UIActivityViewController(activityItems: [finalImage], applicationActivities: nil)
+        let textProvider = TextProvider(viewModel: TextProviderViewModel(movieTitle: movieTitle))
+        let activityViewController = UIActivityViewController(activityItems: [finalImage, textProvider], applicationActivities: nil)
         
         activityViewController.completionWithItemsHandler = { (activityType, completed, _, _) in
+            print(activityType)
             if activityType == .saveToCameraRoll {
                 var message: String?
                 var title = ""
@@ -130,6 +131,20 @@ private extension SplitPhotoViewController {
     }
 }
 
+//extension SplitPhotoViewController: UIActivityItemSource {
+//    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+//        return photosContainer.asImage()
+//    }
+//    
+//    func activityViewController(_ activityViewController: UIActivityViewController, itemForActivityType activityType: UIActivity.ActivityType?) -> Any? {
+//        let image = photosContainer.asImage()
+//        if let activity = activityType , let item = viewModel.items(for: activity) {
+//            return [image, item]
+//        }
+//        return [image]
+//    }
+//}
+
 fileprivate enum PhotoAspectRatio {
     
     case normal, square
@@ -143,3 +158,4 @@ fileprivate enum PhotoAspectRatio {
         }
     }
 }
+

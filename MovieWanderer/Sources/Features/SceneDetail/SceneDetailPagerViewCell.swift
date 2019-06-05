@@ -26,9 +26,10 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
         .asObservable()
     }
     
-    var takePhotoButtonTapped$: Observable<UIImage?> {
+    var takePhotoButtonTapped$: Observable<(sceneImage: UIImage?, movieTitle: String)> {
         return takePictureButton.rx.tap
-            .map { [unowned self] in self.sceneImageView.image }
+            .filter { self.movieTitle != nil }
+            .map { [unowned self] in (self.sceneImageView.image, self.movieTitle!) }
             .asObservable()
     }
     
@@ -44,6 +45,7 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
     private let pinImage = UIImageView()
     private let addressLabel = IconButton()
     private let sceneTitleLabel = UILabel()
+    private var movieTitle: String?
     
     // MARK: - Init
     
@@ -62,6 +64,7 @@ class SceneDetailPagerViewCell: FSPagerViewCell {
         descriptionLabel.text = viewModel.description
         addressLabel.setTitle(viewModel.location, icon: UIImage(named: "location_icon_small")!)
         sceneImageView.kf.setImage(with: viewModel.imageUrl)
+        movieTitle = viewModel.movieTitle
     }
     
     override func prepareForReuse() {

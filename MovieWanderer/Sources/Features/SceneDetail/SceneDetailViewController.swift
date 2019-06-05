@@ -74,7 +74,6 @@ extension SceneDetailViewController: FSPagerViewDataSource {
             sceneCell.navigateButtonTapped$
                 .subscribe(onNext: { [weak self] _ in
                     //TODO: check if the current scene is correct
-                    print("Opening map for: \(currentScene.title)")
                     self?.navigationModelController.openMapsFor(currentScene)
                 })
             .disposed(by: sceneCell.disposeBag)
@@ -184,9 +183,9 @@ private extension SceneDetailViewController {
         self.present(pictureViewController, animated: true, completion: nil)
     }
     
-    private func takePhoto(like scenePhoto: UIImage) {
+    private func takePhoto(like scenePhoto: UIImage, movieTitle: String) {
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let cameraViewController = TakePhotoViewController(sceneImage: scenePhoto)
+            let cameraViewController = TakePhotoViewController(sceneImage: scenePhoto, movieTitle: movieTitle)
             self.present(cameraViewController, animated: true, completion: nil)
         }
     }
