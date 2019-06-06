@@ -11,7 +11,6 @@ import RxSwift
 import SnapKit
 
 class MovieDetailViewController: UIViewController {
-
     private let verticalScenesView : VerticalScenesView
     private let disposeBag = DisposeBag()
     private let viewModel: MovieDetailViewModel
@@ -78,8 +77,7 @@ private extension MovieDetailViewController {
     
     private func setupContraints() {
         verticalScenesView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.leading.trailing.top.bottom.equalToSuperview()
         }
         
         animatingBarView.snp.makeConstraints { make in
