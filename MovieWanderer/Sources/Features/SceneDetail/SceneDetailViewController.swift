@@ -49,6 +49,14 @@ final class SceneDetailViewController: BaseCloseViewController {
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return .lightContent
     }
+
+    override var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
 }
 
 extension SceneDetailViewController: FSPagerViewDataSource {
