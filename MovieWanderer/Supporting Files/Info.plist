@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Allow the app to save your best movie pictures into your library</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -17,9 +15,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.1</string>
+	<string>1.1.0</string>
 	<key>CFBundleVersion</key>
-	<string>22</string>
+	<string>23</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>comgooglemaps</string>
@@ -37,6 +35,8 @@
 	<string>By accesing your location, this app can get you easier to the scene location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>By accesing your location, this app can get you easier to the scene location</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Allow the app to save your best movie pictures into your library</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>For saving photos</string>
 	<key>UILaunchStoryboardName</key>
