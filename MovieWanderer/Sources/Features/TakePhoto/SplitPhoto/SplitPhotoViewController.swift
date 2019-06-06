@@ -19,6 +19,7 @@ class SplitPhotoViewController: UIViewController {
     @IBOutlet weak var normalPhotoButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var squarePhotoButton: UIButton!
+    @IBOutlet weak var closeButton: UIButton!
     
     private var heightConstraint : Constraint?
     private let disposeBag = DisposeBag()
@@ -64,12 +65,11 @@ private extension SplitPhotoViewController {
         
         photosContainer.backgroundColor = .black
         
-        let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 10.0, width: 30.0, height: 30.0))
-        let cancelImage = UIImage(named: "close-icon")?.withRenderingMode(.alwaysTemplate)
-        cancelButton.tintColor = .white
-        cancelButton.setImage(cancelImage, for: UIControl.State())
-        cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
-        view.addSubview(cancelButton)
+        originalImageView.layer.borderColor = UIColor.white.cgColor
+        originalImageView.layer.borderWidth = 4
+        
+        newImageView.layer.borderColor = UIColor.white.cgColor
+        newImageView.layer.borderWidth = 4
     }
     
     private func setupConstraints() {
@@ -94,6 +94,12 @@ private extension SplitPhotoViewController {
         shareButton.rx.tap.asObservable()
             .subscribe(onNext: { [weak self] recognizer in
                 self?.shareImage()
+            })
+            .disposed(by: disposeBag)
+        
+        closeButton.rx.tapGesture()
+            .subscribe(onNext: { [weak self] _ in
+                self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: disposeBag)
     }

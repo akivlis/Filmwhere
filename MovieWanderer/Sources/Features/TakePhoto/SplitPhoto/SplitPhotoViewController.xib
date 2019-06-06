@@ -12,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplitPhotoViewController" customModule="Filmwhere" customModuleProvider="target">
             <connections>
+                <outlet property="closeButton" destination="tw8-Gf-fhH" id="fHq-Rb-zZT"/>
                 <outlet property="newImageView" destination="tXu-RG-oBo" id="WtX-Rj-Ebp"/>
                 <outlet property="normalPhotoButton" destination="QR7-g1-GyG" id="gRq-M4-obB"/>
                 <outlet property="originalImageView" destination="cR7-B8-Mze" id="iOE-GG-xzK"/>
@@ -34,7 +35,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tXu-RG-oBo" userLabel="New Photo">
-                            <rect key="frame" x="0.0" y="250" width="375" height="250"/>
+                            <rect key="frame" x="0.0" y="246" width="375" height="254"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filmwhere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXO-NC-y2n">
@@ -52,7 +53,7 @@
                         <constraint firstAttribute="width" secondItem="bp0-Pm-i50" secondAttribute="height" multiplier="3:4" placeholder="YES" id="KT1-te-Sxb"/>
                         <constraint firstAttribute="trailing" secondItem="tXu-RG-oBo" secondAttribute="trailing" id="Ko1-Vx-e8T"/>
                         <constraint firstItem="cR7-B8-Mze" firstAttribute="height" secondItem="bp0-Pm-i50" secondAttribute="height" multiplier="1:2" id="Zon-1a-3yJ"/>
-                        <constraint firstItem="tXu-RG-oBo" firstAttribute="top" secondItem="cR7-B8-Mze" secondAttribute="bottom" id="akT-6l-XHI"/>
+                        <constraint firstItem="tXu-RG-oBo" firstAttribute="top" secondItem="cR7-B8-Mze" secondAttribute="bottom" constant="-4" id="akT-6l-XHI"/>
                         <constraint firstItem="cR7-B8-Mze" firstAttribute="top" secondItem="bp0-Pm-i50" secondAttribute="top" id="dEa-dW-fXS"/>
                         <constraint firstAttribute="trailing" secondItem="cR7-B8-Mze" secondAttribute="trailing" id="hsc-pi-sJu"/>
                         <constraint firstItem="NXO-NC-y2n" firstAttribute="trailing" secondItem="tXu-RG-oBo" secondAttribute="trailing" constant="-8" id="les-bB-cut"/>
@@ -82,11 +83,22 @@
                         <constraint firstAttribute="height" constant="80" id="g9I-BU-9hD"/>
                     </constraints>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tw8-Gf-fhH">
+                    <rect key="frame" x="15" y="35" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="QWu-PV-iiF"/>
+                        <constraint firstAttribute="width" secondItem="tw8-Gf-fhH" secondAttribute="height" multiplier="1:1" id="UZI-LQ-shc"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" image="close-icon"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="RyY-ze-rZn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="B10-gc-X1S"/>
+                <constraint firstItem="tw8-Gf-fhH" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="BbH-wC-b0A"/>
                 <constraint firstItem="bp0-Pm-i50" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="JPI-91-4fy"/>
+                <constraint firstItem="tw8-Gf-fhH" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="TZJ-04-k1L"/>
                 <constraint firstItem="bp0-Pm-i50" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="Vjh-KJ-N7p"/>
                 <constraint firstItem="RyY-ze-rZn" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Wm2-jt-7g3"/>
                 <constraint firstItem="RyY-ze-rZn" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="YK4-Pi-p7E"/>
@@ -97,4 +109,7 @@
             <point key="canvasLocation" x="53.600000000000001" y="79.610194902548727"/>
         </view>
     </objects>
+    <resources>
+        <image name="close-icon" width="25" height="25"/>
+    </resources>
 </document>
