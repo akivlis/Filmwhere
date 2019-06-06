@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 // MARK: TextProvider
 
 class TextProvider: NSObject, UIActivityItemSource {
