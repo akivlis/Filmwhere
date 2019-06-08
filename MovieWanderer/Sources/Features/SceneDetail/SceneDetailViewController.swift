@@ -153,7 +153,7 @@ private extension SceneDetailViewController {
         closeButton.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).inset(15)
             make.leading.equalToSuperview().inset(15)
-            make.height.width.equalTo(25)
+            make.height.width.equalTo(30)
         }
         
         titleLabel.snp.makeConstraints { make in
