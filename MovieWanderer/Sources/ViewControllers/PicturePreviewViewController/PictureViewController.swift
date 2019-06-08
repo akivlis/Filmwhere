@@ -49,7 +49,7 @@ class PictureViewController: BaseCloseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if (self.isMovingFromParent) {
+        if (self.isBeingDismissed) {
             UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
         }
         
