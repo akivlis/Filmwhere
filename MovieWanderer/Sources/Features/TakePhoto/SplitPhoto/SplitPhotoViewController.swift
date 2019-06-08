@@ -63,13 +63,11 @@ private extension SplitPhotoViewController {
     private func setupViews() {
         view.backgroundColor = UIColor.black
         
-        photosContainer.backgroundColor = .black
-        
         originalImageView.layer.borderColor = UIColor.white.cgColor
-        originalImageView.layer.borderWidth = 4
-        
+        originalImageView.layer.borderWidth = 2
+
         newImageView.layer.borderColor = UIColor.white.cgColor
-        newImageView.layer.borderWidth = 4
+        newImageView.layer.borderWidth = 2
     }
     
     private func setupConstraints() {
