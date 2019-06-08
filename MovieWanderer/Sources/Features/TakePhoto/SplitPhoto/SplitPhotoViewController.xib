@@ -39,7 +39,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filmwhere" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXO-NC-y2n">
-                            <rect key="frame" x="298" y="469.5" width="71" height="27.5"/>
+                            <rect key="frame" x="294" y="467.5" width="71" height="27.5"/>
                             <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="17"/>
                             <color key="textColor" white="1" alpha="0.600310359589041" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -48,7 +48,7 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="cR7-B8-Mze" firstAttribute="leading" secondItem="bp0-Pm-i50" secondAttribute="leading" id="5Ux-w3-rL9"/>
-                        <constraint firstItem="NXO-NC-y2n" firstAttribute="bottom" secondItem="tXu-RG-oBo" secondAttribute="bottom" constant="-3" id="ChN-ag-a4b"/>
+                        <constraint firstItem="NXO-NC-y2n" firstAttribute="bottom" secondItem="tXu-RG-oBo" secondAttribute="bottom" constant="-5" id="ChN-ag-a4b"/>
                         <constraint firstAttribute="bottom" secondItem="tXu-RG-oBo" secondAttribute="bottom" id="E7O-3b-9pY"/>
                         <constraint firstAttribute="width" secondItem="bp0-Pm-i50" secondAttribute="height" multiplier="3:4" placeholder="YES" id="KT1-te-Sxb"/>
                         <constraint firstAttribute="trailing" secondItem="tXu-RG-oBo" secondAttribute="trailing" id="Ko1-Vx-e8T"/>
@@ -56,7 +56,7 @@
                         <constraint firstItem="tXu-RG-oBo" firstAttribute="top" secondItem="cR7-B8-Mze" secondAttribute="bottom" constant="-2" id="akT-6l-XHI"/>
                         <constraint firstItem="cR7-B8-Mze" firstAttribute="top" secondItem="bp0-Pm-i50" secondAttribute="top" id="dEa-dW-fXS"/>
                         <constraint firstAttribute="trailing" secondItem="cR7-B8-Mze" secondAttribute="trailing" id="hsc-pi-sJu"/>
-                        <constraint firstItem="NXO-NC-y2n" firstAttribute="trailing" secondItem="tXu-RG-oBo" secondAttribute="trailing" constant="-6" id="les-bB-cut"/>
+                        <constraint firstItem="NXO-NC-y2n" firstAttribute="trailing" secondItem="tXu-RG-oBo" secondAttribute="trailing" constant="-10" id="les-bB-cut"/>
                         <constraint firstItem="tXu-RG-oBo" firstAttribute="leading" secondItem="bp0-Pm-i50" secondAttribute="leading" id="xGZ-Br-UhO"/>
                     </constraints>
                 </view>
