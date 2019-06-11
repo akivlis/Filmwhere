@@ -128,11 +128,23 @@ private extension TakePhotoViewController {
                 print(error ?? "Image capture error")
                 return
             }
-            let rotatedPhoto = capturedImage.fixedOrientation().imageRotatedByDegrees(degrees: -90.0)
+            let rotatedPhoto = self.getRotatedPicture(of: capturedImage)
+            
             let splitViewController = SplitPhotoViewController(originalImage: self.sceneImage,
                                                                newImage: rotatedPhoto,
                                                                movieTitle: self.movieTitle)
             self.present(splitViewController, animated: true, completion: nil)
+        }
+    }
+    
+    private func getRotatedPicture(of image: UIImage) -> UIImage {
+        switch cameraController.currentCameraPosition {
+        case .some(.front):
+            return image.fixedOrientation().imageRotatedByDegrees(degrees: 90.0)
+        case .some(.rear):
+            return image.fixedOrientation().imageRotatedByDegrees(degrees: -90.0)
+        case .none:
+            return image
         }
     }
     
