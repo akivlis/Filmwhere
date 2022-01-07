@@ -9,25 +9,26 @@
 import Foundation
 import RxSwift
 import Moya
+import Combine
 
 class MovieDetailViewModel {
-    
-    private var _displayScenes$ = PublishSubject<[Scene]>()
-    var displayScenes$: Observable<[Scene]> {
-        return _displayScenes$
-    }
-    
-    private let provider: MoyaProvider<MovieService>
+
+    private let scenesSubject = CurrentValueSubject<[Scene], Never>([Scene]())
+    private(set) lazy var scenesPublisher = scenesSubject
+        .eraseToAnyPublisher()
+
+    private let firebaseService: FirebaseService
     private let disposeBag = DisposeBag()
-    
-    private(set) var movie: Movie
-    
+
+    let movie: Movie
+
     // MARK: - Init
     
     init(movie: Movie,
-         provider: MoyaProvider<MovieService> = MoyaProvider<MovieService>()) {
+         firebaseService: FirebaseService = FirebaseService()
+    ) {
         self.movie = movie
-        self.provider = provider
+        self.firebaseService = firebaseService
     }
     
     var movieHeaderViewModel: MovieHeaderViewModel {
@@ -39,6 +40,20 @@ class MovieDetailViewModel {
     }
     
     var scenes: [Scene] {
-        return movie.scenes ?? [Scene]()
+        return scenesSubject.value
+    }
+
+    func loadScenes() {
+        guard let id = movie.id else { return }
+        firebaseService.getScenes(for: id)
+            .subscribe(onNext: { [weak self ] scenes in
+                self?.scenesSubject.send(scenes)
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+//                let alert = self.createErrorAlert(message: error.localizedDescription)
+                print(error)
+//                self._showAlert$.onNext(alert)
+            })
+            .disposed(by: disposeBag)
     }
 }

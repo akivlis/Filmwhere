@@ -9,8 +9,10 @@
 import UIKit
 import RxSwift
 import SnapKit
+import Combine
 
 class MovieDetailViewController: UIViewController {
+
     private let verticalScenesView : VerticalScenesView
     private let disposeBag = DisposeBag()
     private let viewModel: MovieDetailViewModel
@@ -25,6 +27,8 @@ class MovieDetailViewController: UIViewController {
             setNeedsStatusBarAppearanceUpdate()
         }
     }
+
+    private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: Init
     
@@ -44,8 +48,8 @@ class MovieDetailViewController: UIViewController {
         setupViews()
         setupContraints()
         setupObservables()
-        
-        self.verticalScenesView.setScenes(scenes: viewModel.scenes)
+
+        viewModel.loadScenes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -93,6 +97,13 @@ private extension MovieDetailViewController {
     }
     
     private func setupObservables() {
+        viewModel.scenesPublisher
+            .sink { [weak self ] scenes in
+                guard let self = self else { return }
+                self.verticalScenesView.setScenes(scenes: scenes)
+            }
+            .store(in: &subscriptions)
+
         
         verticalScenesView.showMapTapped$
             .subscribe(onNext: { [unowned self] _ in

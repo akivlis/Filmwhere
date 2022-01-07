@@ -26,11 +26,11 @@ struct SceneCellViewModel {
     }
     
     var distanceFromMe: String {
-        return "50 km"
+        return "50 km" // TODO: return the actual value
     }
 
-    var imageUrl: URL {
-        return URL(string: scene.imageURL)!
+    var imageUrl: URL? {
+        return scene.imageURL
     }
     
     var placeholderImage: UIImage {

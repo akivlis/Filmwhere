@@ -21,7 +21,7 @@ class MoviesModelController {
     }
     
     var allScenes: [Scene] {
-        return movies.flatMap { $0.scenes }
+        return  []//movies.flatMap { $0.scenes! }
     }
     
     private var movies: [Movie] {

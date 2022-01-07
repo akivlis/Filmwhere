@@ -14,7 +14,7 @@ struct Movie: Codable, Identifiable {
     @DocumentID var id: String?
     let title: String
     let description: String
-    let scenes: [Scene]
+    var scenes: [Scene]? = [Scene]()
     let imageURL: URL?
 }
 

@@ -16,8 +16,8 @@ struct SceneDetailPagerViewCellViewModel {
        return scene.description
     }
     
-    var imageUrl: URL {
-        return URL(string: scene.imageURL)!
+    var imageUrl: URL? {
+        return scene.imageURL
     }
 
     var location: String {

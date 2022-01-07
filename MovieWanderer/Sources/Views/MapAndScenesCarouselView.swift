@@ -60,9 +60,9 @@ final class MapAndScenesCarouselView: UIView {
     }
     
     func update(movie: Movie) {
-        self.scenes = movie.scenes
-        mapView.viewModel = MapViewViewModel(scenes: movie.scenes)
-        scenesCarousel.setScenes(scenes: movie.scenes)
+        self.scenes = movie.scenes!
+        mapView.viewModel = MapViewViewModel(scenes: movie.scenes!)
+        scenesCarousel.setScenes(scenes: movie.scenes!)
     }
 }
 

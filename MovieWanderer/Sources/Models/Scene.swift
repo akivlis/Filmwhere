@@ -17,10 +17,14 @@ struct Scene: Codable {
     let description: String
     let locationName: String
     let location: GeoPoint
-    let imageURL: String
+    var imageURLString: String = ""
     let country : String
     var movieTitle: String?
     var movieURL: URL?
+
+    var imageURL: URL? {
+        return URL(string: imageURLString)
+    }
 }
 
 //extension Scene: Equatable {

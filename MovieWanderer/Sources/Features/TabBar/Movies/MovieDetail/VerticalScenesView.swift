@@ -31,7 +31,7 @@ class VerticalScenesView: UIView {
     
     private let movie: Movie
     private var headerView: MovieHeaderView?
-    private var scenes: [Scene]
+    private var scenes: [Scene] = []
     private let showHeader: Bool
     private lazy var navigationBarHeight: CGFloat = {
         return UIApplication.shared.keyWindow!.safeAreaInsets.top + 44
@@ -53,7 +53,7 @@ class VerticalScenesView: UIView {
     init(movie: Movie, showHeader: Bool = true) {
         self.movie = movie // movie should be only in movieHeaderView
         self.showHeader = showHeader
-        self.scenes = movie.scenes
+        self.scenes = movie.scenes ?? []
         super.init(frame: .zero)
         backgroundColor = .clear
 

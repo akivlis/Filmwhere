@@ -35,7 +35,7 @@ class FirebaseService {
                         return
                     }
 
-                    documents.map { document in
+                    documents.forEach { document in
                         print("❤️ \n")
                         print(document.data())
                         print("\n \n")
@@ -54,6 +54,53 @@ class FirebaseService {
                         observer.onCompleted()
                     case .failure(let error):
                         print("Error decoding movies: \(error)")
+                        observer.onError(error)
+                        observer.onCompleted()
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    func getScenes(for movieID: String) -> Observable<[Scene]>{
+        Observable.create { observer -> Disposable in
+
+            let scenesRef = self.db.collection("movies").document(movieID).collection("scenes")
+
+            scenesRef.getDocuments() { (querySnapshot, err) in
+                if let error = err {
+                    print("Error getting documents: \(error)")
+                    observer.onError(error)
+                    observer.onCompleted()
+
+                } else {
+                    guard let documents = querySnapshot?.documents else {
+                        print("no documents")
+                        observer.onError(MovieError.noData)
+                        observer.onCompleted()
+                        return
+                    }
+
+                    documents.forEach { document in
+                        print("🐣\n")
+                        print(document.data())
+                        print("\n")
+                    }
+
+                    let result = Result {
+                        try documents.compactMap {
+                            try $0.data(as: Scene.self)
+                        }
+                    }
+
+                    switch result {
+                    case .success(let scenes):
+                            print(" 🐣 scenes: \(scenes)")
+                            observer.onNext(scenes)
+                        observer.onCompleted()
+                    case .failure(let error):
+                        print("Error decoding scenes: \(error)")
                         observer.onError(error)
                         observer.onCompleted()
                     }

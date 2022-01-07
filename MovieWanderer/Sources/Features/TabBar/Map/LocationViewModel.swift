@@ -21,7 +21,7 @@ struct LocationViewModel {
     
     init(movies: [Movie]) {
         self.movies = movies
-        self.scenes = movies.flatMap { $0.scenes }
+        self.scenes = movies.flatMap { $0.scenes! }
     }
     
     func getMovie(for text: String) -> [Movie]? {
