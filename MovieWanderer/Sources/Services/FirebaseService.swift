@@ -109,6 +109,48 @@ class FirebaseService {
             return Disposables.create()
         }
     }
+
+    func getAllScenes() -> Observable<[Scene]>{
+        Observable.create { observer -> Disposable in
+
+            let scenesRef = self.db.collectionGroup("scenes")
+            //whereField - can be used to filter based on location, if its closed to me
+
+            scenesRef.getDocuments() { (querySnapshot, err) in
+                if let error = err {
+                    print("Error getting documents: \(error)")
+                    observer.onError(error)
+                    observer.onCompleted()
+
+                } else {
+                    guard let documents = querySnapshot?.documents else {
+                        print("no documents")
+                        observer.onError(MovieError.noData)
+                        observer.onCompleted()
+                        return
+                    }
+
+                    let result = Result {
+                        try documents.compactMap {
+                            try $0.data(as: Scene.self)
+                        }
+                    }
+
+                    switch result {
+                    case .success(let scenes):
+                            print(" 🐛 ALL scenes: \(scenes)")
+                            observer.onNext(scenes)
+                        observer.onCompleted()
+                    case .failure(let error):
+                        print("Error decoding scenes: \(error)")
+                        observer.onError(error)
+                        observer.onCompleted()
+                    }
+                }
+            }
+            return Disposables.create()
+        }
+    }
 }
 
 enum MovieError: Error {

@@ -85,7 +85,7 @@ private extension SceneDetailPagerViewCell {
     private func setupViews() {
         containerView.layer.cornerRadius = 6.0
         containerView.layer.masksToBounds = true
-        containerView.backgroundColor = .white
+        containerView.backgroundColor = .systemBackground
         addSubview(containerView)
         
         sceneImageView.contentMode = .scaleAspectFill
@@ -110,7 +110,7 @@ private extension SceneDetailPagerViewCell {
         addressLabel.sizeToFit()
         contentStackView.addArrangedSubview(addressLabel)
         
-        descriptionLabel.textColor = .rhinoBlack
+        descriptionLabel.textColor = UIColor(named: "rhinoBlack")
         descriptionLabel.font = UIFont.thin(textStyle: .subheadline)
         descriptionLabel.textAlignment = .left
         descriptionLabel.isEditable = false

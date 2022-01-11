@@ -59,12 +59,12 @@ private extension MovieListViewController {
     private func setupViews() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .automatic
-        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor = UIColor.systemBackground
         
         
         title = "Movies"
         view.addSubview(listView)
-        listView.backgroundColor = .white
+        listView.backgroundColor = .systemBackground
         listView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

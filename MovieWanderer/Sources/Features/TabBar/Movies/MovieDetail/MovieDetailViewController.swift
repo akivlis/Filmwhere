@@ -66,16 +66,14 @@ private extension MovieDetailViewController {
     
     private func setupViews() {
         title = viewModel.title
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         
         view.addSubview(verticalScenesView)
         view.addSubview(animatingBarView)
         
         let backButtonImage = UIImage(named: "back-icon")?.withRenderingMode(.alwaysTemplate)
         backButton.setImage(backButtonImage, for: .normal)
-        backButton.tintColor = .white
-        let inset: CGFloat = 5
-        backButton.imageEdgeInsets =  UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        backButton.tintColor = .systemBackground
         view.addSubview(backButton)
     }
     
@@ -104,6 +102,12 @@ private extension MovieDetailViewController {
             }
             .store(in: &subscriptions)
 
+        viewModel.showAlertPublisher
+            .sink { [weak self ] alert in
+                guard let self = self else { return }
+                self.present(alert, animated: true, completion: nil)
+            }
+            .store(in: &subscriptions)
         
         verticalScenesView.showMapTapped$
             .subscribe(onNext: { [unowned self] _ in
@@ -121,7 +125,7 @@ private extension MovieDetailViewController {
                                                                           currentIndex: correctIndex,
                                                                           title: self.viewModel.movie.title,
                                                                           navigationModelController: MapNavigationModelController())
-                sceneDetailViewController.modalPresentationStyle = .overFullScreen
+//                sceneDetailViewController.modalPresentationStyle = .overFullScreen
                 self.present(sceneDetailViewController, animated: true, completion: nil)
             })
             .disposed(by: disposeBag)

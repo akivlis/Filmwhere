@@ -7,24 +7,38 @@
 //
 
 import Foundation
+import Combine
+import RxSwift
 
+class LocationViewModel {
 
-struct LocationViewModel {
-    
-    let scenes: [Scene]
-    let movies: [Movie]
-    
-    init(scenes: [Scene]) {
-        self.scenes = scenes
-        self.movies = [Movie]()
+    private let scenesSubject = CurrentValueSubject<[Scene], Never>([Scene]())
+    private(set) lazy var scenesPublisher = scenesSubject
+        .eraseToAnyPublisher()
+
+    private let firebaseService: FirebaseService
+    private let disposeBag = DisposeBag()
+
+    var scenes: [Scene] {
+        return scenesSubject.value
     }
-    
-    init(movies: [Movie]) {
-        self.movies = movies
-        self.scenes = movies.flatMap { $0.scenes! }
+
+    // MARK: - Init
+
+    init(firebaseService: FirebaseService = FirebaseService()) {
+        self.firebaseService = firebaseService
     }
-    
-    func getMovie(for text: String) -> [Movie]? {
-        return movies.filter { $0.title.lowercased().contains(text.lowercased()) }
+
+    func loadAllScenes() {
+        firebaseService.getAllScenes()
+            .subscribe(onNext: { [weak self ] scenes in
+                self?.scenesSubject.send(scenes)
+            }, onError: { [weak self] error in
+                guard let self = self else { return }
+//                let alert = self.createErrorAlert(message: error.localizedDescription)
+                print(error)
+//                self._showAlert$.onNext(alert)
+            })
+            .disposed(by: disposeBag)
     }
 }

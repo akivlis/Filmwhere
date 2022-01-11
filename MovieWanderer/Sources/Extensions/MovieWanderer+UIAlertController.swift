@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIAlertController {
+
     static func createAlertController(withTitle title: String?,
                                       message: String?,
                                       closeActionTitle: String) -> UIAlertController {
@@ -21,4 +22,18 @@ extension UIAlertController {
                                         handler: nil))
         return alertVC
     }
+
+    static func warningAlert(title: String, message: String) -> UIAlertController {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+
+        let okAction = UIAlertAction(title: "OK".localized, style: .cancel, handler: nil)
+        alert.addAction(okAction)
+
+        return alert
+    }
+
 }

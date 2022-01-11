@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-public protocol Reuseable: class {
+public protocol Reuseable: AnyObject {
     static var reuseIdentifier: String { get }
 }
 

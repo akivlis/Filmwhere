@@ -25,9 +25,9 @@ class MainTabBarController: UITabBarController {
 private extension MainTabBarController {
     
     private func setupViews() {
-        tabBar.tintColor = UIColor.brightPink
-        tabBar.barTintColor = UIColor.white
-        tabBar.backgroundColor = UIColor.white
+        tabBar.tintColor = UIColor(named: "brightPink")
+        tabBar.barTintColor = UIColor.systemBackground
+        tabBar.backgroundColor = UIColor.systemBackground
     }
     
     private func loadTabs(){
@@ -35,7 +35,7 @@ private extension MainTabBarController {
         moviesModelController.loadMovies()
         
         let movieListViewController = UINavigationController(rootViewController: MovieListViewController(moviesModelController: moviesModelController))
-        let locationViewController = LocationViewController(moviesModelController: moviesModelController)
+        let locationViewController = LocationViewController(viewModel: LocationViewModel())
         let settingsViewController = UINavigationController(rootViewController: SettingsViewController())
         
         let controllers = [movieListViewController, locationViewController, settingsViewController]

@@ -15,16 +15,9 @@ struct Movie: Codable, Identifiable {
     let title: String
     let description: String
     var scenes: [Scene]? = [Scene]()
-    let imageURL: URL?
-}
+    let imageURLString: String
 
-extension Movie {
-
-    fileprivate enum Keys: String, CodingKey {
-        case id
-        case title
-        case description
-        case imageUrl = "imageUrlString"
-        case scenes
+    var imageURL: URL? {
+        return URL(string: imageURLString)
     }
 }

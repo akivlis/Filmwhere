@@ -39,7 +39,5 @@ private extension IconButton {
         isUserInteractionEnabled = false
         imageView?.contentMode = .scaleAspectFit
         titleLabel?.font =  UIFont.medium(textStyle: .subheadline)
-        let spacing: CGFloat = 4
-        titleEdgeInsets =  UIEdgeInsets(top: 0, left: spacing, bottom: 0, right: -spacing)
     }
 }

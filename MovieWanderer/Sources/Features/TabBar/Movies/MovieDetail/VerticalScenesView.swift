@@ -34,7 +34,10 @@ class VerticalScenesView: UIView {
     private var scenes: [Scene] = []
     private let showHeader: Bool
     private lazy var navigationBarHeight: CGFloat = {
-        return UIApplication.shared.keyWindow!.safeAreaInsets.top + 44
+        return UIApplication.shared.connectedScenes
+        .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+        .first { $0.isKeyWindow }!
+        .safeAreaInsets.top + 44
     }()
     
     let scenesTableView: UITableView = {
@@ -42,7 +45,7 @@ class VerticalScenesView: UIView {
         tableView.showsHorizontalScrollIndicator = false
         tableView.isUserInteractionEnabled = true
         tableView.separatorStyle = .none
-        tableView.backgroundColor = .white
+        tableView.backgroundColor = .clear
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.register(ExpandableDescriptionTableViewCell.self)
         tableView.register(SceneTableViewCell.self)
@@ -55,7 +58,7 @@ class VerticalScenesView: UIView {
         self.showHeader = showHeader
         self.scenes = movie.scenes ?? []
         super.init(frame: .zero)
-        backgroundColor = .clear
+        backgroundColor = .systemBackground
 
         scenesTableView.dataSource = self
         scenesTableView.delegate = self

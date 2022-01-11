@@ -17,6 +17,10 @@ class MovieDetailViewModel {
     private(set) lazy var scenesPublisher = scenesSubject
         .eraseToAnyPublisher()
 
+    private let showAlertSubject = PassthroughSubject<UIAlertController, Never>()
+    private(set) lazy var showAlertPublisher = showAlertSubject
+        .eraseToAnyPublisher()
+
     private let firebaseService: FirebaseService
     private let disposeBag = DisposeBag()
 
@@ -50,9 +54,8 @@ class MovieDetailViewModel {
                 self?.scenesSubject.send(scenes)
             }, onError: { [weak self] error in
                 guard let self = self else { return }
-//                let alert = self.createErrorAlert(message: error.localizedDescription)
-                print(error)
-//                self._showAlert$.onNext(alert)
+                let alertController = UIAlertController.warningAlert(title: "Error", message: error.localizedDescription)
+                self.showAlertSubject.send(alertController)
             })
             .disposed(by: disposeBag)
     }

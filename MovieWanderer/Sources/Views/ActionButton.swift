@@ -23,13 +23,16 @@ final class ActionButton: UIButton {
     }
     
     convenience init() {
-        self.init(type: .custom)
+        self.init(configuration: UIButton.Configuration.filled(), primaryAction: nil)
         commonInit()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        applyGradient(colors: [UIColor.brightPink.cgColor, UIColor.lightPink.cgColor])
+        applyGradient(colors: [
+            UIColor(named: "brightPink")!.cgColor,
+            UIColor(named: "lightPink")!.cgColor
+        ])
         layer.cornerRadius = self.bounds.height / 2
         layer.masksToBounds = true
     }
@@ -42,12 +45,10 @@ final class ActionButton: UIButton {
 private extension ActionButton {
     
     private func commonInit() {
-        backgroundColor = .lightBlue
+        backgroundColor = UIColor(named: "brightPink")
         setTitleColor(.white, for: .normal)
-        setTitleColor(UIColor.white.withAlphaComponent(0.5), for: .highlighted)
+        setTitleColor(UIColor.systemBackground.withAlphaComponent(0.5), for: .highlighted)
         titleLabel?.font =  UIFont.medium(textStyle: .subheadline)
-        titleEdgeInsets =  UIEdgeInsets(top: 0, left: 12, bottom: 0, right: -12)
-        contentEdgeInsets = UIEdgeInsets(top: 7, left: 0, bottom: 7, right: 24)
     }
    
     private func applyGradient(colors: [CGColor]) {

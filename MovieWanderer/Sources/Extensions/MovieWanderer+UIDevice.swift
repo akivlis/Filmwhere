@@ -55,10 +55,20 @@ extension UIDevice {
     }
     
     static var landscape: Bool {
-        return UIApplication.shared.statusBarOrientation.isLandscape
+        return UIApplication.shared.connectedScenes
+            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+            .first?
+            .windowScene?
+            .interfaceOrientation
+            .isLandscape ?? false
     }
     
     static var portrait: Bool {
-        return UIApplication.shared.statusBarOrientation.isPortrait
+        return UIApplication.shared.connectedScenes
+            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+            .first?
+            .windowScene?
+            .interfaceOrientation
+            .isPortrait ?? false
     }
 }

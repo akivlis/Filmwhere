@@ -121,10 +121,10 @@ private extension SceneCarouselView {
     }
     
     private func setupViews() {
-        backgroundColor = .white
+        backgroundColor = .systemBackground
 
         movieTitleLabel.font = UIFont.regular(textStyle: .body)
-        movieTitleLabel.textColor = .lightBlue
+        movieTitleLabel.textColor = UIColor(named: "lightBlue")
         movieTitleLabel.sizeToFit()
         addSubview(movieTitleLabel)
         

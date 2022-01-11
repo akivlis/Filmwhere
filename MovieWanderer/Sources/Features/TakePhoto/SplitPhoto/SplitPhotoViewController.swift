@@ -63,10 +63,10 @@ private extension SplitPhotoViewController {
     private func setupViews() {
         view.backgroundColor = UIColor.black
         
-        originalImageView.layer.borderColor = UIColor.white.cgColor
+        originalImageView.layer.borderColor = UIColor.systemBackground.cgColor
         originalImageView.layer.borderWidth = 2
 
-        newImageView.layer.borderColor = UIColor.white.cgColor
+        newImageView.layer.borderColor = UIColor.systemBackground.cgColor
         newImageView.layer.borderWidth = 2
     }
     

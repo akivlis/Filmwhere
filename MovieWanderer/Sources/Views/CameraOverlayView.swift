@@ -45,7 +45,7 @@ private extension CameraOverlayView {
         originalPhotoImageView.alpha = 0.5
         addSubview(originalPhotoImageView)
         
-        takePictureButton.backgroundColor = .white
+        takePictureButton.backgroundColor = .systemBackground
         addSubview(takePictureButton)
     }
     

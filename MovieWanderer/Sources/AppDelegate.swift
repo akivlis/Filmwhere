@@ -49,7 +49,7 @@ private extension AppDelegate {
         let tabBarViewController = MainTabBarController()
         window?.rootViewController = tabBarViewController
         window?.makeKeyAndVisible()
-        UINavigationBar.appearance().tintColor = .brightPink
+        UINavigationBar.appearance().tintColor = UIColor(named: "brightPink")
     }
     
     private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController? {

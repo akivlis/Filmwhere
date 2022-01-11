@@ -20,9 +20,9 @@ class MoviesModelController {
         return _showAlert$
     }
     
-    var allScenes: [Scene] {
-        return  []//movies.flatMap { $0.scenes! }
-    }
+//    var allScenes: [Scene] {
+//        return  []//movies.flatMap { $0.scenes! }
+//    }
     
     private var movies: [Movie] {
         didSet {

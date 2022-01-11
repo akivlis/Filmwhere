@@ -124,7 +124,7 @@ private extension SceneDetailViewController {
         
         view.addTopGradient()
         
-        titleLabel.textColor = .white
+        titleLabel.textColor = .systemBackground
         view.addSubview(titleLabel)
         
         pagerView.backgroundColor = .clear
@@ -143,8 +143,7 @@ private extension SceneDetailViewController {
         if let image = UIImage(named: "close-icon")?.withRenderingMode(.alwaysTemplate) {
             closeButton.setImage(image, for: .normal)
         }
-        closeButton.tintColor = .white
-        closeButton.imageEdgeInsets =  UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
+        closeButton.tintColor = .systemBackground
         view.addSubview(closeButton)
     }
     

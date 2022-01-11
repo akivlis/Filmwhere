@@ -52,7 +52,7 @@ private extension SceneCellView {
     }
     
     private func setupViews() {
-        backgroundImageView.backgroundColor = .lightGray
+        backgroundImageView.backgroundColor = .clear
         backgroundImageView.clipsToBounds = true
         backgroundImageView.layer.cornerRadius = 6
         backgroundImageView.contentMode = .scaleAspectFill
@@ -62,12 +62,12 @@ private extension SceneCellView {
         gradientView.colors = (.clear, UIColor.black.withAlphaComponent(0.8))
         backgroundImageView.insertSubview(gradientView, at: 0)
 
-        titleLabel.textColor = .white
+        titleLabel.textColor = .systemBackground
         titleLabel.font = UIFont.bold(textStyle: .subheadline)
         stackView.addArrangedSubview(titleLabel)
         
         stackView.addArrangedSubview(subtitleLabel)
-        subtitleLabel.textColor = .white
+        subtitleLabel.textColor = .systemBackground
         subtitleLabel.font = UIFont.light(textStyle: .footnote)
         
         stackView.axis = .vertical

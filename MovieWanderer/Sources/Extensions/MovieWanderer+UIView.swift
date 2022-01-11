@@ -29,7 +29,10 @@ extension UIView {
     }
     
     func addTopGradient() {
-        let height = UIApplication.shared.keyWindow!.safeAreaInsets.top + 60
+        let height = UIApplication.shared.connectedScenes
+            .flatMap { ($0 as? UIWindowScene)?.windows ?? [] }
+            .first { $0.isKeyWindow }!
+            .safeAreaInsets.top + 60
 
          let topGradient : GradientView = {
             let gradient = GradientView()

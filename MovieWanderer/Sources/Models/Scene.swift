@@ -20,7 +20,11 @@ struct Scene: Codable {
     var imageURLString: String = ""
     let country : String
     var movieTitle: String?
-    var movieURL: URL?
+    var movieURLString: String = ""
+
+    var movieURL: URL? {
+        return URL(string: movieURLString)
+    }
 
     var imageURL: URL? {
         return URL(string: imageURLString)

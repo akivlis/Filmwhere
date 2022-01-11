@@ -16,7 +16,7 @@ class SceneAnnotationView: MKAnnotationView {
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor.lightGray
         imageView.clipsToBounds = true
-        imageView.layer.borderColor = UIColor.brightPink.cgColor
+        imageView.layer.borderColor = UIColor(named: "brightPink")?.cgColor
         imageView.layer.borderWidth = 1
         return imageView
     }()
@@ -25,7 +25,7 @@ class SceneAnnotationView: MKAnnotationView {
         let button = UIButton(type: .detailDisclosure)
         let image = UIImage(named: "navigation_icon")?.withRenderingMode(.alwaysTemplate)
         button.setImage(image, for: .normal)
-        button.tintColor = .lightPink
+        button.tintColor = UIColor(named: "lightPink")
         return button
     }()
     

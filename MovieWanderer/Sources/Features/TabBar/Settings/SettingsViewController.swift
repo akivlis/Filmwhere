@@ -64,10 +64,10 @@ private extension SettingsViewController {
     
     private func setupViews(){
         title = "Settings"
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.barTintColor = UIColor.white
+        navigationController?.navigationBar.barTintColor = UIColor.systemBackground
         navigationItem.largeTitleDisplayMode = .automatic
         
         tableView.dataSource = self

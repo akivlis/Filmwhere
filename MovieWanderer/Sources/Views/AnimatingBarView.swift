@@ -23,7 +23,7 @@ class AnimatingBarView: UIView {
     }
     
     func setColorWith(alpha: CGFloat) {
-        backgroundColor = UIColor.white.withAlphaComponent(alpha)
+        backgroundColor = UIColor.systemBackground.withAlphaComponent(alpha)
         if alpha == 1.0 {
             border.backgroundColor = UIColor.lightGray
         } else {
